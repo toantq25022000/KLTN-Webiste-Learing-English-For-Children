@@ -1,0 +1,277 @@
+{% extends "pages/base.html" %}{% load course_tag %} {%load static %} {% block title %} Review {%endblock %} {%block scripts%}
+<script src="{% static 'js/violympic_end_course.js'%}"></script>
+{%endblock%} {%block content%}
+<!--? slider Area Start-->
+<section class="slider-area slider-area2">
+  <div class="slider-active">
+    <!-- Single Slider -->
+    <div class="single-slider slider-height2">
+      <div class="container">
+        <div class="row">
+          <div class="col-xl-8 col-lg-11 col-md-12">
+            <div class="hero__caption hero__caption2">
+              <h1 data-animation="bounceIn" data-delay="0.2s">Review</h1>
+              <!-- breadcrumb Start-->
+              <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                  <li class="breadcrumb-item">
+                    <a href="{%url 'home:index'%}">Home</a>
+                  </li>
+                  <li class="breadcrumb-item">
+                    <a href="{{request.get_full_path}}">Review</a>
+                  </li>
+                </ol>
+              </nav>
+              <!-- breadcrumb End -->
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="container container-h-100 bg-container-w p-4">
+  <div class="wrapper-vio-end">
+    <div id="header_load_start" class="header_load_start text-center">
+      <div class="row">
+        <div class="col-4">
+          <button id="btn-start-vioend" class="btn_start_vioend">
+            <span>Bắt đầu làm bài</span>
+            <div class="transition"></div>
+          </button>
+        </div>
+        <div class="col-4">
+          <div id="sniper-box" class="sniper-box">
+            <div class="loader"></div>
+            
+          </div>
+        </div>
+        <div class="col-4 d-flex-center">
+          <div class="history_example_vioend" >
+              <span id="text_history_example_vioend">
+                <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="history" class="svg-inline--fa fa-history fa-w-16" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M504 255.531c.253 136.64-111.18 248.372-247.82 248.468-59.015.042-113.223-20.53-155.822-54.911-11.077-8.94-11.905-25.541-1.839-35.607l11.267-11.267c8.609-8.609 22.353-9.551 31.891-1.984C173.062 425.135 212.781 440 256 440c101.705 0 184-82.311 184-184 0-101.705-82.311-184-184-184-48.814 0-93.149 18.969-126.068 49.932l50.754 50.754c10.08 10.08 2.941 27.314-11.313 27.314H24c-8.837 0-16-7.163-16-16V38.627c0-14.254 17.234-21.393 27.314-11.314l49.372 49.372C129.209 34.136 189.552 8 256 8c136.81 0 247.747 110.78 248 247.531zm-180.912 78.784l9.823-12.63c8.138-10.463 6.253-25.542-4.21-33.679L288 256.349V152c0-13.255-10.745-24-24-24h-16c-13.255 0-24 10.745-24 24v135.651l65.409 50.874c10.463 8.137 25.541 6.253 33.679-4.21z"></path></svg>
+                Xem lịch sử thi
+              </span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="bg-wrap-vio-end" class="bg-wrap-vio-end animate-bottom">
+      <span
+        id="btn-url-vio-end"
+        data-url="{{vio.file_excel.url}}"
+        style="display: none"
+      ></span>
+
+     
+      <div class="area_vio_end">
+        <div class="header_area_vio_end">
+          <div class="row">
+            <div class="col-6 title_vio_end">
+              <h3>Thi trắc nghiệm cuối khóa học</h3> 
+            </div>
+            <div class="col-6 brow_time_send">
+              <div class="row">
+                <div class="col-4">
+                  <div class="submission_vioend" id="submission_vioend">Nộp bài</div>
+                  <!-- Modal submission -->
+                  <div class="submission__overplay0" id="modalSubmission">
+                    <div class="modal_f_family">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <i class="ti-help-alt icon-help"></i>
+                          <h5 class="modal-title">Xác nhận</h5>
+                          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true" id="icon_close_submission">&times;</span>
+                          </button>
+                        </div>
+                        <div class="modal-body">
+                          <div class="sub-boydy-modal">
+                              <div class="sentence-number-submodal" id="render-suc-danger-number">Co <span class="text-success">3 cau hoi </span>chua tra loi</div>
+                              <div class="are-sure-ok">Bạn có chắc muốn nộp bài không?</div>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                          <button type="button" class="btn_modal__ btn-light" id="btn_close_submission" data-dismiss="modal">Không</button>
+                          <button type="button" class="btn_modal__ btn-primary" id="btn_OK_submission">Có</button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="submission__overplay" id="modal__result_submission">
+                    <div class="body_modal_oksubmisson">
+                        <h3>Bạn đã hoàn thành bài thi</h3>
+                        <p id="text-result-submission">
+                            
+                        </p>
+                        <button class="btn btn-primary mt-5" id="btn_submit_example_vioend">OK</button>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-4">
+                  <div class="time_countdown_vioend" id="time_countdown_vioend"></div>
+                </div>
+                <div class="col-4">
+                  <label for="nav__input_vio" class="list_question_vioend" id="btn_list_question_vioend">
+                    <i class="ti-layout-grid3-alt"></i>
+                  </label>
+
+                  <input type="checkbox" hidden class="nav_input_vio" id="nav__input_vio">
+                  <label for="nav__input_vio" class="nav__overplay"></label>
+
+                  <nav class="nav_listques_vioend">
+                    <div class="nav_header_vio">
+                       <h3>Danh sách câu hỏi</h3>
+                       <label for="nav__input_vio"><i class="ti-close btn_close_navvio"></i></label> 
+                    </div>
+                    <div class="body_nav_vio">
+                      <div class="list_btn_ques_vio" id="list_btn_ques_vio">
+                         
+                      </div>
+                    </div>
+                    <div class="nav_bottom_vio">
+                      <button class="btn-vioend2 btn-nodoing-vioend t-bg-secondary">Chưa trả lời</button>
+                      <button class="btn-vioend2 btn-doing-vioend t-bg-success">Đã trả lời</button>
+                    </div>
+                  </nav>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!--progress-->
+        <div class="wrapper-progress-ques row mb-3">
+          <div class="col-9 progress-slider-auto">
+             <div class="sliderbar_prog_in" id="slider_progress_ques"></div>
+          </div>
+          <div class="col-3">
+            <span id="number_ques_doing_header">0</span>/<span id="total_ques_header">10</span> Câu hỏi
+          </div>
+        </div>
+        <!-- Area list question -->
+        <div class="list-question-vio-end">
+            <div class="text-question-vioend">
+              <div class="number_ques_area">
+                Câu <span class="number_question__" id="current_number_question">1</span>.
+              </div>
+              <div class="question_titile_vioend" id="question_titile_vioend">Vi sao bac ho ra di tim duong cuu nuoc</div>
+            </div>
+            <div class="list-choice-answer">
+              <!--  checked radio -->
+                <div class="form-check form-check-vioend">
+                  <input
+                    class="form-check-input"
+                    type="radio"
+                    name="ansVioEnd"
+                    id="choiceid1"
+                    value="1"
+                  />
+                  <label class="form-check-label form-check-label-me" for="choiceid1"><span class="span1">A. </span> <span class="text-answer-vioend">a</span></label>
+                </div>
+              
+              <!--  checked radio -->
+                <div class="form-check form-check-vioend">
+                  <input
+                    class="form-check-input"
+                    type="radio"
+                    name="ansVioEnd"
+                    id="choiceid2"
+                    value="2"
+                  />
+                  <label class="form-check-label form-check-label-me" for="choiceid2"><span class="span1">B. </span> <span class="text-answer-vioend"><button></button></span></label>
+                  <!--  checked radio -->
+                
+                </div>
+                <div class="form-check form-check-vioend">
+                  <input
+                    class="form-check-input"
+                    type="radio"
+                    name="ansVioEnd"
+                    id="choiceid3"
+                    value="3"
+                  />
+                  <label class="form-check-label form-check-label-me" for="choiceid3"><span class="span1">C. </span> <span class="text-answer-vioend">c</span></label>
+                </div>
+                <!--  checked radio -->
+                <div class="form-check form-check-vioend">
+                  <input
+                    class="form-check-input"
+                    type="radio"
+                    name="ansVioEnd"
+                    id="choiceid4"
+                    value="4"
+                  />
+                  <label class="form-check-label form-check-label-me" for="choiceid4"><span class="span1">D. </span> <span class="text-answer-vioend">d</span></label>
+                </div>
+
+            </div>
+        </div>
+        <!-- list control btn-->
+        <div class="list-control-btn d-flex-center">
+            <div class="btn-vioend prev-vioend" id="prev-vioend">
+              <i class="ti-arrow-left"></i> Câu trước
+            </div>
+            <div class="btn-vioend next-vioend" id="next-vioend">
+                Câu sau <i class="ti-arrow-right"></i>
+            </div>
+        </div>
+      </div>
+    </div>
+    <!--Start table post success data-->
+    <div class="wrap_tb_result animate-bottom" id="wrap_tb_result_vioend">
+      <h3>Kết quả bài thi</h3>
+      <table class="table table-hover table_result_post_vioend text-center" id="table_result_post">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Trạng thái</th>
+            <th scope="col">Điểm số</th>
+            <th scope="col">Thời gian làm bài</th>
+            <th scope="col">Thời gian</th>
+          </tr>
+        </thead>
+        <tbody>
+
+        </tbody>
+      </table>
+    </div>
+    <!--End table post success data-->
+
+     <!--Start table history example-->
+     <div class="wrap_tb_result animate-bottom" id="wrap_tb_history_exam_vioend">
+        <h3>Lịch sử làm bài</h3>
+        <table class="table table-hover table_history_example text-center" width="100%" id="table_history_example_vioend">
+          <thead class="thead-dark">
+            <tr>
+              <th scope="col">#</th>
+              <th scope="col">Trạng thái</th>
+              <th scope="col">Điểm</th>
+              <th scope="col">Lần thi</th>
+              <th scope="col">Thời gian làm bài</th>
+              <th scope="col">Thời gian</th>
+            </tr>
+          </thead>
+          <tbody>
+            {%for item in history%}
+            {% count_sum_time item.time_finish item.time_start as countSumTime%}
+              <tr>
+                <th>{{forloop.counter}}</th>
+                <td>Hoàn thành</td>
+                <td>{{item.score}}</td>
+                <td>{{forloop.counter}}</td>
+                <td>{{countSumTime}} giây</td>
+                <td>Bắt đầu: {{item.time_start|date:'Y-m-d H:i:s'}}<br>Kết thúc : {{item.time_finish|date:'Y-m-d H:i:s'}}</td>
+              </tr>
+            {%endfor%}
+          </tbody>
+        </table>
+     </div>
+     <!--End table history example-->
+  </div>
+</div>
+
+
+{%endblock%}
