@@ -1,0 +1,412 @@
+{% extends "pages/base2.html" %} 
+{% block title %} Thi đấu Tiếng anh trực tuyến {% endblock %}
+
+{%load static%}
+{% load course_tag %}
+{%block scripts %}
+<script src="{% static 'js/list-room.js'%}"></script>
+<script>
+    function show_hint_room(param){
+        var private = parseInt($(param.self).attr('private'));
+        if(private){
+            $("#ctr-lrblm-hint").html('<span>Phòng thi đấu riêng tư</span>');
+        }else{
+            $("#ctr-lrblm-hint").html('<span>Click để vào phòng</span>');
+        }
+    $("#ctr-lrblm-hint").css({left: param.e.pageX-55, top: param.e.pageY-34}).removeClass('hide');
+    }
+
+    function hide_hint_room(e){
+        $("#ctr-lrblm-hint").addClass('hide');
+    }
+    
+    function join_room(_self){
+    $.post("{% url 'competition:get_method_post_join_room' %}",
+    {
+        room_id: $(_self).attr('id')
+    },
+    function(data){
+        switch (data.status) {
+            case 100:{
+                
+                // window.location.href = '/play-'+$(_self).attr('id');
+                break;
+            }
+    		case 202:{
+    			window.location.href = '/competition/wait-'+$(_self).attr('id') + '/';
+    			break;
+			}
+			case 401:{
+                alert('Phòng thi đấu riêng tư! Bạn hãy chọn phòng thi đấu khác.');
+                break;
+            }
+            case 402:{
+                // $('#ctr-e-expired').removeClass('hide');
+                break;
+            }
+    		case 403:{
+    			alert('Phòng đấu đã diễn ra hãy chọn phòng khác');
+    			break;
+    		}
+    		case 404:{
+    			alert('Phòng đấu đã đủ người tham gia hãy chọn phòng khác');
+    			break;
+    		}
+    		default:{
+    			console.log('error detect room');
+    			break;
+    		}
+    	}
+    });
+}
+</script>
+<script>
+    
+    const roomName = JSON.parse(document.getElementById('room-name').textContent);
+    const listRoomSocket = new WebSocket(
+        'ws://' +
+        window.location.host +
+        '/ws/competition/' +
+        roomName +
+        '/'
+    );
+
+    listRoomSocket.onmessage = function (e) {
+        const data = JSON.parse(e.data);
+        const listRoomUI = Array.from(document.querySelectorAll('.ctr-lr-room'));
+        const bodyTableCompete = document.getElementById('ctr-tb-body-compete');
+        console.log(data)
+
+        let idRoomData = data[0].id_room;
+        let status_method  = data[0].status_method_save;
+        console.log(status_method)
+        if (status_method === 'create'){
+            console.log('create')
+            let isOpen = 1;
+            let isPrivateLock = false;
+            if (data[0].is_private === true || data[0].status === "Phòng riêng" || data[0].status === "Đang thi")
+            {
+                isOpen = 0
+            }
+            if (data[0].is_private === true || data[0].status === "Phòng riêng")
+            {
+                isPrivateLock = true
+            }
+            $('#ctr-tb-body-compete').prepend( `
+            <tr 
+                class="ctr-lr-room${data[0].status === 'Phòng chờ' ? ' waiting' : '' }${data[0].is_private === true ? ' private' : ''}"
+                 type="${data[0].count_max_user}"  open="${isOpen}" private="${data[0].is_private === true ? 1 : 0}"
+                 class_id="${data[0].class_compete}" id_room="${data[0].id_room}" onclick="return join_room(this);" onmousemove="return show_hint_room({ self: this, e: event });" onmouseout="return hide_hint_room(event);"
+            >
+                <td class="ctr-lrblm-number"></td>
+                <td class="ctr-lrblm-master">
+                    <div>
+                        <div class="inline-block ctr-lrblm-avata">
+                            <img class="ctr-lrblm-avata-img" src="${data[0].img_user_host}">
+                            <img class="ab ctr-lrblm-vip-img" src="{% static 'img/icon/ctr-vip-icon.png' %}" alt="">
+                        </div>
+                        <span class="ctr-lrblm-username">${data[0].user_host}</span>
+                    </div>
+                </td>		
+                <td class="ctr-lrblm-type">
+                    <span class="ctr-lrblm-type-text">
+                    ${data[0].count_max_user === 1 ? 'Đối kháng' : 'Đấu tập thể'}
+                    </span>
+                    ${isPrivateLock === true ? '<i class="ab fa fa-lock" aria-hidden="true"></i>' : ''}
+                </td>
+                <td class="ctr-lrblm-subject">Lớp ${data[0].class_compete}</td>
+                <td class="ctr-lrblm-skill">Tổng hợp</td>
+                <td class="ctr-lrblm-member-join">
+                    <div><span class="ctr-lrblmmj-num">${data[0].count_number_user}</span>/<span class="ctr-lrblmmj-max-num">${data[0].count_max_user + 1}</span></div>
+                </td>
+                <td class="ctr-lrblm-member-status">${data[0].status}</td>
+            </tr>
+            `)
+        }
+        else{ //method save is update or delete 
+
+            listRoomUI.forEach(item => {
+                let idRoomItem = item.getAttribute("id");
+                
+                if (idRoomItem === idRoomData)
+                {
+                    
+                    if (status_method === 'update')
+                    {
+                        console.log("chay method update")
+                        const wrapType = item.querySelector('.ctr-lrblm-type');
+                        const textTypeCompete = item.querySelector('.ctr-lrblm-type-text');
+                        const isLockCompete = item.querySelector('.ctr-lrblm-type .fa-lock');
+
+
+                        const classCompeteSubject = item.querySelector('.ctr-lrblm-subject');
+                        
+                        const currentNumberUser = item.querySelector('.ctr-lrblmmj-num');
+                        console.log(currentNumberUser)
+                        const maxNumberUser = item.querySelector('.ctr-lrblmmj-max-num');
+                        console.log(maxNumberUser)
+                        const statusMemberElement = item.querySelector('.ctr-lrblm-member-status');
+
+                        
+                        const countNumberUserData = data[0].count_number_user;
+                        const countMaxUserRoomData = data[0].count_max_user;
+                        const typeCompeteData = data[0].type_compete;
+                        const classCompeteData = data[0].class_compete;
+                        const skillsCompeteData = data[0].skills;
+                        const privateCompeteData = data[0].is_private;
+                        const statusCompeteData = data[0].status;
+
+                        
+                        if (statusCompeteData === "Phòng chờ" || statusCompeteData === "Phòng riêng" )
+                        {
+                            item.classList.add('waiting');
+                        }
+                        else{
+                            item.classList.remove('waiting');
+                        }
+
+                        if (privateCompeteData === true)
+                        {
+                            item.classList.add('private');
+                            item.setAttribute('private',1);
+                        }
+                        else{
+                            item.classList.remove('private');
+                            item.setAttribute('private',0);
+                        }
+
+                        item.setAttribute('type',countMaxUserRoomData);
+                        
+                        if (privateCompeteData === true || statusCompeteData === "Phòng riêng" || statusCompeteData === "Đang thi")
+                        {
+                            item.setAttribute('open',0);
+                        }
+                        else{
+                            item.setAttribute('open',1);
+                        }
+                        item.setAttribute('class_id', classCompeteData);
+
+                        item.setAttribute('id',idRoomData);
+                        
+                        
+                        // set type competition
+                        if(countMaxUserRoomData === 1)
+                        {
+                            textTypeCompete.innerHTML = "Đối kháng";
+                        }
+                        else{
+                            textTypeCompete.innerHTML = "Đấu tập thể";
+                        }
+
+                        
+                        
+                        // set text type competition
+                        if (privateCompeteData === true || statusCompeteData === "Phòng riêng")
+                        {
+                            if(isLockCompete === null)
+                            {
+                                wrapType.insertAdjacentHTML('beforeend', '<i class="ab fa fa-lock"></i>');
+                            }
+                        }
+                        else
+                        {
+                            if(isLockCompete != null)
+                            {
+                                isLockCompete.remove();
+                            }
+                        }
+
+                        // set class competition
+                        classCompeteSubject.innerHTML ="Lớp " + classCompeteData;
+                        // set current number user competition
+                        currentNumberUser.innerHTML = countNumberUserData;
+                        // set max count user competition
+                        maxNumberUser.innerHTML = countMaxUserRoomData + 1;
+                       
+                        // set status competition
+                        statusMemberElement.innerHTML = statusCompeteData;
+                    } 
+                    else if (status_method === 'delete')
+                    {
+                        console.log('delete')
+                        item.remove();
+                    } 
+                    else{
+                        console.log('error method save')
+                    }
+                }
+            })
+            
+            
+        }
+    }
+    listRoomSocket.onclose = function(e) {
+        console.error('listRoomSocket socket closed unexpectedly');
+    };
+</script>
+
+{%endblock%}
+
+{%block content%} 
+<div class="container page-content">
+   <div class="ctr-page" id="list-room-page">
+       <div class="ctr-lr-box">
+           <div class="row ctr-lr-title">
+
+               <div class="col-5">Danh sách phòng thi đấu</div>
+               <div class="col-7 text-right">
+                   <span style="font-size: initial; font-weight: normal; display: none;" class="inline-block" id="ctr-members-online">Đang có <span class="text-success text-bold">62</span> người thi đấu</span>
+                   <div class="btn-group btn-create-compete">				
+                       <a href="{% url 'competition:init_room_competition' %}" class="btn text-white click d-flex-center" ><i class="fa fa-user-plus" aria-hidden="true"></i><span>Tạo phòng</span></a>
+                   </div>
+               </div>
+           </div>
+           <div class="ctr-lrb-main">
+               <div class="ctr-lrb-left">
+                   <div class="ctr-lrbl-content">
+                       <div class="ctr-lrbl-top row">
+                            <div class="btn-group col-lg-6 ctr-lrbl-group-btn">
+                                <div type="button" class="click d-flex-center btn btn-active">Tất cả</div>
+                                <div type="button" class="click d-flex-center btn"  value="1">1 vs 1</div>
+                                <div type="button" class="click d-flex-center btn"  value="9">1 vs 9</div>
+                            </div>
+                            <div class="col-lg-6 row" style="z-index: 1;">
+                                <div class="col-lg-6 ctr-lrt-class">
+                                    <select class="" name="class_ques" id="ctr-lrt-class" onchange="filter_room();">
+                                        <option value="0" selected="selected">Tất cả các lớp</option>
+                                        {% for choice in form_class.class_compete.field.choices%}
+
+                                        <option value="{{choice.0}}">{{choice.1}}</option>
+
+                                        {%endfor%}
+                                    </select>
+                                </div>
+                                <div class="col-lg-6 ctr-search-room">
+                                    <input type="search" name="" id="ctr-search-room"  class="text-center form-control" value="" title="" placeholder="Tìm theo tên chủ phòng">
+                                    <span class="ti-search glyphicon-search" aria-hidden="true"></span>
+                                </div>
+                            </div>
+                       </div>
+
+                       <div class="ctr-lrbl-main">
+                           <div class="ctr-lrblm-list">
+                               <table class="table">
+                                   <thead>
+                                        <tr>
+                                            <th>Số</th>
+                                            <th>Chủ phòng</th>										
+                                            <th>Loại phòng</th>
+                                            <th>Lớp</th>
+                                            <th>Kỹ năng</th>
+                                            <th>Số người</th>
+                                            <th>Trạng thái</th>
+                                        </tr>
+                                   </thead>
+                                   <tbody class="ctr-lrblml-content ctr-hml-body" id="ctr-tb-body-compete">
+                                      
+                                        {%for item in lst_room%}
+                                        <tr 
+                                        class="ctr-lr-room{%if item.status == 0 or item.status == 1 %} waiting{%endif%}{%if item.is_private == true  %} private{%endif%}"
+                                        type="{{item.type_compete.max_quantity_add_user}}"
+                                        {%if item.is_private == True or item.status == 1 or item.status == 2 %}
+                                        open="0"
+                                        {%else%}
+                                        open="1"
+                                        {%endif%}
+
+                                        {%if item.is_private == True %}
+                                        private="1" 
+                                        {%else%}
+                                        private="0"
+                                        {%endif%}
+                                        
+                                        class_id="{{item.class_compete}}" id="{{item.id_room}}" onclick="return join_room(this);"
+                                        onmousemove="return show_hint_room({ self: this, e: event });" onmouseout="return hide_hint_room(event);"
+                                        >
+                                            <td class="ctr-lrblm-number"></td>
+                                            <td class="ctr-lrblm-master">
+                                                <div>
+                                                    <div class="inline-block ctr-lrblm-avata">
+                                                        <img class="ctr-lrblm-avata-img" src="{{item.user_host.std_img.url}}">
+                                                        <img class="ab ctr-lrblm-vip-img" src="{% static 'img/icon/ctr-vip-icon.png' %}" alt="">
+                                                    </div>
+                                                    <span class="ctr-lrblm-username">{{item.user_host.username}}</span>
+                                                </div>
+                                            </td>		
+                                            <td class="ctr-lrblm-type">
+                                                <span class="ctr-lrblm-type-text">
+
+                                                    {%if item.type_compete.max_quantity_add_user == 1%}
+                                                    Đối kháng
+                                                    {%else%}
+                                                    Đấu tập thể
+                                                    {%endif%}
+                                                </span>
+                                                {%if item.is_private == True or item.status == 1 %}
+                                                
+                                                <i class="ab fa fa-lock" aria-hidden="true"></i>
+                                                {%endif%}
+                                            </td>
+                                            <td class="ctr-lrblm-subject">{{item.get_class_compete_display}}</td>
+                                            <td class="ctr-lrblm-skill">Tổng hợp</td>
+                                            {% add_number_1dv item.users.all.count as count_all_user_room %}
+                                            {% add_number_1dv item.type_compete.max_quantity_add_user as count_max_user_room %}
+                                            <td class="ctr-lrblm-member-join">
+                                                <div><span class="ctr-lrblmmj-num">{{ count_all_user_room}}</span>/<span class="ctr-lrblmmj-max-num">{{count_max_user_room}}</span></div>
+                                            </td>
+                                            <td class="ctr-lrblm-member-status">{{item.get_status_display}}</td>
+                                        </tr>
+                                        {%endfor%}
+                                        
+                                   </tbody>
+                               </table>
+                           </div>
+                           <div class="text-right ctr-lrblm-bottom">
+                                <div class="btn-group" style="z-index: 1;">
+                                    <a href="{% url 'competition:init_room_competition' %}" class="btn click click1"><i class="fa fa-user-plus" aria-hidden="true"></i><span>Tạo phòng</span></a>
+                                    <a href="#ctr-connect-modal" data-toggle="modal" class="btn click click1" onclick="open_find_room();"><i class="fa fa-bolt" aria-hidden="true"></i><span>Vào nhanh</span></a>
+                                </div>
+						    </div>
+                       </div>
+
+                       <div class="ctr-lrbl-bottom" style="padding-top: 30px;">
+                            <a title="www.tailieu123.org/hoc-tieng-anh" href="https://www.tailieu123.org/hoc-tieng-anh" target="_blank">
+                                <img width="830" height="90" src="{% static 'img/banner_tailieu.jpg' %}" alt="www.tailieu123.org/hoc-tieng-anh">
+                            </a>
+                        </div>
+                   </div>
+               </div>
+
+               <div class="ctr-lrb-message">
+                   <div class="ctr-message">
+                       <div class="row ctr-ml-content">
+                            <div class="list-group list-group-flush chua_bai_tap col-lg-6">
+                                <a class="list-group-item" target="_blank" href="https://www.chuabaitap.com/soan-van-lop-6-ngan-gon"><i class="fa fa-circle"></i><span>Soạn văn 6</span></a>
+                                <a class="list-group-item" target="_blank" href="https://www.chuabaitap.com/soan-van-7"><i class="fa fa-circle"></i><span>Soạn văn 7</span></a>
+                                <a class="list-group-item" target="_blank" href="https://www.chuabaitap.com/soan-van-lop-8-ngan-gon"><i class="fa fa-circle"></i><span>Soạn văn 8</span></a>
+                                <a class="list-group-item" target="_blank" href="https://www.chuabaitap.com/soan-van-lop-9-ngan-gon"><i class="fa fa-circle"></i><span>Soạn văn 9</span></a>
+                                <a class="list-group-item" target="_blank" href="https://www.chuabaitap.com/soan-van-lop-10-ngan-gon"><i class="fa fa-circle"></i><span>Soạn văn 10</span></a>
+                                <a class="list-group-item" target="_blank" href="https://www.chuabaitap.com/soan-van-lop-11-ngan-gon"><i class="fa fa-circle"></i><span>Soạn văn 11</span></a>
+                                <a class="list-group-item" target="_blank" href="https://www.chuabaitap.com/soan-van-lop-12-ngan-gon"><i class="fa fa-circle"></i><span>Soạn văn 12</span></a>
+                            </div>
+                            <div class="list-group list-group-flush chua_bai_tap col-lg-6">
+                                <a class="list-group-item" target="_blank" href="https://www.chuabaitap.com/giai-bai-tap-sgk-toan-lop-4"><i class="fa fa-circle"></i><span>Toán lớp 4</span></a>
+                                <a class="list-group-item" target="_blank" href="https://www.chuabaitap.com/giai-bai-tap-sgk-toan-lop-5"><i class="fa fa-circle"></i><span>Toán lớp 5</span></a>
+                                <a class="list-group-item" target="_blank" href="https://www.chuabaitap.com/giai-bai-tap-sgk-toan-6"><i class="fa fa-circle"></i><span>Giải toán 6</span></a>
+                                <a class="list-group-item" target="_blank" href="https://www.chuabaitap.com/giai-bai-tap-sgk-toan-7"><i class="fa fa-circle"></i><span>Giải toán 7</span></a>
+                                <a class="list-group-item" target="_blank" href="https://www.chuabaitap.com/giai-bai-tap-sgk-toan-8"><i class="fa fa-circle"></i><span>Giải toán 8</span></a>
+                                <a class="list-group-item" target="_blank" href="https://www.chuabaitap.com/giai-bai-tap-sgk-toan-9"><i class="fa fa-circle"></i><span>Giải toán 9</span></a>
+                                <a class="list-group-item" target="_blank" href="https://www.chuabaitap.com/giai-bai-tap-sgk-toan-10"><i class="fa fa-circle"></i><span>Giải toán 10</span></a>
+                            </div>
+                       </div>
+                   </div>
+               </div>
+           </div>
+       </div>
+       <div class="text-center ctr-hint-tooltip hide" id="ctr-lrblm-hint" style="left: 409px; top: 494px;"><span>Click để vào phòng</span></div>
+   </div>
+</div>
+
+{{ room_name|json_script:"room-name" }}
+
+{%endblock%}

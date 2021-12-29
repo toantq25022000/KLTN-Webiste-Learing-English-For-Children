@@ -1,7 +1,7 @@
 {% extends "pages/base.html" %} 
 {% block title %}Trang cá nhân{% endblock %}
 {% load humanize %}
-{% load cart_course %}
+
 {% load course_tag %}
 {%load static%}
 
@@ -108,6 +108,7 @@
 {%endblock%}
 
 {%block content%} 
+
 <section class="slider-area slider-area2">
     <div class="slider-active">
         <!-- Single Slider -->
@@ -156,6 +157,7 @@
                      {%if nameUrl == 'course' %}
                         class="active"
                      {%endif%}
+                     
                     >
                         <a  href="{% url 'usermember:dashboard_user' name_url='course' %}" >Khoá học</a>
                     </li>
@@ -178,7 +180,7 @@
                 </ul>
 
                     <div class="tab-content tab_content__profile clearfix">
-                         {%if nameUrl == 'course' %}
+                        {%if nameUrl == 'course' %}
                            
                             <div class="tab-pane active">
                                 <h3>Danh sách khóa học đang học</h3>
@@ -227,7 +229,7 @@
                                                     <div class="clear"></div>
                                                 </div>
                                             </div>
-                                            <div>
+                                          
                                           {%endfor%}
                                           <div class="clear"></div>
                                     
@@ -240,8 +242,8 @@
                                 <h3>Hồ sơ cá nhân</h3>
                                 
                                 <!-- Show  Alert -->
-                                <div id="alert_notify" >
-                                    
+                                <div id="alert_notify" > 
+
                                 </div>
                                 <form id="formSubmitProfile" action="" method="POST" enctype="multipart/form-data">
                                 {%csrf_token%}
@@ -411,11 +413,9 @@
                                         
                                     {%endfor%}
                                     </tbody>
-                                    </table>
+                                </table>
                             </div>
-                        {%endif%}
-                       
-                    
+                        {%endif%}              
                     </div>
             </div>
         </div>

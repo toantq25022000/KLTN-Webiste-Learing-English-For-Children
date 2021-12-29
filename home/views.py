@@ -7,12 +7,16 @@ from django.contrib.auth import authenticate, login,logout
 from django.http import HttpResponse,HttpResponseRedirect
 from course.models import Chapter, Course
 from usermember.models import Student
+
+
 # Create your views here.
+
 
 def index(request):
     course = Course.objects.all()
     context = {
-        'course':course
+        'course':course,
+       
     }
     return render(request,'home/index.html',context)
 

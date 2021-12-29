@@ -115,8 +115,6 @@ autoFishBig = () => {
             let rdLeft = Math.floor(Math.random() * (45 - 10)) + 10;
             let rdTop = Math.floor(Math.random() * (50 - 30)) + 30;
 
-            console.log(fishBig.style.top)
-            console.log(fishBig.style.left)
             fishBig.style.top = (po_top + rdTop) + 'px'
             fishBig.style.left = (po_left + rdLeft) + 'px'
 
@@ -365,7 +363,7 @@ getDataResponseGF = (response) =>{
          isDoingTrueGoldenFIsh.style.display = "none";
     }
     else{
-        console.log(response)
+       
         questionsGoldenFish = []
         const data = response.data
         const scores = response.score
@@ -389,7 +387,7 @@ getDataResponseGF = (response) =>{
             }
             questionsGoldenFish.push(item)
         });
-        console.log(questionsGoldenFish)
+      
 
         if (isDoingGoldenFish == 1) {
             isDoingFalseGoldenFish.style.display = "none"
@@ -491,7 +489,7 @@ getNewQuestionGoldenFish = () => {
         quesIndexCurrentGoldenFish++;
         //get current question
         currentQuestionGoldenFish = questionsGoldenFish[quesIndexCurrentGoldenFish]
-    
+        
         textMissQuestionGoldenFish.innerHTML = remove2LetterQuestionGF(currentQuestionGoldenFish['question'])
         //speak text
         speakerTextGoldenFish(currentQuestionGoldenFish['question']);

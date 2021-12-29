@@ -1,0 +1,3681 @@
+.emoticons {width: 100%;margin: auto;line-height: 30px;height: 60px;overflow-y: scroll;}
+.emoticon {border:0; outline:none; width: 20px; height: 20px; display:inline-block; cursor: pointer;}
+.emoticons .mCSB_inside > .mCSB_container{margin-right: 15px;}
+.emoticon.batman{
+ background-image: url("/static/img/emoji/batman.png");
+    -webkit-animation: play_batman 1s steps(11) infinite;
+       -moz-animation: play_batman 1s steps(11) infinite;
+        -ms-animation: play_batman 1s steps(11) infinite;
+         -o-animation: play_batman 1s steps(11) infinite;
+            animation: play_batman 1s steps(11) infinite;
+			height:69px;width:45px;
+}
+
+.emoticon.walkcycle{
+ background-image: url("/static/img/emoji/walkcycle.png");
+    -webkit-animation: play_walkcycle .5s steps(8) infinite;
+       -moz-animation: play_walkcycle .5s steps(8) infinite;
+        -ms-animation: play_walkcycle .5s steps(8) infinite;
+         -o-animation: play_walkcycle .5s steps(8) infinite;
+            animation: play_walkcycle .5s steps(8) infinite;
+			height:96px;width:58px;
+}
+.emoticon.angel{
+ background-image: url("/static/img/emoji/angel.png");
+    -webkit-animation: play_angel 2.5s steps(83) infinite;
+       -moz-animation: play_angel 2.5s steps(83) infinite;
+        -ms-animation: play_angel 2.5s steps(83) infinite;
+         -o-animation: play_angel 2.5s steps(83) infinite;
+            animation: play_angel 2.5s steps(83) infinite;
+}
+.emoticon.cool{
+ background-image: url("/static/img/emoji/cool.png");
+    -webkit-animation: play_cool 2.5s steps(37) infinite;
+       -moz-animation: play_cool 2.5s steps(37) infinite;
+        -ms-animation: play_cool 2.5s steps(37) infinite;
+         -o-animation: play_cool 2.5s steps(37) infinite;
+            animation: play_cool 2.5s steps(37) infinite;
+}
+
+.emoticon.lol{
+ background-image: url("/static/img/emoji/lol.png");
+    -webkit-animation: play_lol 2.5s steps(76) infinite;
+       -moz-animation: play_lol 2.5s steps(76) infinite;
+        -ms-animation: play_lol 2.5s steps(76) infinite;
+         -o-animation: play_lol 2.5s steps(76) infinite;
+            animation: play_lol 2.5s steps(76) infinite;
+}
+
+.emoticon.evilgrin{
+ background-image: url("/static/img/emoji/evilgrin.png");
+    -webkit-animation: play_evilgrin 2.5s steps(77) infinite;
+       -moz-animation: play_evilgrin 2.5s steps(77) infinite;
+        -ms-animation: play_evilgrin 2.5s steps(77) infinite;
+         -o-animation: play_evilgrin 2.5s steps(77) infinite;
+            animation: play_evilgrin 2.5s steps(77) infinite;
+}
+
+.emoticon.facepalm{
+ background-image: url("/static/img/emoji/facepalm.png");
+    -webkit-animation: play_facepalm 2.5s steps(76) infinite;
+       -moz-animation: play_facepalm 2.5s steps(76) infinite;
+        -ms-animation: play_facepalm 2.5s steps(76) infinite;
+         -o-animation: play_facepalm 2.5s steps(76) infinite;
+            animation: play_facepalm 2.5s steps(76) infinite;
+}
+
+.emoticon.hi5{
+ background-image: url("/static/img/emoji/hi5.png");
+    -webkit-animation: play_hi5 2.5s steps(37) infinite;
+       -moz-animation: play_hi5 2.5s steps(37) infinite;
+        -ms-animation: play_hi5 2.5s steps(37) infinite;
+         -o-animation: play_hi5 2.5s steps(37) infinite;
+            animation: play_hi5 2.5s steps(37) infinite;
+}
+
+.emoticon.sad{
+ background-image: url("/static/img/emoji/sad.png");
+    -webkit-animation: play_sad 2.5s steps(62) infinite;
+       -moz-animation: play_sad 2.5s steps(62) infinite;
+        -ms-animation: play_sad 2.5s steps(62) infinite;
+         -o-animation: play_sad 2.5s steps(62) infinite;
+            animation: play_sad 2.5s steps(62) infinite;
+}
+
+.emoticon.tongue{
+ background-image: url("/static/img/emoji/tongue.png");
+    -webkit-animation: play_tongue 2.5s steps(48) infinite;
+       -moz-animation: play_tongue 2.5s steps(48) infinite;
+        -ms-animation: play_tongue 2.5s steps(48) infinite;
+         -o-animation: play_tongue 2.5s steps(48) infinite;
+            animation: play_tongue 2.5s steps(48) infinite;
+}
+
+.emoticon.cry{
+ background-image: url("/static/img/emoji/cry.png");
+    -webkit-animation: play_cry 2.5s steps(49) infinite;
+       -moz-animation: play_cry 2.5s steps(49) infinite;
+        -ms-animation: play_cry 2.5s steps(49) infinite;
+         -o-animation: play_cry 2.5s steps(49) infinite;
+            animation: play_cry 2.5s steps(49) infinite;
+}
+
+.emoticon.puke{
+ background-image: url("/static/img/emoji/puke.png");
+    -webkit-animation: play_puke 2.5s steps(78) infinite;
+       -moz-animation: play_puke 2.5s steps(78) infinite;
+        -ms-animation: play_puke 2.5s steps(78) infinite;
+         -o-animation: play_puke 2.5s steps(78) infinite;
+            animation: play_puke 2.5s steps(78) infinite;
+}
+
+.emoticon.giggle{
+ background-image: url("/static/img/emoji/giggle.png");
+    -webkit-animation: play_giggle 2.5s steps(44) infinite;
+       -moz-animation: play_giggle 2.5s steps(44) infinite;
+        -ms-animation: play_giggle 2.5s steps(44) infinite;
+         -o-animation: play_giggle 2.5s steps(44) infinite;
+            animation: play_giggle 2.5s steps(44) infinite;
+}
+
+.emoticon.rofl{
+ background-image: url("/static/img/emoji/rofl.png");
+    -webkit-animation: play_rofl 2.5s steps(80) infinite;
+       -moz-animation: play_rofl 2.5s steps(80) infinite;
+        -ms-animation: play_rofl 2.5s steps(80) infinite;
+         -o-animation: play_rofl 2.5s steps(80) infinite;
+            animation: play_rofl 2.5s steps(80) infinite;
+}
+
+.emoticon.wink{
+ background-image: url("/static/img/emoji/wink.png");
+    -webkit-animation: play_wink 2.5s steps(35) infinite;
+       -moz-animation: play_wink 2.5s steps(35) infinite;
+        -ms-animation: play_wink 2.5s steps(35) infinite;
+         -o-animation: play_wink 2.5s steps(35) infinite;
+            animation: play_wink 2.5s steps(35) infinite;
+}
+
+
+.emoticon.wtf{
+ background-image: url("/static/img/emoji/wtf.png");
+    -webkit-animation: play_wtf 2.5s steps(56) infinite;
+       -moz-animation: play_wtf 2.5s steps(56) infinite;
+        -ms-animation: play_wtf 2.5s steps(56) infinite;
+         -o-animation: play_wtf 2.5s steps(56) infinite;
+            animation: play_wtf 2.5s steps(56) infinite;
+}
+
+.emoticon.smoking{
+ background-image: url("/static/img/emoji/smoking.png");
+    -webkit-animation: play_smoking 2.5s steps(64) infinite;
+       -moz-animation: play_smoking 2.5s steps(64) infinite;
+        -ms-animation: play_smoking 2.5s steps(64) infinite;
+         -o-animation: play_smoking 2.5s steps(64) infinite;
+            animation: play_smoking 2.5s steps(64) infinite;
+}
+
+.emoticon.lipssealed{
+ background-image: url("/static/img/emoji/lipssealed.png");
+    -webkit-animation: play_lipssealed 2.5s steps(49) infinite;
+       -moz-animation: play_lipssealed 2.5s steps(49) infinite;
+        -ms-animation: play_lipssealed 2.5s steps(49) infinite;
+         -o-animation: play_lipssealed 2.5s steps(49) infinite;
+            animation: play_lipssealed 2.5s steps(49) infinite;
+}
+
+
+.emoticon.smile{
+ background-image: url("/static/img/emoji/smile.png");
+    -webkit-animation: play_smile 2.5s steps(52) infinite;
+       -moz-animation: play_smile 2.5s steps(52) infinite;
+        -ms-animation: play_smile 2.5s steps(52) infinite;
+         -o-animation: play_smile 2.5s steps(52) infinite;
+            animation: play_smile 2.5s steps(52) infinite;
+}
+
+
+.emoticon.thumbsup{
+ background-image: url("/static/img/emoji/thumbsup.png");
+    -webkit-animation: play_thumbsup 2.5s steps(39) infinite;
+       -moz-animation: play_thumbsup 2.5s steps(39) infinite;
+        -ms-animation: play_thumbsup 2.5s steps(39) infinite;
+         -o-animation: play_thumbsup 2.5s steps(39) infinite;
+            animation: play_thumbsup 2.5s steps(39) infinite;
+}
+
+
+.emoticon.finger{
+ background-image: url("/static/img/emoji/finger.png");
+    -webkit-animation: play_finger 2.5s steps(41) infinite;
+       -moz-animation: play_finger 2.5s steps(41) infinite;
+        -ms-animation: play_finger 2.5s steps(41) infinite;
+         -o-animation: play_finger 2.5s steps(41) infinite;
+            animation: play_finger 2.5s steps(41) infinite;
+}
+
+
+.emoticon.sleepy{
+ background-image: url("/static/img/emoji/sleepy.png");
+    -webkit-animation: play_sleepy 2.5s steps(71) infinite;
+       -moz-animation: play_sleepy 2.5s steps(71) infinite;
+        -ms-animation: play_sleepy 2.5s steps(71) infinite;
+         -o-animation: play_sleepy 2.5s steps(71) infinite;
+            animation: play_sleepy 2.5s steps(71) infinite;
+}
+
+
+
+.emoticon.devil{
+ background-image: url("/static/img/emoji/devil.png");
+    -webkit-animation: play_devil 2.5s steps(66) infinite;
+       -moz-animation: play_devil 2.5s steps(66) infinite;
+        -ms-animation: play_devil 2.5s steps(66) infinite;
+         -o-animation: play_devil 2.5s steps(66) infinite;
+            animation: play_devil 2.5s steps(66) infinite;
+}
+
+
+.emoticon.emo{
+ background-image: url("/static/img/emoji/emo.png");
+    -webkit-animation: play_emo 2.5s steps(53) infinite;
+       -moz-animation: play_emo 2.5s steps(53) infinite;
+        -ms-animation: play_emo 2.5s steps(53) infinite;
+         -o-animation: play_emo 2.5s steps(53) infinite;
+            animation: play_emo 2.5s steps(53) infinite;
+}
+
+
+.emoticon.headbang{
+ background-image: url("/static/img/emoji/headbang.png");
+    -webkit-animation: play_headbang 2.5s steps(70) infinite;
+       -moz-animation: play_headbang 2.5s steps(70) infinite;
+        -ms-animation: play_headbang 2.5s steps(70) infinite;
+         -o-animation: play_headbang 2.5s steps(70) infinite;
+            animation: play_headbang 2.5s steps(70) infinite;
+}
+
+
+.emoticon.hi{
+ background-image: url("/static/img/emoji/hi.png");
+    -webkit-animation: play_hi 2.5s steps(56) infinite;
+       -moz-animation: play_hi 2.5s steps(56) infinite;
+        -ms-animation: play_hi 2.5s steps(56) infinite;
+         -o-animation: play_hi 2.5s steps(56) infinite;
+            animation: play_hi 2.5s steps(56) infinite;
+}
+
+
+.emoticon.thinking{
+ background-image: url("/static/img/emoji/thinking.png");
+    -webkit-animation: play_thinking 2.5s steps(58) infinite;
+       -moz-animation: play_thinking 2.5s steps(58) infinite;
+        -ms-animation: play_thinking 2.5s steps(58) infinite;
+         -o-animation: play_thinking 2.5s steps(58) infinite;
+            animation: play_thinking 2.5s steps(58) infinite;
+}
+
+
+.emoticon.party{
+ background-image: url("/static/img/emoji/party.png");
+    -webkit-animation: play_party 2.5s steps(70) infinite;
+       -moz-animation: play_party 2.5s steps(70) infinite;
+        -ms-animation: play_party 2.5s steps(70) infinite;
+         -o-animation: play_party 2.5s steps(70) infinite;
+            animation: play_party 2.5s steps(70) infinite;
+}
+
+
+.emoticon.pizza{
+ background-image: url("/static/img/emoji/pizza.png");
+    -webkit-animation: play_pizza 2.5s steps(90) infinite;
+       -moz-animation: play_pizza 2.5s steps(90) infinite;
+        -ms-animation: play_pizza 2.5s steps(90) infinite;
+         -o-animation: play_pizza 2.5s steps(90) infinite;
+            animation: play_pizza 2.5s steps(90) infinite;
+}
+
+
+.emoticon.rock{
+ background-image: url("/static/img/emoji/rock.png");
+    -webkit-animation: play_rock 0.6s steps(11) infinite;
+       -moz-animation: play_rock 0.6s steps(11) infinite;
+        -ms-animation: play_rock 0.6s steps(11) infinite;
+         -o-animation: play_rock 0.6s steps(11) infinite;
+            animation: play_rock 0.6s steps(11) infinite;
+}
+
+
+.emoticon.wondering{
+ background-image: url("/static/img/emoji/wondering.png");
+    -webkit-animation: play_wondering 2.5s steps(69) infinite;
+       -moz-animation: play_wondering 2.5s steps(69) infinite;
+        -ms-animation: play_wondering 2.5s steps(69) infinite;
+         -o-animation: play_wondering 2.5s steps(69) infinite;
+            animation: play_wondering 2.5s steps(69) infinite;
+}
+
+
+.emoticon.worried{
+ background-image: url("/static/img/emoji/worried.png");
+    -webkit-animation: play_worried 2.5s steps(55) infinite;
+       -moz-animation: play_worried 2.5s steps(55) infinite;
+        -ms-animation: play_worried 2.5s steps(55) infinite;
+         -o-animation: play_worried 2.5s steps(55) infinite;
+            animation: play_worried 2.5s steps(55) infinite;
+}
+
+
+.emoticon.clap{
+ background-image: url("/static/img/emoji/clap.png");
+    -webkit-animation: play_clap 2.5s steps(39) infinite;
+       -moz-animation: play_clap 2.5s steps(39) infinite;
+        -ms-animation: play_clap 2.5s steps(39) infinite;
+         -o-animation: play_clap 2.5s steps(39) infinite;
+            animation: play_clap 2.5s steps(39) infinite;
+}
+
+.emoticon.mooning{
+ background-image: url("/static/img/emoji/mooning.png");
+    -webkit-animation: play_mooning 2.5s steps(45) infinite;
+       -moz-animation: play_mooning 2.5s steps(45) infinite;
+        -ms-animation: play_mooning 2.5s steps(45) infinite;
+         -o-animation: play_mooning 2.5s steps(45) infinite;
+            animation: play_mooning 2.5s steps(45) infinite;
+}
+
+
+.emoticon.whew{
+background-image:url("/static/img/emoji/whew.png");
+	-webkit-animation:play_whew 2.5s steps(50) infinite;
+	   -moz-animation:play_whew 2.5s steps(50) infinite;
+		-ms-animation:play_whew 2.5s steps(50) infinite;
+		 -o-animation:play_whew 2.5s steps(50) infinite;
+			 animation:play_whew 2.5s steps(50) infinite
+}
+
+.emoticon.angry{
+background-image:url("/static/img/emoji/angry.png");
+	-webkit-animation:play_angry 2.5s steps(113) infinite;
+	   -moz-animation:play_angry 2.5s steps(113) infinite;
+		-ms-animation:play_angry 2.5s steps(113) infinite;
+		 -o-animation:play_angry 2.5s steps(113) infinite;
+			 animation:play_angry 2.5s steps(113) infinite
+}
+
+.emoticon.bandit{
+ background-image: url("/static/img/emoji/bandit.png");
+    -webkit-animation: play_bandit 4s steps(101) infinite;
+       -moz-animation: play_bandit 4s steps(101) infinite;
+        -ms-animation: play_bandit 4s steps(101) infinite;
+         -o-animation: play_bandit 4s steps(101) infinite;
+            animation: play_bandit 4s steps(101) infinite;
+}
+
+
+.emoticon.bartlett{
+ background-image: url("/static/img/emoji/bartlett.png");
+    -webkit-animation: play_bartlett 3.5s steps(79) infinite;
+       -moz-animation: play_bartlett 3.5s steps(79) infinite;
+        -ms-animation: play_bartlett 3.5s steps(79) infinite;
+         -o-animation: play_bartlett 3.5s steps(79) infinite;
+            animation: play_bartlett 3.5s steps(79) infinite;
+}
+
+
+.emoticon.beer{
+ background-image: url("/static/img/emoji/beer.png");
+    -webkit-animation: play_beer 3.5s steps(75) infinite;
+       -moz-animation: play_beer 3.5s steps(75) infinite;
+        -ms-animation: play_beer 3.5s steps(75) infinite;
+         -o-animation: play_beer 3.5s steps(75) infinite;
+            animation: play_beer 3.5s steps(75) infinite;
+}
+
+.emoticon.blushing{
+ background-image: url("/static/img/emoji/blushing.png");
+    -webkit-animation: play_blushing 3s steps(68) infinite;
+       -moz-animation: play_blushing 3s steps(68) infinite;
+        -ms-animation: play_blushing 3s steps(68) infinite;
+         -o-animation: play_blushing 3s steps(68) infinite;
+            animation: play_blushing 3s steps(68) infinite;
+}
+
+.emoticon.bow{
+ background-image: url("/static/img/emoji/bow.png");
+    -webkit-animation: play_bow 2.5s steps(59) infinite;
+       -moz-animation: play_bow 2.5s steps(59) infinite;
+        -ms-animation: play_bow 2.5s steps(59) infinite;
+         -o-animation: play_bow 2.5s steps(59) infinite;
+            animation: play_bow 2.5s steps(59) infinite;
+}
+
+.emoticon.brokenheart{
+ background-image: url("/static/img/emoji/brokenheart.png");
+    -webkit-animation: play_brokenheart 3.5s steps(104) infinite;
+       -moz-animation: play_brokenheart 3.5s steps(104) infinite;
+        -ms-animation: play_brokenheart 3.5s steps(104) infinite;
+         -o-animation: play_brokenheart 3.5s steps(104) infinite;
+            animation: play_brokenheart 3.5s steps(104) infinite;
+}
+
+.emoticon.bug{
+ background-image: url("/static/img/emoji/bug.png");
+    -webkit-animation: play_bug 2.5s steps(77) infinite;
+       -moz-animation: play_bug 2.5s steps(77) infinite;
+        -ms-animation: play_bug 2.5s steps(77) infinite;
+         -o-animation: play_bug 2.5s steps(77) infinite;
+            animation: play_bug 2.5s steps(77) infinite;
+}
+
+.emoticon.cake{
+ background-image: url("/static/img/emoji/cake.png");
+    -webkit-animation: play_cake 3.5s steps(98) infinite;
+       -moz-animation: play_cake 3.5s steps(98) infinite;
+        -ms-animation: play_cake 3.5s steps(98) infinite;
+         -o-animation: play_cake 3.5s steps(98) infinite;
+            animation: play_cake 3.5s steps(98) infinite;
+}
+
+.emoticon.call{
+ background-image: url("/static/img/emoji/call.png");
+    -webkit-animation: play_call 1.5s steps(45) infinite;
+       -moz-animation: play_call 1.5s steps(45) infinite;
+        -ms-animation: play_call 1.5s steps(45) infinite;
+         -o-animation: play_call 1.5s steps(45) infinite;
+            animation: play_call 1.5s steps(45) infinite;
+}
+
+.emoticon.cash{
+ background-image: url("/static/img/emoji/cash.png");
+    -webkit-animation: play_cash 1.5s steps(26) infinite;
+       -moz-animation: play_cash 1.5s steps(26) infinite;
+        -ms-animation: play_cash 1.5s steps(26) infinite;
+         -o-animation: play_cash 1.5s steps(26) infinite;
+            animation: play_cash 1.5s steps(26) infinite;
+}
+
+.emoticon.coffee{
+ background-image: url("/static/img/emoji/coffee.png");
+    -webkit-animation: play_coffee 1.5s steps(27) infinite;
+       -moz-animation: play_coffee 1.5s steps(27) infinite;
+        -ms-animation: play_coffee 1.5s steps(27) infinite;
+         -o-animation: play_coffee 1.5s steps(27) infinite;
+            animation: play_coffee 1.5s steps(27) infinite;
+}
+
+.emoticon.dancing{
+ background-image: url("/static/img/emoji/dancing.png");
+    -webkit-animation: play_dancing 6.5s steps(205) infinite;
+       -moz-animation: play_dancing 6.5s steps(205) infinite;
+        -ms-animation: play_dancing 6.5s steps(205) infinite;
+         -o-animation: play_dancing 6.5s steps(205) infinite;
+            animation: play_dancing 6.5s steps(205) infinite;
+}
+
+.emoticon.doh{
+ background-image: url("/static/img/emoji/doh.png");
+    -webkit-animation: play_doh 2.5s steps(59) infinite;
+       -moz-animation: play_doh 2.5s steps(59) infinite;
+        -ms-animation: play_doh 2.5s steps(59) infinite;
+         -o-animation: play_doh 2.5s steps(59) infinite;
+            animation: play_doh 2.5s steps(59) infinite;
+}
+
+.emoticon.drink{
+ background-image: url("/static/img/emoji/drink.png");
+    -webkit-animation: play_drink 2.5s steps(62) infinite;
+       -moz-animation: play_drink 2.5s steps(62) infinite;
+        -ms-animation: play_drink 2.5s steps(62) infinite;
+         -o-animation: play_drink 2.5s steps(62) infinite;
+            animation: play_drink 2.5s steps(62) infinite;
+}
+
+.emoticon.drunk{
+ background-image: url("/static/img/emoji/drunk.png");
+    -webkit-animation: play_drunk 2.5s steps(48) infinite;
+       -moz-animation: play_drunk 2.5s steps(48) infinite;
+        -ms-animation: play_drunk 2.5s steps(48) infinite;
+         -o-animation: play_drunk 2.5s steps(48) infinite;
+            animation: play_drunk 2.5s steps(48) infinite;
+}
+
+.emoticon.dull{
+ background-image: url("/static/img/emoji/dull.png");
+    -webkit-animation: play_dull 3.5s steps(76) infinite;
+       -moz-animation: play_dull 3.5s steps(76) infinite;
+        -ms-animation: play_dull 3.5s steps(76) infinite;
+         -o-animation: play_dull 3.5s steps(76) infinite;
+            animation: play_dull 3.5s steps(76) infinite;
+}
+
+.emoticon.dulltauri{
+ background-image: url("/static/img/emoji/dulltauri.png");
+    -webkit-animation: play_dulltauri 3.0s steps(74) infinite;
+       -moz-animation: play_dulltauri 3.0s steps(74) infinite;
+        -ms-animation: play_dulltauri 3.0s steps(74) infinite;
+         -o-animation: play_dulltauri 3.0s steps(74) infinite;
+            animation: play_dulltauri 3.0s steps(74) infinite;
+}
+
+.emoticon.envy{
+ background-image: url("/static/img/emoji/envy.png");
+    -webkit-animation: play_envy 3.5s steps(67) infinite;
+       -moz-animation: play_envy 3.5s steps(67) infinite;
+        -ms-animation: play_envy 3.5s steps(67) infinite;
+         -o-animation: play_envy 3.5s steps(67) infinite;
+            animation: play_envy 3.5s steps(67) infinite;
+}
+
+.emoticon.fingerscrossed{
+ background-image: url("/static/img/emoji/fingerscrossed.png");
+    -webkit-animation: play_fingerscrossed 3.5s steps(63) infinite;
+       -moz-animation: play_fingerscrossed 3.5s steps(63) infinite;
+        -ms-animation: play_fingerscrossed 3.5s steps(63) infinite;
+         -o-animation: play_fingerscrossed 3.5s steps(63) infinite;
+            animation: play_fingerscrossed 3.5s steps(63) infinite;
+}
+
+
+.emoticon.flower{
+ background-image: url("/static/img/emoji/flower.png");
+    -webkit-animation: play_flower 3.5s steps(82) infinite;
+       -moz-animation: play_flower 3.5s steps(82) infinite;
+        -ms-animation: play_flower 3.5s steps(82) infinite;
+         -o-animation: play_flower 3.5s steps(82) infinite;
+            animation: play_flower 3.5s steps(82) infinite;
+}
+
+.emoticon.fubar{
+ background-image: url("/static/img/emoji/fubar.png");
+    -webkit-animation: play_fubar 3.0s steps(46) infinite;
+       -moz-animation: play_fubar 3.0s steps(46) infinite;
+        -ms-animation: play_fubar 3.0s steps(46) infinite;
+         -o-animation: play_fubar 3.0s steps(46) infinite;
+            animation: play_fubar 3.0s steps(46) infinite;
+}
+
+
+.emoticon.handshake{
+ background-image: url("/static/img/emoji/handshake.png");
+    -webkit-animation: play_handshake 3.5s steps(61) infinite;
+       -moz-animation: play_handshake 3.5s steps(61) infinite;
+        -ms-animation: play_handshake 3.5s steps(61) infinite;
+         -o-animation: play_handshake 3.5s steps(61) infinite;
+            animation: play_handshake 3.5s steps(61) infinite;
+}
+
+
+.emoticon.happy{
+ background-image: url("/static/img/emoji/happy.png");
+    -webkit-animation: play_happy 3.5s steps(69) infinite;
+       -moz-animation: play_happy 3.5s steps(69) infinite;
+        -ms-animation: play_happy 3.5s steps(69) infinite;
+         -o-animation: play_happy 3.5s steps(69) infinite;
+            animation: play_happy 3.5s steps(69) infinite;
+}
+
+.emoticon.heart{
+ background-image: url("/static/img/emoji/heart.png");
+    -webkit-animation: play_heart 2.5s steps(16) infinite;
+       -moz-animation: play_heart 2.5s steps(16) infinite;
+        -ms-animation: play_heart 2.5s steps(16) infinite;
+         -o-animation: play_heart 2.5s steps(16) infinite;
+            animation: play_heart 2.5s steps(16) infinite;
+}
+
+.emoticon.heidy{
+ background-image: url("/static/img/emoji/heidy.png");
+    -webkit-animation: play_heidy 3.5s steps(74) infinite;
+       -moz-animation: play_heidy 3.5s steps(74) infinite;
+        -ms-animation: play_heidy 3.5s steps(74) infinite;
+         -o-animation: play_heidy 3.5s steps(74) infinite;
+            animation: play_heidy 3.5s steps(74) infinite;
+}
+
+.emoticon.hollest{
+ background-image: url("/static/img/emoji/hollest.png");
+    -webkit-animation: play_hollest 4.0s steps(95) infinite;
+       -moz-animation: play_hollest 4.0s steps(95) infinite;
+        -ms-animation: play_hollest 4.0s steps(95) infinite;
+         -o-animation: play_hollest 4.0s steps(95) infinite;
+            animation: play_hollest 4.0s steps(95) infinite;
+}
+
+.emoticon.hug{
+ background-image: url("/static/img/emoji/hug.png");
+    -webkit-animation: play_hug 3.5s steps(75) infinite;
+       -moz-animation: play_hug 3.5s steps(75) infinite;
+        -ms-animation: play_hug 3.5s steps(75) infinite;
+         -o-animation: play_hug 3.5s steps(75) infinite;
+            animation: play_hug 3.5s steps(75) infinite;
+}
+
+
+.emoticon.inlove{
+ background-image: url("/static/img/emoji/inlove.png");
+    -webkit-animation: play_inlove 3.0s steps(62) infinite;
+       -moz-animation: play_inlove 3.0s steps(62) infinite;
+        -ms-animation: play_inlove 3.0s steps(62) infinite;
+         -o-animation: play_inlove 3.0s steps(62) infinite;
+            animation: play_inlove 3.0s steps(62) infinite;
+}
+
+.emoticon.itwasntme{
+ background-image: url("/static/img/emoji/itwasntme.png");
+    -webkit-animation: play_itwasntme 3.5s steps(75) infinite;
+       -moz-animation: play_itwasntme 3.5s steps(75) infinite;
+        -ms-animation: play_itwasntme 3.5s steps(75) infinite;
+         -o-animation: play_itwasntme 3.5s steps(75) infinite;
+            animation: play_itwasntme 3.5s steps(75) infinite;
+}
+
+.emoticon.kiss{
+ background-image: url("/static/img/emoji/kiss.png");
+    -webkit-animation: play_kiss 3.0s steps(59) infinite;
+       -moz-animation: play_kiss 3.0s steps(59) infinite;
+        -ms-animation: play_kiss 3.0s steps(59) infinite;
+         -o-animation: play_kiss 3.0s steps(59) infinite;
+            animation: play_kiss 3.0s steps(59) infinite;
+}
+
+
+.emoticon.lalala{
+ background-image: url("/static/img/emoji/lalala.png");
+    -webkit-animation: play_lalala 2.5s steps(19) infinite;
+       -moz-animation: play_lalala 2.5s steps(19) infinite;
+        -ms-animation: play_lalala 2.5s steps(19) infinite;
+         -o-animation: play_lalala 2.5s steps(19) infinite;
+            animation: play_lalala 2.5s steps(19) infinite;
+}
+
+.emoticon.mail{
+ background-image: url("/static/img/emoji/mail.png");
+    -webkit-animation: play_mail 2.5s steps(53) infinite;
+       -moz-animation: play_mail 2.5s steps(53) infinite;
+        -ms-animation: play_mail 2.5s steps(53) infinite;
+         -o-animation: play_mail 2.5s steps(53) infinite;
+            animation: play_mail 2.5s steps(53) infinite;
+}
+
+.emoticon.makeup{
+ background-image: url("/static/img/emoji/makeup.png");
+    -webkit-animation: play_makeup 5.0s steps(107) infinite;
+       -moz-animation: play_makeup 5.0s steps(107) infinite;
+        -ms-animation: play_makeup 5.0s steps(107) infinite;
+         -o-animation: play_makeup 5.0s steps(107) infinite;
+            animation: play_makeup 5.0s steps(107) infinite;
+}
+
+.emoticon.malthe{
+ background-image: url("/static/img/emoji/malthe.png");
+    -webkit-animation: play_malthe 3.0s steps(66) infinite;
+       -moz-animation: play_malthe 3.0s steps(66) infinite;
+        -ms-animation: play_malthe 3.0s steps(66) infinite;
+         -o-animation: play_malthe 3.0s steps(66) infinite;
+            animation: play_malthe 3.0s steps(66) infinite;
+}
+
+.emoticon.mmm{
+ background-image: url("/static/img/emoji/mmm.png");
+    -webkit-animation: play_mmm 4.0s steps(92) infinite;
+       -moz-animation: play_mmm 4.0s steps(92) infinite;
+        -ms-animation: play_mmm 4.0s steps(92) infinite;
+         -o-animation: play_mmm 4.0s steps(92) infinite;
+            animation: play_mmm 4.0s steps(92) infinite;
+}
+
+.emoticon.movie{
+ background-image: url("/static/img/emoji/movie.png");
+    -webkit-animation: play_movie 3.0s steps(54) infinite;
+       -moz-animation: play_movie 3.0s steps(54) infinite;
+        -ms-animation: play_movie 3.0s steps(54) infinite;
+         -o-animation: play_movie 3.0s steps(54) infinite;
+            animation: play_movie 3.0s steps(54) infinite;
+}
+
+.emoticon.muscle{
+ background-image: url("/static/img/emoji/muscle.png");
+    -webkit-animation: play_muscle 3.0s steps(58) infinite;
+       -moz-animation: play_muscle 3.0s steps(58) infinite;
+        -ms-animation: play_muscle 3.0s steps(58) infinite;
+         -o-animation: play_muscle 3.0s steps(58) infinite;
+            animation: play_muscle 3.0s steps(58) infinite;
+}
+
+.emoticon.music{
+ background-image: url("/static/img/emoji/music.png");
+    -webkit-animation: play_music 3.5s steps(54) infinite;
+       -moz-animation: play_music 3.5s steps(54) infinite;
+        -ms-animation: play_music 3.5s steps(54) infinite;
+         -o-animation: play_music 3.5s steps(54) infinite;
+            animation: play_music 3.5s steps(54) infinite;
+}
+
+.emoticon.nerd{
+ background-image: url("/static/img/emoji/nerd.png");
+    -webkit-animation: play_nerd 2.5s steps(47) infinite;
+       -moz-animation: play_nerd 2.5s steps(47) infinite;
+        -ms-animation: play_nerd 2.5s steps(47) infinite;
+         -o-animation: play_nerd 2.5s steps(47) infinite;
+            animation: play_nerd 2.5s steps(47) infinite;
+}
+.emoticon.ninja{
+ background-image: url("/static/img/emoji/ninja.png");
+    -webkit-animation: play_ninja 6.0s steps(121) infinite;
+       -moz-animation: play_ninja 6.0s steps(121) infinite;
+        -ms-animation: play_ninja 6.0s steps(121) infinite;
+         -o-animation: play_ninja 6.0s steps(121) infinite;
+            animation: play_ninja 6.0s steps(121) infinite;
+}
+.emoticon.no{
+ background-image: url("/static/img/emoji/no.png");
+    -webkit-animation: play_no 3.5s steps(54) infinite;
+       -moz-animation: play_no 3.5s steps(54) infinite;
+        -ms-animation: play_no 3.5s steps(54) infinite;
+         -o-animation: play_no 3.5s steps(54) infinite;
+            animation: play_no 3.5s steps(54) infinite;
+}
+.emoticon.nod{
+ background-image: url("/static/img/emoji/nod.png");
+    -webkit-animation: play_nod 3.5s steps(50) infinite;
+       -moz-animation: play_nod 3.5s steps(50) infinite;
+        -ms-animation: play_nod 3.5s steps(50) infinite;
+         -o-animation: play_nod 3.5s steps(50) infinite;
+            animation: play_nod 3.5s steps(50) infinite;
+}
+.emoticon.oliver{
+ background-image: url("/static/img/emoji/oliver.png");
+    -webkit-animation: play_oliver 3.0s steps(63) infinite;
+       -moz-animation: play_oliver 3.0s steps(63) infinite;
+        -ms-animation: play_oliver 3.0s steps(63) infinite;
+         -o-animation: play_oliver 3.0s steps(63) infinite;
+            animation: play_oliver 3.0s steps(63) infinite;
+}
+
+
+.emoticon.phone{
+ background-image: url("/static/img/emoji/phone.png");
+    -webkit-animation: play_phone 3.5s steps(88) infinite;
+       -moz-animation: play_phone 3.5s steps(88) infinite;
+        -ms-animation: play_phone 3.5s steps(88) infinite;
+         -o-animation: play_phone 3.5s steps(88) infinite;
+            animation: play_phone 3.5s steps(88) infinite;
+}
+
+.emoticon.poolparty{
+ background-image: url("/static/img/emoji/poolparty.png");
+    -webkit-animation: play_poolparty 3.5s steps(87) infinite;
+       -moz-animation: play_poolparty 3.5s steps(87) infinite;
+        -ms-animation: play_poolparty 3.5s steps(87) infinite;
+         -o-animation: play_poolparty 3.5s steps(87) infinite;
+            animation: play_poolparty 3.5s steps(87) infinite;
+}
+
+.emoticon.priidu{
+ background-image: url("/static/img/emoji/priidu.png");
+    -webkit-animation: play_priidu 3.0s steps(61) infinite;
+       -moz-animation: play_priidu 3.0s steps(61) infinite;
+        -ms-animation: play_priidu 3.0s steps(61) infinite;
+         -o-animation: play_priidu 3.0s steps(61) infinite;
+            animation: play_priidu 3.0s steps(61) infinite;
+}
+
+.emoticon.shake{
+ background-image: url("/static/img/emoji/shake.png");
+    -webkit-animation: play_shake 3.0s steps(50) infinite;
+       -moz-animation: play_shake 3.0s steps(50) infinite;
+        -ms-animation: play_shake 3.0s steps(50) infinite;
+         -o-animation: play_shake 3.0s steps(50) infinite;
+            animation: play_shake 3.0s steps(50) infinite;
+}
+
+.emoticon.skype{
+ background-image: url("/static/img/emoji/skype.png");
+    -webkit-animation: play_skype 2.5s steps(45) infinite;
+       -moz-animation: play_skype 2.5s steps(45) infinite;
+        -ms-animation: play_skype 2.5s steps(45) infinite;
+         -o-animation: play_skype 2.5s steps(45) infinite;
+            animation: play_skype 2.5s steps(45) infinite;
+}
+
+
+.emoticon.smirk{
+ background-image: url("/static/img/emoji/smirk.png");
+    -webkit-animation: play_smirk 2.5s steps(53) infinite;
+       -moz-animation: play_smirk 2.5s steps(53) infinite;
+        -ms-animation: play_smirk 2.5s steps(53) infinite;
+         -o-animation: play_smirk 2.5s steps(53) infinite;
+            animation: play_smirk 2.5s steps(53) infinite;
+}
+
+.emoticon.speechless{
+ background-image: url("/static/img/emoji/speechless.png");
+    -webkit-animation: play_speechless 2.5s steps(66) infinite;
+       -moz-animation: play_speechless 2.5s steps(66) infinite;
+        -ms-animation: play_speechless 2.5s steps(66) infinite;
+         -o-animation: play_speechless 2.5s steps(66) infinite;
+            animation: play_speechless 2.5s steps(66) infinite;
+}
+
+
+.emoticon.star{
+ background-image: url("/static/img/emoji/star.png");
+    -webkit-animation: play_star 2.5s steps(63) infinite;
+       -moz-animation: play_star 2.5s steps(63) infinite;
+        -ms-animation: play_star 2.5s steps(63) infinite;
+         -o-animation: play_star 2.5s steps(63) infinite;
+            animation: play_star 2.5s steps(63) infinite;
+}
+
+.emoticon.sunshine{
+ background-image: url("/static/img/emoji/sunshine.png");
+    -webkit-animation: play_sunshine 2.5s steps(25) infinite;
+       -moz-animation: play_sunshine 2.5s steps(25) infinite;
+        -ms-animation: play_sunshine 2.5s steps(25) infinite;
+         -o-animation: play_sunshine 2.5s steps(25) infinite;
+            animation: play_sunshine 2.5s steps(25) infinite;
+}
+
+.emoticon.surprised{
+ background-image: url("/static/img/emoji/surprised.png");
+    -webkit-animation: play_surprised 2.5s steps(67) infinite;
+       -moz-animation: play_surprised 2.5s steps(67) infinite;
+        -ms-animation: play_surprised 2.5s steps(67) infinite;
+         -o-animation: play_surprised 2.5s steps(67) infinite;
+            animation: play_surprised 2.5s steps(67) infinite;
+}
+
+.emoticon.swear{
+ background-image: url("/static/img/emoji/swear.png");
+    -webkit-animation: play_swear 2.5s steps(76) infinite;
+       -moz-animation: play_swear 2.5s steps(76) infinite;
+        -ms-animation: play_swear 2.5s steps(76) infinite;
+         -o-animation: play_swear 2.5s steps(76) infinite;
+            animation: play_swear 2.5s steps(76) infinite;
+}
+
+.emoticon.sweating{
+ background-image: url("/static/img/emoji/sweating.png");
+    -webkit-animation: play_sweating 2.5s steps(68) infinite;
+       -moz-animation: play_sweating 2.5s steps(68) infinite;
+        -ms-animation: play_sweating 2.5s steps(68) infinite;
+         -o-animation: play_sweating 2.5s steps(68) infinite;
+            animation: play_sweating 2.5s steps(68) infinite;
+}
+
+.emoticon.talking{
+ background-image: url("/static/img/emoji/talking.png");
+    -webkit-animation: play_talking 2.5s steps(46) infinite;
+       -moz-animation: play_talking 2.5s steps(46) infinite;
+        -ms-animation: play_talking 2.5s steps(46) infinite;
+         -o-animation: play_talking 2.5s steps(46) infinite;
+            animation: play_talking 2.5s steps(46) infinite;
+}
+
+.emoticon.time{
+ background-image: url("/static/img/emoji/time.png");
+    -webkit-animation: play_time 2.5s steps(59) infinite;
+       -moz-animation: play_time 2.5s steps(59) infinite;
+        -ms-animation: play_time 2.5s steps(59) infinite;
+         -o-animation: play_time 2.5s steps(59) infinite;
+            animation: play_time 2.5s steps(59) infinite;
+}
+
+.emoticon.tmi{
+ background-image: url("/static/img/emoji/tmi.png");
+    -webkit-animation: play_tmi 2.5s steps(55) infinite;
+       -moz-animation: play_tmi 2.5s steps(55) infinite;
+        -ms-animation: play_tmi 2.5s steps(55) infinite;
+         -o-animation: play_tmi 2.5s steps(55) infinite;
+            animation: play_tmi 2.5s steps(55) infinite;
+}
+
+.emoticon.toivo{
+ background-image: url("/static/img/emoji/toivo.png");
+    -webkit-animation: play_toivo 2.5s steps(83) infinite;
+       -moz-animation: play_toivo 2.5s steps(83) infinite;
+        -ms-animation: play_toivo 2.5s steps(83) infinite;
+         -o-animation: play_toivo 2.5s steps(83) infinite;
+            animation: play_toivo 2.5s steps(83) infinite;
+}
+
+.emoticon.tumbleweed{
+ background-image: url("/static/img/emoji/tumbleweed.png");
+    -webkit-animation: play_tumbleweed 2.5s steps(31) infinite;
+       -moz-animation: play_tumbleweed 2.5s steps(31) infinite;
+        -ms-animation: play_tumbleweed 2.5s steps(31) infinite;
+         -o-animation: play_tumbleweed 2.5s steps(31) infinite;
+            animation: play_tumbleweed 2.5s steps(31) infinite;
+}
+
+.emoticon.wait{
+ background-image: url("/static/img/emoji/wait.png");
+    -webkit-animation: play_wait 2.5s steps(44) infinite;
+       -moz-animation: play_wait 2.5s steps(44) infinite;
+        -ms-animation: play_wait 2.5s steps(44) infinite;
+         -o-animation: play_wait 2.5s steps(44) infinite;
+            animation: play_wait 2.5s steps(44) infinite;
+}
+
+.emoticon.waiting{
+ background-image: url("/static/img/emoji/waiting.png");
+    -webkit-animation: play_waiting 2.5s steps(50) infinite;
+       -moz-animation: play_waiting 2.5s steps(50) infinite;
+        -ms-animation: play_waiting 2.5s steps(50) infinite;
+         -o-animation: play_waiting 2.5s steps(50) infinite;
+            animation: play_waiting 2.5s steps(50) infinite;
+}
+
+.emoticon.wfh{
+ background-image: url("/static/img/emoji/wfh.png");
+    -webkit-animation: play_wfh 2.5s steps(78) infinite;
+       -moz-animation: play_wfh 2.5s steps(78) infinite;
+        -ms-animation: play_wfh 2.5s steps(78) infinite;
+         -o-animation: play_wfh 2.5s steps(78) infinite;
+            animation: play_wfh 2.5s steps(78) infinite;
+}
+
+.emoticon.yawning{
+ background-image: url("/static/img/emoji/yawning.png");
+    -webkit-animation: play_yawning 2.5s steps(73) infinite;
+       -moz-animation: play_yawning 2.5s steps(73) infinite;
+        -ms-animation: play_yawning 2.5s steps(73) infinite;
+         -o-animation: play_yawning 2.5s steps(73) infinite;
+            animation: play_yawning 2.5s steps(73) infinite;
+}
+
+.emoticon.rain{
+ background-image: url("/static/img/emoji/rain.png");
+    -webkit-animation: play_rain 2.5s steps(29) infinite;
+       -moz-animation: play_rain 2.5s steps(29) infinite;
+        -ms-animation: play_rain 2.5s steps(29) infinite;
+         -o-animation: play_rain 2.5s steps(29) infinite;
+            animation: play_rain 2.5s steps(29) infinite;
+}
+
+
+@-webkit-keyframes play_angel {
+   from { background-position:  0  0px; }
+     to { background-position: 0 -1660px; }
+}
+
+@-moz-keyframes play_angel {
+  from { background-position:  0  0px; }
+     to { background-position: 0 -1660px; }
+}
+
+@-ms-keyframes play_angel {
+    from { background-position:  0  0px; }
+     to { background-position: 0 -1660px; }
+}
+
+@-o-keyframes play_angel {
+   from { background-position:  0  0px; }
+     to { background-position: 0 -1660px; }
+}
+
+@keyframes play_angel {
+    from { background-position:  0  0px; }
+     to { background-position: 0 -1660px; }
+}
+
+/*cool*/
+@-webkit-keyframes play_cool {
+   from { background-position:  0  0px; }
+     to { background-position: 0 -740px; }
+}
+
+@-moz-keyframes play_cool {
+  from { background-position:  0  0px; }
+     to { background-position: 0 -740px; }
+}
+
+@-ms-keyframes play_cool {
+    from { background-position:  0  0px; }
+      to { background-position: 0 -740px; }
+}
+
+@-o-keyframes play_cool {
+   from { background-position:  0  0px; }
+    to { background-position: 0 -740px; }
+}
+
+@keyframes play_cool {
+    from { background-position:  0  0px; }
+      to { background-position: 0 -740px; }
+}
+
+/*lol*/
+@-webkit-keyframes play_lol {
+   from { background-position:  0  0px; }
+     to { background-position: 0 -1520px; }
+}
+
+@-moz-keyframes play_lol {
+  from { background-position:  0  0px; }
+     to { background-position: 0 -1520px; }
+}
+
+@-ms-keyframes play_lol {
+    from { background-position:  0  0px; }
+      to { background-position: 0 -1520px; }
+}
+
+@-o-keyframes play_lol {
+   from { background-position:  0  0px; }
+    to { background-position: 0 -1520px; }
+}
+
+@keyframes play_lol {
+    from { background-position:  0  0px; }
+      to { background-position: 0 -1520px; }
+}
+
+/*evilgrin*/
+@-webkit-keyframes play_evilgrin {
+   from { background-position:  0  0px; }
+     to { background-position: 0 -1540px; }
+}
+
+@-moz-keyframes play_evilgrin {
+  from { background-position:  0  0px; }
+     to { background-position: 0 -1540px; }
+}
+
+@-ms-keyframes play_evilgrin {
+    from { background-position:  0  0px; }
+      to { background-position: 0 -1540px; }
+}
+
+@-o-keyframes play_evilgrin {
+   from { background-position:  0  0px; }
+    to { background-position: 0 -1540px; }
+}
+
+@keyframes play_evilgrin {
+    from { background-position:  0  0px; }
+      to { background-position: 0 -1540px; }
+}
+
+/*facepalm*/
+@-webkit-keyframes play_facepalm {
+   from { background-position:  0  0px; }
+     to { background-position: 0 -1520px; }
+}
+
+@-moz-keyframes play_facepalm {
+  from { background-position:  0  0px; }
+     to { background-position: 0 -1520px; }
+}
+
+@-ms-keyframes play_facepalm {
+    from { background-position:  0  0px; }
+      to { background-position: 0 -1520px; }
+}
+
+@-o-keyframes play_facepalm {
+   from { background-position:  0  0px; }
+    to { background-position: 0 -1520px; }
+}
+
+@keyframes play_facepalm {
+    from { background-position:  0  0px; }
+      to { background-position: 0 -1520px; }
+}
+
+
+/*hi5*/
+@-webkit-keyframes play_hi5 {
+   from { background-position:  0  0px; }
+     to { background-position: 0 -740px; }
+}
+
+@-moz-keyframes play_hi5 {
+  from { background-position:  0  0px; }
+     to { background-position: 0 -740px; }
+}
+
+@-ms-keyframes play_hi5 {
+    from { background-position:  0  0px; }
+      to { background-position: 0 -740px; }
+}
+
+@-o-keyframes play_hi5 {
+   from { background-position:  0  0px; }
+    to { background-position: 0 -740px; }
+}
+
+@keyframes play_hi5 {
+    from { background-position:  0  0px; }
+      to { background-position: 0 -740px; }
+}
+
+/*sad*/
+@-webkit-keyframes play_sad {
+   from { background-position:  0  0px; }
+     to { background-position: 0 -1240px; }
+}
+
+@-moz-keyframes play_sad {
+  from { background-position:  0  0px; }
+     to { background-position: 0 -1240px; }
+}
+
+@-ms-keyframes play_sad {
+    from { background-position:  0  0px; }
+      to { background-position: 0 -1240px; }
+}
+
+@-o-keyframes play_sad {
+   from { background-position:  0  0px; }
+    to { background-position: 0 -1240px; }
+}
+
+@keyframes play_sad {
+    from { background-position:  0  0px; }
+      to { background-position: 0 -1240px; }
+}
+
+
+
+/*tongue*/
+@-webkit-keyframes play_tongue {
+   from { background-position:  0  0px; }
+     to { background-position: 0 -960px; }
+}
+
+@-moz-keyframes play_tongue {
+  from { background-position:  0  0px; }
+     to { background-position: 0 -960px; }
+}
+
+@-ms-keyframes play_tongue {
+    from { background-position:  0  0px; }
+      to { background-position: 0 -960px; }
+}
+
+@-o-keyframes play_tongue {
+   from { background-position:  0  0px; }
+    to { background-position: 0 -960px; }
+}
+
+@keyframes play_tongue {
+    from { background-position:  0  0px; }
+      to { background-position: 0 -960px; }
+}
+
+/*cry*/
+@-webkit-keyframes play_cry {
+   from { background-position:  0  0px; }
+     to { background-position: 0 -980px; }
+}
+
+@-moz-keyframes play_cry {
+  from { background-position:  0  0px; }
+     to { background-position: 0 -980px; }
+}
+
+@-ms-keyframes play_cry {
+    from { background-position:  0  0px; }
+      to { background-position: 0 -980px; }
+}
+
+@-o-keyframes play_cry {
+   from { background-position:  0  0px; }
+    to { background-position: 0 -980px; }
+}
+
+@keyframes play_cry {
+    from { background-position:  0  0px; }
+      to { background-position: 0 -980px; }
+}
+
+
+/*puke*/
+@-webkit-keyframes play_puke {
+   from { background-position:  0  0px; }
+     to { background-position: 0 -1560px; }
+}
+
+@-moz-keyframes play_puke {
+  from { background-position:  0  0px; }
+     to { background-position: 0 -1560px; }
+}
+
+@-ms-keyframes play_puke {
+    from { background-position:  0  0px; }
+      to { background-position: 0 -1560px; }
+}
+
+@-o-keyframes play_puke {
+   from { background-position:  0  0px; }
+    to { background-position: 0 -1560px; }
+}
+
+@keyframes play_puke {
+    from { background-position:  0  0px; }
+      to { background-position: 0 -1560px; }
+}
+
+
+
+/*giggle*/
+@-webkit-keyframes play_giggle {
+   from { background-position:  0  0px; }
+     to { background-position: 0 -880px; }
+}
+
+@-moz-keyframes play_giggle {
+  from { background-position:  0  0px; }
+     to { background-position: 0 -880px; }
+}
+
+@-ms-keyframes play_giggle {
+    from { background-position:  0  0px; }
+      to { background-position: 0 -880px; }
+}
+
+@-o-keyframes play_giggle {
+   from { background-position:  0  0px; }
+    to { background-position: 0 -880px; }
+}
+
+@keyframes play_giggle {
+    from { background-position:  0  0px; }
+      to { background-position: 0 -880px; }
+}
+
+
+/*rofl*/
+@-webkit-keyframes play_rofl {
+   from { background-position:  0  0px; }
+     to { background-position: 0 -1600px; }
+}
+
+@-moz-keyframes play_rofl {
+  from { background-position:  0  0px; }
+     to { background-position: 0 -1600px; }
+}
+
+@-ms-keyframes play_rofl {
+    from { background-position:  0  0px; }
+      to { background-position: 0 -1600px; }
+}
+
+@-o-keyframes play_rofl {
+   from { background-position:  0  0px; }
+    to { background-position: 0 -1600px; }
+}
+
+@keyframes play_rofl {
+    from { background-position:  0  0px; }
+      to { background-position: 0 -1600px; }
+}
+
+/*wink*/
+@-webkit-keyframes play_wink {
+   from { background-position:  0  0px; }
+     to { background-position: 0 -700px; }
+}
+
+@-moz-keyframes play_wink {
+  from { background-position:  0  0px; }
+     to { background-position: 0 -700px; }
+}
+
+@-ms-keyframes play_wink {
+    from { background-position:  0  0px; }
+      to { background-position: 0 -700px; }
+}
+
+@-o-keyframes play_wink {
+   from { background-position:  0  0px; }
+    to { background-position: 0 -700px; }
+}
+
+@keyframes play_wink {
+    from { background-position:  0  0px; }
+      to { background-position: 0 -700px; }
+}
+
+
+/*wtf*/
+@-webkit-keyframes play_wtf {
+   from { background-position:  0  0px; }
+     to { background-position: 0 -1120px; }
+}
+
+@-moz-keyframes play_wtf {
+  from { background-position:  0  0px; }
+     to { background-position: 0 -1120px; }
+}
+
+@-ms-keyframes play_wtf {
+    from { background-position:  0  0px; }
+      to { background-position: 0 -1120px; }
+}
+
+@-o-keyframes play_wtf {
+   from { background-position:  0  0px; }
+    to { background-position: 0 -1120px; }
+}
+
+@keyframes play_wtf {
+    from { background-position:  0  0px; }
+      to { background-position: 0 -1120px; }
+}
+
+
+/*smoking*/
+@-webkit-keyframes play_smoking {
+   from { background-position:  0  0px; }
+     to { background-position: 0 -1280px; }
+}
+
+@-moz-keyframes play_smoking {
+  from { background-position:  0  0px; }
+     to { background-position: 0 -1280px; }
+}
+
+@-ms-keyframes play_smoking {
+    from { background-position:  0  0px; }
+      to { background-position: 0 -1280px; }
+}
+
+@-o-keyframes play_smoking {
+   from { background-position:  0  0px; }
+    to { background-position: 0 -1280px; }
+}
+
+@keyframes play_smoking {
+    from { background-position:  0  0px; }
+      to { background-position: 0 -1280px; }
+}
+
+
+/*lipssealed*/
+@-webkit-keyframes play_lipssealed {
+   from { background-position:  0  0px; }
+     to { background-position: 0 -980px; }
+}
+
+@-moz-keyframes play_lipssealed {
+  from { background-position:  0  0px; }
+     to { background-position: 0 -980px; }
+}
+
+@-ms-keyframes play_lipssealed {
+    from { background-position:  0  0px; }
+      to { background-position: 0 -980px; }
+}
+
+@-o-keyframes play_lipssealed {
+   from { background-position:  0  0px; }
+    to { background-position: 0 -980px; }
+}
+
+@keyframes play_lipssealed {
+    from { background-position:  0  0px; }
+      to { background-position: 0 -980px; }
+}
+
+
+/*smile*/
+@-webkit-keyframes play_smile {
+   from { background-position:  0  0px; }
+     to { background-position: 0 -1040px; }
+}
+
+@-moz-keyframes play_smile {
+  from { background-position:  0  0px; }
+     to { background-position: 0 -1040px; }
+}
+
+@-ms-keyframes play_smile {
+    from { background-position:  0  0px; }
+      to { background-position: 0 -1040px; }
+}
+
+@-o-keyframes play_smile {
+   from { background-position:  0  0px; }
+    to { background-position: 0 -1040px; }
+}
+
+@keyframes play_smile {
+    from { background-position:  0  0px; }
+      to { background-position: 0 -1040px; }
+}
+
+
+
+/*thumbsup*/
+@-webkit-keyframes play_thumbsup {
+   from { background-position:  0  0px; }
+     to { background-position: 0 -780px; }
+}
+
+@-moz-keyframes play_thumbsup {
+  from { background-position:  0  0px; }
+     to { background-position: 0 -780px; }
+}
+
+@-ms-keyframes play_thumbsup {
+    from { background-position:  0  0px; }
+      to { background-position: 0 -780px; }
+}
+
+@-o-keyframes play_thumbsup {
+   from { background-position:  0  0px; }
+    to { background-position: 0 -780px; }
+}
+
+@keyframes play_thumbsup {
+    from { background-position:  0  0px; }
+      to { background-position: 0 -780px; }
+}
+
+/*finger*/
+@-webkit-keyframes play_finger {
+   from { background-position:  0  0px; }
+     to { background-position: 0 -820px; }
+}
+
+@-moz-keyframes play_finger {
+  from { background-position:  0  0px; }
+     to { background-position: 0 -820px; }
+}
+
+@-ms-keyframes play_finger {
+    from { background-position:  0  0px; }
+      to { background-position: 0 -820px; }
+}
+
+@-o-keyframes play_finger {
+   from { background-position:  0  0px; }
+    to { background-position: 0 -820px; }
+}
+
+@keyframes play_finger {
+    from { background-position:  0  0px; }
+      to { background-position: 0 -820px; }
+}
+
+
+/*sleepy*/
+@-webkit-keyframes play_sleepy {
+   from { background-position:  0  0px; }
+     to { background-position: 0 -1420px; }
+}
+
+@-moz-keyframes play_sleepy {
+  from { background-position:  0  0px; }
+     to { background-position: 0 -1420px; }
+}
+
+@-ms-keyframes play_sleepy {
+    from { background-position:  0  0px; }
+      to { background-position: 0 -1420px; }
+}
+
+@-o-keyframes play_sleepy {
+   from { background-position:  0  0px; }
+    to { background-position: 0 -1420px; }
+}
+
+@keyframes play_sleepy {
+    from { background-position:  0  0px; }
+      to { background-position: 0 -1420px; }
+}
+
+/*devil*/
+@-webkit-keyframes play_devil {
+   from { background-position:  0  0px; }
+     to { background-position: 0 -1320px; }
+}
+
+@-moz-keyframes play_devil {
+  from { background-position:  0  0px; }
+     to { background-position: 0 -1320px; }
+}
+
+@-ms-keyframes play_devil {
+    from { background-position:  0  0px; }
+      to { background-position: 0 -1320px; }
+}
+
+@-o-keyframes play_devil {
+   from { background-position:  0  0px; }
+    to { background-position: 0 -1320px; }
+}
+
+@keyframes play_devil {
+    from { background-position:  0  0px; }
+      to { background-position: 0 -1320px; }
+}
+
+
+
+/*emo*/
+@-webkit-keyframes play_emo {
+   from { background-position:  0  0px; }
+     to { background-position: 0 -1060px; }
+}
+
+@-moz-keyframes play_emo {
+  from { background-position:  0  0px; }
+     to { background-position: 0 -1060px; }
+}
+
+@-ms-keyframes play_emo {
+    from { background-position:  0  0px; }
+      to { background-position: 0 -1060px; }
+}
+
+@-o-keyframes play_emo {
+   from { background-position:  0  0px; }
+    to { background-position: 0 -1060px; }
+}
+
+@keyframes play_emo {
+    from { background-position:  0  0px; }
+      to { background-position: 0 -1060px; }
+}
+
+
+/*headbang*/
+@-webkit-keyframes play_headbang {
+   from { background-position:  0  0px; }
+     to { background-position: 0 -1400px; }
+}
+
+@-moz-keyframes play_headbang {
+  from { background-position:  0  0px; }
+     to { background-position: 0 -1400px; }
+}
+
+@-ms-keyframes play_headbang {
+    from { background-position:  0  0px; }
+      to { background-position: 0 -1400px; }
+}
+
+@-o-keyframes play_headbang {
+   from { background-position:  0  0px; }
+    to { background-position: 0 -1400px; }
+}
+
+@keyframes play_headbang {
+    from { background-position:  0  0px; }
+      to { background-position: 0 -1400px; }
+}
+
+/*hi*/
+@-webkit-keyframes play_hi {
+   from { background-position:  0  0px; }
+     to { background-position: 0 -1120px; }
+}
+
+@-moz-keyframes play_hi {
+  from { background-position:  0  0px; }
+     to { background-position: 0 -1120px; }
+}
+
+@-ms-keyframes play_hi {
+    from { background-position:  0  0px; }
+      to { background-position: 0 -1120px; }
+}
+
+@-o-keyframes play_hi {
+   from { background-position:  0  0px; }
+    to { background-position: 0 -1120px; }
+}
+
+@keyframes play_hi {
+    from { background-position:  0  0px; }
+      to { background-position: 0 -1120px; }
+}
+
+/*thinking*/
+@-webkit-keyframes play_thinking {
+   from { background-position:  0  0px; }
+     to { background-position: 0 -1160px; }
+}
+
+@-moz-keyframes play_thinking {
+  from { background-position:  0  0px; }
+     to { background-position: 0 -1160px; }
+}
+
+@-ms-keyframes play_thinking {
+    from { background-position:  0  0px; }
+      to { background-position: 0 -1160px; }
+}
+
+@-o-keyframes play_thinking {
+   from { background-position:  0  0px; }
+    to { background-position: 0 -1160px; }
+}
+
+@keyframes play_thinking {
+    from { background-position:  0  0px; }
+      to { background-position: 0 -1160px; }
+}
+
+/*party*/
+@-webkit-keyframes play_party {
+   from { background-position:  0  0px; }
+     to { background-position: 0 -1400px; }
+}
+
+@-moz-keyframes play_party {
+  from { background-position:  0  0px; }
+     to { background-position: 0 -1400px; }
+}
+
+@-ms-keyframes play_party {
+    from { background-position:  0  0px; }
+      to { background-position: 0 -1400px; }
+}
+
+@-o-keyframes play_party {
+   from { background-position:  0  0px; }
+    to { background-position: 0 -1400px; }
+}
+
+@keyframes play_party {
+    from { background-position:  0  0px; }
+      to { background-position: 0 -1400px; }
+}
+
+
+/*pizza*/
+@-webkit-keyframes play_pizza {
+   from { background-position:  0  0px; }
+     to { background-position: 0 -1800px; }
+}
+
+@-moz-keyframes play_pizza {
+  from { background-position:  0  0px; }
+     to { background-position: 0 -1800px; }
+}
+
+@-ms-keyframes play_pizza {
+    from { background-position:  0  0px; }
+      to { background-position: 0 -1800px; }
+}
+
+@-o-keyframes play_pizza {
+   from { background-position:  0  0px; }
+    to { background-position: 0 -1800px; }
+}
+
+@keyframes play_pizza {
+    from { background-position:  0  0px; }
+      to { background-position: 0 -1800px; }
+}
+
+
+/*rock*/
+@-webkit-keyframes play_rock {
+   from { background-position:  0  0px; }
+     to { background-position: 0 -220px; }
+}
+
+@-moz-keyframes play_rock {
+  from { background-position:  0  0px; }
+     to { background-position: 0 -220px; }
+}
+
+@-ms-keyframes play_rock {
+    from { background-position:  0  0px; }
+      to { background-position: 0 -220px; }
+}
+
+@-o-keyframes play_rock {
+   from { background-position:  0  0px; }
+    to { background-position: 0 -220px; }
+}
+
+@keyframes play_rock {
+    from { background-position:  0  0px; }
+      to { background-position: 0 -220px; }
+}
+
+
+
+/*wondering*/
+@-webkit-keyframes play_wondering {
+   from { background-position:  0  0px; }
+     to { background-position: 0 -1380px; }
+}
+
+@-moz-keyframes play_wondering {
+  from { background-position:  0  0px; }
+     to { background-position: 0 -1380px; }
+}
+
+@-ms-keyframes play_wondering {
+    from { background-position:  0  0px; }
+      to { background-position: 0 -1380px; }
+}
+
+@-o-keyframes play_wondering {
+   from { background-position:  0  0px; }
+    to { background-position: 0 -1380px; }
+}
+
+@keyframes play_wondering {
+    from { background-position:  0  0px; }
+      to { background-position: 0 -1380px; }
+}
+
+/*worried*/
+@-webkit-keyframes play_worried {
+   from { background-position:  0  0px; }
+     to { background-position: 0 -1100px; }
+}
+
+@-moz-keyframes play_worried {
+  from { background-position:  0  0px; }
+     to { background-position: 0 -1100px; }
+}
+
+@-ms-keyframes play_worried {
+    from { background-position:  0  0px; }
+      to { background-position: 0 -1100px; }
+}
+
+@-o-keyframes play_worried {
+   from { background-position:  0  0px; }
+    to { background-position: 0 -1100px; }
+}
+
+@keyframes play_worried {
+    from { background-position:  0  0px; }
+      to { background-position: 0 -1100px; }
+}
+
+
+
+/*whew*/
+@-webkit-keyframes play_whew {
+   from { background-position:  0  0px; }
+     to { background-position: 0 -1000px; }
+}
+
+@-moz-keyframes play_whew {
+  from { background-position:  0  0px; }
+     to { background-position: 0 -1000px; }
+}
+
+@-ms-keyframes play_whew {
+    from { background-position:  0  0px; }
+      to { background-position: 0 -1000px; }
+}
+
+@-o-keyframes play_whew {
+   from { background-position:  0  0px; }
+    to { background-position: 0 -1000px; }
+}
+
+@keyframes play_whew {
+    from { background-position:  0  0px; }
+      to { background-position: 0 -1000px; }
+}
+
+
+
+/*angry*/
+@-webkit-keyframes play_angry {
+   from { background-position:  0  0px; }
+     to { background-position: 0 -2260px; }
+}
+
+@-moz-keyframes play_angry {
+  from { background-position:  0  0px; }
+     to { background-position: 0 -2260px; }
+}
+
+@-ms-keyframes play_angry {
+    from { background-position:  0  0px; }
+      to { background-position: 0 -2260px; }
+}
+
+@-o-keyframes play_angry {
+   from { background-position:  0  0px; }
+    to { background-position: 0 -2260px; }
+}
+
+@keyframes play_angry {
+    from { background-position:  0  0px; }
+      to { background-position: 0 -2260px; }
+}
+
+
+/*clap*/
+@-webkit-keyframes play_clap {
+   from { background-position:  0  0px; }
+     to { background-position: 0 -780px; }
+}
+
+@-moz-keyframes play_clap {
+  from { background-position:  0  0px; }
+     to { background-position: 0 -780px; }
+}
+
+@-ms-keyframes play_clap {
+    from { background-position:  0  0px; }
+      to { background-position: 0 -780px; }
+}
+
+@-o-keyframes play_clap {
+   from { background-position:  0  0px; }
+    to { background-position: 0 -780px; }
+}
+
+@keyframes play_clap {
+    from { background-position:  0  0px; }
+      to { background-position: 0 -780px; }
+}
+
+
+
+
+/*mooning*/
+@-webkit-keyframes play_mooning {
+   from { background-position:  0  0px; }
+     to { background-position: 0 -900px; }
+}
+
+@-moz-keyframes play_mooning {
+  from { background-position:  0  0px; }
+     to { background-position: 0 -900px; }
+}
+
+@-ms-keyframes play_mooning {
+    from { background-position:  0  0px; }
+      to { background-position: 0 -900px; }
+}
+
+@-o-keyframes play_mooning {
+   from { background-position:  0  0px; }
+    to { background-position: 0 -900px; }
+}
+
+@keyframes play_mooning{
+    from { background-position:  0  0px; }
+      to { background-position: 0 -900px; }
+}
+
+@-webkit-keyframes play_whew{
+	from{background-position:0 0}
+	to{background-position:0 -1000px}
+	}
+@-moz-keyframes play_whew{
+	from{background-position:0 0}
+	to{background-position:0 -1000px}
+	}
+@-ms-keyframes play_whew{
+		from{background-position:0 0}
+		to{background-position:0 -1000px}
+	}
+@-o-keyframes play_whew{
+	from{background-position:0 0}
+	to{background-position:0 -1000px}
+}
+@keyframes play_whew{
+	from{background-position:0 0}
+	to{background-position:0 -1000px}
+}
+	
+/*angry*/
+@-webkit-keyframes play_angry{
+	from{background-position:0 0}
+	to{background-position:0 -2260px}
+}
+@-moz-keyframes play_angry{
+	from{background-position:0 0}
+	to{background-position:0 -2260px}
+}
+@-ms-keyframes play_angry{
+	from{background-position:0 0}
+	to{background-position:0 -2260px}
+}
+@-o-keyframes play_angry{
+	from{background-position:0 0}
+	to{background-position:0 -2260px}
+}
+@keyframes play_angry{
+	from{background-position:0 0}
+	to{background-position:0 -2260px}
+}
+
+/*clap*/
+@-webkit-keyframes play_clap{
+	from{background-position:0 0}
+	to{background-position:0 -780px}
+}
+@-moz-keyframes play_clap{
+	from{background-position:0 0}
+	to{background-position:0 -780px}
+}
+@-ms-keyframes play_clap{
+	from{background-position:0 0}
+	to{background-position:0 -780px}
+}
+@-o-keyframes play_clap{
+	from{background-position:0 0}
+	to{background-position:0 -780px}
+}
+@keyframes play_clap{
+	from{background-position:0 0}
+	to{background-position:0 -780px}
+}
+
+@-webkit-keyframes play_batman{
+	from{background-position:0 0}
+	to{background-position:0 -772px}
+}
+@-moz-keyframes play_batman{
+	from{background-position:0 0}
+	to{background-position:0 -772px}
+}
+@-ms-keyframes play_batman{
+		from{background-position:0 0}
+		to{background-position:0 -772px}
+}
+@-o-keyframes play_batman{
+	from{background-position:0 0}
+	to{background-position:0 -772px}
+}
+@keyframes play_batman{
+	from{background-position:0 0}
+	to{background-position:0 -772px}
+}
+	
+/*walkcycle*/	
+@-webkit-keyframes play_walkcycle{
+	from{background-position:0 0}
+	to{background-position:0 -760px}
+}
+@-moz-keyframes play_walkcycle{
+	from{background-position:0 0}
+	to{background-position:0 -760px}
+}
+@-ms-keyframes play_walkcycle{
+		from{background-position:0 0}
+		to{background-position:0 -760px}
+}
+@-o-keyframes play_walkcycle{
+	from{background-position:0 0}
+	to{background-position:0 -760px}
+}
+@keyframes play_walkcycle{
+	from{background-position:0 0}
+	to{background-position:0 -760px}
+}
+
+
+
+
+
+/*bandit*/
+@-webkit-keyframes play_bandit {
+   from { background-position:  0  0px; }
+     to { background-position: 0 -2020px; }
+}
+
+@-moz-keyframes play_bandit {
+  from { background-position:  0  0px; }
+     to { background-position: 0 -2020px; }
+}
+
+@-ms-keyframes play_bandit {
+    from { background-position:  0  0px; }
+      to { background-position: 0 -2020px; }
+}
+
+@-o-keyframes play_bandit {
+   from { background-position:  0  0px; }
+    to { background-position: 0 -2020px; }
+}
+
+@keyframes play_bandit{
+    from { background-position:  0  0px; }
+      to { background-position: 0 -2020px; }
+}
+
+
+
+/*bartlett*/
+@-webkit-keyframes play_bartlett {
+   from { background-position:  0  0px; }
+     to { background-position: 0 -1580px; }
+}
+
+@-moz-keyframes play_bartlett {
+  from { background-position:  0  0px; }
+     to { background-position: 0 -1580px; }
+}
+
+@-ms-keyframes play_bartlett {
+    from { background-position:  0  0px; }
+      to { background-position: 0 -1580px; }
+}
+
+@-o-keyframes play_bartlett {
+   from { background-position:  0  0px; }
+    to { background-position: 0 -1580px; }
+}
+
+@keyframes play_bartlett{
+    from { background-position:  0  0px; }
+      to { background-position: 0 -1580px; }
+}
+
+
+
+/*beer*/
+@-webkit-keyframes play_beer {
+   from { background-position:  0  0px; }
+     to { background-position: 0 -1500px; }
+}
+
+@-moz-keyframes play_beer {
+  from { background-position:  0  0px; }
+     to { background-position: 0 -1500px; }
+}
+
+@-ms-keyframes play_beer {
+    from { background-position:  0  0px; }
+      to { background-position: 0 -1500px; }
+}
+
+@-o-keyframes play_beer {
+   from { background-position:  0  0px; }
+    to { background-position: 0 -1500px; }
+}
+
+@keyframes play_beer{
+    from { background-position:  0  0px; }
+      to { background-position: 0 -1500px; }
+}
+
+/*blushing*/
+@-webkit-keyframes play_blushing {
+   from { background-position:  0  0px; }
+     to { background-position: 0 -1360px; }
+}
+
+@-moz-keyframes play_blushing {
+  from { background-position:  0  0px; }
+     to { background-position: 0 -1360px; }
+}
+
+@-ms-keyframes play_blushing {
+    from { background-position:  0  0px; }
+      to { background-position: 0 -1360px; }
+}
+
+@-o-keyframes play_blushing {
+   from { background-position:  0  0px; }
+    to { background-position: 0 -1360px; }
+}
+
+@keyframes play_blushing{
+    from { background-position:  0  0px; }
+      to { background-position: 0 -1360px; }
+}
+
+
+
+/*bow*/
+@-webkit-keyframes play_bow {
+   from { background-position:  0  0px; }
+     to { background-position: 0 -1180px; }
+}
+
+@-moz-keyframes play_bow {
+  from { background-position:  0  0px; }
+     to { background-position: 0 -1180px; }
+}
+
+@-ms-keyframes play_bow {
+    from { background-position:  0  0px; }
+      to { background-position: 0 -1180px; }
+}
+
+@-o-keyframes play_bow {
+   from { background-position:  0  0px; }
+    to { background-position: 0 -1180px; }
+}
+
+@keyframes play_bow{
+    from { background-position:  0  0px; }
+      to { background-position: 0 -1180px; }
+}
+
+/*brokenheart*/
+@-webkit-keyframes play_brokenheart {
+   from { background-position:  0  0px; }
+     to { background-position: 0 -2080px; }
+}
+
+@-moz-keyframes play_brokenheart {
+  from { background-position:  0  0px; }
+     to { background-position: 0 -2080px; }
+}
+
+@-ms-keyframes play_brokenheart {
+    from { background-position:  0  0px; }
+      to { background-position: 0 -2080px; }
+}
+
+@-o-keyframes play_brokenheart {
+   from { background-position:  0  0px; }
+    to { background-position: 0 -2080px; }
+}
+
+@keyframes play_brokenheart{
+    from { background-position:  0  0px; }
+      to { background-position: 0 -2080px; }
+}
+
+/*bug*/
+@-webkit-keyframes play_bug {
+   from { background-position:  0  0px; }
+     to { background-position: 0 -1540px; }
+}
+
+@-moz-keyframes play_bug {
+  from { background-position:  0  0px; }
+     to { background-position: 0 -1540px; }
+}
+
+@-ms-keyframes play_bug {
+    from { background-position:  0  0px; }
+      to { background-position: 0 -1540px; }
+}
+
+@-o-keyframes play_bug {
+   from { background-position:  0  0px; }
+    to { background-position: 0 -1540px; }
+}
+
+@keyframes play_bug{
+    from { background-position:  0  0px; }
+      to { background-position: 0 -1540px; }
+}
+
+
+/*cake*/
+@-webkit-keyframes play_cake {
+   from { background-position:  0  0px; }
+     to { background-position: 0 -1960px; }
+}
+
+@-moz-keyframes play_cake {
+  from { background-position:  0  0px; }
+     to { background-position: 0 -1960px; }
+}
+
+@-ms-keyframes play_cake {
+    from { background-position:  0  0px; }
+      to { background-position: 0 -1960px; }
+}
+
+@-o-keyframes play_cake {
+   from { background-position:  0  0px; }
+    to { background-position: 0 -1960px; }
+}
+
+@keyframes play_cake{
+    from { background-position:  0  0px; }
+      to { background-position: 0 -1960px; }
+}
+
+/*call*/
+@-webkit-keyframes play_call {
+   from { background-position:  0  0px; }
+     to { background-position: 0 -900px; }
+}
+
+@-moz-keyframes play_call {
+  from { background-position:  0  0px; }
+     to { background-position: 0 -900px; }
+}
+
+@-ms-keyframes play_call {
+    from { background-position:  0  0px; }
+      to { background-position: 0 -900px; }
+}
+
+@-o-keyframes play_call {
+   from { background-position:  0  0px; }
+    to { background-position: 0 -900px; }
+}
+
+@keyframes play_call{
+    from { background-position:  0  0px; }
+      to { background-position: 0 -900px; }
+}
+
+
+/*cash*/
+@-webkit-keyframes play_cash {
+   from { background-position:  0  0px; }
+     to { background-position: 0 -520px; }
+}
+
+@-moz-keyframes play_cash {
+  from { background-position:  0  0px; }
+     to { background-position: 0 -520px; }
+}
+
+@-ms-keyframes play_cash {
+    from { background-position:  0  0px; }
+      to { background-position: 0 -520px; }
+}
+
+@-o-keyframes play_cash {
+   from { background-position:  0  0px; }
+    to { background-position: 0 -520px; }
+}
+
+@keyframes play_cash{
+    from { background-position:  0  0px; }
+      to { background-position: 0 -520px; }
+}
+
+
+/*coffee*/
+@-webkit-keyframes play_coffee {
+   from { background-position:  0  0px; }
+     to { background-position: 0 -540px; }
+}
+
+@-moz-keyframes play_coffee {
+  from { background-position:  0  0px; }
+     to { background-position: 0 -540px; }
+}
+
+@-ms-keyframes play_coffee {
+    from { background-position:  0  0px; }
+      to { background-position: 0 -540px; }
+}
+
+@-o-keyframes play_coffee {
+   from { background-position:  0  0px; }
+    to { background-position: 0 -540px; }
+}
+
+@keyframes play_coffee{
+    from { background-position:  0  0px; }
+      to { background-position: 0 -540px; }
+}
+
+/*dancing*/
+@-webkit-keyframes play_dancing {
+   from { background-position:  0  0px; }
+     to { background-position: 0 -4100px; }
+}
+
+@-moz-keyframes play_dancing {
+  from { background-position:  0  0px; }
+     to { background-position: 0 -4100px; }
+}
+
+@-ms-keyframes play_dancing {
+    from { background-position:  0  0px; }
+      to { background-position: 0 -4100px; }
+}
+
+@-o-keyframes play_dancing {
+   from { background-position:  0  0px; }
+    to { background-position: 0 -4100px; }
+}
+
+@keyframes play_dancing{
+    from { background-position:  0  0px; }
+      to { background-position: 0 -4100px; }
+}
+
+
+/*doh*/
+@-webkit-keyframes play_doh {
+   from { background-position:  0  0px; }
+     to { background-position: 0 -1180px; }
+}
+
+@-moz-keyframes play_doh {
+  from { background-position:  0  0px; }
+     to { background-position: 0 -1180px; }
+}
+
+@-ms-keyframes play_doh {
+    from { background-position:  0  0px; }
+      to { background-position: 0 -1180px; }
+}
+
+@-o-keyframes play_doh {
+   from { background-position:  0  0px; }
+    to { background-position: 0 -1180px; }
+}
+
+@keyframes play_doh{
+    from { background-position:  0  0px; }
+      to { background-position: 0 -1180px; }
+}
+
+
+/*drink*/
+@-webkit-keyframes play_drink {
+   from { background-position:  0  0px; }
+     to { background-position: 0 -1240px; }
+}
+
+@-moz-keyframes play_drink {
+  from { background-position:  0  0px; }
+     to { background-position: 0 -1240px; }
+}
+
+@-ms-keyframes play_drink {
+    from { background-position:  0  0px; }
+      to { background-position: 0 -1240px; }
+}
+
+@-o-keyframes play_drink {
+   from { background-position:  0  0px; }
+    to { background-position: 0 -1240px; }
+}
+
+@keyframes play_drink{
+    from { background-position:  0  0px; }
+      to { background-position: 0 -1240px; }
+}
+
+
+
+/*drunk*/
+@-webkit-keyframes play_drunk {
+   from { background-position:  0  0px; }
+     to { background-position: 0 -960px; }
+}
+
+@-moz-keyframes play_drunk {
+  from { background-position:  0  0px; }
+     to { background-position: 0 -960px; }
+}
+
+@-ms-keyframes play_drunk {
+    from { background-position:  0  0px; }
+      to { background-position: 0 -960px; }
+}
+
+@-o-keyframes play_drunk {
+   from { background-position:  0  0px; }
+    to { background-position: 0 -960px; }
+}
+
+@keyframes play_drunk{
+    from { background-position:  0  0px; }
+      to { background-position: 0 -960px; }
+}
+
+
+/*dull*/
+@-webkit-keyframes play_dull {
+   from { background-position:  0  0px; }
+     to { background-position: 0 -1520px; }
+}
+
+@-moz-keyframes play_dull {
+  from { background-position:  0  0px; }
+     to { background-position: 0 -1520px; }
+}
+
+@-ms-keyframes play_dull {
+    from { background-position:  0  0px; }
+      to { background-position: 0 -1520px; }
+}
+
+@-o-keyframes play_dull {
+   from { background-position:  0  0px; }
+    to { background-position: 0 -1520px; }
+}
+
+@keyframes play_dull{
+    from { background-position:  0  0px; }
+      to { background-position: 0 -1520px; }
+}
+
+/*dulltauri*/
+@-webkit-keyframes play_dulltauri {
+   from { background-position:  0  0px; }
+     to { background-position: 0 -1480px; }
+}
+
+@-moz-keyframes play_dulltauri {
+  from { background-position:  0  0px; }
+     to { background-position: 0 -1480px; }
+}
+
+@-ms-keyframes play_dulltauri {
+    from { background-position:  0  0px; }
+      to { background-position: 0 -1480px; }
+}
+
+@-o-keyframes play_dulltauri {
+   from { background-position:  0  0px; }
+    to { background-position: 0 -1480px; }
+}
+
+@keyframes play_dulltauri{
+    from { background-position:  0  0px; }
+      to { background-position: 0 -1480px; }
+}
+
+/*envy*/
+@-webkit-keyframes play_envy {
+   from { background-position:  0  0px; }
+     to { background-position: 0 -1340px; }
+}
+
+@-moz-keyframes play_envy {
+  from { background-position:  0  0px; }
+     to { background-position: 0 -1340px; }
+}
+
+@-ms-keyframes play_envy {
+    from { background-position:  0  0px; }
+      to { background-position: 0 -1340px; }
+}
+
+@-o-keyframes play_envy {
+   from { background-position:  0  0px; }
+    to { background-position: 0 -1340px; }
+}
+
+@keyframes play_envy{
+    from { background-position:  0  0px; }
+      to { background-position: 0 -1340px; }
+}
+
+/*fingerscrossed*/
+@-webkit-keyframes play_fingerscrossed {
+   from { background-position:  0  0px; }
+     to { background-position: 0 -1260px; }
+}
+
+@-moz-keyframes play_fingerscrossed {
+  from { background-position:  0  0px; }
+     to { background-position: 0 -1260px; }
+}
+
+@-ms-keyframes play_fingerscrossed {
+    from { background-position:  0  0px; }
+      to { background-position: 0 -1260px; }
+}
+
+@-o-keyframes play_fingerscrossed {
+   from { background-position:  0  0px; }
+    to { background-position: 0 -1260px; }
+}
+
+@keyframes play_fingerscrossed{
+    from { background-position:  0  0px; }
+      to { background-position: 0 -1260px; }
+}
+
+/*flower*/
+@-webkit-keyframes play_flower {
+   from { background-position:  0  0px; }
+     to { background-position: 0 -1640px; }
+}
+
+@-moz-keyframes play_flower {
+  from { background-position:  0  0px; }
+     to { background-position: 0 -1640px; }
+}
+
+@-ms-keyframes play_flower {
+    from { background-position:  0  0px; }
+      to { background-position: 0 -1640px; }
+}
+
+@-o-keyframes play_flower {
+   from { background-position:  0  0px; }
+    to { background-position: 0 -1640px; }
+}
+
+@keyframes play_flower{
+    from { background-position:  0  0px; }
+      to { background-position: 0 -1640px; }
+}
+
+/*fubar*/
+@-webkit-keyframes play_fubar {
+   from { background-position:  0  0px; }
+     to { background-position: 0 -920px; }
+}
+
+@-moz-keyframes play_fubar {
+  from { background-position:  0  0px; }
+     to { background-position: 0 -920px; }
+}
+
+@-ms-keyframes play_fubar {
+    from { background-position:  0  0px; }
+      to { background-position: 0 -920px; }
+}
+
+@-o-keyframes play_fubar {
+   from { background-position:  0  0px; }
+    to { background-position: 0 -920px; }
+}
+
+@keyframes play_fubar{
+    from { background-position:  0  0px; }
+      to { background-position: 0 -920px; }
+}
+
+/*handshake*/
+@-webkit-keyframes play_handshake {
+   from { background-position:  0  0px; }
+     to { background-position: 0 -1220px; }
+}
+
+@-moz-keyframes play_handshake {
+  from { background-position:  0  0px; }
+     to { background-position: 0 -1220px; }
+}
+
+@-ms-keyframes play_handshake {
+    from { background-position:  0  0px; }
+      to { background-position: 0 -1220px; }
+}
+
+@-o-keyframes play_handshake {
+   from { background-position:  0  0px; }
+    to { background-position: 0 -1220px; }
+}
+
+@keyframes play_handshake{
+    from { background-position:  0  0px; }
+      to { background-position: 0 -1220px; }
+}
+
+/*happy*/
+@-webkit-keyframes play_happy {
+   from { background-position:  0  0px; }
+     to { background-position: 0 -1380px; }
+}
+
+@-moz-keyframes play_happy {
+  from { background-position:  0  0px; }
+     to { background-position: 0 -1380px; }
+}
+
+@-ms-keyframes play_happy {
+    from { background-position:  0  0px; }
+      to { background-position: 0 -1380px; }
+}
+
+@-o-keyframes play_happy {
+   from { background-position:  0  0px; }
+    to { background-position: 0 -1380px; }
+}
+
+@keyframes play_happy{
+    from { background-position:  0  0px; }
+      to { background-position: 0 -1380px; }
+}
+
+
+/*heart*/
+@-webkit-keyframes play_heart {
+   from { background-position:  0  0px; }
+     to { background-position: 0 -320px; }
+}
+
+@-moz-keyframes play_heart {
+  from { background-position:  0  0px; }
+     to { background-position: 0 -320px; }
+}
+
+@-ms-keyframes play_heart {
+    from { background-position:  0  0px; }
+      to { background-position: 0 -320px; }
+}
+
+@-o-keyframes play_heart {
+   from { background-position:  0  0px; }
+    to { background-position: 0 -320px; }
+}
+
+@keyframes play_heart{
+    from { background-position:  0  0px; }
+      to { background-position: 0 -320px; }
+}
+
+/*heidy*/
+@-webkit-keyframes play_heidy {
+   from { background-position:  0  0px; }
+     to { background-position: 0 -1480px; }
+}
+
+@-moz-keyframes play_heidy {
+  from { background-position:  0  0px; }
+     to { background-position: 0 -1480px; }
+}
+
+@-ms-keyframes play_heidy {
+    from { background-position:  0  0px; }
+      to { background-position: 0 -1480px; }
+}
+
+@-o-keyframes play_heidy {
+   from { background-position:  0  0px; }
+    to { background-position: 0 -1480px; }
+}
+
+@keyframes play_heidy{
+    from { background-position:  0  0px; }
+      to { background-position: 0 -1480px; }
+}
+
+/*hollest*/
+@-webkit-keyframes play_hollest {
+   from { background-position:  0  0px; }
+     to { background-position: 0 -1900px; }
+}
+
+@-moz-keyframes play_hollest {
+  from { background-position:  0  0px; }
+     to { background-position: 0 -1900px; }
+}
+
+@-ms-keyframes play_hollest {
+    from { background-position:  0  0px; }
+      to { background-position: 0 -1900px; }
+}
+
+@-o-keyframes play_hollest {
+   from { background-position:  0  0px; }
+    to { background-position: 0 -1900px; }
+}
+
+@keyframes play_hollest{
+    from { background-position:  0  0px; }
+      to { background-position: 0 -1900px; }
+}
+
+/*hug*/
+@-webkit-keyframes play_hug {
+   from { background-position:  0  0px; }
+     to { background-position: 0 -1500px; }
+}
+
+@-moz-keyframes play_hug {
+  from { background-position:  0  0px; }
+     to { background-position: 0 -1500px; }
+}
+
+@-ms-keyframes play_hug {
+    from { background-position:  0  0px; }
+      to { background-position: 0 -1500px; }
+}
+
+@-o-keyframes play_hug {
+   from { background-position:  0  0px; }
+    to { background-position: 0 -1500px; }
+}
+
+@keyframes play_hug{
+    from { background-position:  0  0px; }
+      to { background-position: 0 -1500px; }
+}
+
+
+/*inlove*/
+@-webkit-keyframes play_inlove {
+   from { background-position:  0  0px; }
+     to { background-position: 0 -1240px; }
+}
+
+@-moz-keyframes play_inlove {
+  from { background-position:  0  0px; }
+     to { background-position: 0 -1240px; }
+}
+
+@-ms-keyframes play_inlove {
+    from { background-position:  0  0px; }
+      to { background-position: 0 -1240px; }
+}
+
+@-o-keyframes play_inlove {
+   from { background-position:  0  0px; }
+    to { background-position: 0 -1240px; }
+}
+
+@keyframes play_inlove{
+    from { background-position:  0  0px; }
+      to { background-position: 0 -1240px; }
+}
+
+/*itwasntme*/
+@-webkit-keyframes play_itwasntme {
+   from { background-position:  0  0px; }
+     to { background-position: 0 -1500px; }
+}
+
+@-moz-keyframes play_itwasntme {
+  from { background-position:  0  0px; }
+     to { background-position: 0 -1500px; }
+}
+
+@-ms-keyframes play_itwasntme {
+    from { background-position:  0  0px; }
+      to { background-position: 0 -1500px; }
+}
+
+@-o-keyframes play_itwasntme {
+   from { background-position:  0  0px; }
+    to { background-position: 0 -1500px; }
+}
+
+@keyframes play_itwasntme{
+    from { background-position:  0  0px; }
+      to { background-position: 0 -1500px; }
+}
+
+/*kiss*/
+@-webkit-keyframes play_kiss {
+   from { background-position:  0  0px; }
+     to { background-position: 0 -1180px; }
+}
+
+@-moz-keyframes play_kiss {
+  from { background-position:  0  0px; }
+     to { background-position: 0 -1180px; }
+}
+
+@-ms-keyframes play_kiss {
+    from { background-position:  0  0px; }
+      to { background-position: 0 -1180px; }
+}
+
+@-o-keyframes play_kiss {
+   from { background-position:  0  0px; }
+    to { background-position: 0 -1180px; }
+}
+
+@keyframes play_kiss{
+    from { background-position:  0  0px; }
+      to { background-position: 0 -1180px; }
+}
+
+/*lalala*/
+@-webkit-keyframes play_lalala {
+   from { background-position:  0  0px; }
+     to { background-position: 0 -380px; }
+}
+
+@-moz-keyframes play_lalala {
+  from { background-position:  0  0px; }
+     to { background-position: 0 -380px; }
+}
+
+@-ms-keyframes play_lalala {
+    from { background-position:  0  0px; }
+      to { background-position: 0 -380px; }
+}
+
+@-o-keyframes play_lalala {
+   from { background-position:  0  0px; }
+    to { background-position: 0 -380px; }
+}
+
+@keyframes play_lalala{
+    from { background-position:  0  0px; }
+      to { background-position: 0 -380px; }
+}
+
+/*mail*/
+@-webkit-keyframes play_mail {
+   from { background-position:  0  0px; }
+     to { background-position: 0 -1060px; }
+}
+
+@-moz-keyframes play_mail {
+  from { background-position:  0  0px; }
+     to { background-position: 0 -1060px; }
+}
+
+@-ms-keyframes play_mail {
+    from { background-position:  0  0px; }
+      to { background-position: 0 -1060px; }
+}
+
+@-o-keyframes play_mail {
+   from { background-position:  0  0px; }
+    to { background-position: 0 -1060px; }
+}
+
+@keyframes play_mail{
+    from { background-position:  0  0px; }
+      to { background-position: 0 -1060px; }
+}
+
+/*makeup*/
+@-webkit-keyframes play_makeup {
+   from { background-position:  0  0px; }
+     to { background-position: 0 -2140px; }
+}
+
+@-moz-keyframes play_makeup {
+  from { background-position:  0  0px; }
+     to { background-position: 0 -2140px; }
+}
+
+@-ms-keyframes play_makeup {
+    from { background-position:  0  0px; }
+      to { background-position: 0 -2140px; }
+}
+
+@-o-keyframes play_makeup {
+   from { background-position:  0  0px; }
+    to { background-position: 0 -2140px; }
+}
+
+@keyframes play_makeup{
+    from { background-position:  0  0px; }
+      to { background-position: 0 -2140px; }
+}
+
+/*malthe*/
+@-webkit-keyframes play_malthe {
+   from { background-position:  0  0px; }
+     to { background-position: 0 -1320px; }
+}
+
+@-moz-keyframes play_malthe {
+  from { background-position:  0  0px; }
+     to { background-position: 0 -1320px; }
+}
+
+@-ms-keyframes play_malthe {
+    from { background-position:  0  0px; }
+      to { background-position: 0 -1320px; }
+}
+
+@-o-keyframes play_malthe {
+   from { background-position:  0  0px; }
+    to { background-position: 0 -1320px; }
+}
+
+@keyframes play_malthe{
+    from { background-position:  0  0px; }
+      to { background-position: 0 -1320px; }
+}
+
+/*mmm*/
+@-webkit-keyframes play_mmm {
+   from { background-position:  0  0px; }
+     to { background-position: 0 -1840px; }
+}
+
+@-moz-keyframes play_mmm {
+  from { background-position:  0  0px; }
+     to { background-position: 0 -1840px; }
+}
+
+@-ms-keyframes play_mmm {
+    from { background-position:  0  0px; }
+      to { background-position: 0 -1840px; }
+}
+
+@-o-keyframes play_mmm {
+   from { background-position:  0  0px; }
+    to { background-position: 0 -1840px; }
+}
+
+@keyframes play_mmm{
+    from { background-position:  0  0px; }
+      to { background-position: 0 -1840px; }
+}
+
+/*movie*/
+@-webkit-keyframes play_movie {
+   from { background-position:  0  0px; }
+     to { background-position: 0 -1080px; }
+}
+
+@-moz-keyframes play_movie {
+  from { background-position:  0  0px; }
+     to { background-position: 0 -1080px; }
+}
+
+@-ms-keyframes play_movie {
+    from { background-position:  0  0px; }
+      to { background-position: 0 -1080px; }
+}
+
+@-o-keyframes play_movie {
+   from { background-position:  0  0px; }
+    to { background-position: 0 -1080px; }
+}
+
+@keyframes play_movie{
+    from { background-position:  0  0px; }
+      to { background-position: 0 -1080px; }
+}
+
+/*muscle*/
+@-webkit-keyframes play_muscle {
+   from { background-position:  0  0px; }
+     to { background-position: 0 -1160px; }
+}
+
+@-moz-keyframes play_muscle {
+  from { background-position:  0  0px; }
+     to { background-position: 0 -1160px; }
+}
+
+@-ms-keyframes play_muscle {
+    from { background-position:  0  0px; }
+      to { background-position: 0 -1160px; }
+}
+
+@-o-keyframes play_muscle {
+   from { background-position:  0  0px; }
+    to { background-position: 0 -1160px; }
+}
+
+@keyframes play_muscle{
+    from { background-position:  0  0px; }
+      to { background-position: 0 -1160px; }
+}
+
+/*music*/
+@-webkit-keyframes play_music {
+   from { background-position:  0  0px; }
+     to { background-position: 0 -1080px; }
+}
+
+@-moz-keyframes play_music {
+  from { background-position:  0  0px; }
+     to { background-position: 0 -1080px; }
+}
+
+@-ms-keyframes play_music {
+    from { background-position:  0  0px; }
+      to { background-position: 0 -1080px; }
+}
+
+@-o-keyframes play_music {
+   from { background-position:  0  0px; }
+    to { background-position: 0 -1080px; }
+}
+
+@keyframes play_music{
+    from { background-position:  0  0px; }
+      to { background-position: 0 -1080px; }
+}
+
+
+/*nerd*/
+@-webkit-keyframes play_nerd {
+   from { background-position:  0  0px; }
+     to { background-position: 0 -940px; }
+}
+
+@-moz-keyframes play_nerd {
+  from { background-position:  0  0px; }
+     to { background-position: 0 -940px; }
+}
+
+@-ms-keyframes play_nerd {
+    from { background-position:  0  0px; }
+      to { background-position: 0 -940px; }
+}
+
+@-o-keyframes play_nerd {
+   from { background-position:  0  0px; }
+    to { background-position: 0 -940px; }
+}
+
+@keyframes play_nerd{
+    from { background-position:  0  0px; }
+      to { background-position: 0 -940px; }
+}
+
+/*ninja*/
+@-webkit-keyframes play_ninja {
+   from { background-position:  0  0px; }
+     to { background-position: 0 -2420px; }
+}
+
+@-moz-keyframes play_ninja {
+  from { background-position:  0  0px; }
+     to { background-position: 0 -2420px; }
+}
+
+@-ms-keyframes play_ninja {
+    from { background-position:  0  0px; }
+      to { background-position: 0 -2420px; }
+}
+
+@-o-keyframes play_ninja {
+   from { background-position:  0  0px; }
+    to { background-position: 0 -2420px; }
+}
+
+@keyframes play_ninja{
+    from { background-position:  0  0px; }
+      to { background-position: 0 -2420px; }
+}
+
+/*no*/
+@-webkit-keyframes play_no {
+   from { background-position:  0  0px; }
+     to { background-position: 0 -1080px; }
+}
+
+@-moz-keyframes play_no {
+  from { background-position:  0  0px; }
+     to { background-position: 0 -1080px; }
+}
+
+@-ms-keyframes play_no {
+    from { background-position:  0  0px; }
+      to { background-position: 0 -1080px; }
+}
+
+@-o-keyframes play_no {
+   from { background-position:  0  0px; }
+    to { background-position: 0 -1080px; }
+}
+
+@keyframes play_no{
+    from { background-position:  0  0px; }
+      to { background-position: 0 -1080px; }
+}
+
+
+/*nod*/
+@-webkit-keyframes play_nod {
+   from { background-position:  0  0px; }
+     to { background-position: 0 -1000px; }
+}
+
+@-moz-keyframes play_nod {
+  from { background-position:  0  0px; }
+     to { background-position: 0 -1000px; }
+}
+
+@-ms-keyframes play_nod {
+    from { background-position:  0  0px; }
+      to { background-position: 0 -1000px; }
+}
+
+@-o-keyframes play_nod {
+   from { background-position:  0  0px; }
+    to { background-position: 0 -1000px; }
+}
+
+@keyframes play_nod{
+    from { background-position:  0  0px; }
+      to { background-position: 0 -1000px; }
+}
+
+/*oliver*/
+@-webkit-keyframes play_oliver {
+   from { background-position:  0  0px; }
+     to { background-position: 0 -1260px; }
+}
+
+@-moz-keyframes play_oliver {
+  from { background-position:  0  0px; }
+     to { background-position: 0 -1260px; }
+}
+
+@-ms-keyframes play_oliver {
+    from { background-position:  0  0px; }
+      to { background-position: 0 -1260px; }
+}
+
+@-o-keyframes play_oliver {
+   from { background-position:  0  0px; }
+    to { background-position: 0 -1260px; }
+}
+
+@keyframes play_oliver{
+    from { background-position:  0  0px; }
+      to { background-position: 0 -1260px; }
+}
+
+/*phone*/
+@-webkit-keyframes play_phone {
+   from { background-position:  0  0px; }
+     to { background-position: 0 -1760px; }
+}
+
+@-moz-keyframes play_phone {
+  from { background-position:  0  0px; }
+     to { background-position: 0 -1760px; }
+}
+
+@-ms-keyframes play_phone {
+    from { background-position:  0  0px; }
+      to { background-position: 0 -1760px; }
+}
+
+@-o-keyframes play_phone {
+   from { background-position:  0  0px; }
+    to { background-position: 0 -1760px; }
+}
+
+@keyframes play_phone{
+    from { background-position:  0  0px; }
+      to { background-position: 0 -1760px; }
+}
+
+
+/*poolparty*/
+@-webkit-keyframes play_poolparty {
+   from { background-position:  0  0px; }
+     to { background-position: 0 -1740px; }
+}
+
+@-moz-keyframes play_poolparty {
+  from { background-position:  0  0px; }
+     to { background-position: 0 -1740px; }
+}
+
+@-ms-keyframes play_poolparty {
+    from { background-position:  0  0px; }
+      to { background-position: 0 -1740px; }
+}
+
+@-o-keyframes play_poolparty {
+   from { background-position:  0  0px; }
+    to { background-position: 0 -1740px; }
+}
+
+@keyframes play_poolparty{
+    from { background-position:  0  0px; }
+      to { background-position: 0 -1740px; }
+}
+
+/*priidu*/
+@-webkit-keyframes play_priidu {
+   from { background-position:  0  0px; }
+     to { background-position: 0 -1220px; }
+}
+
+@-moz-keyframes play_priidu {
+  from { background-position:  0  0px; }
+     to { background-position: 0 -1220px; }
+}
+
+@-ms-keyframes play_priidu {
+    from { background-position:  0  0px; }
+      to { background-position: 0 -1220px; }
+}
+
+@-o-keyframes play_priidu {
+   from { background-position:  0  0px; }
+    to { background-position: 0 -1220px; }
+}
+
+@keyframes play_priidu{
+    from { background-position:  0  0px; }
+      to { background-position: 0 -1220px; }
+}
+
+
+/*shake*/
+@-webkit-keyframes play_shake {
+   from { background-position:  0  0px; }
+     to { background-position: 0 -1000px; }
+}
+
+@-moz-keyframes play_shake {
+  from { background-position:  0  0px; }
+     to { background-position: 0 -1000px; }
+}
+
+@-ms-keyframes play_shake {
+    from { background-position:  0  0px; }
+      to { background-position: 0 -1000px; }
+}
+
+@-o-keyframes play_shake {
+   from { background-position:  0  0px; }
+    to { background-position: 0 -1000px; }
+}
+
+@keyframes play_shake{
+    from { background-position:  0  0px; }
+      to { background-position: 0 -1000px; }
+}
+
+
+/*skype*/
+@-webkit-keyframes play_skype {
+   from { background-position:  0  0px; }
+     to { background-position: 0 -900px; }
+}
+
+@-moz-keyframes play_skype {
+  from { background-position:  0  0px; }
+     to { background-position: 0 -900px; }
+}
+
+@-ms-keyframes play_skype {
+    from { background-position:  0  0px; }
+      to { background-position: 0 -900px; }
+}
+
+@-o-keyframes play_skype {
+   from { background-position:  0  0px; }
+    to { background-position: 0 -900px; }
+}
+
+@keyframes play_skype{
+    from { background-position:  0  0px; }
+      to { background-position: 0 -900px; }
+}
+
+
+/*smirk*/
+@-webkit-keyframes play_smirk {
+   from { background-position:  0  0px; }
+     to { background-position: 0 -1060px; }
+}
+
+@-moz-keyframes play_smirk {
+  from { background-position:  0  0px; }
+     to { background-position: 0 -1060px; }
+}
+
+@-ms-keyframes play_smirk {
+    from { background-position:  0  0px; }
+      to { background-position: 0 -1060px; }
+}
+
+@-o-keyframes play_smirk {
+   from { background-position:  0  0px; }
+    to { background-position: 0 -1060px; }
+}
+
+@keyframes play_smirk{
+    from { background-position:  0  0px; }
+      to { background-position: 0 -1060px; }
+}
+
+
+
+/*speechless*/
+@-webkit-keyframes play_speechless {
+   from { background-position:  0  0px; }
+     to { background-position: 0 -1320px; }
+}
+
+@-moz-keyframes play_speechless {
+  from { background-position:  0  0px; }
+     to { background-position: 0 -1320px; }
+}
+
+@-ms-keyframes play_speechless {
+    from { background-position:  0  0px; }
+      to { background-position: 0 -1320px; }
+}
+
+@-o-keyframes play_speechless {
+   from { background-position:  0  0px; }
+    to { background-position: 0 -1320px; }
+}
+
+@keyframes play_speechless{
+    from { background-position:  0  0px; }
+      to { background-position: 0 -1320px; }
+}
+
+
+/*star*/
+@-webkit-keyframes play_star {
+   from { background-position:  0  0px; }
+     to { background-position: 0 -1260px; }
+}
+
+@-moz-keyframes play_star {
+  from { background-position:  0  0px; }
+     to { background-position: 0 -1260px; }
+}
+
+@-ms-keyframes play_star {
+    from { background-position:  0  0px; }
+      to { background-position: 0 -1260px; }
+}
+
+@-o-keyframes play_star {
+   from { background-position:  0  0px; }
+    to { background-position: 0 -1260px; }
+}
+
+@keyframes play_star{
+    from { background-position:  0  0px; }
+      to { background-position: 0 -1260px; }
+}
+
+/*sunshine*/
+@-webkit-keyframes play_sunshine {
+   from { background-position:  0  0px; }
+     to { background-position: 0 -500px; }
+}
+
+@-moz-keyframes play_sunshine {
+  from { background-position:  0  0px; }
+     to { background-position: 0 -500px; }
+}
+
+@-ms-keyframes play_sunshine {
+    from { background-position:  0  0px; }
+      to { background-position: 0 -500px; }
+}
+
+@-o-keyframes play_sunshine {
+   from { background-position:  0  0px; }
+    to { background-position: 0 -500px; }
+}
+
+@keyframes play_sunshine{
+    from { background-position:  0  0px; }
+      to { background-position: 0 -500px; }
+}
+
+/*surprised*/
+@-webkit-keyframes play_surprised {
+   from { background-position:  0  0px; }
+     to { background-position: 0 -1340px; }
+}
+
+@-moz-keyframes play_surprised {
+  from { background-position:  0  0px; }
+     to { background-position: 0 -1340px; }
+}
+
+@-ms-keyframes play_surprised {
+    from { background-position:  0  0px; }
+      to { background-position: 0 -1340px; }
+}
+
+@-o-keyframes play_surprised {
+   from { background-position:  0  0px; }
+    to { background-position: 0 -1340px; }
+}
+
+@keyframes play_surprised{
+    from { background-position:  0  0px; }
+      to { background-position: 0 -1340px; }
+}
+
+/*surprised*/
+@-webkit-keyframes play_swear {
+   from { background-position:  0  0px; }
+     to { background-position: 0 -1520px; }
+}
+
+@-moz-keyframes play_swear {
+  from { background-position:  0  0px; }
+     to { background-position: 0 -1520px; }
+}
+
+@-ms-keyframes play_swear {
+    from { background-position:  0  0px; }
+      to { background-position: 0 -1520px; }
+}
+
+@-o-keyframes play_swear {
+   from { background-position:  0  0px; }
+    to { background-position: 0 -1520px; }
+}
+
+@keyframes play_swear{
+    from { background-position:  0  0px; }
+      to { background-position: 0 -1520px; }
+}
+
+/*sweating*/
+@-webkit-keyframes play_sweating {
+   from { background-position:  0  0px; }
+     to { background-position: 0 -1360px; }
+}
+
+@-moz-keyframes play_sweating {
+  from { background-position:  0  0px; }
+     to { background-position: 0 -1360px; }
+}
+
+@-ms-keyframes play_sweating {
+    from { background-position:  0  0px; }
+      to { background-position: 0 -1360px; }
+}
+
+@-o-keyframes play_sweating {
+   from { background-position:  0  0px; }
+    to { background-position: 0 -1360px; }
+}
+
+@keyframes play_sweating{
+    from { background-position:  0  0px; }
+      to { background-position: 0 -1360px; }
+}
+
+/*talking*/
+@-webkit-keyframes play_talking {
+   from { background-position:  0  0px; }
+     to { background-position: 0 -920px; }
+}
+
+@-moz-keyframes play_talking {
+  from { background-position:  0  0px; }
+     to { background-position: 0 -920px; }
+}
+
+@-ms-keyframes play_talking {
+    from { background-position:  0  0px; }
+      to { background-position: 0 -920px; }
+}
+
+@-o-keyframes play_talking {
+   from { background-position:  0  0px; }
+    to { background-position: 0 -920px; }
+}
+
+@keyframes play_talking{
+    from { background-position:  0  0px; }
+      to { background-position: 0 -920px; }
+}
+
+/*time*/
+@-webkit-keyframes play_time {
+   from { background-position:  0  0px; }
+     to { background-position: 0 -1180px; }
+}
+
+@-moz-keyframes play_time {
+  from { background-position:  0  0px; }
+     to { background-position: 0 -1180px; }
+}
+
+@-ms-keyframes play_time {
+    from { background-position:  0  0px; }
+      to { background-position: 0 -1180px; }
+}
+
+@-o-keyframes play_time {
+   from { background-position:  0  0px; }
+    to { background-position: 0 -1180px; }
+}
+
+@keyframes play_time{
+    from { background-position:  0  0px; }
+      to { background-position: 0 -1180px; }
+}
+
+/*tmi*/
+@-webkit-keyframes play_tmi {
+   from { background-position:  0  0px; }
+     to { background-position: 0 -1100px; }
+}
+
+@-moz-keyframes play_tmi {
+  from { background-position:  0  0px; }
+     to { background-position: 0 -1100px; }
+}
+
+@-ms-keyframes play_tmi {
+    from { background-position:  0  0px; }
+      to { background-position: 0 -1100px; }
+}
+
+@-o-keyframes play_tmi {
+   from { background-position:  0  0px; }
+    to { background-position: 0 -1100px; }
+}
+
+@keyframes play_tmi{
+    from { background-position:  0  0px; }
+      to { background-position: 0 -1100px; }
+}
+
+/*toivo*/
+@-webkit-keyframes play_toivo {
+   from { background-position:  0  0px; }
+     to { background-position: 0 -1660px; }
+}
+
+@-moz-keyframes play_toivo {
+  from { background-position:  0  0px; }
+     to { background-position: 0 -1660px; }
+}
+
+@-ms-keyframes play_toivo {
+    from { background-position:  0  0px; }
+      to { background-position: 0 -1660px; }
+}
+
+@-o-keyframes play_toivo {
+   from { background-position:  0  0px; }
+    to { background-position: 0 -1660px; }
+}
+
+@keyframes play_toivo{
+    from { background-position:  0  0px; }
+      to { background-position: 0 -1660px; }
+}
+
+/*tumbleweed*/
+@-webkit-keyframes play_tumbleweed {
+   from { background-position:  0  0px; }
+     to { background-position: 0 -620px; }
+}
+
+@-moz-keyframes play_tumbleweed {
+  from { background-position:  0  0px; }
+     to { background-position: 0 -620px; }
+}
+
+@-ms-keyframes play_tumbleweed {
+    from { background-position:  0  0px; }
+      to { background-position: 0 -620px; }
+}
+
+@-o-keyframes play_tumbleweed {
+   from { background-position:  0  0px; }
+    to { background-position: 0 -620px; }
+}
+
+@keyframes play_tumbleweed{
+    from { background-position:  0  0px; }
+      to { background-position: 0 -620px; }
+}
+
+
+/*wait*/
+@-webkit-keyframes play_wait {
+   from { background-position:  0  0px; }
+     to { background-position: 0 -880px; }
+}
+
+@-moz-keyframes play_wait {
+  from { background-position:  0  0px; }
+     to { background-position: 0 -880px; }
+}
+
+@-ms-keyframes play_wait {
+    from { background-position:  0  0px; }
+      to { background-position: 0 -880px; }
+}
+
+@-o-keyframes play_wait {
+   from { background-position:  0  0px; }
+    to { background-position: 0 -880px; }
+}
+
+@keyframes play_wait{
+    from { background-position:  0  0px; }
+      to { background-position: 0 -880px; }
+}
+
+/*waiting*/
+@-webkit-keyframes play_waiting {
+   from { background-position:  0  0px; }
+     to { background-position: 0 -1000px; }
+}
+
+@-moz-keyframes play_waiting {
+  from { background-position:  0  0px; }
+     to { background-position: 0 -1000px; }
+}
+
+@-ms-keyframes play_waiting {
+    from { background-position:  0  0px; }
+      to { background-position: 0 -1000px; }
+}
+
+@-o-keyframes play_waiting {
+   from { background-position:  0  0px; }
+    to { background-position: 0 -1000px; }
+}
+
+@keyframes play_waiting{
+    from { background-position:  0  0px; }
+      to { background-position: 0 -1000px; }
+}
+
+
+
+/*wfh*/
+@-webkit-keyframes play_wfh {
+   from { background-position:  0  0px; }
+     to { background-position: 0 -1560px; }
+}
+
+@-moz-keyframes play_wfh {
+  from { background-position:  0  0px; }
+     to { background-position: 0 -1560px; }
+}
+
+@-ms-keyframes play_wfh {
+    from { background-position:  0  0px; }
+      to { background-position: 0 -1560px; }
+}
+
+@-o-keyframes play_wfh {
+   from { background-position:  0  0px; }
+    to { background-position: 0 -1560px; }
+}
+
+@keyframes play_wfh{
+    from { background-position:  0  0px; }
+      to { background-position: 0 -1560px; }
+}
+
+
+/*yawning*/
+@-webkit-keyframes play_yawning {
+   from { background-position:  0  0px; }
+     to { background-position: 0 -1460px; }
+}
+
+@-moz-keyframes play_yawning {
+  from { background-position:  0  0px; }
+     to { background-position: 0 -1460px; }
+}
+
+@-ms-keyframes play_yawning {
+    from { background-position:  0  0px; }
+      to { background-position: 0 -1460px; }
+}
+
+@-o-keyframes play_yawning {
+   from { background-position:  0  0px; }
+    to { background-position: 0 -1460px; }
+}
+
+@keyframes play_yawning{
+    from { background-position:  0  0px; }
+      to { background-position: 0 -1460px; }
+}
+
+
+
+/*rain*/
+@-webkit-keyframes play_rain {
+   from { background-position:  0  0px; }
+     to { background-position: 0 -580px; }
+}
+
+@-moz-keyframes play_rain {
+  from { background-position:  0  0px; }
+     to { background-position: 0 -580px; }
+}
+
+@-ms-keyframes play_rain {
+    from { background-position:  0  0px; }
+      to { background-position: 0 -580px; }
+}
+
+@-o-keyframes play_rain {
+   from { background-position:  0  0px; }
+    to { background-position: 0 -580px; }
+}
+
+@keyframes play_rain{
+    from { background-position:  0  0px; }
+      to { background-position: 0 -580px; }
+}

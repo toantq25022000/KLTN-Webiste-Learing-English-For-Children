@@ -1,0 +1,24 @@
+#mc_pr_area{position: relative; width: 100%; min-height: 380px; top: 0px; left: 0px;}
+#mc_pr_input{position: relative; top: 20px; left: 290px; width: 50%;}
+#mc_pr_input input{cursor: pointer;}
+#mc_pr_ins{margin-top: 20px; text-align: center; }
+#mc_pr_inse{font-size: 17px; font-weight: bold;}
+#mc_pr_insv{font-size: 14px; font-style: italic;}
+.mc_pr_au{width: 61px; height: 60px; background-image: url("/static/img/compete/audio.png"); position: absolute; left: 260px; cursor: pointer;}
+.mc_pr_au:hover{background-position: -61px 0px;}
+.mc_pr_text{ font-size: 30px; line-height: 68px; position: relative; left: 10px; top: -7px;}
+.mc_pr_ques{position: relative; cursor: pointer;}
+#mc_pr_area .mc_tick_cross{ position: absolute; top: 18px; left: -30px;}
+/* radio button */
+#mc_pr_input input[type=radio] { margin:10px;}
+
+#mc_pr_input input[type=radio]:checked + label{background-position: -20px 0px;}
+/* link lesson */
+.gefle{position: absolute;  text-align: center; font-size: 15px; font-style: italic; display: none; width: 100%; top: 440px;}
+#gefl0{color: #EB1C24;}
+#gefl1{color: #000000; font-weight: bold;}
+#gefl2 a{color: #3494BE;text-decoration: underline;}
+/* no answer */
+.ge_arna{position: absolute; top: 410px; left: 240px; display: none;}
+.ge_ina{display: inline-block; vertical-align: middle; width: 28px; height: 28px; background-position: -28px 0px; background-image: url('');}
+.ge_tna{display: inline-block; vertical-align: bottom;  font-size: 15px; color: #EB1C24; font-style: italic; line-height: 25px;}

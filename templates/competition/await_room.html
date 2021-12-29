@@ -1,0 +1,774 @@
+{% extends "pages/base2.html" %} 
+{%load static%} 
+ 
+ {% block title %} Thi đấu Tiếng anh trực tuyến {% endblock %}
+
+{%block content%}
+<div class="container page-content">
+    <style type="text/css" media="screen">
+        body.body-compete{background-image: url("/static/img/compete/ctr-play-bg.png"); background-position: center center;}
+    </style>
+
+    <div class="ctr-page wait-page" id="wait-page">
+        <div class="ctr-w-box">
+            <p class="ctr-w-room-name">
+                <span class="ctr-wrn-number">PHÒNG ĐẤU (1 VS 1)</span>
+                <span class="pull-right hide" id="ctr-wrn-win-member">Người thắng trận trước: <span id="ctr-wrnwm-username">Tuansu009</span> (<span id="ctr-wrnwm-score">565</span> điểm)</span>
+            </p>
+            <div class="ctr-w-main">
+                <div class="ctr-w-left">
+                    <div class="text-right ctr-w-info header-info-wait-room">
+                        <div class="pull-left ctr-wi-total-member hide" id="ctr-total-member-invite" style="position: relative; z-index: 1;">
+                            <button class="btn btn-success" id="ctr-wi-show-invitations" data-bs-toggle="modal" data-bs-target="#ctr-modal-invitations" onclick="get_list_friend_online();">
+                                <i class="fa fa-user-plus" aria-hidden="true" style="margin-right: 10px;"></i>
+                                <span>Mời bạn bè tham gia</span>
+                            </button>
+                        </div>
+                       
+                        <div class="ctr-wi-option hide " id="ctr-w-start">
+                            <span style="color: #be777f;" class="sr-only" id="ctr-wi-hcd-time">(Bạn có <span id="ctr-wi-hcd-time-num"></span>s)</span>
+                            <span style="margin-left: 10px;">
+                                <span id="ctr-ws-start"><span class="sr-only">Bấm START để bắt đầu</span><button onclick="start(this);" type="button" class="btn btn-success click ctr-wi-btn" id="ctr-w-start-btn" style="margin: 0px 5px 0px 10px; padding: 4px 25px;">START</button></span>
+                                <span class="sr-only" id="ctr-ws-wait">hoặc <button type="button" class="btn btn-danger click ctr-wi-btn" onclick="cancel_start(this);" style="padding: 4px 25px;">CHỜ THÊM NGƯỜI</button></span>
+                            </span>
+                        </div>
+                        <div class="ctr-wi-option hide" id="ctr-w-unstart">
+                            <button type="button" class="btn btn-default ctr-wi-btn" id="ctr-w-unstart-btn" onclick="unstart();">START</button>
+                        </div>
+                        <div class="ctr-wi-option hide" id="ctr-wi-quit">
+                            <button type="button" class="btn btn-danger click ctr-wi-btn" id="ctr-wi-quit-btn" onclick="quit_room(this);" style="padding: 4px 25px;">Rời phòng</button>
+                        </div>
+                    </div>
+                    <div class="ctr-w-list-member" id="ctr-w-list-member">
+                        <div class="ctr-w-list-member-real" id="list-member-real-wait-room">
+                            
+                            <div class="flip ctr-w-member host_user_ newbie ctr-ready-member" id="{{host.id}}" mem_id="{{host.id}}" onclick="return flip_active(this);">
+                                <div class="flip-content">
+                                    <div class="front face">
+                                        <div class="ctr-w-member-front" style="background-image: url('/static/img/compete/newbie.png')">
+                                            <div class="ctr-wm-avata">
+                                                <img class="ctr-wm-avata-img" src="{{host.std_img.url}}">
+                                                <img class="ab ctr-wm-vip-img " src="/static/img/icon/ctr-vip-icon.png" alt="">
+                                            </div>
+                                            <div class="ctr-wm-ready">
+                                                <img class="ctr-wm-master-icon inline-block" src="/static/img/compete/ctr-wm-master-icon.png">
+                                                <img class="ctr-wm-ready-icon " src="/static/img/compete/ctr-wm-ready-status.png">
+                                                <span class="text-center pull-right ctr-wm-num">1</span>
+                                            </div>
+                                            <div class="text-center ctr-wm-username">{{host.email}}</div>
+                                            <div class="text-center ctr-wm-level d-flex-center">
+                                                <span class="ctr-wml-name" style="color: #e69b57">Newbie</span>
+                                                <span class="ctr-wml-star">
+                                                    <img src="/static/img/icon/ctr-star.png">
+                                                </span>
+                                            </div>
+                                            <div class="text-center ctr-wm-win-number">0</div>
+                                            <div class="text-center ctr-wm-win-name">TRẬN THẮNG</div>
+                                        </div>
+                                    </div>
+                                    <div class="back face">
+                                        <div class="ctr-w-member-back">
+                                            <div class="text-center ctr-wmb-title">ĐÃ THẮNG</div>
+                                            <div class="table">
+                                                <div class="text-center table-cell">
+                                                    <div class="ctr-wm-win">0</div>
+                                                    <div class="ctr-wm-type">
+                                                        Trận<br>1 vs 9
+                                                    </div>
+                                                </div>
+                                                <div class="table-cell">
+                                                    <div class="ctr-wm-win">0</div>
+                                                    <div class="ctr-wm-type">
+                                                        Trận<br>1 vs 1
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="text-center ctr-wm-username">phantankiet088@gmail.com</div>
+                                            <div class="text-center ctr-wm-level">
+                                                <span class="ctr-wml-name" style="color: #e69b57">Newbie</span>
+                                                <span class="ctr-wml-star">
+                                                    <img src="/static/img/icon/ctr-star.png">
+                                                </span>
+                                            </div>
+                                            <div class="text-center ctr-wm-win-number" style="line-height: 34px;"><a href="https://www.tienganh123.com/member/3307755#hocba" target="_blank" class="navbar-link" style="font-size: 14px;">Trang cá nhân</a></div>
+                                            <div class="text-center ctr-wm-win-name"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            {%for item in list_user_john%}
+                            <div class="flip ctr-w-member expert" id="{{item.id}}" mem_id="{{item.id}}" onclick="return flip_active(this);">
+                                <div class="flip-content">
+                                    <div class="front face">
+                                        <div class="ctr-w-member-front" style="background-image: url('/static/img/compete/expert.png')">
+                                            <div class="ctr-wm-avata">
+                                                <img class="ctr-wm-avata-img" src="{{item.std_img.url}}">
+                                                <img class="ab ctr-wm-vip-img " src="/static/img/icon/ctr-vip-icon.png" alt="">
+                                            </div>
+                                            <div class="ctr-wm-ready">
+                                                <img class="ctr-wm-master-icon" src="/static/img/compete/ctr-wm-master-icon.png">
+                                                <img class="ctr-wm-ready-icon " src="/static/img/compete/ctr-wm-ready-status.png">
+                                                <span class="text-center pull-right ctr-wm-num">10</span>
+                                            </div>
+                                            <div class="text-center ctr-wm-username">{{item.username}}</div>
+                                            <div class="text-center ctr-wm-level">
+                                                <span class="ctr-wml-name" style="color: #ffe8a3">Expert</span>
+                                                <span class="ctr-wml-star">
+                                                    <img src="/static/img/icon/ctr-star.png">
+                                                    <img src="/static/img/icon/ctr-star.png">
+                                                    <img src="/static/img/icon/ctr-star.png">
+                                                </span>
+                                            </div>
+                                            <div class="text-center ctr-wm-win-number">1129</div>
+                                            <div class="text-center ctr-wm-win-name">TRẬN THẮNG</div>
+                                        </div>
+                                    </div>
+                                    <div class="back face">
+                                        <div class="ctr-w-member-back">
+                                            <div class="text-center ctr-wmb-title">ĐÃ THẮNG</div>
+                                            <div class="table">
+                                                <div class="text-center table-cell">
+                                                    <div class="ctr-wm-win">1295</div>
+                                                    <div class="ctr-wm-type">
+                                                        Trận<br>1 vs 9
+                                                    </div>
+                                                </div>
+                                                <div class="table-cell">
+                                                    <div class="ctr-wm-win">1129</div>
+                                                    <div class="ctr-wm-type">
+                                                        Trận<br>1 vs 1
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="text-center ctr-wm-username">{{item.username}}</div>
+                                            <div class="text-center ctr-wm-level">
+                                                <span class="ctr-wml-name" style="color: #ffe8a3">Expert</span>
+                                                <span class="ctr-wml-star">
+                                                    <img src="/static/img/icon/ctr-star.png">
+                                                    <img src="/static/img/icon/ctr-star.png">
+                                                    <img src="/static/img/icon/ctr-star.png">
+                                                </span>
+                                            </div>
+                                            <div class="text-center ctr-wm-win-number" style="line-height: 34px;"><a href="https://www.tienganh123.com/member/3041456#hocba" target="_blank" class="navbar-link" style="font-size: 14px;">Trang cá nhân</a></div>
+                                            <div class="text-center ctr-wm-win-name"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            {%endfor%}
+                        </div>
+                    </div>
+
+                </div>
+                <div class="ctr-w-message">
+                    <div class="ctr-message">
+                        <div class="ctr-m-head">
+                            <ul class="nav nav-justified nav-tabs">
+                                 <li class="active" onclick="changeRoomChatWait();">
+                                    <a data-toggle="tab" href="#ctr-m-wait-room">Phòng đấu</a>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="tab-content">
+                            <div id="ctr-m-wait-room" class="ctr-m-list msg_container_base" style="height: 420px;">
+                                 
+                                <div class="ctr-ml-content1" id="chat-result_content">
+                                        <p class="text-justify ctr-m-row ctr-m-server ctr-m-member-ready">
+                                            <span class="ctr-m-master ctr-m-self">Phòng thi: </span>
+                                            <span class="ctr-m-content text-capitalize">{{room.get_skills_display}} - {{room.get_class_compete_display}}</span>									
+                                        </p>
+                                        <p class="text-justify ctr-m-row ctr-m-server ctr-m-member-ready">
+                                            <span class="text-muted ctr-m-content">Phòng chơi chỉ start được khi cả 2 người chơi sẵn sàng!</span>
+                                        </p>
+                                        <p class="text-justify ctr-m-row ctr-m-server ctr-m-member-ready">
+                                            <span class="text-muted ctr-m-content">Điểm thưởng danh hiệu sẽ dành duy nhất cho người chiến thắng.</span>
+                                        </p>
+                                        <p class="text-justify ctr-m-row ctr-m-server ctr-m-member-ready">
+                                            <span class="text-muted ctr-m-content">Bạn phải trả lời đúng tối thiểu 5/10 câu hỏi mới đủ điều kiện thưởng điểm danh hiệu.</span>
+                                        </p>
+                                        <p class="text-justify ctr-m-row ctr-m-server ctr-m-member-ready">
+                                            <span class="text-muted ctr-m-content">Bấm <span class="ctr-m-master ctr-m-self">F11</span> để chơi ở chế độ toàn màn hình</span>
+                                        </p>
+                                      
+                                       
+                                </div>
+                            </div>
+                        </div>
+                            
+                       
+                    
+                    
+                        <div class="form-group ctr-chat-input" style="position: relative; z-index: 1;">
+                            <input type="text" name="" id="ctr-chat-input" class="form-control" value="" required="required" pattern="" title="" placeholder="Enter để chat và gửi chat" maxlength="50">
+                        </div>
+                        <div class="ctr-chat-emoji">   
+                             
+                            <div id="emoticons-status" style="font-size: 14px; text-align: center; height: 18px;"></div>
+                            <div id="chat-icon-in-room" class="">
+                                <div class="emoticons" id="style-7">
+                                    <div class="force-overflow">
+                                        <img src="/static/img/emoji/trans.png" class="emoticon cool mCS_img_loaded" title="cool">
+                                        <img src="/static/img/emoji/trans.png" class="emoticon lol mCS_img_loaded" title="lol" char=":d">
+                                        <img src="/static/img/emoji/trans.png" class="emoticon evilgrin mCS_img_loaded" title="evilgrin">
+                                        <img src="/static/img/emoji/trans.png" class="emoticon facepalm mCS_img_loaded" title="facepalm">
+                                        <img src="/static/img/emoji/trans.png" class="emoticon hi5 mCS_img_loaded" title="hi5">
+                                        <img src="/static/img/emoji/trans.png" class="emoticon sad mCS_img_loaded" title="sad" char=":(">
+                                        <img src="/static/img/emoji/trans.png" class="emoticon angel mCS_img_loaded" title="angel">
+                                        <img src="/static/img/emoji/trans.png" class="emoticon tongue mCS_img_loaded" title="tongue">
+                                        <img src="/static/img/emoji/trans.png" class="emoticon cry mCS_img_loaded" title="cry" char=";(">
+                                        <img src="/static/img/emoji/trans.png" class="emoticon angry mCS_img_loaded" title="angry">
+                                        <img src="/static/img/emoji/trans.png" class="emoticon whew mCS_img_loaded" title="whew">
+                                    
+                                        <img src="/static/img/emoji/trans.png" class="emoticon giggle mCS_img_loaded" title="giggle">
+                                        <img src="/static/img/emoji/trans.png" class="emoticon rofl mCS_img_loaded" title="rofl">
+                                        <img src="/static/img/emoji/trans.png" class="emoticon wink mCS_img_loaded" title="wink" char=";)">
+                                        <img src="/static/img/emoji/trans.png" class="emoticon smoking mCS_img_loaded" title="smoking">
+                                        <img src="/static/img/emoji/trans.png" class="emoticon lipssealed mCS_img_loaded" title="lipssealed">
+                                        <img src="/static/img/emoji/trans.png" class="emoticon smile mCS_img_loaded" title="smile" char=":)">
+                                        <img src="/static/img/emoji/trans.png" class="emoticon thumbsup mCS_img_loaded" title="thumbsup">
+                                        <img src="/static/img/emoji/trans.png" class="emoticon finger mCS_img_loaded" title="finger">
+                                        <img src="/static/img/emoji/trans.png" class="emoticon sleepy mCS_img_loaded" title="sleepy">
+                                        <img src="/static/img/emoji/trans.png" class="emoticon dancing mCS_img_loaded" title="dancing">
+                                    
+                                        <img src="/static/img/emoji/trans.png" class="emoticon devil mCS_img_loaded" title="devil">
+                                        <img src="/static/img/emoji/trans.png" class="emoticon emo mCS_img_loaded" title="emo">
+                                        <img src="/static/img/emoji/trans.png" class="emoticon headbang mCS_img_loaded" title="headbang">
+                                        <img src="/static/img/emoji/trans.png" class="emoticon hi mCS_img_loaded" title="hi">
+                                        <img src="/static/img/emoji/trans.png" class="emoticon thinking mCS_img_loaded" title="thinking">
+                                        <img src="/static/img/emoji/trans.png" class="emoticon party mCS_img_loaded" title="party">
+                                        <img src="/static/img/emoji/trans.png" class="emoticon rock mCS_img_loaded" title="rock">
+                                        <img src="/static/img/emoji/trans.png" class="emoticon wondering mCS_img_loaded" title="wondering">
+                                        <img src="/static/img/emoji/trans.png" class="emoticon worried mCS_img_loaded" title="worried">
+                                        <img src="/static/img/emoji/trans.png" class="emoticon doh mCS_img_loaded" title="doh">
+                                    
+                                        <img src="/static/img/emoji/trans.png" class="emoticon bandit mCS_img_loaded" title="bandit">
+                                        <img src="/static/img/emoji/trans.png" class="emoticon bow mCS_img_loaded" title="bow">
+                                        <img src="/static/img/emoji/trans.png" class="emoticon brokenheart mCS_img_loaded" title="brokenheart">
+                                        <img src="/static/img/emoji/trans.png" class="emoticon call mCS_img_loaded" title="call">
+                                        <img src="/static/img/emoji/trans.png" class="emoticon cash mCS_img_loaded" title="cash">
+                                    
+                                        <img src="/static/img/emoji/trans.png" class="emoticon drunk mCS_img_loaded" title="drunk">
+                                        <img src="/static/img/emoji/trans.png" class="emoticon dull mCS_img_loaded" title="dull">
+                                        <img src="/static/img/emoji/trans.png" class="emoticon dulltauri mCS_img_loaded" title="dulltauri">
+                                        <img src="/static/img/emoji/trans.png" class="emoticon envy mCS_img_loaded" title="envy">
+                                        <img src="/static/img/emoji/trans.png" class="emoticon fingerscrossed mCS_img_loaded" title="fingerscrossed">
+                                        <img src="/static/img/emoji/trans.png" class="emoticon flower mCS_img_loaded" title="flower">
+                                        <img src="/static/img/emoji/trans.png" class="emoticon fubar mCS_img_loaded" title="fubar">
+                                        <img src="/static/img/emoji/trans.png" class="emoticon handshake mCS_img_loaded" title="handshake">
+                                        <img src="/static/img/emoji/trans.png" class="emoticon heart mCS_img_loaded" title="heart">
+                                    
+                                        <img src="/static/img/emoji/trans.png" title="hug" class="emoticon hug mCS_img_loaded">
+                                        <img src="/static/img/emoji/trans.png" title="inlove" class="emoticon inlove mCS_img_loaded">
+                                        <img src="/static/img/emoji/trans.png" title="itwasntme" class="emoticon itwasntme mCS_img_loaded">
+                                        <img src="/static/img/emoji/trans.png" title="kiss" class="emoticon kiss mCS_img_loaded">
+                                        <img src="/static/img/emoji/trans.png" title="lalala" class="emoticon lalala mCS_img_loaded">
+                                        <img src="/static/img/emoji/trans.png" title="makeup" class="emoticon makeup mCS_img_loaded">
+                                        <img src="/static/img/emoji/trans.png" title="malthe" class="emoticon malthe mCS_img_loaded">
+                                        <img src="/static/img/emoji/trans.png" title="mmm" class="emoticon mmm mCS_img_loaded">
+                                        <img src="/static/img/emoji/trans.png" title="muscle" class="emoticon muscle mCS_img_loaded">
+                                        <img src="/static/img/emoji/trans.png" title="music" class="emoticon music mCS_img_loaded">
+                                    
+                                        <img src="/static/img/emoji/trans.png" title="nerd" class="emoticon nerd mCS_img_loaded">
+                                        <img src="/static/img/emoji/trans.png" title="ninja" class="emoticon ninja mCS_img_loaded">
+                                        <img src="/static/img/emoji/trans.png" title="no" class="emoticon no mCS_img_loaded">
+                                        <img src="/static/img/emoji/trans.png" title="nod" class="emoticon nod mCS_img_loaded">
+                                        <img src="/static/img/emoji/trans.png" title="oliver" class="emoticon oliver mCS_img_loaded">
+                                        <img src="/static/img/emoji/trans.png" title="shake" class="emoticon shake mCS_img_loaded">
+                                        <img src="/static/img/emoji/trans.png" title="smirk" class="emoticon smirk mCS_img_loaded">
+                                        <img src="/static/img/emoji/trans.png" title="speechless" class="emoticon speechless mCS_img_loaded">
+                                    
+                                        <img src="/static/img/emoji/trans.png" title="star" class="emoticon star mCS_img_loaded">
+                                        <img src="/static/img/emoji/trans.png" title="sunshine" class="emoticon sunshine mCS_img_loaded">
+                                        <img src="/static/img/emoji/trans.png" title="surprised" class="emoticon surprised mCS_img_loaded" char=":o">
+                                        <img src="/static/img/emoji/trans.png" title="swear" class="emoticon swear mCS_img_loaded">
+                                        <img src="/static/img/emoji/trans.png" title="sweating" class="emoticon sweating mCS_img_loaded">
+                                        <img src="/static/img/emoji/trans.png" title="talking" class="emoticon talking mCS_img_loaded">
+                                        <img src="/static/img/emoji/trans.png" title="time" class="emoticon time mCS_img_loaded">
+                                        <img src="/static/img/emoji/trans.png" title="tmi" class="emoticon tmi mCS_img_loaded">
+                                        <img src="/static/img/emoji/trans.png" title="wait" class="emoticon wait mCS_img_loaded">
+                                    
+                                        <img src="/static/img/emoji/trans.png" title="yawning" class="emoticon yawning mCS_img_loaded">
+                                        <img src="/static/img/emoji/trans.png" title="rain" class="emoticon rain mCS_img_loaded">
+                                        <img src="/static/img/emoji/trans.png" title="clap" class="emoticon clap mCS_img_loaded">
+                                        <img src="/static/img/emoji/trans.png" title="waiting" class="emoticon waiting mCS_img_loaded">
+                                        <img src="/static/img/emoji/trans.png" title="blushing" class="emoticon blushing mCS_img_loaded">
+                                        <img src="/static/img/emoji/trans.png" title="puke" class="emoticon puke mCS_img_loaded">
+                                        <img src="/static/img/emoji/trans.png" title="happy" class="emoticon happy mCS_img_loaded">
+                                    </div>
+                                  </div>
+                            </div>
+                        </div>
+                     </div>
+                </div>
+           
+            </div>
+        </div>
+    </div>
+</div>
+
+    <!-- Button trigger modal -->
+
+    <!-- Modal -->
+    <div class="modal fade" id="ctr-modal-invitations" tabindex="-1" aria-labelledby="ctr-modal-invitations-label" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <div class="wrapper_body_header_model">
+                        <div class="modal-title"><b>Gửi lời mời thi đấu tới</b></div>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+                            
+                            <span class="sr-only">Close</span>
+                        </button>
+                    </div>
+                    <div id="ctr-mi-search-friend">
+                        <input type="text" class="form-control" onkeyup="return filter_friend_online({self: this});" placeholder="Nhập tên bạn bè mà bạn muốn mời đấu..." name="" required="" value="">
+                    </div>
+                </div>
+                <div class="modal-body">
+                    <p class="text-uppercase modal-body-title">Danh sách bạn bè của tôi (đang online)</p>
+                    <div class="ctr-mi-list-friend msg_container_base">
+                        <ul class="list-group" id="ctr-mi-list-friend-ul">
+                            <!-- list friend online -->
+            
+                        </ul>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+
+
+{{ request.user.id|json_script:"user_id" }}
+{{ room.type_compete.max_quantity_add_user|json_script:"type-competition" }}
+{{ host_user|json_script:"host-user" }}
+{{ room_name|json_script:"room-name" }}
+{{ request.user.username|json_script:"user_username" }}
+
+{%endblock%}
+
+{%block scripts %}
+<script src="{% static 'js/wait-room.js'%}"></script>
+
+<script>
+    const user_username = JSON.parse(document.getElementById('user_username').textContent);
+    const typeCompetition = JSON.parse(document.getElementById('type-competition').textContent);
+
+    const hostUserName = JSON.parse(document.getElementById('host-user').textContent);
+    
+    const roomName = JSON.parse(document.getElementById('room-name').textContent);
+    const statusEmoticon = document.getElementById('emoticons-status');
+
+    const user_id = JSON.parse(document.getElementById('user_id').textContent);
+
+     
+    const awaitRoomSocket = new WebSocket(
+        'ws://' +
+        window.location.host +
+        '/ws/wait/' +
+        roomName +
+        '/'
+    );
+
+    
+    
+    function start() {
+        const countListMember = document.querySelectorAll('#list-member-real-wait-room .flip').length;
+       
+        if (countListMember < 2)
+        {
+            alert("Chưa đủ thành viên quy định sẵn sàng tham gia thi đấu!");
+        }
+        else{
+            if (!$('#ctr-w-start').attr('submit')) {
+                $('#ctr-w-start').attr({ submit: true });
+                var _list_id_mem = [];
+                
+                $.ajax({
+                    url: "{% url 'competition:post_wait_to_play_compete' %}",
+                    type: "POST",
+                    dataType: "json",
+                    data: {
+                        room_id: roomName,
+                        num_ques: 10
+                    },
+                    success: function(response) {
+                        console.log(response)
+                    },
+                    error: function(error) {
+                        $('#ctr-w-start').removeAttr('submit');
+                        alert('Xảy ra lỗi trong quá trình lấy câu hỏi nhấn vào nút "Tạo phòng" khởi tạo lại!');
+                    }
+                });
+            }
+        }
+        
+    }
+
+    if (hostUserName != '')
+    {
+        if (hostUserName === user_username)
+        {
+          
+            document.getElementById('ctr-wi-quit').classList.add('hide');
+            
+            document.getElementById('ctr-total-member-invite').classList.remove('hide');
+            document.getElementById('ctr-w-start').classList.remove('hide');
+        }
+        else{
+      
+            document.getElementById('ctr-wi-quit').classList.remove('hide');
+            document.getElementById('ctr-total-member-invite').classList.add('hide');
+            document.getElementById('ctr-w-start').classList.add('hide');
+        }
+    }
+
+    awaitRoomSocket.onmessage = function (e) {
+        const data = JSON.parse(e.data);
+        console.log(data)
+
+        console.log(data[0].type_method)
+
+        switch(data[0].type_method)
+        {
+            case 'user_add_is_host':
+                const usernameHostJoin = data[0].username;
+                $('#chat-result_content').append(`
+                    <p class="ctr-m-row ctr-m-server ctr-m-member-join">
+                        <a target="_blank" href="https://thidau.tienganh123.com/history/3307755" class="ctr-m-master ctr-m-self">${usernameHostJoin}: </a>
+                        <span class="ctr-m-content">đã vào phòng (Chủ phòng)</span>
+                    </p>
+                `)
+                $(".msg_container_base").stop().animate({ scrollTop: $(".msg_container_base")[0].scrollHeight}, 1000);
+
+                break;
+            case 'exists_user_wait_room':
+                const usernameExistJoin = data[0].username;
+                $('#chat-result_content').append(`
+                    <p class="ctr-m-row ctr-m-server ctr-m-member-join">
+                        <a target="_blank" href="https://thidau.tienganh123.com/history/3307755" class="ctr-m-master ctr-m-self">${usernameExistJoin}: </a>
+                        <span class="ctr-m-content">đã vào phòng</span>
+                    </p>
+                `)
+                $(".msg_container_base").stop().animate({ scrollTop: $(".msg_container_base")[0].scrollHeight}, 1000);
+
+                break;
+            
+            case 'add_user_room':
+                const userIdJoin = data[0].id_user_john;
+                const userAvatarJoin = data[0].avatar;
+                const usernameJoin = data[0].username;
+
+                $('#chat-result_content').append(`
+                    <p class="ctr-m-row ctr-m-server ctr-m-member-join">
+                        <a target="_blank" href="https://thidau.tienganh123.com/history/3307755" class="ctr-m-master ctr-m-self">${usernameJoin}: </a>
+                        <span class="ctr-m-content">đã vào phòng</span>
+                </p>
+                `)
+                $(".msg_container_base").stop().animate({ scrollTop: $(".msg_container_base")[0].scrollHeight}, 1000);
+
+                $('#list-member-real-wait-room').append(`
+                <div class="flip ctr-w-member expert" id="${userIdJoin}" mem_id="${userIdJoin}" onclick="return flip_active(this);">
+                                    <div class="flip-content">
+                                        <div class="front face">
+                                            <div class="ctr-w-member-front" style="background-image: url('/static/img/compete/expert.png')">
+                                                <div class="ctr-wm-avata">
+                                                    <img class="ctr-wm-avata-img" src="${userAvatarJoin}">
+                                                    <img class="ab ctr-wm-vip-img " src="/static/img/icon/ctr-vip-icon.png" alt="">
+                                                </div>
+                                                <div class="ctr-wm-ready">
+                                                    <img class="ctr-wm-master-icon" src="/static/img/compete/ctr-wm-master-icon.png">
+                                                    <img class="ctr-wm-ready-icon " src="/static/img/compete/ctr-wm-ready-status.png">
+                                                    <span class="text-center pull-right ctr-wm-num">10</span>
+                                                </div>
+                                                <div class="text-center ctr-wm-username">${usernameJoin}</div>
+                                                <div class="text-center ctr-wm-level">
+                                                    <span class="ctr-wml-name" style="color: #ffe8a3">Expert</span>
+                                                    <span class="ctr-wml-star">
+                                                        <img src="/static/img/icon/ctr-star.png">
+                                                        <img src="/static/img/icon/ctr-star.png">
+                                                        <img src="/static/img/icon/ctr-star.png">
+                                                    </span>
+                                                </div>
+                                                <div class="text-center ctr-wm-win-number">1129</div>
+                                                <div class="text-center ctr-wm-win-name">TRẬN THẮNG</div>
+                                            </div>
+                                        </div>
+                                        <div class="back face">
+                                            <div class="ctr-w-member-back">
+                                                <div class="text-center ctr-wmb-title">ĐÃ THẮNG</div>
+                                                <div class="table">
+                                                    <div class="text-center table-cell">
+                                                        <div class="ctr-wm-win">1295</div>
+                                                        <div class="ctr-wm-type">
+                                                            Trận<br>1 vs 9
+                                                        </div>
+                                                    </div>
+                                                    <div class="table-cell">
+                                                        <div class="ctr-wm-win">1129</div>
+                                                        <div class="ctr-wm-type">
+                                                            Trận<br>1 vs 1
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="text-center ctr-wm-username">${usernameJoin}</div>
+                                                <div class="text-center ctr-wm-level">
+                                                    <span class="ctr-wml-name" style="color: #ffe8a3">Expert</span>
+                                                    <span class="ctr-wml-star">
+                                                        <img src="/static/img/icon/ctr-star.png">
+                                                        <img src="/static/img/icon/ctr-star.png">
+                                                        <img src="/static/img/icon/ctr-star.png">
+                                                    </span>
+                                                </div>
+                                                <div class="text-center ctr-wm-win-number" style="line-height: 34px;"><a href="https://www.tienganh123.com/member/3041456#hocba" target="_blank" class="navbar-link" style="font-size: 14px;">Trang cá nhân</a></div>
+                                                <div class="text-center ctr-wm-win-name"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                `)
+                break;
+
+            case 'invite_friend':
+                const userNameInvite = data[0].username_request_send_invite;
+                const userIdInvite = data[0].id_send_invite;
+                const userCurrentId = "{{request.user.id}}"
+                const titleInvite = data[0].title_invite;
+                const skillInvite = data[0].skill_invite;
+                const roomIdInvite = data[0].room_id_invite;
+
+                if (userCurrentId === userIdInvite){
+
+                    // console.log(userNameInvite)
+                    // console.log(titleInvite)
+                    // console.log(skillInvite)
+                    // console.log(roomIdInvite)
+                }
+                break;
+
+            case 'quit_user_wait':
+                const idUserQuitData = data[0].id_user_quit;
+                const userNameQuitData = data[0].username;
+                const listElementUser = Array.from( document.querySelectorAll(".ctr-w-member"));
+
+                listElementUser.forEach(member => {
+                if(parseInt(member.getAttribute("mem_id")) === idUserQuitData)
+                {
+                    member.remove()
+                }
+                })
+                $('#chat-result_content').append(`
+                    <p class="ctr-m-row ctr-m-server ctr-m-member-exit">
+                        <a target="_blank" href="https://thidau.tienganh123.com/history/3307755" class="ctr-m-master ctr-m-self">${userNameQuitData}: </a>
+                        <span class="ctr-m-content">đã rời khỏi phòng</span>
+                </p>
+                `)
+                $(".msg_container_base").stop().animate({ scrollTop: $(".msg_container_base")[0].scrollHeight}, 1000);
+
+                break;
+
+            case 'chat_message_wait':
+                const message = data[0].message;
+                const username = data[0].username;
+                $('#chat-result_content').append(`
+                    <p class="ctr-m-row">
+                        <a target="_blank" href="https://thidau.tienganh123.com/history/3307755" class="ctr-m-master ctr-m-self">${username}: </a>
+                        <span class="ctr-m-content">${message}</span>
+                </p>
+                `)
+                $(".msg_container_base").stop().animate({ scrollTop: $(".msg_container_base")[0].scrollHeight}, 1000);
+
+                break;
+            
+            case 'ready_play':
+                window.location.href = '/competition/play-'+ roomName + '/';
+                break;
+            default:
+                // console.log('ngoai le')
+                break;
+        }
+    }
+
+    //event input press enter 
+    document.querySelector('#ctr-chat-input').onkeyup = function(e) {
+            if (e.keyCode === 13) {  // enter, return
+                const messageInputDom = document.querySelector('#ctr-chat-input');
+                const message = messageInputDom.value;
+                awaitRoomSocket.send(JSON.stringify({
+                    'chat-message':'True',
+                    'username':user_username,
+                    'message': message,
+                }));
+                messageInputDom.value = '';
+            }
+        };
+
+    
+    awaitRoomSocket.onopen = function(e) {
+        console.log('open')
+    }
+
+    awaitRoomSocket.onclose = function(e) {
+        console.error('awaitRoomSocket socket closed unexpectedly');
+    };
+
+    //start timer count down
+    function startTimerCountDownStatusIcon() {
+        $('#emoticons-status').append(`
+            Bạn có thể chọn icon khác sau <span id="time-wait-send-icon">8</span> s
+        `);
+        
+        var seconds = 8;
+        var counterTimerIcon = setInterval(function () {      
+            seconds = parseInt(statusEmoticon.querySelector('#time-wait-send-icon').textContent)   
+            seconds--;
+            statusEmoticon.querySelector('#time-wait-send-icon').textContent = seconds;
+            if (seconds < 0) {
+                clearInterval(counterTimerIcon);
+                statusEmoticon.innerHTML = '';
+                return;
+            }
+        }, 1000);
+    }
+
+    //onlick icon emoji and send to chat message
+    Array.from(document.querySelectorAll('.emoticons .emoticon')).forEach(item => {
+        item.addEventListener('click', () => {
+            if (document.querySelector('#emoticons-status').textContent === '')
+            {
+                awaitRoomSocket.send(JSON.stringify({
+                    'chat-message':'True',
+                    'username':user_username,
+                    'message': item.outerHTML,
+                }));
+                startTimerCountDownStatusIcon();
+            }
+        })
+    })
+
+    //active flip
+    function flip_active(_self) {
+        $(_self).toggleClass('flip_active');
+    }
+
+    function unstart() {
+        alert("Chưa đủ thành viên quy định sẵn sàng tham gia thi đấu!");
+    }
+
+    function quit_room() {
+        $.post("{% url 'competition:get_method_post_quit_room' %}",
+        {
+            room_id: roomName,
+        },
+        function(data){
+            switch (data.status)
+             {
+                case 205: //huy phong
+                    // window.location.href = '/competition/';
+                    console.log('huy phong')
+                    break;
+
+                case 304:           
+                    window.location.href = '/competition/';
+                    break;
+
+                 case 406: //loi remove user quit
+                    // console.log('loi remove user in phong')
+                    
+                    break;
+                default:
+                    alert('Khong tim thay phong nay');
+             }
+        }
+        )
+    }
+    function get_list_friend_online() {
+        $.ajax({
+            url: "{% url 'competition:get_post_list_friend_online' %}",
+            type: "POST",
+            dataType: "json",
+            // Tell YQL what we want and that we want JSON
+            data: { 
+                id: parseInt(user_id),
+            },
+            // Work with the response
+            success: function(response) { //console.log(response); // server response
+                console.log(response)
+                const data_online = response.data
+                $('#ctr-mi-list-friend-ul').empty();
+                data_online.forEach(function(value) {
+                    $('#ctr-mi-list-friend-ul').append(`
+                        <li class="list-group-item" id="ctr-mi-friend-${value.id_online}" username="${value.username_online}">
+                            <div class="table-show">
+                            <div class="table-cell">
+                                <div class="ctr-mi-sf-username">${value.username_online}</div>
+                                <div class="ctr-mi-sf-info"><span>Vip</span></div>
+                                <div class="ctr-mi-sf-status"><i class="fa fa-circle text-success" aria-hidden="true"></i> Online</div>
+                            </div>
+                            <div class="table-cell">
+                                <button type="button" class="btn btn-danger ctr-mi-sf-send-btn" onclick="send_invitations({ uid:${value.id_online} , self: this})"><i class="fa fa-paper-plane" aria-hidden="true"></i> <span>Mời đấu</span></button>
+                            </div>
+                            </div>
+                        </li>
+                    `)
+                });
+            },
+        
+            error: function(response) {
+                console.log(response); // server response
+            }
+        });
+    }
+
+    //send invite to room send user
+    function send_invitations(param) {
+   
+        const skillCompete = "{{room.get_skills_display}}"
+        console.log(skillCompete)
+        const classCompete = "{{room.get_class_compete_display}}"
+        console.log(classCompete)
+        
+        $(param.self).addClass('active').find('span').text('Mời lại');
+        $.ajax({
+            url: "{% url 'competition:get_post_send_invite_to_room' %}",
+            type: "POST",
+            dataType: "json",
+            // Tell YQL what we want and that we want JSON
+            data: { 
+                id: param.uid,
+                id_request:"{{request.user.id}}",
+                room_id: "{{room.id_room}}",
+                title: "Lời mời thi đấu!",
+                skill: skillCompete, 
+                class: classCompete,
+            },
+            // Work with the response
+            success: function(response) { 
+                 // server response
+                console.log(response);
+            },
+        
+            error: function(response) {
+                console.log(response); // server response
+            }
+        });
+    }
+
+    //show or hide btn start or quit if is host or member
+
+    if (parseInt(typeCompetition) === 1)
+    {
+        document.getElementById('list-member-real-wait-room').classList.add('compete_1_1');
+        for(let i = 0; i < 8; i ++)
+        {
+            $('#ctr-w-list-member').append(`
+                <div class="ctr-w-member ctr-w-member-static"><img src="/static/img/compete/ctr-lock.png"></div>
+            `)
+        }
+    }
+</script>
+
+{%endblock%}
+
+

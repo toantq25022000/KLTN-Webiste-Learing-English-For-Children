@@ -216,6 +216,8 @@ btnNextVioEnd.addEventListener('click', () => {
 btnPreviousVioEnd.addEventListener('click', () => {
     getPreviousQuestionVioEnd()
 })
+
+
 //click btn sunmission
 submissionVioEnd.addEventListener('click', () => {
     modalSubmissionVioEnd.style.display = 'block'
@@ -286,6 +288,7 @@ btnCloseSubmissionVioEnd.addEventListener('click', () => {
 btnListQuestionVioEnd.addEventListener('click', () => {
     showListQuestionNavVioEnd()
 })
+
 formatDateTimeToString = () => {
     var date = new Date().toLocaleString('en-US',{hour12:false}).split(" ");
     // Now we can access our time at date[1], and monthdayyear @ date[0]
@@ -302,6 +305,9 @@ formatDateTimeToString = () => {
     var formattedDate = year + '-' + month + '-' + day + ' ' + time;
     return formattedDate
 }
+
+
+
 // click  btn Ok in submission
 btnOKSubmissionVioEnd.addEventListener('click', () => {
     modalSubmissionVioEnd.style.display = 'none'

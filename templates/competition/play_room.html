@@ -1,0 +1,1005 @@
+{% extends "pages/base2.html" %} 
+{%load static%} 
+{% block title %} Thi đấu Tiếng anh trực tuyến {% endblock %}
+
+
+{%block content%} 
+<div class="container-custom page-content">
+ 
+    <style type="text/css" media="screen">
+        body.body-compete{background-image: url("/static/img/compete/ctr-play-bg.png");}
+        .header{display: none !important;}
+    </style>
+    <div class="ctr-page play-page" id="play-page-9">
+        <div class="ctr-p-layout table-show" id="ctr-p-play-layout">
+            <div class="ctr-play-main">
+                 <div class="ctr-pm-layout" id="ctr-pm-play-layout">
+                    <!-- <div class="ctr-p-head">
+                        <div class="ctr-ph-member ctr-ph-master" id="3307755" data-score="0" data-username="phantankiet088@gmail.com" data-time="2021-12-24 08:36:43">
+                            <div class="ctr-phm-info">
+                                <div class="ctr-phmi-avata">
+                                    <div class="ctr-phmi-avata-circle">
+                                        <img class="ctr-phmi-avata-img" src="/static/img/noavatar.gif" alt="">
+                                        <img class="ab ctr-phmi-vip-img " src="/static/img/icon/ctr-vip-icon.png" alt="">
+                                    </div>
+                                </div>
+                                <div class="ctr-phmi-member">
+                                    <div class="ctr-phmim-username">phantankiet088@gmail.com</div>
+                                    <div class="ctr-phmim-level">
+                                        <span class="ctr-phmiml-name" style="color: #e69b57">Newbie</span>
+                                        <span class="ctr-phmiml-star">
+                                            <img src="/static/img/icon/ctr-star.png">
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="pull-right ctr-ph-score">
+                                <span class="text-center ctr-phs-plus"></span>
+                                <span class="text-right ctr-phs-achieve">0</span>
+                                <span class="text-right ctr-phs-status inline-block" id="ctr-phs-thinking"><img src="/static/img/compete/ctr_p_status_thinking.gif"></span>
+                                <span class="text-right ctr-phs-status" id="ctr-phs-smile"><img src="/static/img/compete/ctr_p_status_smile.gif"></span>
+                                <span class="text-right ctr-phs-status" id="ctr-phs-crying"><img src="/static/img/compete/ctr_p_status_crying.gif"></span>
+                            </div>
+                        </div>
+                        <div class="text-center ctr-ph-ques-info">
+                            <div class="ctr-phqi-layout" id="ctr-phqi-x2">
+                                <div id="ctr-phqix2-title" style="color: #fff;">Đây là câu hỏi</div>
+                                <img id="ctr-phqix2-baner" src="/static/img/compete/ctr-play-x2-play.png" alt="">
+                            </div>
+                        </div>
+                        <div class="pull-right ctr-ph-member ctr-ph-client" id="3344277" data-score="0" data-username="toantq252" data-time="2021-12-24 08:37:12">
+                            <div class="pull-left ctr-ph-score">
+                                <span class="text-right ctr-phs-status" id="ctr-phs-thinking"><img src="/static/img/compete/ctr_p_status_thinking.gif"></span>
+                                <span class="text-right ctr-phs-status inline-block" id="ctr-phs-smile"><img src="/static/img/compete/ctr_p_status_smile.gif"></span>
+                                <span class="text-right ctr-phs-status" id="ctr-phs-crying"><img src="/static/img/compete/ctr_p_status_crying.gif"></span>
+                                <span class="text-left ctr-phs-achieve">0</span>
+                                <span class="text-left ctr-phs-plus"></span>
+                            </div>
+                            <div class="pull-right ctr-phm-info">
+                                <div class="text-right ctr-phmi-member">
+                                    <div class="ctr-phmim-username">toantq252</div>
+                                    <div class="ctr-phmim-level">
+                                        <span class="ctr-phmiml-name" style="color: #e69b57">Newbie</span>
+                                        <span class="ctr-phmiml-star">
+                                             <img src="/static/img/icon/ctr-star.png">
+                                         </span>
+                                    </div>
+                                </div>
+                                <div class="ctr-phmi-avata">
+                                    <div class="ctr-phmi-avata-circle">
+                                        <img class="ctr-phmi-avata-img" src="/static/img/noavatar.gif" alt="">
+                                        <img class="ab ctr-phmi-vip-img " src="/static/img/icon/ctr-vip-icon.png" alt="">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div> -->
+                    <div class="ctr-p-body">
+                        <div class="text-center ctr-p-time-left">
+                            <div class="text-center text-bold inline-block" id="ctr-p-question-status">
+                                CÂU HỎI: <span id="ctr-pqs-number">9</span>/<span id="ctr-pqs-total">10</span>
+                            </div>
+                          
+                            <div class="progress">
+                                <div class="pull-right progress-bar" id="progress-bar-ctr" style="width:100%;"></div>
+                            </div>
+                            <div class="text-center text-bold inline-block" id="ctr-p-your-rank">
+                                Đúng: <span class="" id="ctr-pryr-number">0</span>/<span id="ctr-pryr-total">10</span>
+                            </div>
+                        </div>
+                        <div id="ctr-p-question-content"> 
+                             <!-- Nội dung câu hỏi -->
+                           
+                            <div id="ct" class="ctmszoom">
+                              
+                                <div id="ctmsc">
+                                    <div class="" id="cthsc" >
+                                        <!-- Change new question -->
+                                        <div class="ctwt" id="ctr-area-render-dom-question" data-question-choose="">
+
+                                        </div>
+
+                                        <!-- Change new question -->
+                                    </div>
+
+                                    <div class="" id="ctf">
+                                        <div class="" id="ctf_note">
+                                            <div id="ctsmbt" class="ctsmbtd" style="position: relative;" onclick="checkAction()">
+                                                <span>Submit</span>
+                                                <img class="ab" id="ctsmbt_loading" style="display: none; width: 35px; top: 3px; right: 4px;" src="/assets/img/loading.gif" alt="">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                           
+                        </div>
+                        <!-- <img src="/assets/frontend/pc/img/ctr-play-icon-smile-1.png" class="ab hide cr__mp_icon cr__mp_icon_correct img-responsive" id="" alt="Image">
+                        <img src="/assets/frontend/pc/img/ctr-play-icon-smile-1.png" class="ab hide cr__mp_icon cr__mp_icon_correct img-responsive" id="" alt="Image">
+                        <img src="/assets/frontend/pc/img/ctr-play-icon-true.png" class="ab hide cr__mp_slogan cr__mp_slogan_correct img-responsive" id="" alt="Image">
+    
+                        <img src="/assets/frontend/pc/img/ctr-play-icon-lose-1.png" class="ab hide cr__mp_icon cr__mp_icon_incorrect img-responsive" id="" alt="Image">
+                        <img src="/assets/frontend/pc/img/ctr-play-icon-lose-2.png" class="ab hide cr__mp_icon cr__mp_icon_incorrect img-responsive" id="" alt="Image">
+                        <img src="/assets/frontend/pc/img/ctr-play-icon-false.png" class="ab hide cr__mp_slogan cr__mp_slogan_incorrect img-responsive" id="" alt="Image"> -->
+                    </div>
+                </div>
+
+                <div class="ctr-pm-layout show" id="ctr-pm-countdown-layout">
+                    
+                    <div class="text-center ctr-pmcd-content">
+                        <div class="table-cell">
+                            <p><b>Trận đấu sẽ bắt đầu sau</b></p>
+                            <div class="ctr-pmcd-circle">
+                                <div class="ctr-pmcd-num"></div>
+                                <div class="ctr-pmcd-timeline"></div>
+                            </div>
+                            <div class="text-center">
+                                <p class="text-center text-primary inline-block">
+                                    <b>Trả lời đúng và sớm nhất</b> sẽ được cộng: <b>10 điểm,</b> đúng và sớm thứ hai được <b>5 điểm !</b>
+                                </p>
+                                <p class="text-center text-primary inline-block">
+                                    Click vào biểu tượng loa phía dưới để bật/tắt hiệu ứng âm thanh lúc thi đấu.
+                                </p>
+                            </div>
+                            <div class="text-center" style="margin-top: 15px; color: #555;">							
+                                <div class="col-lg-2 col-centered inline-block">
+                                    <p class="" id=""><img width=50 src="/static/img/compete/ctr_p_status_thinking.gif"/></p>
+                                    <p class="" id="">Đang suy nghĩ</p>
+                                </div>
+                                <div class="col-lg-2 col-centered inline-block">
+                                    <p class="" id=""><img width=50 src="/static/img/compete/ctr_p_status_smile.gif"/></p>
+                                    <p class="" id="">Trả lời đúng</p>
+                                </div> 
+                                <div class="col-lg-2 col-centered inline-block">
+                                    <p class="" id=""><img width=50 src="/static/img/compete/ctr_p_status_crying.gif"/></p>
+                                    <p class="" id="">Trả lời sai</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="table-cell ctr-p-right">
+                <div class="ctr-pr-rank">
+                    <div class="text-center ctr-pr-top-block">
+                        <div id="ctr-pr-list-name">BẢNG XẾP HẠNG</div>
+                    </div>
+                    <ul class="list-group list" id="ctr-pr-list" style="transform: perspective(3000px);">	
+
+                            <li class="mix list-group-item ctr-pr-item" id="{{room.user_host.id}}" data-score="0" data-username="{{room.user_host.username}}" data-time="2021-12-25 06:28:17" style="display: inline-block;" data-bound="">
+                                <span class="pull-left ctr-phs-status ctr-phs-thinking" id="ctr-phs-thinking{{room.user_host.id}}" style="display: inline-block;"><img src="/static/img/compete/ctr_p_status_thinking.gif"></span>
+                                <span class="pull-left ctr-phs-status ctr-phs-smile" id="ctr-phs-smile{{room.user_host.id}}" style="display: none;"><img src="/static/img/compete/ctr_p_status_smile.gif"></span>
+                                <span class="pull-left ctr-phs-status ctr-phs-crying" id="ctr-phs-crying{{room.user_host.id}}" style="display: none;"><img src="/static/img/compete/ctr_p_status_crying.gif"></span>
+                                <span class="badge pull-left ctr-pri-number hide">&nbsp;</span>
+                                <div class="ab ctr-pri-avata">
+                                    <div class="ctr-pri-avata-circle">
+                                        <img src="//upload.tienganh123.com/normal/normal_3228355_avatar.jpg" alt="">
+                                    </div>
+                                </div>
+                                <span class="ctr-pri-name">{{room.user_host.username}}</span>
+                                <span class="badge ctr-pri-score pull-right">0</span>
+                                <span class="ab ctr-pri-plus"></span>
+                            </li> 
+                            {% for item in list_user_john%}
+
+                            <li class="mix list-group-item ctr-pr-item" id="{{item.id}}" data-score="0" data-username="{{item.username}}" data-time="2021-12-25 06:28:24" style="display: inline-block;" data-bound="">
+                                <span class="pull-left ctr-phs-status ctr-phs-thinking" id="ctr-phs-thinking{{item.id}}" style="display: inline-block;"><img src="/static/img/compete//ctr_p_status_thinking.gif"></span>
+                                <span class="pull-left ctr-phs-status ctr-phs-smile" id="ctr-phs-smile{{item.id}}" style="display: none;"><img src="/static/img/compete//ctr_p_status_smile.gif"></span>
+                                <span class="pull-left ctr-phs-status ctr-phs-crying" id="ctr-phs-crying{{item.id}}" style="display: none;"><img src="/static/img/compete//ctr_p_status_crying.gif"></span>
+                                <span class="badge pull-left ctr-pri-number hide">&nbsp;</span>
+                                <div class="ab ctr-pri-avata">
+                                    <div class="ctr-pri-avata-circle">
+                                        <img src="//data.tienganh123.com/images/member/noavatar.gif" alt="">
+                                    </div>
+                                </div>
+                            <span class="ctr-pri-name">{{item.username}}</span>
+                                <span class="badge ctr-pri-score pull-right">0</span>
+                                <span class="ab ctr-pri-plus count-down"></span>
+                            </li> 
+                            {%endfor%}
+                        </ul>
+                </div>
+                <div class="btn-group btn-group-justified" style="margin-top: 10px;">
+                    <a href="/init-room" class="btn click ctr-bi-out">
+                        <i class="fa fa-angle-left fa-2x" aria-hidden="true"></i>
+                        <span>Rời phòng</span>
+                    </a>
+                    <div class="btn click ctr-bi-hint-and-speak">
+                        <div class="inline-block ctr-bi-hint" style="width: 80px;" onclick="(function(){$('.ctr-tutorial-layout').toggle();})();">Hướng dẫn</div>
+                        <div class="fa fa-volume-up inline-block ctr-speak ctr-speak-public mute" style="right: 5px;" onclick="return fn_toggleAudio(this);"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+   
+</div>
+{{ request.user.id|json_script:"user_id" }}
+{{ room.type_compete.max_quantity_add_user|json_script:"type-competition" }}
+{{ room_name|json_script:"room-name" }}
+{{ room.user_host.id|json_script:"id-host" }}
+{{ request.user.username|json_script:"user_username" }}
+
+{%endblock%}
+
+{%block scripts %}
+
+<script src="{% static 'js/play-compete.js' %}"></script>
+
+<script>
+    
+const urlExcelData = '/static/bo-cau-hoi-violympic/Book1.xlsx';
+const roomName = JSON.parse(document.getElementById('room-name').textContent);
+const idUserHost = JSON.parse(document.getElementById('id-host').textContent);
+const user_id = JSON.parse(document.getElementById('user_id').textContent);
+const listUserItem = Array.from(document.querySelectorAll('.ctr-pr-item'));
+ 
+const playRoomSocket = new WebSocket(
+    'ws://' +
+    window.location.host +
+    '/ws/play/' +
+    roomName +
+    '/'
+);
+
+var remove1WrongWordArray = []
+var connectAudioCorrectArray = []
+var listenWriteWordMissingArray = []
+var putVerbInBracketsArray = []
+var pronunciationsOtherArray = []
+var chooseAnswerBestArray = []
+
+var arrayChooseObjectArray = []
+
+
+function shuffleArray(array) {
+    for (var i = array.length - 1; i > 0; i--) {
+        var j = Math.floor(Math.random() * (i + 1));
+        var temp = array[i];
+        array[i] = array[j];
+        array[j] = temp;
+    }
+}
+
+function setAllStatusIconThink(){
+    Array.from(document.querySelectorAll('.ctr-phs-thinking')).forEach(item => {
+        item.style.display = "inline-block";
+    });
+    Array.from(document.querySelectorAll('.ctr-phs-smile')).forEach(item => {
+        item.style.display = "none";
+    })
+    Array.from(document.querySelectorAll('.ctr-phs-crying')).forEach(item => {
+        item.style.display = "none";
+    })
+
+}
+
+setStatusIcon= (status,id_post_asw) => {
+  
+console.log(status);
+    if (status === 'false') //incorrect
+    {
+        document.getElementById('ctr-phs-thinking'+id_post_asw).style.display = "none";
+        document.getElementById('ctr-phs-smile'+id_post_asw).style.display = "none";
+        document.getElementById('ctr-phs-crying'+id_post_asw).style.display = "inline-block";
+        console.log(document.getElementById('ctr-phs-crying'+id_post_asw));
+    }
+    else if (status === 'true')//correct
+    {
+        document.getElementById('ctr-phs-thinking'+id_post_asw).style.display = "none";
+        document.getElementById('ctr-phs-smile'+id_post_asw).style.display = "inline-block";
+        document.getElementById('ctr-phs-crying'+id_post_asw).style.display = "none";
+        console.log(document.getElementById('ctr-phs-smile'+id_post_asw));
+
+    }
+    else{ //think
+        document.getElementById('ctr-phs-thinking'+id_post_asw).style.display = "inline-block";
+        document.getElementById('ctr-phs-smile'+id_post_asw).style.display = "none";
+        document.getElementById('ctr-phs-crying'+id_post_asw).style.display = "none";
+    }
+
+}
+
+$(document).ready(function(){
+    
+    $('#ctr-pm-countdown-layout').addClass('show');
+    $('#ctr-pm-play-layout').removeClass('show');
+
+    if (user_id === idUserHost)
+    {
+        
+        $('#ctr-pm-countdown-layout').prepend(`
+        <div class="text-center header-countdown-layout">
+            <div class="btn click btn-start-play" id="btn-start-play" onclick="start_play();">
+              <span>Bắt đầu</span>
+            </div>
+         </div>
+        `);
+    }
+    
+
+/* set up XMLHttpRequest */
+fetch(`${urlExcelData}`).then(function (res) {
+    /* get the data */
+    if (!res.ok) throw new Error("fetch failed");
+    return res.arrayBuffer();
+})
+    .then(function (ab) {
+        /* parse the data when it is received */
+        var data = new Uint8Array(ab);
+        var workbook = XLSX.read(data, {
+            type: "array"
+        });
+
+        /* *****************************************************************
+        * DO SOMETHING WITH workbook: Converting Excel value to Json       *
+        ********************************************************************/
+       
+        var first_sheet_name = workbook.SheetNames[0]; // bo-di-1-tu-sai
+        // var third_sheet_name = workbook.SheetNames[1]; //noi-am-thanh-dung
+        // var second_sheet_name = workbook.SheetNames[1]; //di-chuyen-xep-thanh-cau-dung
+        var fourth_sheet_name = workbook.SheetNames[2]; //nghe-va-dien-tu-con-thieu
+        var fifth_sheet_name = workbook.SheetNames[3]; //chia-dong-tu-trong-ngoac
+        var sixth_sheet_name = workbook.SheetNames[4]; // phat-am-khac
+        var seventh_sheet_name = workbook.SheetNames[5]; // chon dap an dung nhat
+        /* Get worksheet */
+        var worksheet1 = workbook.Sheets[first_sheet_name];
+        // var worksheet2 = workbook.Sheets[second_sheet_name];
+        // var worksheet3 = workbook.Sheets[third_sheet_name];
+        var worksheet4 = workbook.Sheets[fourth_sheet_name];
+        var worksheet5 = workbook.Sheets[fifth_sheet_name];
+        var worksheet6 = workbook.Sheets[sixth_sheet_name];
+        var worksheet7 = workbook.Sheets[seventh_sheet_name];
+
+        var _JsonData1 = XLSX.utils.sheet_to_json(worksheet1, { raw: true });
+        // var _JsonData2 = XLSX.utils.sheet_to_json(worksheet2, { raw: true });
+        // var _JsonData3 = XLSX.utils.sheet_to_json(worksheet3, { raw: true });
+        var _JsonData4 = XLSX.utils.sheet_to_json(worksheet4, { raw: true });
+        var _JsonData5 = XLSX.utils.sheet_to_json(worksheet5, { raw: true });
+        var _JsonData6 = XLSX.utils.sheet_to_json(worksheet6, { raw: true });
+        var _JsonData7 = XLSX.utils.sheet_to_json(worksheet7, { raw: true });
+        /************************ End of conversion ************************/
+
+        // putVerbInBracketsArray = []
+        // _JsonData5.forEach((element,value) => {
+        //     item = {
+        //         question_first: element.question_first,
+        //         question_last: element.question_last,
+        //         verb: element.verb,
+        //         answer: element.answer,
+        //         isGetQuestion:false,
+        //     }
+        //     putVerbInBracketsArray.push(item)
+        //     arrayChooseObjectArray.push('putVerbInBracketsArray-'+value);
+        // });
+
+
+        pronunciationsOtherArray = []
+        _JsonData6.forEach((element,value) => {
+            item = {
+                question1: element.question1,
+                question2: element.question2,
+                question3: element.question3,
+                question4: element.question4,
+                answer: element.answer,
+                isGetQuestion:false,
+            }
+            pronunciationsOtherArray.push(item)
+            arrayChooseObjectArray.push('pronunciationsOtherArray-'+value);
+        });
+
+        listenWriteWordMissingArray = []
+        _JsonData4.forEach((element,value) => {
+            item = {
+                question_first: element.question_first,
+                question_last: element.question_last,
+                answer: element.answer,
+                isGetQuestion:false,
+            }
+            listenWriteWordMissingArray.push(item)
+            arrayChooseObjectArray.push('listenWriteWordMissingArray-'+value);
+        });
+
+        
+
+        // remove1WrongWordArray = []
+        // _JsonData1.forEach((element,value) => {
+        //     item = {
+        //         question: element.question,
+        //         answer: element.answer,
+        //         isGetQuestion:false,
+        //     }
+        //     remove1WrongWordArray.push(item)
+            
+        //     arrayChooseObjectArray.push('remove1WrongWordArray-'+value);
+        // });
+
+        
+
+        // chooseAnswerBestArray = []
+        // _JsonData7.forEach((element,value) => {
+        //     item = {
+        //         question: element.question,
+        //         answer1: element.answer1,
+        //         answer2: element.answer2,
+        //         answer3: element.answer3,
+        //         answer4: element.answer4,
+        //         answer: element.answer,
+        //         isGetQuestion:false,
+                
+        //     }
+        //     chooseAnswerBestArray.push(item)
+        //     arrayChooseObjectArray.push('chooseAnswerBestArray-'+value);
+        // });
+        
+    });
+     
+})
+
+
+function timeCountTimer(){
+    $('ctr-pmcd-num').empty();
+    $('.ctr-pmcd-num').html('2');
+    var counterTimeCompete = setInterval(setTime1, 1000);
+
+    function setTime1() {
+        var textNumberCountDown = parseInt($('.ctr-pmcd-num').text());
+        textNumberCountDown--;
+	    $('.ctr-pmcd-num').html((textNumberCountDown<10)?"0"+textNumberCountDown:textNumberCountDown);
+       
+        if(textNumberCountDown === 0){
+           
+           if (user_id === idUserHost)
+           {    
+               playRoomSocket.send(JSON.stringify({
+                   'type_send':'get_new_question',
+                   'message': 'get new question',
+               }));
+           }
+
+            $('ctr-pmcd-num').empty();
+            $('#ctr-pm-countdown-layout').removeClass('show');
+            $('#ctr-pm-play-layout').addClass('show'); 
+
+            clearInterval(counterTimeCompete);
+            return;
+           
+        }
+        else{
+            if(!$('.ctr-pmcd-timeline').attr('running')){
+                $('.ctr-pmcd-timeline').attr('running',true);
+                $('.ctr-pmcd-timeline').stop(true).css({bottom: (textNumberCountDown*2-100)+'%'}).animate({bottom: '-100%'}, textNumberCountDown*1000, "linear");
+            }
+        }
+        
+    }
+}
+
+function start_play(){
+    playRoomSocket.send(JSON.stringify({
+        'type_send':'start_play_countdown',
+        'message': 'start play count down',
+    }));
+    
+};
+
+function countDownProgress(){
+    let reverse_counter = 100;
+    document.getElementById("progress-bar-ctr").style.width = reverse_counter+"%";
+
+    var downloadTimer = setInterval(setTime2, 1000);
+
+    function setTime2() {
+        reverse_counter -= 4;
+        document.getElementById("progress-bar-ctr").style.width = reverse_counter+"%";
+        
+        if(reverse_counter <= 0)
+        {
+            document.getElementById("progress-bar-ctr").style.width = "0%";
+            if (user_id === idUserHost)
+            {    
+                playRoomSocket.send(JSON.stringify({
+                    'type_send':'get_new_question',
+                    'message': 'get new question',
+                }));
+            }
+            clearInterval(downloadTimer);
+        }
+        
+    }
+}
+
+
+var speakerText = (text) => {
+    var msg = new SpeechSynthesisUtterance();
+    var voices = window.speechSynthesis.getVoices();
+    msg.voice = voices[10];
+    msg.voiceURI = "native";
+    msg.volume = 1;
+    msg.rate = 1;
+    msg.pitch = 0.8;
+    msg.text = text;
+    msg.lang = 'en-US';
+    speechSynthesis.speak(msg);
+}
+
+let currentQuestionCompete = {}
+let indexQuestionCurrentCompete = 0;
+let countQuestionWithNew = 0;
+let MAX_QUESTION = 10;
+let countCorrectNumber = 0;
+function tachTuKhoiDauNhay(text){
+    return text.split("'");  
+}
+
+let htmlRootDomQuestion = document.getElementById('ctr-area-render-dom-question');
+let chooseQuestionHtml = htmlRootDomQuestion.getAttribute('data-question-choose');
+let isAnswerQuestion = false;
+
+let dateNewQuestion;
+
+function checkAction(){
+    var arrSplitString1 = chooseQuestionHtml.split('-');
+    const getNameArray1 = arrSplitString1[0];
+    const getIndexArray1 = arrSplitString1[1];
+
+    if (isAnswerQuestion)
+    {
+        alert("Bạn đã hết lượt trả lời cho câu hỏi này!!");
+    }
+    else{
+
+        switch(getNameArray1)
+        {
+            case 'remove1WrongWordArray':
+
+                break;
+            case 'listenWriteWordMissingArray':
+                
+                const valueInputMiss = $('#ctr-text-miss').val();
+             
+                if (valueInputMiss === '')
+                {
+                    alert('Không được để trống input');
+                }
+                else{
+                    if(currentQuestionCompete.answer === valueInputMiss){
+                        
+                        countCorrectNumber++;
+                        $('#ctr-pryr-number').html(countCorrectNumber);
+                        
+                        playRoomSocket.send(JSON.stringify({
+                            'type_send':'post_answer_incrr_crr',
+                            'correct':true,
+                            "user_id":"{{request.user.id}}",
+                            "username":"{{request.user.username}}",
+                            "date_success":new Date().toLocaleString('en-US',{hour12:false}),
+                            'message': '',
+                        })); 
+                    }
+                    else{
+                        playRoomSocket.send(JSON.stringify({
+                            'type_send':'post_answer_incrr_crr',
+                            'correct':false,
+                            "user_id":"{{request.user.id}}",
+                            "username":"{{request.user.username}}",
+                            "date_success":new Date().toLocaleString('en-US',{hour12:false}),
+                            'message': '',
+                        })); 
+                    }
+                    isAnswerQuestion = true;
+                }
+            
+                break;
+            case 'pronunciationsOtherArray':
+                var sizeCheckedPronunciation = $('#mc_pr_input .mc_pr_choice input[name="ques"]:checked').size() > 0;
+                var getRadioCheckedPronun = $('#mc_pr_input .mc_pr_choice input[name="ques"]:checked');
+
+                if (sizeCheckedPronunciation) // co 1 radio duoc checked
+                {
+                    
+                    if (parseInt(getRadioCheckedPronun.attr("value")) === currentQuestionCompete.answer){
+
+                        countCorrectNumber++;
+                        $('#ctr-pryr-number').html(countCorrectNumber);
+                        playRoomSocket.send(JSON.stringify({
+                            'type_send':'post_answer_incrr_crr',
+                            'correct':true,
+                            "user_id":"{{request.user.id}}",
+                            "username":"{{request.user.username}}",
+                            "date_success":new Date().toLocaleString('en-US',{hour12:false}),
+                            'message': '',
+                        })); 
+                        
+                    }
+                    else{
+                         playRoomSocket.send(JSON.stringify({
+                            'type_send':'post_answer_incrr_crr',
+                            'correct':false,
+                            "user_id":"{{request.user.id}}",
+                            "username":"{{request.user.username}}",
+                            "date_success":new Date().toLocaleString('en-US',{hour12:false}),
+                            'message': '',
+                        })); 
+                    }
+                    isAnswerQuestion = true;
+                }
+                else{
+                    alert('Hãy chọn câu trả lời')
+                }
+
+            
+                break;
+            case 'chooseAnswerBestArray':
+    
+                break;
+        }
+    }
+}
+
+function getPostAnswerFromMember(data){
+    console.log(data)
+    const type_correct = data.correct;
+    const idUserPostAnswer = data.user_id;
+    const usernameUserPostAnswer = data.username;
+    const dateSuccessPost = Date.parse(data.date_success);
+    let countCorrectToSetRank = 0;
+    setStatusIcon(''+type_correct,idUserPostAnswer);
+    var scoreUserRequestGet = parseInt(document.getElementById(''+idUserPostAnswer).getAttribute('data-score'));
+
+    document.getElementById(''+idUserPostAnswer).setAttribute('data-time',data.date_success);
+
+    listUserItem.forEach(item =>{
+        var isHassClassCorrect =  item.classList.contains('ctr-pr-item_correct');
+        var getDateBigDateNew = Date.parse(item.getAttribute('data-time'));
+
+        if (isHassClassCorrect)
+        {
+            countCorrectToSetRank++;
+        }  
+    })
+    if(type_correct)
+    {
+        if(countCorrectToSetRank === 0)
+        {   
+            document.getElementById(''+idUserPostAnswer).setAttribute('data-score',scoreUserRequestGet + 30)
+            $('#'+idUserPostAnswer+' .ctr-pri-score').html(scoreUserRequestGet + 30)
+        }
+        else if(countCorrectToSetRank === 1)
+        {
+            document.getElementById(''+idUserPostAnswer).setAttribute('data-score',scoreUserRequestGet + 25)
+            $('#'+idUserPostAnswer+' .ctr-pri-score').html(scoreUserRequestGet + 25)
+        }
+        else if(countCorrectToSetRank === 2)
+        {
+            document.getElementById(''+idUserPostAnswer).setAttribute('data-score',scoreUserRequestGet + 20)
+            $('#'+idUserPostAnswer+' .ctr-pri-score').html(scoreUserRequestGet + 20)
+        }
+        document.getElementById(''+idUserPostAnswer).classList.add('ctr-pr-item_correct');
+    }
+    else{
+        document.getElementById(''+idUserPostAnswer).classList.add('ctr-pr-item_incorrect');
+    }
+       
+}
+  
+function removeClassCorrectIncorrect(){
+    listUserItem.forEach(item =>{
+       item.classList.remove('ctr-pr-item_incorrect');
+       item.classList.remove('ctr-pr-item_correct');       
+    })
+}
+
+playRoomSocket.onmessage = function (e) {
+    const data = JSON.parse(e.data);
+    console.log(data)
+
+    console.log(data[0].type_send)
+
+    switch(data[0].type_send)
+    {
+
+        case 'get_new_question':        
+            getNewQuestion();               
+            break;
+
+        case 'start_play_countdown':
+            initPlayCompete();
+            timeCountTimer();
+            break;
+        case 'post_answer_incrr_crr':
+            getPostAnswerFromMember(data[0]);        
+            break;
+
+        default:
+            console.log('ngoai le get send websocket')
+            break;
+    }
+};
+
+
+const initPlayCompete = () => {
+    MAX_QUESTION = arrayChooseObjectArray.length;
+    $('#ctr-pqs-total').html(MAX_QUESTION);
+    $('#ctr-pryr-total').html(MAX_QUESTION);
+    $('#ctr-pryr-number').html(0);
+
+}
+
+let indexArrayBig = -1;
+
+getNewQuestion = () => {
+    removeClassCorrectIncorrect();
+    setAllStatusIconThink();
+    if (countQuestionWithNew >= arrayChooseObjectArray.length)
+    {
+        alert("Hoan thanh het cau hoi");
+        return
+    }
+    else{
+        countDownProgress();    
+        dateNewQuestion = new Date().toLocaleString('en-US',{hour12:false});
+        currentQuestionCompete = {}
+        indexArrayBig++;
+        isAnswerQuestion = false;
+    
+        if (chooseQuestionHtml === '')
+        {
+            if (arrayChooseObjectArray.length == 0)
+            {
+                return;
+            }    
+        }
+    
+        
+        htmlRootDomQuestion.setAttribute('data-question-choose',arrayChooseObjectArray[indexArrayBig]);
+        chooseQuestionHtml = htmlRootDomQuestion.getAttribute('data-question-choose');
+        var arrSplitString = chooseQuestionHtml.split('-');
+        const getNameArray = arrSplitString[0];
+        const getIndexArray = arrSplitString[1];
+    
+        countQuestionWithNew++;
+        $('#ctr-pqs-number').html(countQuestionWithNew);
+    
+        switch(getNameArray)
+        {
+    
+            case 'remove1WrongWordArray':
+                
+                currentQuestionCompete = remove1WrongWordArray[getIndexArray];
+    
+                $('#ctr-area-render-dom-question').empty();
+                $('#ctr-area-render-dom-question').append(`
+                    <link href="{%  static 'css/er_wr.css' %}" rel="stylesheet" type="text/css">
+                    <div id="er_wr" class="ctst">
+                        <div class="ctt" id="ewp">
+                            <div>Omit a wrong word from the sentence.</div>
+                            <div>(Bỏ đi một từ sai trong câu.)</div>
+                        </div>	
+                        <div id="ewfw">
+                            <div id="eww" sentence="${currentQuestionCompete.question}" num_answer="${currentQuestionCompete.answer}">
+                                
+                            </div>
+                        </div>
+                        <div class="abct ctfll"><div class="ct_lesson"><span id="ctlls0">Gợi ý: </span><span id="ctlls1">Tham khảo thêm tại </span><span id="ctlls2"></span></div></div>	
+                    </div>
+                
+                `);
+    
+                $('#ctr-area-render-dom-question #eww').empty();
+                var splitArrayQuestionRemove = currentQuestionCompete.question.split(' ');
+                for(let i = 0; i < splitArrayQuestionRemove.length; i++)
+                {
+                    $('#ctr-area-render-dom-question #eww').append(`
+                        <div class="ewfc" id="ewfc${i}" value="${splitArrayQuestionRemove[i]}" data-index="${i+1}">
+                            <div class="ewc" id="ewc${i}">
+                                <div>${splitArrayQuestionRemove[i]}</div>
+                            </div>
+                        </div>
+                    `);
+                }
+    
+                break;
+            // case 'connectAudioCorrectArray':
+                
+            //     currentQuestionCompete = connectAudioCorrectArray[getIndexArray];
+                
+            //     break;
+    
+            case 'listenWriteWordMissingArray':
+                
+                currentQuestionCompete = listenWriteWordMissingArray[getIndexArray];
+                $('#ctr-area-render-dom-question').empty();
+                $('#ctr-area-render-dom-question').append(`
+                    <link href="{% static 'css/fi_li.css'%}" rel="stylesheet" type="text/css">
+                    <div id="fi_li" class="ctst">
+                        <div class="ctt" id="flp">
+                            <div>Listen and fill in the blank with missing words.</div>
+                            <div>(Nghe và điền từ còn thiếu vào chỗ trống.)</div>
+                        </div>	
+                        <div id="flfa">
+                            <div id="fla" class="jp-audio">
+                                
+                                    <ul class="jp-controls">
+                                        <li><span class="jp-play" id="jp-play-miss" tabindex="1" style="display: block;">play</span></li>
+                                        <li><span class="jp-pause" id="jp-pause-miss" tabindex="1" style="display: none;">pause</span></li>
+                                        </ul>
+                                    <div class="jp-progress-slide">
+                                        <div class="ui-slide-arrange" id="ui-slide-miss" style="width: 0%;"></div>
+                                    </div>
+                                
+                            </div>
+                        
+                        </div>	
+                        <div id="flfw" word="${currentQuestionCompete.question_first} ${currentQuestionCompete.answer} ${currentQuestionCompete.question_last}">${currentQuestionCompete.question_first} 
+                                <div class="flfin">
+                                    <input type="text" id="ctr-text-miss" class="flin" autocapitalize="off" autocorrect="off" value="">
+                                </div> ${currentQuestionCompete.question_last}
+                        </div>
+                    
+                    </div>
+                `);
+    
+                break;
+            // case 'putVerbInBracketsArray':
+                
+            //     currentQuestionCompete = putVerbInBracketsArray[getIndexArray];
+                
+            //     break;
+            case 'pronunciationsOtherArray':
+                
+                currentQuestionCompete = pronunciationsOtherArray[getIndexArray];
+                
+                const firstWord1 = tachTuKhoiDauNhay(currentQuestionCompete.question1)[0];
+                const middleWord1 = tachTuKhoiDauNhay(currentQuestionCompete.question1)[1];
+                const lastWord1 = tachTuKhoiDauNhay(currentQuestionCompete.question1)[2];
+    
+                const firstWord2 = tachTuKhoiDauNhay(currentQuestionCompete.question2)[0];
+                const middleWord2 = tachTuKhoiDauNhay(currentQuestionCompete.question2)[1];
+                const lastWord2 = tachTuKhoiDauNhay(currentQuestionCompete.question2)[2];
+    
+                const firstWord3 = tachTuKhoiDauNhay(currentQuestionCompete.question3)[0];
+                const middleWord3 = tachTuKhoiDauNhay(currentQuestionCompete.question3)[1];
+                const lastWord3 = tachTuKhoiDauNhay(currentQuestionCompete.question3)[2];
+               
+                const firstWord4 = tachTuKhoiDauNhay(currentQuestionCompete.question4)[0];
+                const middleWord4 = tachTuKhoiDauNhay(currentQuestionCompete.question4)[1];
+                const lastWord4 = tachTuKhoiDauNhay(currentQuestionCompete.question4)[2];
+    
+                $('#ctr-area-render-dom-question').empty();
+                $('#ctr-area-render-dom-question').append(`
+                    <link href="{% static 'css/mc_pr.css' %}" rel="stylesheet" type="text/css">
+    
+                    <div id="mc_pr_area">
+                        <div id="mc_pr_ins">
+                            <div id="mc_pr_inse">Choose the word with <span style="text-decoration: underline;">underlined</span> part pronounced differently. You can click the music note to hear the sound.</div>
+                            <div id="mc_pr_insv">(Chọn một từ có phần gạch chân được phát âm khác với các từ còn lại. Em có thể click vào nốt nhạc để nghe âm thanh.)</div>
+                        </div> 
+                        <div id="mc_pr_input">
+                            <div class="mc_pr_ques">
+                                <span class="mc_pr_choice">
+                                    <input type="radio" id="mc_pr_choice__1" name="ques" value="1">
+                            
+                                    <label for="mc_pr_choice__1" class="mc_pr_text">${firstWord1}<span style="border-bottom: 2px solid;">${middleWord1}</span>${lastWord1}
+                                    </label>
+                                </span>
+                                <span class="mc_pr_au" onclick="click_audio_mc_pr(1);"></span>
+                            </div>
+                            <div class="mc_pr_ques">
+                                <span class="mc_pr_choice">
+                                    <input type="radio" id="mc_pr_choice__2" name="ques" value="2">
+                            
+                                    <label for="mc_pr_choice__2" class="mc_pr_text">${firstWord2}<span style="border-bottom: 2px solid;">${middleWord2}</span>${lastWord2}
+                                    </label>
+                                </span>
+                                <span class="mc_pr_au" onclick="click_audio_mc_pr(2);"></span>
+                            </div>
+                            <div class="mc_pr_ques">
+                                <span class="mc_pr_choice">
+                                    <input type="radio" id="mc_pr_choice__3" name="ques" value="3">
+                            
+                                    <label for="mc_pr_choice__3" class="mc_pr_text">${firstWord3}<span style="border-bottom: 2px solid;">${middleWord3}</span>${lastWord3}
+                                    </label>
+                                </span>
+                                <span class="mc_pr_au" onclick="click_audio_mc_pr(3);"></span>
+                            </div>
+                            <div class="mc_pr_ques">
+                                <span class="mc_pr_choice">
+                                    <input type="radio" id="mc_pr_choice__4" name="ques" value="4">
+                            
+                                    <label for="mc_pr_choice__4" class="mc_pr_text">${firstWord4}<span style="border-bottom: 2px solid;">${middleWord4}</span>${lastWord4}
+                                    </label>
+                                </span>
+                                <span class="mc_pr_au" onclick="click_audio_mc_pr(4);"></span>
+                            </div>
+                            
+                        </div> 
+                        <div class="ge_arna"><div class="ge_ina"></div><div class="ge_tna">Em chưa trả lời câu hỏi này.</div></div>
+                        <script type="text/javascript" src="/static/js/mc_pr.js"><\/script>
+                    </div>
+                `);
+    
+                break;
+            case 'chooseAnswerBestArray':
+                console.log(6)
+                currentQuestionCompete = chooseAnswerBestArray[getIndexArray];
+                $('#ctr-area-render-dom-question').empty();
+                $('#ctr-area-render-dom-question').append(`
+                    <link href="{% static 'css/mc_vo.css' %}" rel="stylesheet" type="text/css">
+                    <div id="mc_vo_area">
+                        <div id="mc_vo_ins">
+                            <div id="mc_vo_inse">Choose the correct option.</div>
+                            <div id="mc_vo_insv">(Chọn đáp án đúng.)</div>
+                        </div> 
+                        <div id="mc_vo_arans">
+                                <div id="mc_vo_ans">${currentQuestionCompete.question}</div>
+                            </div>
+                                <div class="text-center" id="mc_vo_input">
+                                    <div class="inline-block">
+                                        <div class="mc_vo_ques">
+                                            <div class="mc_vo_choice">
+                                                <input type="radio" name="ques" value="${currentQuestionCompete.answer1}">
+                                                <div class="mc_vo_text">${currentQuestionCompete.answer1}</div>
+                                            </div>
+                                        </div>
+                                        <div class="mc_vo_ques">
+                                            <div class="mc_vo_choice">
+                                                <input type="radio" name="ques" value="${currentQuestionCompete.answer2}">
+                                                <div class="mc_vo_text">${currentQuestionCompete.answer2}</div>
+                                            </div>
+                                        </div>
+                                        <div class="mc_vo_ques">
+                                            <div class="mc_vo_choice">
+                                                <input type="radio" name="ques" value="${currentQuestionCompete.answer3}">
+                                                <div class="mc_vo_text">${currentQuestionCompete.answer3}</div>
+                                            </div>
+                                        </div>
+                                        <div class="mc_vo_ques">
+                                            <div class="mc_vo_choice">
+                                                <input type="radio" name="ques" value="${currentQuestionCompete.answer4}">
+                                                <div class="mc_vo_text">${currentQuestionCompete.answer4}</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>  
+                        <div class="ge_arna">
+                            <div class="ge_ina"></div>
+                            <div class="ge_tna">Em chưa trả lời câu hỏi này.</div>
+                        </div>
+                        <div class="gefle"><span id="gefl0">Gợi ý: </span><span id="gefl1">Tham khảo thêm tại </span><span id="gefl2"></span></div>  
+                    </div>
+                `);
+    
+            
+                break;
+            
+            
+            default:
+    
+                console.log('ngoai le name array')
+                
+                break;
+        }
+        console.log(currentQuestionCompete)
+
+        
+    }
+    
+}
+   
+
+
+    playRoomSocket.onopen = function(e) {
+        console.log('open play room')
+    }
+
+    playRoomSocket.onclose = function(e) {
+        console.error('play room socket closed unexpectedly');
+    };
+
+
+</script>
+{%endblock%}

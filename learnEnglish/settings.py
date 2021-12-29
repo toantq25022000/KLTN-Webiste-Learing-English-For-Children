@@ -31,7 +31,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
-    # 'channels',
+    'channels',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -44,6 +44,8 @@ INSTALLED_APPS = [
     'course',
     'order',
     'payment',
+    'competition',
+    'mathfilters',
 ]
 
 MIDDLEWARE = [
@@ -76,18 +78,14 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'learnEnglish.wsgi.application'
 
+ASGI_APPLICATION = 'learnEnglish.routing.application'
+
 
 # Database
 # https://docs.djangoproject.com/en/3.0/ref/settings/#databases
 
 DATABASES = {
-    #  'default': {
-    #     'ENGINE': 'django.db.backends.mysql',
-    #     'NAME': 'db_demo_english',
-    #     'USER':'root',
-    #     'PASSWORD':'0328513283',
-    #     'HOST':'localhost',     
-    # }
+   
      'default': {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'oBJ23rxPHk',
@@ -125,7 +123,7 @@ AUTH_USER_MODEL = 'usermember.MyUser'
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'Asia/Ho_Chi_Minh'
 
 USE_I18N = True
 
@@ -149,3 +147,11 @@ MEDIA_ROOT = os.path.join(BASE_DIR,'media')
 
 PAYPAL_CLIENT_ID = "ARaZ2EHNqXvXfl_L3mRZryFDkDZ_SEJc4JtcxwP25EzgP3I_Q3nr8JsyVpMpf-HnuPetz7kl0v_SY0W5"
 PAYPAL_CLIENT_SECRET = "EBfDUYC-WIR-wrMtoQ_3g-tj0vhZCd15mUcCJjsZeDRx28aPOVMTf3qbsrkuAlVJ4ScEHFiO1CXB42-k"
+
+
+CHANNEL_LAYERS = {
+    "default": {
+        "BACKEND": "channels.layers.InMemoryChannelLayer"
+    }
+}
+

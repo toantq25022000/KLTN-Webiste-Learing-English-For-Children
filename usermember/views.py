@@ -15,9 +15,10 @@ from .form import ProfileForm
 
 @login_required(login_url='/login/')
 def ViewDashboardUser(request,name_url):
-    
     user_ = MyUser.objects.get(pk=request.user.id)
     std_course_qs = Student.objects.filter(user_id = user_.id)
+
+    std_course = None
     if std_course_qs:
         std_course = std_course_qs[0]
     if name_url == 'course':
