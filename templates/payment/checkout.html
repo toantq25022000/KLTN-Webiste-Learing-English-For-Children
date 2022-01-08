@@ -126,6 +126,7 @@
   </form>
   <!--Grid row-->
 </div>
+{{ order_id|json_script:"order_id" }}
 {%endblock%}
 {% block paypal %}
 
@@ -134,6 +135,7 @@
 {%if pay_meth %}
 
 <script>
+  const orderId = JSON.parse(document.getElementById('order_id').textContent);
   function getCookie(name) {
     let cookieValue = null;
     if (document.cookie && document.cookie !== "") {
@@ -152,11 +154,7 @@
   var csrftoken = getCookie("csrftoken");
 
   var url = "{% url 'payment:paypal_payment' %}";
-  console.log('{{request.get_full_path}}')
-  console.log(url)
-
-  
-  
+ 
   paypal.Buttons({createOrder: function (data, actions) {
         // This function sets up the details of the transaction, including the amount and line item details.
         return actions.order.create({
@@ -172,7 +170,7 @@
       onApprove: function (data, actions) {
         // This function captures the funds from the transaction.
         return actions.order.capture().then(function (details) {
-          console.log(details);
+          
           sendData();
           function sendData() {
             fetch(url, {
@@ -186,7 +184,15 @@
                 payment_id: details.payer.payer_id,
                 status: details.status,
               }),
-            });
+              
+            })
+            .then(function(res)
+              { 
+                const url_href = "{% url 'payment:success_payment' id_order=3 %}";
+                window.location.href = url_href.replace("3", orderId);
+                
+              })
+              
           }
         });
       },

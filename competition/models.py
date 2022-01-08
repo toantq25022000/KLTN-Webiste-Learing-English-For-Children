@@ -56,7 +56,6 @@ class RoomCompetition(models.Model):
 
 
     def delete(self):
-        print('delete')
         room  = RoomCompetition.objects.filter(id = self.id)
         if len(room) > 0:
             room = room[0]
@@ -81,7 +80,7 @@ class RoomCompetition(models.Model):
         if len(room) > 0:
             room = room[0]
             channel_layers = get_channel_layer()
-            print(room.users.count())
+           
             item = {
                 'id':room.id,
                 'id_room':room.id_room,
@@ -115,12 +114,35 @@ class RoomCompetition(models.Model):
         self.update_date = timezone.localtime(timezone.now())
         super(RoomCompetition, self).save(*args, **kwargs)
        
-        print(self.update_date)
+        
         transaction.on_commit(lambda: self.check_room_and_send_data(self.id,method_save))
         
 
     def __str__(self):
         return f"Room of {self.user_host.username} - Id room: {self.id_room}"
+
+class ManagerUserCompetition(models.Model):
+    user = models.ForeignKey(MyUser, on_delete = models.CASCADE)
+    title =  models.CharField(default='',max_length=75)
+    star_title = models.PositiveSmallIntegerField(default=1)
+    total_battle = models.PositiveSmallIntegerField(default=0)
+    win_1v1 = models.PositiveSmallIntegerField(default=0)
+    win_1v9 = models.PositiveSmallIntegerField(default=0)
+    total_title = models.PositiveSmallIntegerField(default=0)
+
+    def __str__(self):
+        return self.user.username
+        
+class ScoreCompetition(models.Model):
+    
+    user = models.ForeignKey(MyUser, on_delete = models.CASCADE)
+    type_compete = models.ForeignKey(TypeCompetition, on_delete = models.CASCADE)
+    result_rank = models.CharField(default='',max_length=75)
+    points_title = models.PositiveSmallIntegerField(default=0)
+    timestart =  models.DateTimeField()
+    
+    def __str__(self):
+        return self.user.username
 
 
 

@@ -377,22 +377,23 @@ btnSubmitExampleVioEnd.addEventListener('click', () => {
                 )
                 //render data history example
                 
-                $('#table_history_example_vioend tbody').empty();
+                $('#table_history_example_vioend .tbody .r-body').empty();
                 for(i = 0; i < dataHistory.length; i++)
                 {
                     let toUTC_timeStartHistory = new Date(dataHistory[i].time_start).toISOString().replace(/T/, ' ').replace(/\..+/, '');
                     let toUTC_timeFinishHistory = new Date(dataHistory[i].time_finish).toISOString().replace(/T/, ' ').replace(/\..+/, '');
                     let sumTimeItemHistory = (Date.parse(toUTC_timeFinishHistory) - Date.parse(toUTC_timeStartHistory))/1000;
-                    $('#table_history_example_vioend tbody').append(
+                    $('#table_history_example_vioend .tbody .r-body').append(
                         `
-                        <tr>
-                            <th>${i+1}</th>
-                            <td>Hoàn thành</td>
-                            <td>${dataHistory[i].score}</td>
-                            <td>${i+1}</td>
-                            <td>${sumTimeItemHistory} giây</td>
-                            <td>Bắt đầu : ${toUTC_timeStartHistory}<br >Kết thúc : ${toUTC_timeFinishHistory}</td>
-                        </tr>
+                    
+                        <div class="tr r-row">
+                            <div class="td td-first"></div>
+                            <div class="td">Hoàn thành</div>
+                            <div class="td">${dataHistory[i].score}</div>
+                            <div class="td">${dataHistory.length - i}</div>
+                            <div class="td">${sumTimeItemHistory} giây</div>
+                            <div class="td">Bắt đầu: ${toUTC_timeStartHistory}<br>Kết thúc : ${toUTC_timeFinishHistory}</div>
+                        </div>
                         `
                     )
                 }

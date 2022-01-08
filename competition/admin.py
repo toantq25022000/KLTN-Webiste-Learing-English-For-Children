@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import TypeCompetition, RoomCompetition
+from .models import TypeCompetition, RoomCompetition,ScoreCompetition,ManagerUserCompetition
 # Register your models here.
 
 admin.site.register(TypeCompetition)
@@ -13,4 +13,18 @@ class RoomCompetitionAdmin(admin.ModelAdmin):
         model = RoomCompetition
 
 admin.site.register(RoomCompetition, RoomCompetitionAdmin)
+
+class ScoreCompetitionAdmin(admin.ModelAdmin):
+    list_display = ['id','user','type_compete','result_rank','points_title','timestart']
+    search_fields = ['user__username']
+    list_filter = ['type_compete','timestart']
+
+admin.site.register(ScoreCompetition, ScoreCompetitionAdmin)
+
+class ManagerUserCompetitionAdmin(admin.ModelAdmin):
+    list_display = ['id','user','title','total_battle','win_1v1','win_1v9','total_title']
+    search_fields = ['user__username']
+    list_filter = ['title']
+    
+admin.site.register(ManagerUserCompetition, ManagerUserCompetitionAdmin)
 

@@ -59,7 +59,7 @@
                                     <a href="{% url 'home:index' %}"><img src="{% static 'img/logo/logo.png' %}" alt=""></a>
                                 </div>
                             </div>
-                            <div class="col-xl-4 col-lg-4">
+                            <div class="col-xl-4 col-lg-4 search-mobile" >
                                 <form action="{% url 'home:search-text'%}" method="GET" class="khta-search-boxtop navbar-form form-inline">
                                     <input class="form-control khta_form" name="q"  autocomplete="off" placeholder="Tìm kiếm chủ đề bài học" value="{{result}}" required>
                                     <button type="submit" class="khta-btn-search">
@@ -74,7 +74,7 @@
                                     <div class="main-menu d-none d-lg-block">
                                         <nav>
                                             <ul id="navigation">                                                                                          
-                                                <li class="active" ><a href="{% url 'home:index' %}">Home</a></li>
+                                                <li class="active" ><a href="{% url 'home:index' %}">Trang chủ</a></li>
                                                 <li><a href="#">Khóa học</a>
                                                     <ul class="submenu">
                                                     {% nav_course as navtags%}
@@ -92,7 +92,7 @@
                                                     <li>
                                                         <!-- dropdown user info -->
                                                         <div class="btn-group dropdown-user">
-                                                            <img src="https://lh3.googleusercontent.com/a-/AOh14Gi1JSOdI9N6IcVd3wqIAcdE2c7v-4HWIWInIeXlFg=s400"  class="dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                                                            <img src="{{request.user.std_img.url}}"  class="dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
                                                                
                                                             <div class="dropdown-menu dropdown-menu-right dropdown-menu-user">
                                                                 <a class="dropdown-item" href="{% url 'usermember:dashboard_user' name_url='course' %}"><i class="fa fa-list-alt" aria-hidden="true"></i> Vào học</a>
@@ -155,7 +155,7 @@
                                 <!-- social -->
                                 <div class="footer-social">
                                     <a href="#"><i class="fab fa-twitter"></i></a>
-                                    <a href="https://bit.ly/sai4ull"><i class="fab fa-facebook-f"></i></a>
+                                    <a href="#"><i class="fab fa-facebook-f"></i></a>
                                     <a href="#"><i class="fab fa-pinterest-p"></i></a>
                                 </div>
                             </div>
@@ -166,7 +166,7 @@
                             <div class="footer-tittle">
                                 <h4>Về chúng tôi</h4>
                                 <ul>
-                                    <li><a href="#">Giới thiệu về Unica</a></li>
+                                    <li><a href="{% url  'home:about'  %}">Giới thiệu</a></li>
                                     <li><a href="#">Câu hỏi thường gặp</a></li>
                                     <li><a href="#">Điều khoản dịch vụ</a></li>
                                     <li><a href="#">Hướng dẫn thanh toán</a></li>
@@ -178,10 +178,10 @@
                     <div class="col-xl-2 col-lg-4 col-md-4 col-sm-6">
                         <div class="single-footer-caption mb-50">
                             <div class="footer-tittle">
-                                <h4>Cộng đồng</h4>
+                                <h4>Khách hàng/ Đối tác</h4>
                                 <ul>
                                     <li><a href="#">Chăm sóc khách hàng</a></li>
-                                    <li><a href="#">Blog</a></li>
+                                    <li><a href="{% url  'home:contact'  %}">Liên hệ</a></li>
                                     
                                 </ul>
                             </div>
@@ -275,7 +275,10 @@
 <script src="{% static 'js/plugins.js'%}"></script>
 <script src="{% static 'js/main.js'%}"></script>
 <script src="{% static 'js/app.js'%}"></script>
+
 {% block scripts %}{% endblock scripts %}
+
 {% block paypal %}{% endblock paypal %}
+<script async src="https://dochat.vn/code.js?id=9211231141219372896"></script>
 </body>
 </html>

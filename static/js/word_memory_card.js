@@ -13,7 +13,7 @@ const btnReplayWmCard = document.getElementById('khta_breplay_card')
 
 //
 const areaPieceCard = document.getElementById("areapiece_card");
-let itemDivCard =  Array.from(document.querySelectorAll('.khta_game_card')); ;
+let itemDivCard =  Array.from(document.querySelectorAll('.khta_game_card'));
 const yScoreCard = document.getElementById("yscore_card");
 const totalScoreCard = document.getElementById("tscore_card");
 const numberTurnCard = document.getElementById("number_turn_card");
@@ -119,8 +119,8 @@ loadDataWMCard = () => {
                 }
                 listCard.push(item)
             });
-
-           
+            
+            scoreHeaderWMCard.innerHTML = scoreJsonWMCard
 
             if (isDoingWMCard == 1) {
                 isDoingFalseWMCard.style.display = "none"
@@ -153,15 +153,15 @@ loadDataWMCard = () => {
     var minutesLabel = document.getElementById("kpt_minute");
     var secondsLabel = document.getElementById("kpt_sec");
     var totalSeconds = 0;
-    counterTime = setInterval(setTime, 1000);
+    counterTime = setInterval(setTimeCard, 1000);
 
-    function setTime() {
+    function setTimeCard() {
       ++totalSeconds;
-      secondsLabel.innerHTML = pad(totalSeconds % 60);
-      minutesLabel.innerHTML = pad(parseInt(totalSeconds / 60));
+      secondsLabel.innerHTML = padCard(totalSeconds % 60);
+      minutesLabel.innerHTML = padCard(parseInt(totalSeconds / 60));
     }
 
-    function pad(val) {
+    function padCard(val) {
       var valString = val + "";
       if (valString.length < 2) {
         return "0" + valString;
@@ -204,8 +204,8 @@ createElementCard = () => {
     areaPieceCard.appendChild(newDiv);
     //
   }
+  itemDivCard =  Array.from(document.querySelectorAll('.khta_game_card'));
  
-
 }
  
 
@@ -318,6 +318,11 @@ baseGetPostDataWMCard().then(function (response) {
 });
 
 resultGameWMCard = () => {
+    scoreJsonWMCard = scoreWMCard
+    isDoingWMCard = 1
+    isGetWMCard = 1 // post du lieu
+    loadDataWMCard();
+
     areaStartWmCard.style.display = 'none';
     areaPlayWmCard.style.display = 'none';
     clearInterval(counterTime);
@@ -336,11 +341,6 @@ resultGameWMCard = () => {
     var minutesLabel = document.getElementById("kpt_minute").textContent;
     var secondsLabel = document.getElementById("kpt_sec").textContent;
     document.getElementById("khtat_time_card").innerHTML = minutesLabel + ':' + secondsLabel;
-
-    scoreJsonWMCard = scoreWMCard
-    isDoingWMCard = 1
-    isGetWMCard = 1 // post du lieu
-    loadDataWMCard()
 
 }
 
@@ -379,6 +379,7 @@ clickItemCard = () => {
     
               if (countClickCard === 2) {
                 // dang lat card thu 2
+               
                 if (arrayContainerTwoCard[0] === dataId) {
                 
                   addStartCard();
@@ -389,7 +390,7 @@ clickItemCard = () => {
     
                   for (let k = 0; k < itemDivCard.length; k++) {
                     if (
-                      itemDivCard[k].getAttribute("atau") ==
+                      itemDivCard[k].getAttribute("atau") ===
                       arrayContainerTwoCard[0]
                     ) {
                       if (itemDivCard[k].classList.contains("khta_piece_act")) {
@@ -415,17 +416,16 @@ clickItemCard = () => {
                 } else {
                   ifDefaultClickWMCard = true;
                  
-                  setTimeout(() => {
+                  setTimeout(()=>{
+
                     for (let k = 0; k < itemDivCard.length; k++) {
-                      if (
-                        itemDivCard[k].getAttribute("atau") ==
-                        arrayContainerTwoCard[0]
-                      ) {
+                      if (itemDivCard[k].getAttribute("atau") === arrayContainerTwoCard[0]) {
+                        
                         if (itemDivCard[k].classList.contains("khta_piece_act")) {
+                          console.log('tim duoc')
                           itemDivCard[k].classList.remove("transform1");
                           itemDivCard[k].classList.remove("khta_piece_act");
-                          const childImgActive0 =
-                            itemDivCard[k].querySelector(".khta_game1_img");
+                          const childImgActive0 = itemDivCard[k].querySelector(".khta_game1_img");
                           childImgActive0.style.display = "none";
                           childImgActive0.classList.remove("transform2");
     
@@ -441,13 +441,14 @@ clickItemCard = () => {
                       }
                     }
                     ifDefaultClickWMCard = false;
-                    
                     return;
-                  }, 1000);
+                  },600)
+                    
+                    
                 }
               }
-              if (ifDefaultClickWMCard) {
-              } else {
+              if (!ifDefaultClickWMCard) {
+              
                 arrayContainerTwoCard.push(dataId);
               
               }

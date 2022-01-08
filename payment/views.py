@@ -1,5 +1,6 @@
+from django.http.response import HttpResponse
 from django.shortcuts import render,redirect
-from django.http import HttpResponseRedirect
+from django.http import HttpResponseRedirect,JsonResponse
 from django.contrib.auth.decorators import login_required
 #model
 from payment.models import BillingAddress
@@ -45,6 +46,7 @@ class CheckoutTemplateView(LoginRequiredMixin, View):
         
         order_item = order_qs[0].items.all()
         order_total = order_qs[0].get_totals()
+        order_id =order_qs[0].id
         order_total_usd = format_us_currency(round(float(order_total)/22639.85,2))
         if not order_item.exists():
             return redirect('home:index')
@@ -57,7 +59,8 @@ class CheckoutTemplateView(LoginRequiredMixin, View):
             'payment_method':payment_method,
             'paypal_client_id':settings.PAYPAL_CLIENT_ID,
             'pay_meth':pay_meth,
-            'order_total_usd':order_total_usd
+            'order_total_usd':order_total_usd,
+            'order_id':order_id,
         }
         
         return render(request,'payment/checkout.html',context)
@@ -101,24 +104,37 @@ class CheckoutTemplateView(LoginRequiredMixin, View):
                         amount=order.get_totals()
                     )
                     order_cash_delivery.save()
-                    return redirect('payment:success_order_cash_on_delivery')
+                    return redirect('payment:success_payment',id_order=order.id)
                 #paypal
                 if pay_method.payment_method == 'PayPal':
                     
-                    return redirect(reverse('payment:checkout') + "?pay_meth=" + pay_method.payment_method)
-            
+                    return redirect(reverse('payment:checkout') + "?pay_meth=" + pay_method.payment_method)  
             return redirect('payment:checkout')
         
+
+def success_payment(request,id_order): 
+    order_qs = Order.objects.filter(id=id_order)   
+    if not order_qs.exists():
+        return redirect('home:index')
+    
+    order_item = order_qs[0].items.all() 
+    order_total = order_qs[0].get_totals()
+    method_pay = order_qs[0].get_payment_method_display
+
+    context = {
+        "Ma_GD":"DH"+"{0:0>7}".format(id_order),
+        'order_item':order_item,
+        'order_total':order_total,
+        'method_pay':method_pay,
+    }
+    return render(request,'payment/success_payment.html',context)
 
 class paypalPaymentMethod(View):
     def post(self,request):
         data = json.loads(request.body)
-       
         order_id = data['order_id']    
-              
-        payment_id = data['payment_id']  
-                   
-        status = data['status']     
+        payment_id = data['payment_id']             
+        status = data['status']       
                    
         if status ==  'COMPLETED':
             if request.user.is_authenticated:
@@ -155,7 +171,6 @@ class paypalPaymentMethod(View):
                     std_course_qs = StudentCourse.objects.filter(user=request.user,course=obj.item.id)
                     #da ton tai khoa hoc nay
                     if std_course_qs.exists():
-                        print("std course exists")
                         #udpate and addition days , finish date
                         std_course = std_course_qs[0]
                         day_vip = obj.vip_days
@@ -167,7 +182,6 @@ class paypalPaymentMethod(View):
                             std_course.lifetime = False
                             std_course.save()
                     else:
-                        print("std course NOT exists")
                         #create new student course
                         start_date = datetime.now()
                         day_vip = obj.vip_days
@@ -182,18 +196,10 @@ class paypalPaymentMethod(View):
                         )
                     # save purchased is true 
                     obj.purchased = True
-                    obj.save() 
-                    
-                return redirect('payment:success_payment')
+                    obj.save()  
+                return JsonResponse("Payment completed!", safe=False)
             else:
-                return redirect('home:index')
+                return JsonResponse("Payment Error!", safe=False)
         else:      
-            return redirect('home:index') 
+            return JsonResponse("Payment Error!", safe=False)
 
-
-def success_order_cash_on_delivery(request):
-    return render(request,'payment/success_orderCashOnDelivery.html')
-
-
-def success_payment(request):
-    return render(request,'payment/success_payment.html')

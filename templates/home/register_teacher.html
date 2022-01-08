@@ -1,0 +1,220 @@
+{% extends "pages/base.html" %} 
+{% block title %} Đăng ký làm giảng viên 
+{%endblock %} 
+{%load static%} 
+{%block content%}
+<!--? slider Area Start-->
+<section class="slider-area slider-area2 h-100px"></section>
+<div class="container container-h-100 container-visibility">
+  <div class="row">
+    <div class="col-xs-12 col-sm-8 col-md-8 col-sm-offset-2 col-md-offset-2 m-auto">
+      <form action="{{request.get_full_path}}"  method="POST" id="form-register-teacher">
+        {%csrf_token%}
+        <h2 class="center_counter text-center">
+          ĐĂNG KÝ GIẢNG VIÊN <small></small>
+        </h2>
+        <div id="message_result">
+           
+        </div>
+        <div style="display: block">
+          <div class="row">
+            <div class="col-md-6 mb-3">
+              <div class="form-group">
+                <div
+                  class="form-group field-mregister_teaching-fullname required"
+                >
+                  <input
+                    type="text"
+                    id="mregister_teaching-fullname"
+                    class="form-control input-lg-fix"
+                    name="fullname_id"
+                    value="{{request.user.first_name}} {{request.user.last_name}}"
+                    placeholder="Họ tên"
+                    required
+                  />
+
+                  <div class="help-block"></div>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-6 mb-3">
+              <div class="form-group">
+                <div class="form-group field-mregister_teaching-title required">
+                  <input
+                    type="text"
+                    id="mregister_teaching-title"
+                    class="form-control input-lg-fix"
+                    name="title_id"
+                    value=""
+                    placeholder="Chức danh"
+                    required
+                  />
+
+                  <div class="help-block"></div>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-6 mb-3">
+              <div class="form-group">
+                <div class="form-group field-mregister_teaching-phone required">
+                  <input
+                    type="text"
+                    id="mregister_teaching-phone"
+                    class="form-control input-lg-fix"
+                    name="phone_id"
+                    value="0328513283"
+                    placeholder="{{request.user.phone_number}}"
+                    required
+                  />
+
+                  <div class="help-block"></div>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-6 mb-3">
+              <div class="form-group">
+                <div class="form-group field-mregister_teaching-email required">
+                  <input
+                    type="email"
+                    id="mregister_teaching-email"
+                    class="form-control input-lg-fix"
+                    name="email_id"
+                    value="{{request.user.email}}"
+                    required
+                    placeholder="Địa chỉ email"
+                  />
+
+                  <div class="help-block"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="form-group mb-3">
+            <div class="form-group field-mregister_teaching-video_url">
+              <input
+                type="text"
+                id="mregister_teaching-video_url"
+                class="form-control input-lg-fix"
+                name="linkVideo_id"
+                placeholder="Link video mẫu của bạn (nếu có)"
+                
+              />
+
+              <div class="help-block"></div>
+            </div>
+          </div>
+          <div class="form-group mb-3">
+            <div
+              class="form-group field-mregister_teaching-facebook_link required"
+            >
+              <input
+                type="text"
+                id="mregister_teaching-facebook_link"
+                class="form-control input-lg-fix"
+                name="linkFB_id"
+                placeholder="Facebook của bạn"
+                required
+              />
+
+              <div class="help-block"></div>
+            </div>
+          </div>
+          <div class="form-group mb-3">
+            <div class="form-group field-mregister_teaching-address required">
+              <input
+                type="text"
+                id="mregister_teaching-address"
+                class="form-control input-lg-fix"
+                name="address_id"
+                placeholder="Địa chỉ"
+                value="{{request.user.address}}"
+                required
+              />
+
+              <div class="help-block"></div>
+            </div>
+          </div>
+          
+          <div class="form-group mb-3">
+            <div class="form-group field-mregister_teaching-experience">
+              <textarea
+                id="mregister_teaching-experience"
+                class="form-control"
+                name="experience_id"
+                style="font-size: 18px; height: 140px"
+                placeholder="Kinh nghiệm giảng dạy của bạn"
+                required
+              ></textarea>
+
+              <div class="help-block"></div>
+            </div>
+          </div>
+             
+          <div class="clear"></div>
+          <div class="row mt-5 mb-4">
+            <div class="col-xs-12 col-md-12 text-center">
+              <input
+                type="submit"
+                value="ĐĂNG KÝ NGAY"
+                class="btn-primary btn-block btn-lg"
+                tabindex="7"
+              />
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+{% endblock %}
+{%block scripts %}
+<script>
+    var frm = $("#form-register-teacher");
+
+    frm.submit(function (e) {
+        e.preventDefault();
+    
+        $.ajax({
+            type: frm.attr("method"),
+            url: frm.attr("action"),
+            data: frm.serialize(),
+            success: function (response) {
+                let typeMessage = '';
+                let textMessage = '';
+                if(response.status === 500)
+                {
+                    typeMessage = 'warning';
+                    textMessage = 'Tài khoản này đã là học viên. Hãy thử lại sau!';
+                } 
+                else if(response.status === 400)
+                {
+                    typeMessage = 'warning';
+                    textMessage = 'Tài khoản này đã đăng ký làm giảng viên rồi!';
+                } 
+                else if(response.status === 300)
+                {
+                    typeMessage = 'danger';
+                    textMessage = 'Tài khoản này đã đăng ký làm giảng viên rồi!';
+                } 
+                else
+                {
+                    typeMessage = 'success';
+                    textMessage = 'Chúc mừng bạn đã đăng ký làm giảng viên thành công!';
+                }  
+                $('#message_result').empty();
+                $('#message_result').append(`
+                <div class="alert alert-${typeMessage} alert-dismissible fade show" role="alert">
+                     ${textMessage}
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+                `)
+                
+            },
+            error: function (error) {
+                
+            },
+        })
+    });
+</script>
+{% endblock %}

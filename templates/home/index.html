@@ -18,9 +18,9 @@ Trang chủ
                         <div class="row">
                             <div class="col-xl-6 col-lg-7 col-md-12">
                                 <div class="hero__caption">
-                                    <h1 data-animation="fadeInLeft" data-delay="0.2s">Online learning<br> platform</h1>
-                                    <p data-animation="fadeInLeft" data-delay="0.4s">Build skills with courses, certificates, and degrees online from world-class universities and companies</p>
-                                    <a href="#" class="btn hero-btn" data-animation="fadeInLeft" data-delay="0.7s">Join for Free</a>
+                                    <h1 data-animation="fadeInLeft" data-delay="0.2s">Nền tảng học tập<br> trực tuyến</h1>
+                                    <p data-animation="fadeInLeft" data-delay="0.4s">Xây dựng được các kỹ năng từ những giảng viên giàu kinh nghiệm, được đào tạo bài bản.</p>
+                                    <a href="#" class="btn hero-btn" data-animation="fadeInLeft" data-delay="0.7s">Tham gia ngay</a>
                                 </div>
                             </div>
                         </div>
@@ -38,8 +38,8 @@ Trang chủ
                                 <img src="{% static 'img/icon/icon1.svg' %}" alt="">
                             </div>
                             <div class="features-caption">
-                                <h3>6+ UX courses</h3>
-                                <p>The automated process all your website tasks.</p>
+                                <h3>5+ Khóa học</h3>
+                                <p>Quá trình tự động hóa tất cả các tác vụ trang web của bạn.</p>
                             </div>
                         </div>
                     </div>
@@ -49,8 +49,8 @@ Trang chủ
                                 <img src="{% static 'img/icon/icon2.svg' %}" alt="">
                             </div>
                             <div class="features-caption">
-                                <h3>Expert instructors</h3>
-                                <p>The automated process all your website tasks.</p>
+                                <h3>Chuyên gia hướng dẫn</h3>
+                                <p>Quá trình tự động hóa tất cả các tác vụ trang web của bạn.</p>
                             </div>
                         </div>
                     </div>
@@ -60,8 +60,8 @@ Trang chủ
                                 <img src="{% static 'img/icon/icon3.svg' %} " alt="">
                             </div>
                             <div class="features-caption">
-                                <h3>Life time access</h3>
-                                <p>The automated process all your website tasks.</p>
+                                <h3>Kiểm soát thời gian</h3>
+                                <p>Quá trình tự động hóa tất cả các tác vụ trang web của bạn.</p>
                             </div>
                         </div>
                     </div>
@@ -87,25 +87,14 @@ Trang chủ
                                 <a href="{% url 'course:detailcourse' item.id %}"><img src="{{item.course_img.url}}" al t=""></a>
                             </div>
                             <div class="properties__caption">
-                                <p>Giáo viên có kinh nghiệm</p>
+                                <p>Giảng viên có kinh nghiệm</p>
                                 <h3><a href="{{item.course_img.url}}">{{item.title}}</a></h3>
                                 <p>
                                     {{item.excerpt}}
                                 </p>
-                                <div class="properties__footer d-flex justify-content-between align-items-center">
-                                    <div class="restaurant-name">
-                                        <div class="rating">
-                                            <i class="fas fa-star"></i>
-                                            <i class="fas fa-star"></i>
-                                            <i class="fas fa-star"></i>
-                                            <i class="fas fa-star"></i>
-                                            <i class="fas fa-star-half"></i>
-                                        </div>
-                                        <p><span>(4.5)</span> based on 120</p>
-                                    </div>
-                                    
+                                <div class="properties__footer d-flex justify-content-between align-items-center">          
                                     <div class="price">
-                                        <span> {{item.price_month|intcomma }} </span><sub>/month</sub>
+                                        <span> {{item.price_month|intcomma }} </span><sub>/tháng</sub>
                                     </div>
                                 </div>
                                 <a href="{% url 'course:detailcourse' item.id %}" class="border-btn border-btn2">Xem chi tiết</a>
@@ -162,7 +151,7 @@ Trang chủ
                 <div class="right-content1">
                     <!-- img -->
                     <div class="right-img">
-                        <img src="{% static 'img/gallery/about.png' %} " alt="">
+                        
 
                         <div class="video-icon" >
                             <a class="popup-video btn-icon" href="https://www.youtube.com/watch?v=up68UAfH0d0"><i class="fas fa-play"></i></a>
@@ -222,51 +211,17 @@ Trang chủ
                     </div>
                 </div>
                 <div class="team-active">
+                    {%for tItem in teacher%}
                     <div class="single-cat text-center">
                         <div class="cat-icon">
-                            <img src="{% static 'img/gallery/team1.png' %} " alt="">
+                            <img src="{{tItem.user.std_img.url}}" alt="">
                         </div>
                         <div class="cat-cap">
-                            <h5><a href="services.html">Mr. Urela</a></h5>
-                            <p>The automated process all your website tasks.</p>
+                            <h5><a href="services.html">{{tItem.fullname}}</a></h5>
+                            <p>{{tItem.title}}</p>
                         </div>
                     </div>
-                    <div class="single-cat text-center">
-                        <div class="cat-icon">
-                            <img src="{% static 'img/gallery/team2.png' %} " alt="">
-                        </div>
-                        <div class="cat-cap">
-                            <h5><a href="services.html">Mr. Uttom</a></h5>
-                            <p>The automated process all your website tasks.</p>
-                        </div>
-                    </div>
-                    <div class="single-cat text-center">
-                        <div class="cat-icon">
-                            <img src="{% static 'img/gallery/team3.png' %} " alt="">
-                        </div>
-                        <div class="cat-cap">
-                            <h5><a href="services.html">Mr. Shakil</a></h5>
-                            <p>The automated process all your website tasks.</p>
-                        </div>
-                    </div>
-                    <div class="single-cat text-center">
-                        <div class="cat-icon">
-                            <img src="{% static 'img/gallery/team4.png' %} " alt="">
-                        </div>
-                        <div class="cat-cap">
-                            <h5><a href="services.html">Mr. Arafat</a></h5>
-                            <p>The automated process all your website tasks.</p>
-                        </div>
-                    </div>
-                    <div class="single-cat text-center">
-                        <div class="cat-icon">
-                            <img src="{% static 'img/gallery/team3.png' %} " alt="">
-                        </div>
-                        <div class="cat-cap">
-                            <h5><a href="services.html">Mr. saiful</a></h5>
-                            <p>The automated process all your website tasks.</p>
-                        </div>
-                    </div>
+                    {%endfor%}
                 </div>
             </div>
         </section>
@@ -278,7 +233,7 @@ Trang chủ
                     <div class="text-center text-center-v2 form-group">
                         <div class="txt-bc-gv"><p class="text-white">Trở thành Giảng viên OMG</p></div>
                         <p class="text-white2">Hơn 100 giảng viên đã có khóa học trên OMG</p>
-                        <a href="/teacher" class="text-bold">Đăng ký ngay</a>
+                        <a href="{% url 'home:registerTeacher' %}" class="text-bold">Đăng ký ngay</a>
                     </div>
                 
             </div>

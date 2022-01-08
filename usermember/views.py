@@ -59,9 +59,6 @@ def post_data_profile(request):
     user_ = MyUser.objects.get(pk=request.user.id)
     if request.method == 'post' or request.method == 'POST':
         
-        # create a form instance and populate it with data from the request:
-        # form = ProfileForm(request.POST,instance=user_)
-            # check whether it's valid:
         
         first_name = request.POST.get('first_name')
         last_name = request.POST.get('last_name')

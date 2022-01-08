@@ -2,28 +2,26 @@
 
 {%load static%}
 {% block scripts %}
-  
-  {% if arrange_ans is True %}
-  <script src="{% static 'js/arrange-sentence.js'%}" ></script>
+  {%if golden_fish is True %}
+  <script src="{% static 'js/golden-fish.js'%}" ></script>
   {%endif%}
-  {% if missing_ans is True %}
-    <script src="{% static 'js/write-word-missing.js'%}" ></script>
+  {%if game_card is True %}
+   <script src="{% static 'js/word_memory_card.js'%}" ></script>
   {%endif%}
   {% if choice_ans is True %}
     <script src="{% static 'js/choice-answer-true.js'%}" ></script>
   {%endif%}
-  {%if game_card is True %}
-    <script src="{% static 'js/word_memory_card.js'%}" ></script>
+  {% if missing_ans is True %}
+    <script src="{% static 'js/write-word-missing.js'%}" ></script>
   {%endif%}
-  {%if golden_fish is True %}
-    <script src="{% static 'js/golden-fish.js'%}" ></script>
+  {% if arrange_ans is True %}
+  <script src="{% static 'js/arrange-sentence.js'%}" ></script>
   {%endif%}
-  
+
 {% endblock %}
 
 
 {%block content%} 
-
 
 
 <!--? slider Area Start-->

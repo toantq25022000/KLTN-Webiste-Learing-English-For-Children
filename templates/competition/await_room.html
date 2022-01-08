@@ -339,6 +339,15 @@
         </div>
     </div>
 
+    <div class="countdown-wait-play" id="countdown-wait-play">
+        <div class="wrapper-count-wait text-center">
+            <p>Chuyển đến phòng thi đấu sau</p>
+            <div class="pmcd-circle-wwait">
+                <div class="pmcd-num-wait">10</div>
+                <div class="pmcd-timeline-wait"></div>
+            </div>
+        </div>
+    </div>
 
 {{ request.user.id|json_script:"user_id" }}
 {{ room.type_compete.max_quantity_add_user|json_script:"type-competition" }}
@@ -372,6 +381,40 @@
     );
 
     
+function timeCountTimerWait(){
+    $('#countdown-wait-play').show();
+    $('.pmcd-num-wait').empty();
+    $('.pmcd-num-wait').html('10');
+    var counterTimeWaitCompete = setInterval(setTimeWaitRoom, 1000);
+
+    function setTimeWaitRoom() {
+        var textNumberCountDown = parseInt($('.pmcd-num-wait').text());
+        textNumberCountDown--;
+	    $('.pmcd-num-wait').html((textNumberCountDown<10)?"0"+textNumberCountDown:textNumberCountDown);
+       
+        if($('.pmcd-num-wait').text() === "00"){
+            if(!$('.pmcd-timeline-wait').attr('running')){
+                $('.pmcd-timeline-wait').attr('running',true);
+                $('.pmcd-timeline-wait').stop(true).css({bottom: (textNumberCountDown*2-100)+'%'}).animate({bottom: '-100%'}, textNumberCountDown*1000, "linear");
+            }
+            clearInterval(counterTimeWaitCompete);
+            setTimeout(() => {
+                window.location.href = '/competition/play-'+ roomName + '/';
+               $('.pmcd-num-wait').empty();
+               $('#countdown-wait-play').hide();
+               return;
+           }, 1000); 
+           
+        }
+        else{
+            if(!$('.pmcd-timeline-wait').attr('running')){
+                $('.pmcd-timeline-wait').attr('running',true);
+                $('.pmcd-timeline-wait').stop(true).css({bottom: (textNumberCountDown*2-100)+'%'}).animate({bottom: '-100%'}, textNumberCountDown*1000, "linear");
+            }
+        }
+        
+    }
+}
     
     function start() {
         const countListMember = document.querySelectorAll('#list-member-real-wait-room .flip').length;
@@ -394,6 +437,7 @@
                         num_ques: 10
                     },
                     success: function(response) {
+                                               
                         console.log(response)
                     },
                     error: function(error) {
@@ -401,6 +445,7 @@
                         alert('Xảy ra lỗi trong quá trình lấy câu hỏi nhấn vào nút "Tạo phòng" khởi tạo lại!');
                     }
                 });
+               
             }
         }
         
@@ -582,7 +627,9 @@
                 break;
             
             case 'ready_play':
-                window.location.href = '/competition/play-'+ roomName + '/';
+
+                timeCountTimerWait();
+                
                 break;
             default:
                 // console.log('ngoai le')

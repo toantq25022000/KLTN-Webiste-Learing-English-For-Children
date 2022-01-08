@@ -40,7 +40,6 @@ def cart_count(user):
 
 @register.simple_tag
 def list_order_item(orderId):
-    print(orderId)
     order = Order.objects.filter(id=orderId)
     if order.exists():
         order = order[0]
@@ -65,7 +64,6 @@ def discounted_price_course(value1,value2):
 
 @register.simple_tag(name="chapter_of_course")
 def chapter_of_course(courseId):
-    print(courseId)
     return Chapter.objects.filter(course_id = courseId)
 
 @register.simple_tag(name="lesson_of_chapter")
@@ -235,3 +233,7 @@ def persent_progress_chap(score,total):
 @register.simple_tag(name="add_number_1dv")
 def add_number_1dv(value):
     return value + 1
+
+@register.simple_tag(name="sub_counter")
+def sub_counter(valueCount, valueSub):
+    return valueCount - valueSub + 1

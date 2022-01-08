@@ -1,4 +1,4 @@
-{% extends "pages/base.html" %}{% load course_tag %} {%load static %} {% block title %} Review {%endblock %} {%block scripts%}
+{% extends "pages/base.html" %}{% load mathfilters %}{% load course_tag %} {%load static %} {% block title %} Review {%endblock %} {%block scripts%}
 <script src="{% static 'js/violympic_end_course.js'%}"></script>
 {%endblock%} {%block content%}
 <!--? slider Area Start-->
@@ -83,9 +83,9 @@
                         <div class="modal-header">
                           <i class="ti-help-alt icon-help"></i>
                           <h5 class="modal-title">Xác nhận</h5>
-                          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true" id="icon_close_submission">&times;</span>
-                          </button>
+                        
+                          <span aria-hidden="true" id="icon_close_submission">&times;</span>
+                          
                         </div>
                         <div class="modal-body">
                           <div class="sub-boydy-modal">
@@ -243,31 +243,42 @@
      <!--Start table history example-->
      <div class="wrap_tb_result animate-bottom" id="wrap_tb_history_exam_vioend">
         <h3>Lịch sử làm bài</h3>
-        <table class="table table-hover table_history_example text-center" width="100%" id="table_history_example_vioend">
-          <thead class="thead-dark">
-            <tr>
-              <th scope="col">#</th>
-              <th scope="col">Trạng thái</th>
-              <th scope="col">Điểm</th>
-              <th scope="col">Lần thi</th>
-              <th scope="col">Thời gian làm bài</th>
-              <th scope="col">Thời gian</th>
-            </tr>
-          </thead>
-          <tbody>
-            {%for item in history%}
-            {% count_sum_time item.time_finish item.time_start as countSumTime%}
-              <tr>
-                <th>{{forloop.counter}}</th>
-                <td>Hoàn thành</td>
-                <td>{{item.score}}</td>
-                <td>{{forloop.counter}}</td>
-                <td>{{countSumTime}} giây</td>
-                <td>Bắt đầu: {{item.time_start|date:'Y-m-d H:i:s'}}<br>Kết thúc : {{item.time_finish|date:'Y-m-d H:i:s'}}</td>
-              </tr>
-            {%endfor%}
-          </tbody>
-        </table>
+        
+        <div class="table table-hover table_history_example text-center table-me" id="table_history_example_vioend">
+          <div class="thead thead-dark">
+            <div class="tr">
+              <div class="th" scope="col">#</div>
+              <div class="th" scope="col">Trạng thái</div>
+              <div class="th" scope="col">Điểm</div>
+              <div class="th" scope="col">Lần thi</div>
+              <div class="th" scope="col">Thời gian làm bài</div>
+              <div class="th" scope="col">Thời gian</div>
+            </div>
+          </div>
+          <div class="tbody">
+            <div class="tbody-content">
+              <div class="face">
+                <div class="r-body overflow">
+                  {%for item in history%}
+                  {% count_sum_time item.time_finish item.time_start as countSumTime%}
+                  {% sub_counter history.count forloop.counter as countExamp %}
+                  
+                    <div class="tr r-row">
+                      <div class="td td-first"></div>
+                      <div class="td">Hoàn thành</div>
+                      <div class="td">{{item.score}}</div>
+                      <div class="td">{{countExamp}}</div>
+                      <div class="td">{{countSumTime}} giây</div>
+                      <div class="td">Bắt đầu: {{item.time_start|date:'Y-m-d H:i:s'}}<br>Kết thúc : {{item.time_finish|date:'Y-m-d H:i:s'}}</div>
+                    </div>
+                  {%endfor%}
+                </div>
+              </div>
+            </div>
+            
+          </div>
+        </div>
+      
      </div>
      <!--End table history example-->
   </div>

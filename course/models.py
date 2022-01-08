@@ -56,16 +56,24 @@ class TypeGame(models.Model):
     def __str__(self):
         return self.title
 
+
+class ImageOfGame(models.Model):
+    img = models.ImageField(upload_to='game/memory_word_card/')
+
+    def __str__(self):
+        return self.img.url
+
 class GameWordMemoryCards(models.Model):
     lesson = models.ForeignKey(Lesson,on_delete=models.CASCADE)
     type = models.ForeignKey(TypeGame,on_delete=models.CASCADE)
+    imgs = models.ManyToManyField(ImageOfGame)
     def __str__(self):
         return f"Game card of {self.lesson}"
 
 class GameGoldenFish(models.Model):
     lesson = models.ForeignKey(Lesson,on_delete=models.CASCADE)
     type = models.ForeignKey(TypeGame,on_delete=models.CASCADE)
-    file_excel =  models.FileField(upload_to='game/golden-fish/', max_length=100)
+    file_excel =  models.FileField(upload_to='game/golden_fish/', max_length=100)
     num_rows = models.PositiveSmallIntegerField(default=0)
 
     def __str__(self):
@@ -80,13 +88,10 @@ class GameGoldenFish(models.Model):
         ncols = table.ncols 
         self.num_rows = nrows - 1
         super().save(*args, **kwargs)  
-
-class ImageOfGame(models.Model):
-    img = models.ImageField(upload_to='game/img/')
-    word_memory_card = models.ForeignKey(GameWordMemoryCards,on_delete=models.CASCADE)
- 
+  
 class TypeExercise(models.Model):
     title = models.CharField(default='',max_length=50)
+    
 
     def __str__(self):
         return self.title

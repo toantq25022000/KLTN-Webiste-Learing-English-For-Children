@@ -19,6 +19,7 @@ from datetime import datetime
 from django.utils import timezone
 import xlrd
 from django.conf import settings
+from django.db.models import Avg,Sum,Count
 from openpyxl import load_workbook
 # Create your views here.
 
@@ -95,9 +96,6 @@ def View_Detail_Lesson(request,course_id,lesson_id):
     }
     return render(request,'course/detail_lesson.html',context)
 
-
-
-
 def get_post_data_exercise_choice(request,course_id,lesson_id,num_scores=0,is_doing=0,is_get=0):
     list_choice = ExerciseChoiceAnswer.objects.filter(lesson_id=lesson_id,type_id=1)
     current_user = request.user
@@ -169,7 +167,7 @@ def get_post_data_game_word_card(request,course_id,lesson_id,num_scores=0,is_doi
     current_user = request.user
     if list_card:
         card = list_card[0]
-        list_img_card = ImageOfGame.objects.filter(word_memory_card_id=card.id)
+        
         
         getScoreDb = ScoreStudent.objects.filter(user_id=current_user.id,course_id=course_id,lesson_id=lesson_id,type_game_id=1,type_score_id=2)
         if(getScoreDb):
@@ -193,10 +191,10 @@ def get_post_data_game_word_card(request,course_id,lesson_id,num_scores=0,is_doi
                     createScoreStd = ScoreStudent(user_id=current_user.id,course_id=course_id,lesson_id=lesson_id,type_game_id=1,score=num_scores,type_score_id=2) 
                     createScoreStd.save()
         
-        if list_img_card:
+        if card:
             data = []
             count = 0
-            for value in list_img_card:
+            for value in card.imgs.all():
                 item = {
                     'id':count,
                     'img':value.img.url
@@ -340,7 +338,7 @@ def get_post_data_exercise_missing(request,course_id,lesson_id,num_scores=0,is_d
 @csrf_exempt
 def Violympic_End_Course(request,course_id,vio_one_id):
     vio = ViolympicEndCourse.objects.filter(pk=vio_one_id).filter(course_id=course_id)
-    history = ScoreViolympicFinishCourse.objects.filter(user_id=request.user.id).filter(course_id=course_id)
+    history = ScoreViolympicFinishCourse.objects.filter(user_id=request.user.id,course_id=course_id).order_by('-id')
     if request.method == 'POST':
         score = request.POST.get('score',None) 
         time_start = request.POST.get('time_start',None) 
@@ -354,10 +352,19 @@ def Violympic_End_Course(request,course_id,vio_one_id):
         c_time_finish = datetime.strptime(time_finish, "%Y-%m-%d %H:%M:%S")
         
         tz_time_finish = current_tz.localize(c_time_finish)
-        instance  =  ScoreViolympicFinishCourse(user_id=request.user.id,course_id=course_id,score=score,time_start=tz_time_start,time_finish=tz_time_finish)
+
+
+        instance  =  ScoreViolympicFinishCourse(
+            user_id=request.user.id,
+            course_id=course_id,
+            score=score,
+            time_start=tz_time_start,
+            time_finish=tz_time_finish
+            )
+
         instance.save()
         sco_vio = ScoreViolympicFinishCourse.objects.values().get(pk=instance.id)
-        historyes = ScoreViolympicFinishCourse.objects.values().filter(user_id=request.user.id).filter(course_id=course_id)
+        historyes = ScoreViolympicFinishCourse.objects.values().filter(user_id=request.user.id,course_id=course_id).order_by('-id')
         list_history = list(historyes)
         return JsonResponse({'status':'Your Post Success Data','data_post':sco_vio,'list_history':list_history})
 

@@ -6,6 +6,25 @@
 {%block scripts %}
 <script src="{% static 'js/list-room.js'%}"></script>
 <script>
+    var $type,$class_id;
+    function filter_room(){
+        var $selector = ".ctr-lr-room";
+        $type = parseInt($('.ctr-lrbl-group-btn .btn-active').attr('value'));
+        if($type){$selector += "[type='"+$type+"']";};
+        $class_id = parseInt($('#ctr-lrt-class').val());
+        if($class_id){$selector += "[class_id='"+$class_id+"']";};
+        var $search_key = $.trim($('#ctr-search-room').val());
+        if($search_key){$selector += ":contains("+$search_key+")";};
+        $(".ctr-lr-room").addClass('hide');
+        $($selector).removeClass('hide');
+    }
+
+    function filter_room_by_type(_self){
+        $(_self).siblings('.btn').removeClass('btn-active');
+        $(_self).addClass('btn-active');
+        filter_room();
+    }
+    
     function show_hint_room(param){
         var private = parseInt($(param.self).attr('private'));
         if(private){
@@ -266,9 +285,9 @@
                    <div class="ctr-lrbl-content">
                        <div class="ctr-lrbl-top row">
                             <div class="btn-group col-lg-6 ctr-lrbl-group-btn">
-                                <div type="button" class="click d-flex-center btn btn-active">Tất cả</div>
-                                <div type="button" class="click d-flex-center btn"  value="1">1 vs 1</div>
-                                <div type="button" class="click d-flex-center btn"  value="9">1 vs 9</div>
+                                <div type="button" class="click d-flex-center btn btn-active" onclick="return filter_room_by_type(this);" >Tất cả</div>
+                                <div type="button" class="click d-flex-center btn" onclick="return filter_room_by_type(this);" value="1">1 vs 1</div>
+                                <div type="button" class="click d-flex-center btn" onclick="return filter_room_by_type(this);" value="9">1 vs 9</div>
                             </div>
                             <div class="col-lg-6 row" style="z-index: 1;">
                                 <div class="col-lg-6 ctr-lrt-class">
@@ -282,7 +301,7 @@
                                     </select>
                                 </div>
                                 <div class="col-lg-6 ctr-search-room">
-                                    <input type="search" name="" id="ctr-search-room"  class="text-center form-control" value="" title="" placeholder="Tìm theo tên chủ phòng">
+                                    <input type="search" name="" id="ctr-search-room" onkeyup="return filter_room();" class="text-center form-control" value="" title="" placeholder="Tìm theo tên chủ phòng">
                                     <span class="ti-search glyphicon-search" aria-hidden="true"></span>
                                 </div>
                             </div>

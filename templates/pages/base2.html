@@ -34,8 +34,8 @@
                   <div class="text-center ctr-hint-tooltip hide" id="ctr-hl-hint"><span>Quay về trang chủ Tiếng Anh</span></div>
                 </a>
                 <a href="{% url 'competition:list_room_competition' %}" class="click ctr-head-list"><i class="fa fa-home" style="font-size: 22px;" aria-hidden="true"></i> <span>Tìm phòng đấu</span></a>
-                <a href="/ranking" class="click ctr-head-rank"><i class="fa fa-flag" aria-hidden="true"></i> <span>Bảng xếp hạng</span></a>
-                <a href="/history" class="click ctr-head-history"><i class="fa fa-hourglass-half" aria-hidden="true"></i> <span>Lịch sử thi đấu</span></a>
+                <a href="{%  url  'competition:ranking_competition' %}" class="click ctr-head-rank"><i class="fa fa-flag" aria-hidden="true"></i> <span>Bảng xếp hạng</span></a>
+                <a href="{% url 'competition:history_member_competition' %}" class="click ctr-head-history"><i class="fa fa-hourglass-half" aria-hidden="true"></i> <span>Lịch sử thi đấu</span></a>
                 <div class="btn-group ctr-head-intro">
                   <i class="fa fa-bookmark" aria-hidden="true"></i>
                   <div class="click inline-block dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false"> Hướng dẫn <span class="caret"></span> </div>
@@ -49,7 +49,7 @@
                 </div>
                 <!-- header-member-info -->
                 <div class="inline-block ctr-head-member" id="ctr-header-member-info" style="position: relative;" >
-                    <a class="ctr-h-avata" href="/history">
+                    <a class="ctr-h-avata" href="#">
                         <img class="ctr-h-avata-img" src="//data.tienganh123.com/images/member/noavatar.gif">
                         <img class="ab ctr-h-vip-img " src="{% static 'img/icon/ctr-vip-icon.png' %}" alt="">
                     </a>
@@ -86,7 +86,7 @@
                             <a class="text-center ctr-hmia-profile-link" href="https://www.tienganh123.com/member/3307755#hocba">Về trang học bạ của tôi</a>
                         </li>
                         <li class="list-group-item ctr-hmia-logout" style="background-color: #d9534f;">
-                            <a class="text-center ctr-hmia-logout-link" onclick="(function(){default_socket.emit('logout')})()" href="https://www.tienganh123.com/ajax/id?act=logout" style="color: #fff;">Thoát tài khoản</a>
+                            <a class="text-center ctr-hmia-logout-link" onclick="" href="{% url 'home:logoutUser' %}" style="color: #fff;">Thoát tài khoản</a>
                         </li>
                         </ul>
                     </div>
@@ -105,6 +105,7 @@
 
     <!-- Jquery, Popper, Bootstrap -->
     <script src="{% static 'js/vendor/jquery-1.12.4.min.js'%}"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.transit/0.9.12/jquery.transit.js" integrity="sha512-VRuRE7kBxU+JQr4R/7Y75cMMdeNnn5zDZRpT4qtEzAJXdMkmFPPGbS56Ch9/Lr2g5vnwN7PxtIdBvevTMVpnug==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.17.3/xlsx.full.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
     <script src="{% static 'js/bootstrap.min.js'%}"></script>

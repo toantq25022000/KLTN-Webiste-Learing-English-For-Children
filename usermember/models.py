@@ -31,13 +31,25 @@ class StudentCourse(models.Model):
     def __str__(self):
         return f"{self.user.username} of {self.course.title}"
     
-    
+
 class Teacher(models.Model):
     user = models.ForeignKey(MyUser,on_delete=models.CASCADE)
-    course = models.ForeignKey(Course,on_delete=models.CASCADE)
+    course = models.ForeignKey(Course,on_delete=models.CASCADE,null=True,blank=True)
+    fullname = models.CharField(default='',max_length=100)
+    title = models.CharField(default='',max_length=100)
+    phone = models.CharField(default='',max_length=15)
+    email = models.CharField(default='',max_length=75)
+    link_video = models.CharField(default='',max_length=255,null=True,blank=True)
+    link_fb = models.CharField(default='',max_length=150)
+    address = models.CharField(default='',max_length=150)
+    experience = models.TextField(default='')
     account_number = models.CharField(default='',max_length=25)
+    coefficients_salary = models.FloatField(default=0,validators=[MinValueValidator(0.0), MaxValueValidator(12.0)])
     salary = models.DecimalField(default=0,max_digits=8, decimal_places=0)
+    active = models.BooleanField(default=False)
 
+    def __str__(self):
+        return self.fullname
 
 class TypeScore(models.Model):
     title = models.CharField(default='',max_length=45)

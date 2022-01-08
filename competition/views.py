@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from course.models import Course
-from .models import TypeCompetition, RoomCompetition
+from .models import TypeCompetition, RoomCompetition,ScoreCompetition,ManagerUserCompetition
 from .form import FormClassCompetition,FormSkillCompetition
 from .handle import get_random_string_digits, check_id_room
 from django.http import HttpResponse,JsonResponse
@@ -11,10 +11,12 @@ import json
 from channels.layers import channel_layers, get_channel_layer
 from asgiref.sync import async_to_sync
 #
-
+import calendar
+from datetime import datetime
+from django.utils import timezone
 from .models import RoomCompetition
 # Create your views here.
-
+import threading
 from usermember.models import MyUser
 from django.contrib.sessions.models import Session
 from django.utils import timezone
@@ -160,6 +162,8 @@ def RoomWaitCompetition(request, room_name):
         
 
 @login_required(login_url='/login/')
+
+
 def InitRoomCompetition(request):
 
     list_type = TypeCompetition.objects.all()
@@ -224,6 +228,338 @@ def post_init_room(request):
         return JsonResponse({'status':'Successfull','data':data})
     else:
         return JsonResponse({'status':'Not POST'})
+
+
+
+def rankUserInWeek(userId):
+    dt_today = datetime.today()
+    day_today = dt_today.day
+    month_today = dt_today.month
+    year_today = dt_today.year
+    max_day_month = calendar.monthrange(year_today, month_today)[1]
+    day_start = 1
+    day_end = 1
+
+    if day_today <= 7:
+        day_start = 1
+        day_end = 7
+    elif day_today <= 14:
+        day_start = 8
+        day_end = 14
+    elif day_today <= 21:  
+        day_start = 15
+        day_end = 21
+    else:
+        day_start = 22
+        day_end = max_day_month
+
+    datetimeStart = datetime(year_today,month_today,day_start)
+    datetimeEnd = datetime(year_today,month_today,day_end)
+
+    list_rank_qs = ScoreCompetition.objects.filter(timestart__range = (datetimeStart,datetimeEnd))
+    data_rank = []
+
+    resultFind = None
+    for obj in list_rank_qs:
+        resultFind = next((x for x in data_rank if x["id"] == obj.user.id), None)
+        
+        if resultFind is None:
+            item = {
+                "id":obj.user.id,
+                "username":obj.user.username,
+                "point":obj.points_title,
+            }
+            data_rank.append(item)
+        else:
+            resultFind["point"] += obj.points_title
+    data_rank.sort(key=lambda x: x["point"], reverse=True)
+   
+    index = next((i for i, item in enumerate(data_rank) if item["id"] == userId), -1)
+    if index == -1:
+        return "Vô hạng"
+    return index + 1 # index array start: 0
+
+def rankListMember(type_):
+    dt_today = datetime.today()
+    day_today = dt_today.day
+    month_today = dt_today.month
+    year_today = dt_today.year
+    max_day_month = calendar.monthrange(year_today, month_today)[1]
+    day_start = 1
+    day_end = 1
+
+    if day_today <= 7:
+        day_start = 1
+        day_end = 7
+    elif day_today <= 14:
+        day_start = 8
+        day_end = 14
+    elif day_today <= 21:  
+        day_start = 15
+        day_end = 21
+    else:
+        day_start = 22
+        day_end = max_day_month
+
+    datetimeStart = datetime(year_today,month_today,day_start)
+    datetimeEnd = datetime(year_today,month_today,day_end)
+    if type_ == "ALL":
+        list_rank_qs = ScoreCompetition.objects.filter(timestart__range = (datetimeStart,datetimeEnd))
+    
+    elif type_ == "1":
+        list_rank_qs = ScoreCompetition.objects.filter(timestart__range = (datetimeStart,datetimeEnd),type_compete_id = 1)
+    else:
+        list_rank_qs = ScoreCompetition.objects.filter(timestart__range = (datetimeStart,datetimeEnd),type_compete_id = 2)
+    data_rank = []
+
+    resultFind = None
+    rank_int = 0
+    for obj in list_rank_qs:
+
+        resultFind = next((x for x in data_rank if x["id"] == obj.user.id), None)
+        manageuser = ManagerUserCompetition.objects.filter(user=obj.user)[0]
+        if resultFind is None:
+            item = {
+                "id":obj.user.id,
+                "username":obj.user.username,
+                "img":obj.user.std_img.url,
+                "title":manageuser.title,
+                "total_win":0,
+                "total_battle_rank":0,
+                "star_title":manageuser.star_title,
+                "point":obj.points_title,
+            }
+            data_rank.append(item)
+        else:
+            rank_int = int(obj.result_rank[len(obj.result_rank)-1:len(obj.result_rank)])
+           
+            if rank_int <= 3:
+                resultFind["total_win"] += 1
+                resultFind["point"] += obj.points_title
+            
+            resultFind["total_battle_rank"] += 1
+    data_rank.sort(key=lambda x: x["point"], reverse=True)
+    return data_rank
+
+class rankListMemberThread(threading.Thread):
+    def __init__(self, type_,event):
+        self.type_ = type_
+        self.event = event
+        threading.Thread.__init__(self)
+    def run(self):
+        while True:
+            self.event.wait()
+            try:
+                dt_today = datetime.today()
+                day_today = dt_today.day
+                month_today = dt_today.month
+                year_today = dt_today.year
+                max_day_month = calendar.monthrange(year_today, month_today)[1]
+                day_start = 1
+                day_end = 1
+
+                if day_today <= 7:
+                    day_start = 1
+                    day_end = 7
+                elif day_today <= 14:
+                    day_start = 8
+                    day_end = 14
+                elif day_today <= 21:  
+                    day_start = 15
+                    day_end = 21
+                else:
+                    day_start = 22
+                    day_end = max_day_month
+
+                datetimeStart = datetime(year_today,month_today,day_start)
+                datetimeEnd = datetime(year_today,month_today,day_end)
+                if self.type_ == "All":
+                    list_rank_qs = ScoreCompetition.objects.filter(timestart__range = (datetimeStart,datetimeEnd))
+                
+                elif self.type_ == "1":
+                    list_rank_qs = ScoreCompetition.objects.filter(timestart__range = (datetimeStart,datetimeEnd),type_compete_id = 1)
+                else:
+                    list_rank_qs = ScoreCompetition.objects.filter(timestart__range = (datetimeStart,datetimeEnd),type_compete_id = 2)
+                data_rank = []
+
+                resultFind = None
+                rank_int = 0
+                for obj in list_rank_qs:
+
+                    resultFind = next((x for x in data_rank if x["id"] == obj.user.id), None)
+                    manageuser = ManagerUserCompetition.objects.filter(user=obj.user)[0]
+                    if resultFind is None:
+                        item = {
+                            "id":obj.user.id,
+                            "username":obj.user.username,
+                            "img":obj.user.std_img.url,
+                            "title":manageuser.title,
+                            "total_win":0,
+                            "total_battle_rank":0,
+                            "star_title":manageuser.star_title,
+                            "point":obj.points_title,
+                        }
+                        data_rank.append(item)
+                    else:
+                        rank_int = int(obj.result_rank[len(obj.result_rank)-1:len(obj.result_rank)])
+                    
+                        if rank_int <= 3:
+                            resultFind["total_win"] += 1
+                            resultFind["point"] += obj.points_title
+                        
+                        resultFind["total_battle_rank"] += 1
+                data_rank.sort(key=lambda x: x["point"], reverse=True)
+                return data_rank
+            except IndexError as e:
+            	print(e)
+def GetRankByWeek(request):
+    if request.method == 'GET' or request.method == 'get':
+        type = request.GET['type']
+
+        if type == "ALL":
+            rank_All =  rankListMember("ALL")
+            rankIndexUserAll = next((i for i, item in enumerate(rankListMember("All")) if item["id"] == request.user.id), -1)
+            return JsonResponse({"type":"ALL","rankingAllAtTime":list(rank_All),"rankIndexUserAll":rankIndexUserAll,})
+        elif type == "1": 
+            rank_1v1 =  rankListMember("1")
+            rankIndexUserType1 = next((i for i, item in enumerate(rankListMember("1")) if item["id"] == request.user.id), -1)
+            return JsonResponse({"type":"1v1", "rankingType1AtTime":list(rank_1v1), "rankIndexUserType1":rankIndexUserType1,})
+        else:
+            rank_1v9 =  rankListMember("9")
+            rankIndexUserType9 = next((i for i, item in enumerate(rankListMember("9")) if item["id"] == request.user.id), -1)
+            return JsonResponse({"type":"1v9","rankingType9AtTime":list(rank_1v9), "rankIndexUserType9":rankIndexUserType9,})
+      
+       
+def HistoryMemberCompete(request):
+    kqRank = rankUserInWeek(request.user.id)
+    
+    dt_today = datetime.today()
+    day_today = dt_today.day
+    month_today = dt_today.month
+    year_today = dt_today.year
+    max_day_month = calendar.monthrange(year_today, month_today)[1]
+
+    day_start = 1
+    day_end = 1
+    win1v1 = 0
+    win1v9 = 0
+    total_1v1 = 0
+    total_1v9 = 0
+
+    if day_today <= 7:
+        day_start = 1
+        day_end = 7
+    elif day_today <= 14:
+        day_start = 8
+        day_end = 14
+    elif day_today <= 21:  
+        day_start = 15
+        day_end = 21
+    else:
+        day_start = 22
+        day_end = max_day_month
+
+    datetimeStart = datetime(year_today,month_today,day_start)
+    datetimeEnd = datetime(year_today,month_today,day_end)
+
+    list_history_qs = ScoreCompetition.objects.filter(user=request.user,timestart__range = (datetimeStart,datetimeEnd)).order_by('-id')[:20]
+    manager_user_history = ManagerUserCompetition.objects.filter(user=request.user)
+    
+    total_win = 0
+    title_user = ''
+    total_points_title = 0
+
+    if manager_user_history:
+        manager_user_history = manager_user_history[0]
+        total_win = manager_user_history.win_1v1 + manager_user_history.win_1v9
+        title_user = manager_user_history.title
+        total_points_title = manager_user_history.total_title
+
+    
+    rank_int = 0
+    for item in list_history_qs:
+        
+
+        rank_int = int(item.result_rank[len(item.result_rank)-1:len(item.result_rank)])
+        if item.type_compete.max_quantity_add_user == 1:
+            total_1v1 += 1
+        else:
+            total_1v9 += 1
+        if rank_int <= 3:
+            if item.type_compete.max_quantity_add_user == 1:
+                win1v1 += 1
+            else:
+                win1v9 += 1
+    
+    context = {
+        'list_history':list_history_qs,
+        'total_points_title':total_points_title,
+        'win1v1':win1v1,
+        'win1v9':win1v9,
+        'total_1v1':total_1v1,
+        'total_1v9':total_1v9,
+        'total_win':total_win,
+        'title_user':title_user,
+        'kqRank':kqRank,
+    }
+    return render(request, 'competition/history_member_compete.html',context)
+
+def RankingCompetition(request):
+
+
+    return render(request,'competition/ranking.html')
+
+@csrf_exempt
+def Post_Result_Play(request,room_name):
+    if request.method == 'post' or request.method == 'POST':
+        data = request.POST['json_data']; 
+        list = json.loads(data)
+        print(list)
+        room_qs = RoomCompetition.objects.filter(id_room = room_name)
+        if room_qs:
+            room_qs = room_qs[0]
+        current_tz = timezone.get_current_timezone()
+        for item in list:
+            userPost = item['username']
+            scoreDHWin = item['scoreDHWin']
+            rankResult = item['rankResult']
+            timeStart = item['timeStart']
+
+            c_time_start = datetime.strptime(timeStart, "%Y-%m-%d %H:%M:%S")
+            tz_time_start = current_tz.localize(c_time_start)
+
+            user_qs = MyUser.objects.filter(username = userPost)[0]
+            managerUser = ManagerUserCompetition.objects.filter(user=user_qs)
+            manager_user = None
+            if managerUser:
+                manager_user = managerUser[0]
+            else:
+                manager_user = ManagerUserCompetition.objects.create(user=user_qs)
+
+            score_compete = ScoreCompetition.objects.create(
+                user=user_qs,
+                type_compete = room_qs.type_compete,
+                result_rank = "Xếp hạng " + str(rankResult),
+                points_title = scoreDHWin,
+                timestart = tz_time_start,
+            )
+           
+            if manager_user.title == '':
+                manager_user.title = "Newbie"
+
+            manager_user.total_battle = manager_user.total_battle + 1
+
+            if rankResult <= 3:
+                if room_qs.type_compete.max_quantity_add_user == 1:
+                    manager_user.win_1v1 = manager_user.win_1v1 + 1
+                else:
+                    manager_user.win_1v9 = manager_user.win_1v9 + 1
+            # ++ score title
+            manager_user.total_title = manager_user.total_title + scoreDHWin
+
+            manager_user.save()
+
+        return JsonResponse({'status':'Successfull'})
 
 @csrf_exempt
 def get_method_post_join_room(request):
