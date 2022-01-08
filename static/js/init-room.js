@@ -14,6 +14,7 @@ function selectSkill(_self){
         $(_self).addClass('active');
     }
 }
+
 //======================================================
 
 // var socket = io.connect($node_host, {
@@ -99,6 +100,31 @@ $("#ctr-irb-create-form").submit(function(event) {
             data: _form.serialize(),
             success: function (response) {
                 console.log(response)
+                const data =  response.data;
+                switch (response.status) {
+                     case 201:{
+                        window.location.href = '/competition/wait-'+data[0].id_room + '/';
+                        break;
+                     }
+                    case 1062:{
+                        var r = confirm("Phòng thi bạn khởi tạo vẫn đang hoạt động vì vậy bạn không thể khởi tạo thêm phòng mới. Bạn có muốn trở lại phòng thi đó không?");
+                        if (r == true) {
+                             window.location.href = '/competition/wait-'+data[0].id_room + '/';
+                        } else {
+                            window.location.href = "/competition/";
+                         }
+                        break;
+                    }
+                    default:
+                        var r = confirm("Method isn't POST!");
+                        if (r == true) {
+                            location.reload();
+                        } else {
+                            window.location.href = "/competition/";
+                         }
+                        break;       
+                }
+
             }, 
             error: function (error) {
                 console.log(error)

@@ -2301,7 +2301,7 @@ body.body-compete {
     padding: 8px;
     vertical-align: middle;
 }
-.table-me .tbody .r-body{
+.table-me .tbody .r-body .ctr-r-total{
   max-height: 425px;
 }
 .table-me .tbody .tr .td {
@@ -2365,7 +2365,7 @@ body.body-compete {
   width: 140px;
 }
 
-#table_history_member_compete.table-me .tbody .r-body {
+#table_history_member_compete.table-me .tbody .r-body{
   max-height: 495px;
 }
 

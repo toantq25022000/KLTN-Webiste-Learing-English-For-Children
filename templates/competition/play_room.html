@@ -2,8 +2,7 @@
 {%load static%} 
 {% block title %} Thi đấu Tiếng anh trực tuyến {% endblock %}
 
-
-{%block content%} 
+{%block content%}
 <div class="container-custom page-content">
  
     <style type="text/css" media="screen">
@@ -74,13 +73,11 @@
                                 <div class="ctr-pmcd-num"></div>
                                 <div class="ctr-pmcd-timeline"></div>
                             </div>
-                            <div class="text-center">
+                            <div class="text-center p-3">
                                 <p class="text-center text-primary inline-block">
-                                    <b>Trả lời đúng và sớm nhất</b> sẽ được cộng: <b>10 điểm,</b> đúng và sớm thứ hai được <b>5 điểm !</b>
+                                    <b>Trả lời đúng và sớm nhất</b> sẽ được cộng: <b>20 điểm,</b> đúng và sớm thứ hai được <b>15 điểm,</b> đúng và sớm thứ ba được <b>10 điểm,</b>đúng và sớm thứ 4 trở đi được<b> 5 điểm</b> !</b>
                                 </p>
-                                <p class="text-center text-primary inline-block">
-                                    Click vào biểu tượng loa phía dưới để bật/tắt hiệu ứng âm thanh lúc thi đấu.
-                                </p>
+                              
                             </div>
                             <div class="text-center" style="margin-top: 15px; color: #555;">							
                                 <div class="col-lg-2 col-centered inline-block">
@@ -124,9 +121,7 @@
                             <div class="text-left ctr-p-bottom-button" id="ctr-pbb-back" style="bottom: 0px;">
                                 <a href="/list-room" class="click ctr-pbb-name"><i class="fa fa-caret-left" style="font-size: 2em;" aria-hidden="true"></i> <span style=" vertical-align: middle; ">Chơi phòng khác</span></a>
                             </div>
-                            <!-- <div class="text-left ctr-p-bottom-button" id="ctr-pbb-fb" style="bottom: 0px;">
-                                <a href="javascript:void(0)" class="click ctr-pbb-name" id="ctr-p-fb-share" onclick="post_fb(this);" level="3"><i class="fa fa-facebook" aria-hidden="true"></i> <span style=" vertical-align: middle; ">Chia sẻ Facebook</span></a>
-                            </div> -->
+                          
                         </div>
                         <div class="text-center ctr-p-time-back" style="color: #0f0f0f;">Sau <span id="ctr-p-time-back">16</span>s sẽ tự quay lại phòng chờ</div>
                     </div>
@@ -177,7 +172,7 @@
                         </ul>
                 </div>
                 <div class="btn-group btn-group-justified" style="margin-top: 10px;">
-                    <a href="/init-room" class="btn click ctr-bi-out">
+                    <a href="/competition/" class="btn click ctr-bi-out">
                         <i class="fa fa-angle-left fa-2x" aria-hidden="true"></i>
                         <span>Rời phòng</span>
                     </a>
@@ -311,33 +306,50 @@ fetch(`${urlExcelData}`).then(function (res) {
         * DO SOMETHING WITH workbook: Converting Excel value to Json       *
         ********************************************************************/
        
-        var first_sheet_name = workbook.SheetNames[0]; // bo-di-1-tu-sai
-        // var third_sheet_name = workbook.SheetNames[1]; //noi-am-thanh-dung
-        // var second_sheet_name = workbook.SheetNames[1]; //di-chuyen-xep-thanh-cau-dung
-        var fourth_sheet_name = workbook.SheetNames[2]; //nghe-va-dien-tu-con-thieu
-        var fifth_sheet_name = workbook.SheetNames[3]; //chia-dong-tu-trong-ngoac
-        var sixth_sheet_name = workbook.SheetNames[4]; // phat-am-khac
-        var seventh_sheet_name = workbook.SheetNames[5]; // chon dap an dung nhat
+       
+        var fourth_sheet_name = workbook.SheetNames[0]; //nghe-va-dien-tu-con-thieu
+        var sixth_sheet_name = workbook.SheetNames[1]; // phat-am-khac
+        var seventh_sheet_name = workbook.SheetNames[2]; // chon dap an dung nhat
         /* Get worksheet */
-        var worksheet1 = workbook.Sheets[first_sheet_name];
-        // var worksheet2 = workbook.Sheets[second_sheet_name];
-        // var worksheet3 = workbook.Sheets[third_sheet_name];
+        
         var worksheet4 = workbook.Sheets[fourth_sheet_name];
-        var worksheet5 = workbook.Sheets[fifth_sheet_name];
         var worksheet6 = workbook.Sheets[sixth_sheet_name];
         var worksheet7 = workbook.Sheets[seventh_sheet_name];
 
-        var _JsonData1 = XLSX.utils.sheet_to_json(worksheet1, { raw: true });
-        // var _JsonData2 = XLSX.utils.sheet_to_json(worksheet2, { raw: true });
-        // var _JsonData3 = XLSX.utils.sheet_to_json(worksheet3, { raw: true });
         var _JsonData4 = XLSX.utils.sheet_to_json(worksheet4, { raw: true });
-        var _JsonData5 = XLSX.utils.sheet_to_json(worksheet5, { raw: true });
         var _JsonData6 = XLSX.utils.sheet_to_json(worksheet6, { raw: true });
         var _JsonData7 = XLSX.utils.sheet_to_json(worksheet7, { raw: true });
         /************************ End of conversion ************************/
 
+        console.log(_JsonData4)
+        console.log(_JsonData6)
+        console.log(_JsonData7)
         
+       
+        listenWriteWordMissingArray = []
+        _JsonData4.forEach((element,value) => {
+            item = {
+                question_first: element.question_first,
+                question_last: element.question_last,
+                answer: element.answer,
+            }
+            listenWriteWordMissingArray.push(item)
+            arrayChooseObjectArray.push('listenWriteWordMissingArray-'+value);
+        });
 
+        _JsonData7.forEach((element,value) => {
+            item = {
+                question: element.question,
+                answer1: element.answer1,
+                answer2: element.answer2,
+                answer3: element.answer3,
+                answer4: element.answer4,
+                answer: element.answer,
+                
+            }
+            chooseAnswerBestArray.push(item)
+            arrayChooseObjectArray.push('chooseAnswerBestArray-'+value);
+        });
 
         pronunciationsOtherArray = []
         _JsonData6.forEach((element,value) => {
@@ -347,55 +359,15 @@ fetch(`${urlExcelData}`).then(function (res) {
                 question3: element.question3,
                 question4: element.question4,
                 answer: element.answer,
-                isGetQuestion:false,
             }
             pronunciationsOtherArray.push(item)
             arrayChooseObjectArray.push('pronunciationsOtherArray-'+value);
         });
 
-        listenWriteWordMissingArray = []
-        _JsonData4.forEach((element,value) => {
-            item = {
-                question_first: element.question_first,
-                question_last: element.question_last,
-                answer: element.answer,
-                isGetQuestion:false,
-            }
-            listenWriteWordMissingArray.push(item)
-            arrayChooseObjectArray.push('listenWriteWordMissingArray-'+value);
-        });
 
+    
         
 
-        // remove1WrongWordArray = []
-        // _JsonData1.forEach((element,value) => {
-        //     item = {
-        //         question: element.question,
-        //         answer: element.answer,
-        //         isGetQuestion:false,
-        //     }
-        //     remove1WrongWordArray.push(item)
-            
-        //     arrayChooseObjectArray.push('remove1WrongWordArray-'+value);
-        // });
-
-        
-
-        // chooseAnswerBestArray = []
-        // _JsonData7.forEach((element,value) => {
-        //     item = {
-        //         question: element.question,
-        //         answer1: element.answer1,
-        //         answer2: element.answer2,
-        //         answer3: element.answer3,
-        //         answer4: element.answer4,
-        //         answer: element.answer,
-        //         isGetQuestion:false,
-                
-        //     }
-        //     chooseAnswerBestArray.push(item)
-        //     arrayChooseObjectArray.push('chooseAnswerBestArray-'+value);
-        // });
         
     });
      
@@ -459,9 +431,7 @@ function timeCountTimer(){
 }
 
 function start_play(){
- 
 
-    
     playRoomSocket.send(JSON.stringify({
         'type_send':'start_play_countdown',
         'message': 'start play count down',
@@ -517,7 +487,7 @@ let countCorrectNumber = 0;
 function tachTuKhoiDauNhay(text){
     return text.split("'");  
 }
-
+let textBoxMiss;
 let htmlRootDomQuestion = document.getElementById('ctr-area-render-dom-question');
 let chooseQuestionHtml = htmlRootDomQuestion.getAttribute('data-question-choose');
 let isAnswerQuestion = false;
@@ -537,9 +507,7 @@ function checkAction(){
 
         switch(getNameArray1)
         {
-            case 'remove1WrongWordArray':
-
-                break;
+        
             case 'listenWriteWordMissingArray':
                 
                 const valueInputMiss = $('#ctr-text-miss').val();
@@ -616,8 +584,45 @@ function checkAction(){
 
             
                 break;
+            
             case 'chooseAnswerBestArray':
-    
+                var sizeCheckedAnswerBest = $('#ctr-area-render-dom-question .parents_best_answer input[name="ques_best"]:checked').size() > 0;
+                var getRadioCheckedAnswerBest = $('#ctr-area-render-dom-question .parents_best_answer input[name="ques_best"]:checked');
+
+                if (sizeCheckedAnswerBest) // co 1 radio duoc checked
+                {
+                    
+                    if (parseInt(getRadioCheckedAnswerBest.attr("value")) === currentQuestionCompete.answer){
+
+                        countCorrectNumber++;
+                        $('#ctr-pryr-number').html(countCorrectNumber);
+                        playRoomSocket.send(JSON.stringify({
+                            'type_send':'post_answer_incrr_crr',
+                            'correct':true,
+                            "user_id":"{{request.user.id}}",
+                            "username":"{{request.user.username}}",
+                            "date_success":new Date().toLocaleString('en-US',{hour12:false}),
+                            'message': '',
+                        })); 
+                        
+                    }
+                    else{
+                         playRoomSocket.send(JSON.stringify({
+                            'type_send':'post_answer_incrr_crr',
+                            'correct':false,
+                            "user_id":"{{request.user.id}}",
+                            "username":"{{request.user.username}}",
+                            "date_success":new Date().toLocaleString('en-US',{hour12:false}),
+                            'message': '',
+                        })); 
+                    }
+                    isAnswerQuestion = true;
+                }
+                else{
+                    alert('Hãy chọn câu trả lời')
+                }
+                break;
+            default:
                 break;
         }
     }
@@ -725,7 +730,10 @@ resultPlayCompete = () =>{
     arrayScoreResult.sort(function(a, b){
         return parseInt(b.getAttribute('data-score')) - parseInt(a.getAttribute('data-score'));
     });
-
+    if (arrayScoreResult.length < 2){
+        alert("Thi 1 nguoi sao duoc vay. Moi nguoi khac di");
+        return;
+    }
     $('#ctr-prc-username').empty();
     $('#ctr-prc-username').html(arrayScoreResult[0].getAttribute('data-username'));
 
@@ -918,7 +926,9 @@ function PostResultArray(arrayObj) {
 
 }
 
+
 getNewQuestion = () => {
+    console.log(arrayChooseObjectArray)
     removeClassCorrectIncorrect();
     setAllStatusIconThink();
     if (countQuestionWithNew >= arrayChooseObjectArray.length)
@@ -945,56 +955,15 @@ getNewQuestion = () => {
         htmlRootDomQuestion.setAttribute('data-question-choose',arrayChooseObjectArray[indexArrayBig]);
         chooseQuestionHtml = htmlRootDomQuestion.getAttribute('data-question-choose');
         var arrSplitString = chooseQuestionHtml.split('-');
+        console.log(arrSplitString)
         const getNameArray = arrSplitString[0];
         const getIndexArray = arrSplitString[1];
-    
+        console.log(getNameArray)
         countQuestionWithNew++;
         $('#ctr-pqs-number').html(countQuestionWithNew);
     
         switch(getNameArray)
         {
-    
-            case 'remove1WrongWordArray':
-                
-                currentQuestionCompete = remove1WrongWordArray[getIndexArray];
-    
-                $('#ctr-area-render-dom-question').empty();
-                $('#ctr-area-render-dom-question').append(`
-                    <link href="{%  static 'css/er_wr.css' %}" rel="stylesheet" type="text/css">
-                    <div id="er_wr" class="ctst">
-                        <div class="ctt" id="ewp">
-                            <div>Omit a wrong word from the sentence.</div>
-                            <div>(Bỏ đi một từ sai trong câu.)</div>
-                        </div>	
-                        <div id="ewfw">
-                            <div id="eww" sentence="${currentQuestionCompete.question}" num_answer="${currentQuestionCompete.answer}">
-                                
-                            </div>
-                        </div>
-                        <div class="abct ctfll"><div class="ct_lesson"><span id="ctlls0">Gợi ý: </span><span id="ctlls1">Tham khảo thêm tại </span><span id="ctlls2"></span></div></div>	
-                    </div>
-                
-                `);
-    
-                $('#ctr-area-render-dom-question #eww').empty();
-                var splitArrayQuestionRemove = currentQuestionCompete.question.split(' ');
-                for(let i = 0; i < splitArrayQuestionRemove.length; i++)
-                {
-                    $('#ctr-area-render-dom-question #eww').append(`
-                        <div class="ewfc" id="ewfc${i}" value="${splitArrayQuestionRemove[i]}" data-index="${i+1}">
-                            <div class="ewc" id="ewc${i}">
-                                <div>${splitArrayQuestionRemove[i]}</div>
-                            </div>
-                        </div>
-                    `);
-                }
-    
-                break;
-            // case 'connectAudioCorrectArray':
-                
-            //     currentQuestionCompete = connectAudioCorrectArray[getIndexArray];
-                
-            //     break;
     
             case 'listenWriteWordMissingArray':
                 
@@ -1029,17 +998,19 @@ getNewQuestion = () => {
                     
                     </div>
                 `);
-    
+               
+                document.getElementById('ctr-text-miss').addEventListener("keydown", e => {
+                if (e.keyCode === 13) {
+                    checkAction();
+                }
+                });
+                    
                 break;
-            // case 'putVerbInBracketsArray':
-                
-            //     currentQuestionCompete = putVerbInBracketsArray[getIndexArray];
-                
-            //     break;
+            
             case 'pronunciationsOtherArray':
                 
                 currentQuestionCompete = pronunciationsOtherArray[getIndexArray];
-                
+                console.log(currentQuestionCompete)
                 const firstWord1 = tachTuKhoiDauNhay(currentQuestionCompete.question1)[0];
                 const middleWord1 = tachTuKhoiDauNhay(currentQuestionCompete.question1)[1];
                 const lastWord1 = tachTuKhoiDauNhay(currentQuestionCompete.question1)[2];
@@ -1110,6 +1081,7 @@ getNewQuestion = () => {
                 `);
     
                 break;
+
             case 'chooseAnswerBestArray':
                 currentQuestionCompete = chooseAnswerBestArray[getIndexArray];
                 $('#ctr-area-render-dom-question').empty();
@@ -1124,31 +1096,9 @@ getNewQuestion = () => {
                                 <div id="mc_vo_ans">${currentQuestionCompete.question}</div>
                             </div>
                                 <div class="text-center" id="mc_vo_input">
-                                    <div class="inline-block">
-                                        <div class="mc_vo_ques">
-                                            <div class="mc_vo_choice">
-                                                <input type="radio" name="ques" value="${currentQuestionCompete.answer1}">
-                                                <div class="mc_vo_text">${currentQuestionCompete.answer1}</div>
-                                            </div>
-                                        </div>
-                                        <div class="mc_vo_ques">
-                                            <div class="mc_vo_choice">
-                                                <input type="radio" name="ques" value="${currentQuestionCompete.answer2}">
-                                                <div class="mc_vo_text">${currentQuestionCompete.answer2}</div>
-                                            </div>
-                                        </div>
-                                        <div class="mc_vo_ques">
-                                            <div class="mc_vo_choice">
-                                                <input type="radio" name="ques" value="${currentQuestionCompete.answer3}">
-                                                <div class="mc_vo_text">${currentQuestionCompete.answer3}</div>
-                                            </div>
-                                        </div>
-                                        <div class="mc_vo_ques">
-                                            <div class="mc_vo_choice">
-                                                <input type="radio" name="ques" value="${currentQuestionCompete.answer4}">
-                                                <div class="mc_vo_text">${currentQuestionCompete.answer4}</div>
-                                            </div>
-                                        </div>
+                                    <div class="inline-block parents_best_answer">
+                                       
+                                        
                                     </div>
                                 </div>  
                         <div class="ge_arna">
@@ -1158,15 +1108,22 @@ getNewQuestion = () => {
                         <div class="gefle"><span id="gefl0">Gợi ý: </span><span id="gefl1">Tham khảo thêm tại </span><span id="gefl2"></span></div>  
                     </div>
                 `);
-    
-            
+
+                $('#ctr-area-render-dom-question .parents_best_answer').empty();
+                for (let i= 1; i <= 4; i++){
+                   
+                    $('#ctr-area-render-dom-question .parents_best_answer').append(`
+                    <div class="mc_vo_ques">
+                        <div class="mc_vo_choice">
+                            <input type="radio" id="best_answer_${i}" name="ques_best" value="${i}">
+                            <label for="best_answer_${i}" class="mc_vo_text">${currentQuestionCompete["answer"+i]}</label>
+                        </div>
+                    </div>
+                    `)
+                }
+              
                 break;
-            
-            
             default:
-    
-                console.log('ngoai le name array')
-                
                 break;
         }
 
@@ -1174,8 +1131,6 @@ getNewQuestion = () => {
     }
     
 }
-   
-
 
     playRoomSocket.onopen = function(e) {
         
@@ -1186,7 +1141,7 @@ getNewQuestion = () => {
         if (r == true) {
             location.reload();
         } else {
-            //not accep reconnect
+            location.reload();
         }   
     };
 

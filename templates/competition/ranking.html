@@ -2,9 +2,11 @@
 {% block title %} Thi đấu Tiếng anh trực tuyến {% endblock %}
 
 {%load static%}
+{% load course_tag %}
 {%block scripts %}
 
 <script>
+     
       function filter_type(_self){
         var type = $(_self).attr('type');
         $(_self).siblings('.btn').removeClass('btn-active');
@@ -31,7 +33,7 @@
         $("#ctr-lrblm-hint").addClass('hide');
     }
 
-    function add_member(root,data,rankIndex,type){
+    function add_member(root,data,dataRankIndex,type,week1,rankIndex){
         $(root + ' .ctr-r-total').empty();
         console.log(data)
         for(let i = 0; i < data.length; i++)
@@ -65,8 +67,61 @@
             `);
         }
 
-        $(root+' .ctr-your-rank').append(`${rankIndex === -1 ? 'Vô hạng': 'XH: '+ (rankIndex+1) }`)
+        var ele_star_user = ``;
+            for(let j =0; j < dataRankIndex.star_title; j++)
+            {
+                ele_star_user += ` <img src="/static/img/icon/ctr-star.png">`;
+            }
+        $(root+' .ctr-your-rank').empty();
+        if (rankIndex === -1)
+        {
+            $(root+' .ctr-your-rank').append(`
+            <div class="tr r-row">
+                  <div class="td">Vô hạng</div>
+                 <div class="td ctr-r-nickname text-left">
+                     <div class="inline-block ctr-r-avata">
+                       </div>
+                     <span class="inline-block ctr-r-username"></span>
+                 </div>
+                 <div class="td">
+                     <span class="ctr-r-name"></span>
+                     <span class="ctr-r-star">
+                       
+                     </span>
+                 </div>
+                 <div class="td ctr-r-win"></div>
+                 <div class="td ctr-r-play"></div>
+                 <div class="td ctr-r-total-score"></div>
+                  
+            </div>
+            `)
+        }
+        else{
 
+       
+        $(root+' .ctr-your-rank').append(`
+        <div class="tr r-row">
+                  <div class="td">${rankIndex + 1}</div>
+                 <div class="td ctr-r-nickname text-left">
+                     <div class="inline-block ctr-r-avata">
+                         <img class="ctr-r-avata-img" src="${dataRankIndex.img}">
+                         <img class="ab ctr-r-vip-img" src="/static/img/icon/ctr-vip-icon.png" alt="">															</div>
+                     <span class="inline-block ctr-r-username">${dataRankIndex.username}</span>
+                 </div>
+                 <div class="td ctr-r-level text-left">
+                     <span class="ctr-r-name" style="color: #ff91a8">${dataRankIndex.title}</span>
+                     <span class="ctr-r-star">
+                         ${ele_star_user}
+                     </span>
+                 </div>
+                 <div class="td ctr-r-win">${dataRankIndex.total_win}</div>
+                 <div class="td ctr-r-play">${dataRankIndex.total_battle_rank}</div>
+                 <div class="td ctr-r-total-score">${dataRankIndex.point}</div>
+                  
+            </div>
+        
+        `)
+        }
         if (type === "ALL")
         {
             $('.tbody-content').transition({
@@ -74,21 +129,22 @@
                     rotateY: '+=180deg'
             },1000,function(){});
 
-            GetDataRankCompete("1");
+            GetDataRankCompete("1",week1,rankIndex);
 
         }
         else if (type === "1")
         {
-            GetDataRankCompete("9");
+            GetDataRankCompete("9",week1,rankIndex);
         }
     }
-    function GetDataRankCompete(type_get){
+    function GetDataRankCompete(type_get,week1,rankIndex){
         jQuery.ajax({
             type: "GET",
             url: "{% url 'competition:Get_Rank_By_Week' %}",
             dataType: 'json',
             data: {
                 "type":type_get,
+                "week":week1,
             },
             beforeSend: function(){
                 
@@ -99,13 +155,13 @@
                 {
                     if(res.rankingType1AtTime)
                     {
-                        add_member('#ctr-rank-1',res.rankingType1AtTime,res.rankIndexUserType1,"1");
+                        add_member('#ctr-rank-1',res.rankingType1AtTime,res.rankIndexUserType1,"1",week1,res.rankIndex);
                         
                     }
                 }else if(type_get === "9"){
                     if(res.rankingType9AtTime)
                     {
-                        add_member('#ctr-rank-9',res.rankingType9AtTime,res.rankIndexUserType9,"9");
+                        add_member('#ctr-rank-9',res.rankingType9AtTime,res.rankIndexUserType9,"9",week1,res.rankIndex);
                     }
                 }
             },
@@ -119,12 +175,52 @@
     }
 
     $(document).ready(function(){
+        var week1 = parseInt($('#week').val());
+        $('#ctr-r-time-select').html("TUẦN 0"+week1);
         jQuery.ajax({
             type: "GET",
             url: "{% url 'competition:Get_Rank_By_Week' %}",
             dataType: 'json',
             data: {
                 "type":"ALL",
+                "week":week1,
+            },
+            sync: true,
+            beforeSend: function(){
+                $('.tbody-content').transition({
+                    perspective: '1000px',
+                    rotateY: '+=180deg'
+                },1000,function(){});
+            },
+            success: function(res) {
+                console.log(res.rankIndexUserAll)
+                if(res.rankingAllAtTime)
+                {
+                    add_member('#ctr-rank-all',res.rankingAllAtTime,res.rankIndexUserAll,"ALL",week1,res.rankIndex);
+                }
+            },
+            error: function(err) {
+               
+            },
+            complete: function (argument) {
+
+            }
+        });
+    });
+
+    function search_by_week () {
+        console.log("chay vao day")
+        var week =parseInt($('#week').val());
+        // var class_id = $('#class').val();
+        $('#ctr-r-time-select').html("TUẦN 0"+week);
+      
+        jQuery.ajax({
+            type: "GET",
+            url: "{% url 'competition:Get_Rank_By_Week' %}",
+            dataType: 'json',
+            data: {
+                "type":"ALL",
+                "week":week,
             },
             sync: true,
             beforeSend: function(){
@@ -137,21 +233,17 @@
              
                 if(res.rankingAllAtTime)
                 {
-                    add_member('#ctr-rank-all',res.rankingAllAtTime,res.rankIndexUserAll,"ALL");
+                    add_member('#ctr-rank-all',res.rankingAllAtTime,res.rankIndexUserAll,"ALL",week,res.rankIndex);
                 }
-
-                
-                
-
             },
             error: function(err) {
-                console.log(err);
+               
             },
             complete: function (argument) {
 
             }
         });
-    });
+    }
 
 </script>
     
@@ -165,7 +257,7 @@
                 <div class="ctr-r-left">
                     <div class="row">
                         <div class="col-lg-8">
-                            <div class="ctr-r-title">BẢNG XẾP HẠNG THI ĐẤU <span id="ctr-r-time-select">TUẦN 01</span></div>
+                            <div class="ctr-r-title">BẢNG XẾP HẠNG THI ĐẤU <span id="ctr-r-time-select">TUẦN 0{{num_week_month_today}}</span></div>
                             <p class="ctr-r-sub-title">( Danh sách 100 người đạt điểm cao nhất )</p>
                         </div>
                         <div class="col-lg-4">
@@ -194,7 +286,15 @@
 
                                         <small for="email" class="text-muted">Xem BXH của:</small>
                                         <select name="week" id="week" class="form-control" onchange="search_by_week();">
-                                             <option value="01" selected="selected">Tuần: 01 (Tháng 1)</option>
+                                            {%for i in week_of_month%}
+                                            {% add_number_1dv i as AddOne%}
+                                                {% if forloop.last %}
+
+                                                <option value="0{{AddOne}}" selected="selected">Tuần: 0{{AddOne}} (Tháng {{month_today}})</option>
+                                                {%else%}
+                                                <option value="0{{AddOne}}">Tuần: 0{{AddOne}} (Tháng {{month_today}})</option>
+                                                {% endif %}
+                                            {%endfor%}
                                          </select>
                                     </div>
                                 </div>
@@ -203,6 +303,7 @@
                                         <small for="email" class="text-muted">Xem BXH của:</small>
                                         <select name="month" id="month" class="form-control" disabled="" onchange="search_by_month()">
                                             <option selected="" value="01">Tháng 1</option>	
+                                            
                                         </select>
                                     </div>
                                 </div>
@@ -226,31 +327,36 @@
                                   <div class="tbody-content">
                                     <div class="face">
                                         <div class="tbody-list show" type="all" id="ctr-rank-all">
-                                            <div class="r-body ctr-r-total overflow">
-                                            <!-- List rank  member all -->
-                                                
+                                            <div class="r-body">
+                                                <div class="ctr-r-total overflow">
+                                                <!-- List rank  member all -->
+                                                    
+                                                </div>
+                                                <div class="text-center text-bold ctr-your-rank-banner">Thứ hạng của tôi</div>
+                                                <div class="ctr-r-body ctr-your-rank"></div>
                                             </div>
-                                            <div class="text-center text-bold ctr-your-rank-banner">Thứ hạng của tôi</div>
-                                            <div class="ctr-r-body ctr-your-rank"></div>
                                         </div>
                                         <div class="tbody-list" type="1" id="ctr-rank-1">
-											
-                                            <div class="r-body ctr-r-total overflow">
-                                              <!-- List rank  member 1 vs 1 -->
-                                               
+                                            <div class="r-body">
+                                                <div class="ctr-r-total overflow">
+                                                <!-- List rank  member 1v1 -->
+                                                    
+                                                </div>
+                                                <div class="text-center text-bold ctr-your-rank-banner">Thứ hạng của tôi</div>
+                                                <div class="ctr-r-body ctr-your-rank"></div>
                                             </div>
-                                             <div class="text-center text-bold ctr-your-rank-banner">Thứ hạng của tôi</div>
-                                             <div class="ctr-r-body ctr-your-rank"></div>
                                         </div>
 
                                         <div class="tbody-list" type="9" id="ctr-rank-9">
 											
-                                            <div class="r-body ctr-r-total overflow">
-                                              <!-- List rank  member 1 vs 9 -->
-                                              
+                                            <div class="r-body">
+                                                <div class="ctr-r-total overflow">
+                                                <!-- List rank  member 1v9 -->
+                                                    
+                                                </div>
+                                                <div class="text-center text-bold ctr-your-rank-banner">Thứ hạng của tôi</div>
+                                                <div class="ctr-r-body ctr-your-rank"></div>
                                             </div>
-                                             <div class="text-center text-bold ctr-your-rank-banner">Thứ hạng của tôi</div>
-                                             <div class="ctr-r-body ctr-your-rank"></div>
                                         </div>
                                     </div>
                                     <div class="back face center">

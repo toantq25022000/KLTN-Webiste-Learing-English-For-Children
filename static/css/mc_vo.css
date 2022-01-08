@@ -15,7 +15,7 @@
 #mc_vo_pic img{max-width: 100%; max-height: 100%;}
 /* radio button */
 #mc_vo_input input[type=radio] {margin:4px;}
-#mc_vo_input input[type=radio] + label {display:inline-block; width: 20px; height: 20px; background-image: url("");}
+#mc_vo_input input[type=radio] + label {display:inline-block; }
 #mc_vo_input input[type=radio]:checked + label{background-position: -20px 0px;}
 /* link lesson */
 .gefle{position: absolute; text-align: center; font-size: 15px; font-style: italic; display: none; width: 100%; top: 440px;}

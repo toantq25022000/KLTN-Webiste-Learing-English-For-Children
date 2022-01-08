@@ -198,23 +198,6 @@ def post_init_room(request):
             status_cus = 1
             b_private = True
 
-        check_exists_user_host = RoomCompetition.objects.filter(user_host = request.user)
-        if check_exists_user_host:
-            print('da ton tai user host')
-            host_user = check_exists_user_host[0]
-            host_user.delete()
-            print('xoa')
-        
-        room = RoomCompetition.objects.create(
-            id_room= rd_id_room,
-            user_host = request.user,
-            type_compete_id = type_compete,
-            class_compete = class_ques,
-            skills = skills,
-            is_private = b_private,
-            status = status_cus
-        )
-
         data = [
             {
                 'id_room': rd_id_room,
@@ -225,10 +208,33 @@ def post_init_room(request):
                 'private' : b_private,
             }
         ]
-        return JsonResponse({'status':'Successfull','data':data})
-    else:
-        return JsonResponse({'status':'Not POST'})
 
+        check_exists_user_host = RoomCompetition.objects.filter(user_host = request.user)
+        
+        if check_exists_user_host:
+            data = [
+                {
+                    'id_room': check_exists_user_host[0].id_room,
+                }
+            ]
+            return JsonResponse({'status':1062,'data':data})
+
+            # host_user = check_exists_user_host[0]
+            # host_user.delete()
+        
+        room = RoomCompetition.objects.create(
+            id_room= rd_id_room,
+            user_host = request.user,
+            type_compete_id = type_compete,
+            class_compete = class_ques,
+            skills = skills,
+            is_private = b_private,
+            status = status_cus
+        )
+        return JsonResponse({'status':201,'data':data})
+       
+    else:
+        return JsonResponse({'status':403})
 
 
 def rankUserInWeek(userId):
@@ -279,7 +285,8 @@ def rankUserInWeek(userId):
         return "Vô hạng"
     return index + 1 # index array start: 0
 
-def rankListMember(type_):
+def rankListMember(type_,num_week):
+    num_week = int(num_week)
     dt_today = datetime.today()
     day_today = dt_today.day
     month_today = dt_today.month
@@ -287,22 +294,21 @@ def rankListMember(type_):
     max_day_month = calendar.monthrange(year_today, month_today)[1]
     day_start = 1
     day_end = 1
-
-    if day_today <= 7:
+    if num_week == 1:
         day_start = 1
         day_end = 7
-    elif day_today <= 14:
+    elif num_week == 2:
         day_start = 8
         day_end = 14
-    elif day_today <= 21:  
+    elif num_week == 3:  
         day_start = 15
         day_end = 21
     else:
         day_start = 22
         day_end = max_day_month
-
     datetimeStart = datetime(year_today,month_today,day_start)
     datetimeEnd = datetime(year_today,month_today,day_end)
+    list_rank_qs = None
     if type_ == "ALL":
         list_rank_qs = ScoreCompetition.objects.filter(timestart__range = (datetimeStart,datetimeEnd))
     
@@ -311,7 +317,6 @@ def rankListMember(type_):
     else:
         list_rank_qs = ScoreCompetition.objects.filter(timestart__range = (datetimeStart,datetimeEnd),type_compete_id = 2)
     data_rank = []
-
     resultFind = None
     rank_int = 0
     for obj in list_rank_qs:
@@ -341,95 +346,28 @@ def rankListMember(type_):
     data_rank.sort(key=lambda x: x["point"], reverse=True)
     return data_rank
 
-class rankListMemberThread(threading.Thread):
-    def __init__(self, type_,event):
-        self.type_ = type_
-        self.event = event
-        threading.Thread.__init__(self)
-    def run(self):
-        while True:
-            self.event.wait()
-            try:
-                dt_today = datetime.today()
-                day_today = dt_today.day
-                month_today = dt_today.month
-                year_today = dt_today.year
-                max_day_month = calendar.monthrange(year_today, month_today)[1]
-                day_start = 1
-                day_end = 1
-
-                if day_today <= 7:
-                    day_start = 1
-                    day_end = 7
-                elif day_today <= 14:
-                    day_start = 8
-                    day_end = 14
-                elif day_today <= 21:  
-                    day_start = 15
-                    day_end = 21
-                else:
-                    day_start = 22
-                    day_end = max_day_month
-
-                datetimeStart = datetime(year_today,month_today,day_start)
-                datetimeEnd = datetime(year_today,month_today,day_end)
-                if self.type_ == "All":
-                    list_rank_qs = ScoreCompetition.objects.filter(timestart__range = (datetimeStart,datetimeEnd))
-                
-                elif self.type_ == "1":
-                    list_rank_qs = ScoreCompetition.objects.filter(timestart__range = (datetimeStart,datetimeEnd),type_compete_id = 1)
-                else:
-                    list_rank_qs = ScoreCompetition.objects.filter(timestart__range = (datetimeStart,datetimeEnd),type_compete_id = 2)
-                data_rank = []
-
-                resultFind = None
-                rank_int = 0
-                for obj in list_rank_qs:
-
-                    resultFind = next((x for x in data_rank if x["id"] == obj.user.id), None)
-                    manageuser = ManagerUserCompetition.objects.filter(user=obj.user)[0]
-                    if resultFind is None:
-                        item = {
-                            "id":obj.user.id,
-                            "username":obj.user.username,
-                            "img":obj.user.std_img.url,
-                            "title":manageuser.title,
-                            "total_win":0,
-                            "total_battle_rank":0,
-                            "star_title":manageuser.star_title,
-                            "point":obj.points_title,
-                        }
-                        data_rank.append(item)
-                    else:
-                        rank_int = int(obj.result_rank[len(obj.result_rank)-1:len(obj.result_rank)])
-                    
-                        if rank_int <= 3:
-                            resultFind["total_win"] += 1
-                            resultFind["point"] += obj.points_title
-                        
-                        resultFind["total_battle_rank"] += 1
-                data_rank.sort(key=lambda x: x["point"], reverse=True)
-                return data_rank
-            except IndexError as e:
-            	print(e)
 def GetRankByWeek(request):
     if request.method == 'GET' or request.method == 'get':
         type = request.GET['type']
-
-        if type == "ALL":
-            rank_All =  rankListMember("ALL")
-            rankIndexUserAll = next((i for i, item in enumerate(rankListMember("All")) if item["id"] == request.user.id), -1)
-            return JsonResponse({"type":"ALL","rankingAllAtTime":list(rank_All),"rankIndexUserAll":rankIndexUserAll,})
-        elif type == "1": 
-            rank_1v1 =  rankListMember("1")
-            rankIndexUserType1 = next((i for i, item in enumerate(rankListMember("1")) if item["id"] == request.user.id), -1)
-            return JsonResponse({"type":"1v1", "rankingType1AtTime":list(rank_1v1), "rankIndexUserType1":rankIndexUserType1,})
-        else:
-            rank_1v9 =  rankListMember("9")
-            rankIndexUserType9 = next((i for i, item in enumerate(rankListMember("9")) if item["id"] == request.user.id), -1)
-            return JsonResponse({"type":"1v9","rankingType9AtTime":list(rank_1v9), "rankIndexUserType9":rankIndexUserType9,})
-      
+        week_post = request.GET['week']
+   
        
+        if type == "ALL":
+            rank_All =  rankListMember("ALL",week_post)
+            rankIndexUserAll = next((item for  item in rank_All if item["id"] == request.user.id), -1)
+            rankIndex = next((i for i, item in enumerate(rank_All) if item["id"] == request.user.id), -1)
+            return JsonResponse({"type":"ALL","rankingAllAtTime":list(rank_All),"rankIndex":rankIndex,"rankIndexUserAll":rankIndexUserAll,})
+        elif type == "1": 
+            rank_1v1 =  rankListMember("1",week_post)
+            rankIndexUserType1 = next((item for  item in rank_1v1 if item["id"] == request.user.id), -1)
+            rankIndex = next((i for i, item in enumerate(rank_1v1) if item["id"] == request.user.id), -1)
+            return JsonResponse({"type":"1v1", "rankingType1AtTime":list(rank_1v1),"rankIndex":rankIndex, "rankIndexUserType1":rankIndexUserType1,})
+        else:
+            rank_1v9 =  rankListMember("9",week_post)
+            rankIndexUserType9 = next((item for item in rank_1v9 if item["id"] == request.user.id), -1)
+            rankIndex = next((i for i, item in enumerate(rank_1v9) if item["id"] == request.user.id), -1)
+            return JsonResponse({"type":"1v9","rankingType9AtTime":list(rank_1v9),"rankIndex":rankIndex, "rankIndexUserType9":rankIndexUserType9,})
+      
 def HistoryMemberCompete(request):
     kqRank = rankUserInWeek(request.user.id)
     
@@ -505,9 +443,21 @@ def HistoryMemberCompete(request):
     return render(request, 'competition/history_member_compete.html',context)
 
 def RankingCompetition(request):
-
-
-    return render(request,'competition/ranking.html')
+    dt_today = datetime.today()
+    day_today = dt_today.day
+    month_today = dt_today.month
+    year_today = dt_today.year
+ 
+    week_of_month = 1
+    if day_today <= 7:
+        week_of_month = 1
+    elif day_today <= 14:
+        week_of_month = 2
+    elif day_today <= 21:  
+        week_of_month = 3
+    else:
+        week_of_month = 4
+    return render(request,'competition/ranking.html',{'week_of_month':range(week_of_month),"month_today":month_today,"num_week_month_today":week_of_month})
 
 @csrf_exempt
 def Post_Result_Play(request,room_name):

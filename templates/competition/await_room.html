@@ -653,11 +653,16 @@ function timeCountTimerWait(){
 
     
     awaitRoomSocket.onopen = function(e) {
-        console.log('open')
+        
     }
 
     awaitRoomSocket.onclose = function(e) {
-        console.error('awaitRoomSocket socket closed unexpectedly');
+        var r = confirm("Bạn vừa bị mất kết nối với máy chủ! Bấm OK hoặc nhấn Enter để kết nối lại");
+        if (r == true) {
+            location.reload();
+        } else {
+            location.reload();
+        }   
     };
 
     //start timer count down
