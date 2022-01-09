@@ -1,0 +1,203 @@
+{% extends "pages/base.html" %} 
+{% block title %} Thanh toán đơn hàng {% endblock %} {%load humanize %} {%load static%} {%block content%}
+<section class="slider-area slider-area2">
+  <div class="slider-active">
+    <!-- Single Slider -->
+    <div class="single-slider slider-height2">
+      <div class="container">
+        <div class="row">
+          <div class="col-xl-8 col-lg-11 col-md-12">
+            <div class="hero__caption hero__caption2">
+              <h1 data-animation="bounceIn" data-delay="0.2s">Thanh toán</h1>
+              <!-- breadcrumb Start-->
+              <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                  <li class="breadcrumb-item">
+                    <a href="{%url 'home:index'%}">Home</a>
+                  </li>
+                  <li class="breadcrumb-item">
+                    <a href="{{request.get_full_path}}">Thanh toán</a>
+                  </li>
+                </ol>
+              </nav>
+              <!-- breadcrumb End -->
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<div class="container container-h-100 pb-padding mt-30 wow fadeIn">
+  <!-- Heading -->
+  <h2 class="my-5 h2 text-center font-size-lg">Thanh toán đơn hàng</h2>
+
+  <!--Grid row-->
+  <form
+    id="form_payment"
+    class="row"
+    action="{{request.get_full_path}}"
+    method="POST"
+  >
+   {%csrf_token%}
+    <!--Grid column-->
+    <div class="col-md-8 mb-4">
+      <!--Card-->
+      <div class="card">
+        <!--Card content-->
+        <div class="card-body payment-form">
+         <h2 class="mb-5">Thông tin người mua hàng</h2>
+        {{billing_address.as_p}}
+        </div>
+      </div>
+      <!--/.Card-->
+    </div>
+    <!--Grid column-->
+
+    <!--Grid column-->
+    <div class="col-md-4 mb-4">
+      <!-- Heading -->
+      <h4 class="d-flex justify-content-between align-items-center mb-3">
+        <span class="text-muted">Giỏ hàng</span>
+      </h4>
+
+      <!-- Cart -->
+      <ul class="list-group mb-3 z-depth-1">
+        {%for item in order_item%}
+        <li class="list-group-item d-flex justify-content-between lh-condensed">
+          <div>
+            <h3 class="my-0">{{item.item.title}}</h3>
+           
+          </div>
+          <span class="text-muted">{{item.total_price|intcomma}}<sub>/
+          {%if item.is_lifetime == True %}
+          lifetime
+          {%else%}
+          {{item.vip_days}} days
+          {%endif%}</sub></span>
+        </li>
+        {%endfor%}
+        <li class="list-group-item d-flex justify-content-between bg-light">
+          <div class="text-success">
+            <h6 class="my-0">Ship</h6>
+            <small>Shiping</small>
+          </div>
+          <span class="text-success">Free ship</span>
+        </li>
+        <li class="list-group-item d-flex justify-content-between">
+          <span>Total (VND)</span>
+          <strong>{{order_total|intcomma}}</strong>
+          <hr>
+          <span>USD:</span>
+          <strong>${{order_total_usd}}</strong>
+        </li>
+      </ul>
+      <!-- Cart -->
+
+      <!--Start Payment -->
+      {%if pay_meth %}
+      <!--Start Payment With PAYPAL -->
+      <div class="card p-2 mt-3">
+        <div id="paypal-button-container"></div>
+      </div>
+      <!--End Payment With PAYPAL -->
+      {%else%}
+      <!--Start Payment Method -->
+      <div class="card p-2 payment_method_card">
+        {%for payment in payment_method%} {{payment}} {%endfor%}
+      </div>
+      <!-- End  Payment Method -->
+
+      <!--Start Button Submit Payment -->
+      <div class="card p-2 mt-3">
+        <button
+          id="submitBtn_payment"
+          class="btn btn-primary btn-lg btn-block"
+          type="submit"
+        >
+          Tiếp tục thanh toán
+        </button>
+      </div>
+      <!--End Button Submit Payment -->
+      {%endif%}
+      <!-- Payment  -->
+    </div>
+    <!--Grid column-->
+  </form>
+  <!--Grid row-->
+</div>
+{{ order_id|json_script:"order_id" }}
+{%endblock%}
+{% block paypal %}
+
+<script src="https://www.paypal.com/sdk/js?client-id={{paypal_client_id}}"></script>
+
+{%if pay_meth %}
+
+<script>
+  const orderId = JSON.parse(document.getElementById('order_id').textContent);
+  function getCookie(name) {
+    let cookieValue = null;
+    if (document.cookie && document.cookie !== "") {
+      const cookies = document.cookie.split(";");
+      for (let i = 0; i < cookies.length; i++) {
+        const cookie = cookies[i].trim();
+        // Does this cookie string begin with the name we want?
+        if (cookie.substring(0, name.length + 1) === name + "=") {
+          cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+          break;
+        }
+      }
+    }
+    return cookieValue;
+  }
+  var csrftoken = getCookie("csrftoken");
+
+  var url = "{% url 'payment:paypal_payment' %}";
+ 
+  paypal.Buttons({createOrder: function (data, actions) {
+        // This function sets up the details of the transaction, including the amount and line item details.
+        return actions.order.create({
+          purchase_units: [
+            {
+              amount: {
+                value: "{{order_total_usd}}",
+              },
+            },
+          ],
+        });
+      },
+      onApprove: function (data, actions) {
+        // This function captures the funds from the transaction.
+        return actions.order.capture().then(function (details) {
+          
+          sendData();
+          function sendData() {
+            fetch(url, {
+              method: "POST",
+              headers: {
+                "Content-Type": "application/json",
+                "X-CSRFToken": csrftoken,
+              },
+              body: JSON.stringify({
+                order_id: details.id,
+                payment_id: details.payer.payer_id,
+                status: details.status,
+              }),
+              
+            })
+            .then(function(res)
+              { 
+                const url_href = "{% url 'payment:success_payment' id_order=3 %}";
+                window.location.href = url_href.replace("3", orderId);
+                
+              })
+              
+          }
+        });
+      },
+    })
+    .render("#paypal-button-container");
+</script>
+{%endif%}
+{% endblock paypal %}

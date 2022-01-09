@@ -1,0 +1,425 @@
+{% extends "pages/base.html" %} 
+{% block title %}Trang cá nhân{% endblock %}
+{% load humanize %}
+
+{% load course_tag %}
+{%load static%}
+
+{% block scripts %}
+<script>
+    $(document).ready(function(){
+        /* The following code is executed once the DOM is loaded */
+    
+        /* This flag will prevent multiple comment submits: */
+        
+        statusChangeImg = false
+        var frm = $("#formSubmitProfile");
+
+        frm.submit(function (e){
+            e.preventDefault();
+        
+            const formData = new FormData(this)
+            formData.append('statusImg', statusChangeImg);
+            console.log(formData)
+            $.ajax({
+                type: frm.attr("method") || 'POST',
+                url: "{% url 'usermember:post_data_profile' %}",
+                data:  formData, 
+                success: function(response) {
+                    statusChangeImg = false
+                    if (response.data === undefined) {
+                        $('#alert_notify').empty();
+                        $('#alert_notify').append(`
+                            <div class="alert alert-danger  alert-dismissible fade show">
+                                <strong>Danger !!</strong> Update profile not successful.
+                                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                            </div>
+                        `);
+                    } 
+                    else{
+                        const data = response.data
+                        const first_name = data[0].first_name
+                        const last_name = data[0].last_name
+                        const email = data[0].email
+                        $('#first_name').val(first_name);
+                        $('#last_name').val(last_name);
+                        $('#email').val(email);
+                        $('#phone_number').val(data[0].phone_number);
+                        $('#address').val(data[0].address);
+                        $('#fullname').html(first_name + ' ' + last_name);
+                        $('#fullname_header').html(first_name + ' ' + last_name);
+                        
+                        $('#emailUser').html(email);
+                        
+                        $('#address').val(data[0].address);
+                        if(data[0].sex === 0) {
+                                $('#sex').empty();
+                                $('#sex').append(`
+                                    <option value="0" selected="selected">Nữ</option>
+                                    <option value="1">Nam</option>
+                                `)
+                            }
+                            else{
+                                $('#sex').empty();
+                                $('#sex').append(`
+                                    <option value="0">Nữ</option>
+                                    <option value="1" selected="selected">Nam</option>
+                                `)
+                            }
+                        
+                        $('#birth_date').val(data[0].birth_date);
+                        $('#alert_notify').empty();
+                        $('#alert_notify').append(`
+                            <div class="alert alert-success  alert-dismissible fade show">
+                                <strong>Success !</strong> Update profile successful.
+                                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                            </div>
+                        `);
+                    }
+                },
+                error: function() {
+                    
+                },
+                contentType: false,
+                processData: false,
+                cache: false
+            })
+        })
+
+        /*   upload image */
+        function readURL(input) {
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+                reader.onload = function(e) {
+                    $('#imagePreview').css('background-image', 'url('+e.target.result +')');
+                    $('#imagePreview').hide();
+                    $('#imagePreview').fadeIn(650);
+                }
+                reader.readAsDataURL(input.files[0]);
+                statusChangeImg = true
+            }
+        }
+        $("#imageUpload").change(function() {
+            readURL(this);
+        });
+    })
+</script>
+
+{%endblock%}
+
+{%block content%} 
+
+<section class="slider-area slider-area2">
+    <div class="slider-active">
+        <!-- Single Slider -->
+        <div class="single-slider slider-height2">
+            <div class="container">
+                <div class="row">
+                    <div class="col-xl-8 col-lg-11 col-md-12">
+                        <div class="hero__caption hero__caption2">
+                            <h1 data-animation="bounceIn" data-delay="0.2s">Trang cá nhân</h1>
+                            <!-- breadcrumb Start-->
+                            <nav aria-label="breadcrumb">
+                                <ol class="breadcrumb">
+                                    <li class="breadcrumb-item"><a href="{%url 'home:index'%}">Home</a></li>
+                                    <li class="breadcrumb-item"><a href="{{request.get_full_path}}">Trang cá nhân</a></li> 
+                                </ol>
+                            </nav>
+                            <!-- breadcrumb End -->
+                        </div>
+                    </div>
+                </div>
+            </div>          
+        </div>
+    </div>
+</section>
+<div class="container container-h-100 pb-padding mt-30">
+    <div class="wrap_profile_info">
+       <div class="header_name_user">
+
+            <h2 >
+                {% if std_course%}
+                    Học viên:
+                {%else%}
+                    Họ tên: 
+                {%endif%}
+                <span id="fullname_header">{{user_.first_name}} {{user_.last_name}}</span> 
+            </h2>
+            {% if std_course%}
+            <h2>MSHV:<span>{{std_course.id_student}}</span></h2>
+            {%endif%}
+            
+        </div>
+        <div class="body_profile">
+            <div id="exTab_profile" class="">	
+                <ul  class="nav nav-pills">
+                    <li 
+                     {%if nameUrl == 'course' %}
+                        class="active"
+                     {%endif%}
+                     
+                    >
+                        <a  href="{% url 'usermember:dashboard_user' name_url='course' %}" >Khoá học</a>
+                    </li>
+
+                    <li 
+                    {%if nameUrl == 'profile' %}
+                        class="active"
+                     {%endif%}
+                    >
+                        <a href="{% url 'usermember:dashboard_user' name_url='profile' %}">Hồ sơ cá nhân</a>
+                    </li>
+                    <li
+                     {%if nameUrl == 'order' %}
+                        class="active"
+                     {%endif%}
+                    >
+                        <a href="{% url 'usermember:dashboard_user' name_url='order' %}">Lịch sử đặt hàng</a>
+                    </li>
+                    
+                </ul>
+
+                    <div class="tab-content tab_content__profile clearfix">
+                        {%if nameUrl == 'course' %}
+                           
+                            <div class="tab-pane active">
+                                <h3>Danh sách khóa học đang học</h3>
+                                {% if course_learn_list %}
+                                         {%for item in course_learn_list%}
+                                        
+                                            <div class="ugb-lg-box">
+                                                <div class="ugb-block-img">
+                                                    <img class="img-responsive" src="{{item.course.course_img.url}}">
+                                                    <p>{{item.course.title}}</p>
+                                                    <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="crown" class="svg-inline--fa fa-crown fa-w-20 icon-vip" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512"><path fill="currentColor" d="M528 448H112c-8.8 0-16 7.2-16 16v32c0 8.8 7.2 16 16 16h416c8.8 0 16-7.2 16-16v-32c0-8.8-7.2-16-16-16zm64-320c-26.5 0-48 21.5-48 48 0 7.1 1.6 13.7 4.4 19.8L476 239.2c-15.4 9.2-35.3 4-44.2-11.6L350.3 85C361 76.2 368 63 368 48c0-26.5-21.5-48-48-48s-48 21.5-48 48c0 15 7 28.2 17.7 37l-81.5 142.6c-8.9 15.6-28.9 20.8-44.2 11.6l-72.3-43.4c2.7-6 4.4-12.7 4.4-19.8 0-26.5-21.5-48-48-48S0 149.5 0 176s21.5 48 48 48c2.6 0 5.2-.4 7.7-.8L128 416h384l72.3-192.8c2.5.4 5.1.8 7.7.8 26.5 0 48-21.5 48-48s-21.5-48-48-48z"></path></svg>
+                                                </div>
+                                                <div class="ugb-block-txt">
+                                                    <p>Giảng viên: Lina Anna</p>
+                                                    
+                                                    <p class="font_w_bold">VIP:
+                                                        {%if item.lifetime == True%}
+                                                            Trọn đời
+                                                        {%else%}
+                                                            {% day_left item.finish_date  as dayLeft %}
+                                                            
+                                                            {%if dayLeft < 0%}
+                                                                0 ngày. <span style="float:right;"><a href="{% url 'order:register_course' item.course.id %}" class="btn00 btn00_gh btn-danger">Gia hạn</a></span>
+                                                            {%elif dayLeft == 0%}
+                                                                Hết hôm nay <span style="float:right;"><a href="{% url 'order:register_course' item.course.id %}" class="btn00 btn00_gh btn-warning">Gia hạn đi</a></span>
+                                                            {%else%}
+                                                                {{dayLeft}} days <span style="float:right;"><a href="{% url 'order:register_course' item.course.id %}" class="btn00 btn00_gh btn-info">Gia hạn</a></span>
+                                                            {%endif%}
+                                                        {%endif%}
+                                                        
+                                                   <p>
+                                                   <div class="clear"></div>
+                                                    <span>
+                                                        <div class="c100 p0 small">
+                                                            {% sum_score_course user.id item.course.id as sumScoreCourse%}
+                                                            {% total_score_course user.id item.course.id as toalScoreCourse%}
+                                                            {% persent_progress_chap sumScoreCourse toalScoreCourse as persentProgresCourse%}
+                                                            <span>{{persentProgresCourse}}%</span>
+                                                            <div class="slice">
+                                                                <div class="bar"></div>
+                                                                <div class="fill"></div>
+                                                            </div>
+                                                        </div>
+                                                    </span>
+                                                    <a href="{% url 'course:detailcourse' item.course.id %}" class="btn00 btn-success"><i class="fa fa-play-circle" aria-hidden="true"></i> Vào học ngay</a>
+                                                    <div class="clear"></div>
+                                                </div>
+                                            </div>
+                                          
+                                          {%endfor%}
+                                          <div class="clear"></div>
+                                    
+                                {%else%}
+                                    <p>Bạn chưa mua khóa học nào</p>
+                                {%endif%}
+                            </div>
+                        {%elif nameUrl == 'profile'%}
+                            <div class="tab-pane active">
+                                <h3>Hồ sơ cá nhân</h3>
+                                
+                                <!-- Show  Alert -->
+                                <div id="alert_notify" > 
+
+                                </div>
+                                <form id="formSubmitProfile" action="" method="POST" enctype="multipart/form-data">
+                                {%csrf_token%}
+                                    <div class="row gutters">
+                                        <div class="col-xl-3 col-lg-3 col-md-12 col-sm-12 col-12">
+                                            <div class="card h-100">
+                                                <div class="card-body">
+                                                    <div class="account-settings">
+                                                        <div class="user-profile">
+                                                            <div class="avatar-upload">
+                                                                <div class="avatar-edit">
+                                                                    <input type='file' hidden id="imageUpload" name="imageAvatar" accept=".png, .jpg, .jpeg" />
+                                                                    <label for="imageUpload"><i class="fa fa-upload"></i></label>
+                                                                </div>
+                                                                <div class="avatar-preview">
+                                                                    <div id="imagePreview" style="background-image: url({{user_.std_img.url}});">
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            
+                                                            <h5 class="user-name" id="fullname">{{user_.first_name}} {{user_.last_name}}</h5>
+                                                            <h6 class="user-email" id="emailUser">{{user_.email}}</h6>
+
+                                                            
+                                                        </div>
+                                                    
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-xl-9 col-lg-9 col-md-12 col-sm-12 col-12">
+                                            <div class="card h-100">
+                                                <div class="card-body">
+                                                    <div class="row gutters">
+                                                        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                                                            <h2 class="mb-2 text-primary">Hồ sơ người dùng</h2>
+                                                        </div>
+                                                        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12 mt-4">
+                                                            <div class="form-group">
+                                                                <label for="first_name" class="mb-3">Họ</label>
+                                                                <input type="text" class="form-control custom_form_control" id="first_name" name="first_name" value="{{user_.first_name}}" placeholder="ex: Trần Quốc" required>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12 mt-4">
+                                                            <div class="form-group">
+                                                                <label for="last_name" class="mb-3">Tên</label>
+                                                                <input type="text" class="form-control custom_form_control" id="last_name" name="last_name" value="{{user_.last_name}}" placeholder="ex: Toản" required>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12 mt-4">
+                                                            <div class="form-group">
+                                                                <label for="email" class="mb-3">Email</label>
+                                                                <input type="email" class="form-control custom_form_control" id="email" name="email" value="{{user_.email}}" placeholder="ex: toan123@gmil.com" required>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12 mt-4">
+                                                            <div class="form-group" >
+                                                                <label for="phone_number" class="mb-3">Điện thoại</label>
+                                                                <input type="text" class="form-control custom_form_control" id="phone_number" name="phone_number" value="{{user_.phone_number}}" placeholder="ex: 032598974" required>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12 mt-4">
+                                                            <div class="form-group" class="mb-3">
+                                                                <label for="address" class="mb-3">Địa chỉ</label>
+                                                                <textarea class="form-control f-14" id="address" name="address" rows="3" required>{{user_.address}}</textarea>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12  mt-4">
+                                                            <div class="form-group">
+                                                                <label for="gender" class="mb-3">Giới tính</label><br>
+                                                                <select class="form-control ip_select f-14" id="sex" name="sex">
+                                                                    {%if user.sex == 0%}
+                                                                    <option value="0" selected="selected">Nữ</option>
+                                                                    <option value="1">Nam</option>
+                                                                    {%else%}
+                                                                    <option value="0">Nữ</option>
+                                                                    <option value="0" selected="selected">Nam</option>
+                                                                    {%endif%}
+                                                                </select>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12 mt-4">
+                                                            <div class="form-group">
+                                                                <label for="birth_date" class="mb-3">Ngày sinh</label><br>
+                                                                <input class="ip_date form-control custom_form_control" type="date" id="birth_date" name="birth_date" value="{{user_.birth_date|date:'Y-m-d'}}" required>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    
+                                                    <div class="row gutters mt-5">
+                                                        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                                                            <div class="text-right">
+                                                                <button id="submit_profile" type="submit" class="btn-custom">Cập nhật thông tin</button>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </form>
+                               
+
+                            </div>
+                        {%elif nameUrl == 'order'%}
+                            <div class="tab-pane active">
+                                <h3><i class="fa fa-history"></i>Lịch sử đặt hàng</h3>
+                                
+                                <table class="table table-bordered">
+                                    <thead class="thead-light">
+                                        <tr>
+                                            <th scope="col">Mã đơn hàng</th>
+                                            <th scope="col">Tên khóa học</th>
+                                            <th scope="col">VIP</th>
+                                            <th scope="col">Thanh toán</th>
+                                            <th scope="col">Trạng thái</th>
+                                            <th scope="col">Ngày đặt hàng</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                    {%for item in list_isCashDelivery%}
+                                        {% list_order_item item.order.id as lst_order_item%}
+                                        {%for obj in lst_order_item%}
+                                        <tr>
+                                          
+                                          <td>{{item.order.id}}</td>
+                                            <td>{{obj.item.title}}</td>
+                                            <td>
+                                            {%if obj.is_lifetime == True%}
+                                            Trọn đời
+                                            {%else%}
+                                            {{obj.vip_days}} days</td>
+                                            {%endif%}
+                                            <td>{{item.order.get_payment_method_display}}</td>
+                                            <td><span
+                                            {%if item.status == 'D'%}
+                                              class="badge bg-success"
+                                            {%else%}
+                                            class="badge bg-warning"
+                                            {%endif%}
+                                            >{{item.get_status_display}}</span>
+                                            </td>
+                                            <td>{{item.time_order|date:'Y-m-d H:i:s'}}</td>
+                                            
+                                        </tr>
+                                        {%endfor%}
+                                    {%endfor%}
+                                    {%for item2 in list_ispay%}
+                                        {% list_order_item item2.order.id as lst_order_item2%}
+                                        {%for obj in lst_order_item2%}
+                                        <tr>
+                                          <td>{{item2.orderId}}</td>
+                                            <td>{{obj.item.title}}</td>
+                                            <td>
+                                            {%if obj.is_lifetime == True%}
+                                            Trọn đời
+                                            {%else%}
+                                            {{obj.vip_days}} days</td>
+                                            {%endif%}
+                                            </td>
+                                            <td>{{item2.order.get_payment_method_display}}</td>
+                                            <td> <span class="badge bg-success">Đã thanh toán</span></td>
+                                            <td>{{item2.timestamp|date:'Y-m-d H:i:s'}}</td>
+                                            
+                                        </tr>
+                                        {%endfor%}
+                                        
+                                    {%endfor%}
+                                    </tbody>
+                                </table>
+                            </div>
+                        {%endif%}              
+                    </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{%endblock%}

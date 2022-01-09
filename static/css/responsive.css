@@ -1,0 +1,62 @@
+/* Normal desktop :1200px. */
+@media (min-width: 1200px) and (max-width: 1500px) {
+
+
+}
+
+
+/* Normal desktop :992px. */
+@media (min-width: 992px) and (max-width: 1200px) {
+
+
+}
+
+ 
+/* Tablet desktop :768px. */
+@media (min-width: 768px) and (max-width: 991px) {
+
+
+}
+
+ 
+/* small mobile :320px. */
+@media (max-width: 767px) {
+  .submission_vioend{
+    padding:0 !important;
+  }
+  .modal_f_family,
+  .body_modal_oksubmisson{
+      width: auto;
+      margin-left: 0;
+      margin-right: 0;
+    }
+    .btn_start_vioend{
+      padding: 15px 11px !important;
+    }
+
+    .search-mobile{
+      display: none;
+    }
+ 
+  .come-teacher .text-bold{
+    padding: 15px 20px;
+  }
+  .txt-bc-gv .text-white {
+    line-height: 41px;
+  }
+
+  #scrollUp, #back-top {
+    right: 72px;
+  }
+  #exTab_profile .nav-pills > li a{
+    font-size: 15px;
+  }
+}
+
+/* Large Mobile :480px. */
+@media only screen and (min-width: 480px) and (max-width: 767px) {
+.container {width:450px}
+
+
+ 
+}

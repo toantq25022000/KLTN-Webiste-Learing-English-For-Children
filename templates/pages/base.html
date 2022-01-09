@@ -1,0 +1,284 @@
+
+{% load nav_tag %}
+{% load humanize %}
+<!DOCTYPE html>
+<html class="no-js" lang="zxx">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>{% block title%} {% endblock %}</title>
+    {% load static%}
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    
+    <link rel="shortcut icon" type="image/x-icon" href="{% static 'img/favicon.ico' %}">
+    
+    <!-- CSS here -->
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href=" {% static 'css/owl.carousel.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/slicknav.css' %}">
+    <link rel="stylesheet" href="{% static 'css/flaticon.css' %}">
+    <link rel="stylesheet" href="{% static 'css/progressbar_barfiller.css' %}">
+    <link rel="stylesheet" href="{% static 'css/gijgo.css' %}">
+    <link rel="stylesheet" href="{% static 'css/animate.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/animated-headline.css' %}">
+    <link rel="stylesheet" href="{% static 'css/magnific-popup.css' %}">
+    <link rel="stylesheet" href="{% static 'css/fontawesome-all.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/themify-icons.css' %}">
+    <link rel="stylesheet" href="{% static 'css/slick.css' %}">
+    <link rel="stylesheet" href="{% static 'css/nice-select.css' %}">
+    <link rel="stylesheet" href="{% static 'css/style_template.css' %}">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link rel="stylesheet" href="{% static 'css/responsive.css' %}">
+    
+</head>
+
+<body>
+    <!-- ? Preloader Start -->
+      <div id="preloader-active">
+        <div class="preloader d-flex align-items-center justify-content-center">
+            <div class="preloader-inner position-relative">
+                <div class="preloader-circle"></div>
+                <div class="preloader-img pere-text">
+                    <img src="{% static 'img/logo/loder.png' %}" alt="">
+                </div>
+            </div>
+        </div>
+    </div>  
+    <!-- Preloader Start -->
+    <header>
+        <!-- Header Start -->
+        <div class="header-area header-transparent">
+            <div class="main-header ">
+                <div class="header-bottom  header-sticky">
+                    <div class="container-fluid">
+                        <div class="row align-items-center">
+                            <!-- Logo -->
+                            <div class="col-xl-2 col-lg-2">
+                                <div class="logo">
+                                    <a href="{% url 'home:index' %}"><img src="{% static 'img/logo/logo.png' %}" alt=""></a>
+                                </div>
+                            </div>
+                            <div class="col-xl-4 col-lg-4 search-mobile" >
+                                <form action="{% url 'home:search-text'%}" method="GET" class="khta-search-boxtop navbar-form form-inline">
+                                    <input class="form-control khta_form" name="q"  autocomplete="off" placeholder="Tìm kiếm chủ đề bài học" value="{{result}}" required>
+                                    <button type="submit" class="khta-btn-search">
+                                        <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="search" class="svg-inline--fa fa-search fa-w-16 " role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M505 442.7L405.3 343c-4.5-4.5-10.6-7-17-7H372c27.6-35.3 44-79.7 44-128C416 93.1 322.9 0 208 0S0 93.1 0 208s93.1 208 208 208c48.3 0 92.7-16.4 128-44v16.3c0 6.4 2.5 12.5 7 17l99.7 99.7c9.4 9.4 24.6 9.4 33.9 0l28.3-28.3c9.4-9.4 9.4-24.6.1-34zM208 336c-70.7 0-128-57.2-128-128 0-70.7 57.2-128 128-128 70.7 0 128 57.2 128 128 0 70.7-57.2 128-128 128z"></path></svg>
+                                    </button>
+                                </form>
+                            </div>
+                           
+                            <div class="col-xl-6 col-lg-6">
+                                <div class="menu-wrapper d-flex align-items-center justify-content-end">
+                                    <!-- Main-menu -->
+                                    <div class="main-menu d-none d-lg-block">
+                                        <nav>
+                                            <ul id="navigation">                                                                                          
+                                                <li class="active" ><a href="{% url 'home:index' %}">Trang chủ</a></li>
+                                                <li><a href="#">Khóa học</a>
+                                                    <ul class="submenu">
+                                                    {% nav_course as navtags%}
+                                                    {%for item in navtags%}  
+                                                         <li><a href="{% url 'course:detailcourse' item.id %}">{{item.title}}</a></li>
+                                                    {%endfor%}  
+                                                    </ul>
+                                                </li>
+                                                
+                                                <li><a href="{% url 'usermember:find_info_student' %}">Phụ huynh</a></li>
+                                                <li><a href="{% url 'competition:list_room_competition' %}">Thi đấu</a></li>
+                                                <!-- Button -->
+                                                {% if user.is_authenticated %}
+                                                    <li class="button-header"><a href="{% url 'usermember:dashboard_user' name_url='course' %}" class="btn__ btn__learn_course"><i class="fa fa-sign-in-alt"></i> Vào học</a></li>
+                                                    <li>
+                                                        <!-- dropdown user info -->
+                                                        <div class="btn-group dropdown-user">
+                                                            <img src="{{request.user.std_img.url}}"  class="dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                                                               
+                                                            <div class="dropdown-menu dropdown-menu-right dropdown-menu-user">
+                                                                <a class="dropdown-item" href="{% url 'usermember:dashboard_user' name_url='course' %}"><i class="fa fa-list-alt" aria-hidden="true"></i> Vào học</a>
+                                                                <a class="dropdown-item" href="{% url 'usermember:dashboard_user' name_url='profile' %}"><i class="fa fa-user" aria-hidden="true"></i>Cập nhật hồ sơ</a>
+                                                                <a class="dropdown-item" href="{% url 'usermember:dashboard_user' name_url='order' %}"><i class="fa fa-history"></i>Lịch sử đặt hàng</a>
+                                                                <a class="dropdown-item" href="{% url 'order:cart' %}"><i class="fa fa-shopping-cart"></i>Giỏ hàng của bạn</a>
+                                                                <div class="dropdown-divider"></div>
+                                                                <a class="dropdown-item" href="{% url 'home:logoutUser' %}"><i class="fa fa-sign-in-alt" aria-hidden="true"></i>Thoát</a>
+                                                            </div>
+                                                        </div>
+                                                    </li>
+                                                {%else%}
+                                                    
+                                                    <li class="button-header"><a href="{% url 'home:loginUser' %}" class="btn__ btn__login">Đăng nhập</a></li>
+                                                {%endif%}
+                                                
+                                            </ul>
+                                        </nav>
+                                    </div>
+                                </div>
+                            </div> 
+                            <!-- Mobile Menu -->
+                            <div class="col-12">
+                                <div class="mobile_menu d-block d-lg-none"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Header End -->
+    </header>
+    <main>
+        {%block content%}
+
+        {%endblock%}
+    </main>
+    <footer>
+     <div class="footer-wrappper footer-bg">
+        <!-- Footer Start-->
+        <div class="footer-area footer-padding">
+            <div class="container">
+                <div class="row justify-content-between">
+                    <div class="col-xl-4 col-lg-5 col-md-4 col-sm-6">
+                        <div class="single-footer-caption mb-50">
+                            <div class="single-footer-caption mb-30">
+                                <!-- logo -->
+                                <div class="footer-logo mb-25">
+                                    <a href="index.html"><img src="{% static 'img/logo/logo2_footer.png' %}" al t=""></a>
+                                </div>
+                                <div class="footer-tittle">
+                                    <ul>
+                                        <li><a href="#"><i class="ti-location-pin"></i>12 Lê Trọng Tấn, Tân Phú, Tp. HCM</a></li>
+                                        <li><a href="#"><i class="ti-location-pin"></i>43/2 Tân Kỳ Tân Quý, Tân Phú, Tp. HCM</a></li>
+                                        <li><a href="#"><i class="fa fa-phone"></i>032 851 3388</a></li>
+                                        <li><a href="#"><i class="ti-email"></i>cskh@omg.vn</a></li>
+                                        <li><a href="#"><i class="ti-timer"></i>8:00 - 22:00</a></li>
+                                    </ul>
+                                </div>
+                                <!-- social -->
+                                <div class="footer-social">
+                                    <a href="#"><i class="fab fa-twitter"></i></a>
+                                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                                    <a href="#"><i class="fab fa-pinterest-p"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-2 col-lg-3 col-md-4 col-sm-5">
+                        <div class="single-footer-caption mb-50">
+                            <div class="footer-tittle">
+                                <h4>Về chúng tôi</h4>
+                                <ul>
+                                    <li><a href="{% url  'home:about'  %}">Giới thiệu</a></li>
+                                    <li><a href="#">Câu hỏi thường gặp</a></li>
+                                    <li><a href="#">Điều khoản dịch vụ</a></li>
+                                    <li><a href="#">Hướng dẫn thanh toán</a></li>
+                                    <li><a href="#">Chính sách bảo mật</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-2 col-lg-4 col-md-4 col-sm-6">
+                        <div class="single-footer-caption mb-50">
+                            <div class="footer-tittle">
+                                <h4>Khách hàng/ Đối tác</h4>
+                                <ul>
+                                    <li><a href="#">Chăm sóc khách hàng</a></li>
+                                    <li><a href="{% url  'home:contact'  %}">Liên hệ</a></li>
+                                    
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-2 col-lg-3 col-md-4 col-sm-6">
+                        <div class="single-footer-caption mb-50">
+                            <div class="footer-tittle">
+                                <h4>Tải app OMG</h4>
+                                
+                                 <!-- social -->
+                                 <div class="footer-social-vertical">
+                                    <a href="#"><img src="{% static 'img/appstore.png' %}" /></a>
+                                    <a href="#"><img src="{% static 'img/playstore.png' %}" /></a>
+                                    
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- footer-bottom area -->
+        <div class="footer-bottom-area">
+            <div class="container">
+                <div class="footer-border">
+                    <div class="row d-flex align-items-center">
+                        <div class="col-xl-12 ">
+                            <div class="footer-copy-right text-center">
+                                <p><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                                   &copy;<script>document.write(new Date().getFullYear());</script> Công ty cổ phần đào tạo trực tuyến OMG - ĐKKD: 0307695886 - Khóa học tiếng anh trực tuyến dành cho trẻ em<i class="fa fa-heart" aria-hidden="true"></i></a>
+                                  <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></p>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+          </div>
+          <!-- Footer End-->
+      </div>
+  </footer> 
+  <!-- Scroll Up -->
+  <div id="back-top" >
+    <a title="Go to Top" href="#"> <i class="fas fa-level-up-alt"></i></a>
+</div>
+
+<!-- JS here -->
+<script src="{% static 'js/vendor/modernizr-3.5.0.min.js'%}"> </script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.17.3/xlsx.full.min.js"></script>
+<!-- React js -->
+{% comment %} <script src="https://unpkg.com/react@17/umd/react.development.js" crossorigin></script>
+<script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js" crossorigin></script> {% endcomment %}
+<!-- Jquery, Popper, Bootstrap -->
+<script src="{% static 'js/vendor/jquery-1.12.4.min.js'%}"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
+<script src="{% static 'js/bootstrap.min.js'%}"></script>
+<!-- Jquery Mobile Menu -->
+<script src="{% static 'js/jquery.slicknav.min.js'%}"></script>
+
+<!-- Jquery Slick , Owl-Carousel Plugins -->
+<script src="{% static 'js/owl.carousel.min.js'%}"></script>
+<script src="{% static 'js/slick.min.js'%}"></script>
+<!-- One Page, Animated-HeadLin -->
+<script src="{% static 'js/wow.min.js'%}"></script>
+<script src="{% static 'js/animated.headline.js'%}"></script>
+<script src="{% static 'js/jquery.magnific-popup.js'%}"></script>
+
+<!-- Date Picker -->
+<script src="{% static 'js/gijgo.min.js'%}"></script>
+<!-- Nice-select, sticky -->
+<script src="{% static 'js/jquery.nice-select.min.js'%}"></script>
+<script src="{% static 'js/jquery.sticky.js'%}"></script>
+<!-- Progress -->
+<script src="{% static 'js/jquery.barfiller.js'%}"></script>
+
+<!-- counter , waypoint,Hover Direction -->
+<script src="{% static 'js/jquery.counterup.min.js'%}"></script>
+<script src="{% static 'js/waypoints.min.js'%}"></script>
+<script src="{% static 'js/jquery.countdown.min.js'%}"></script>
+<script src="{% static 'js/hover-direction-snake.min.js'%}"></script>
+
+<!-- contact js -->
+<script src="{% static 'js/contact.js'%}"></script>
+<script src="{% static 'js/jquery.form.js'%}"></script>
+<script src="{% static 'js/jquery.validate.min.js'%}"></script>
+<script src="{% static 'js/mail-script.js'%}"></script>
+<script src="{% static 'js/jquery.ajaxchimp.min.js'%}"></script>
+
+
+<!-- Jquery Plugins, main Jquery -->	
+<script src="{% static 'js/plugins.js'%}"></script>
+<script src="{% static 'js/main.js'%}"></script>
+<script src="{% static 'js/app.js'%}"></script>
+
+{% block scripts %}{% endblock scripts %}
+
+{% block paypal %}{% endblock paypal %}
+<script async src="https://dochat.vn/code.js?id=9211231141219372896"></script>
+</body>
+</html>

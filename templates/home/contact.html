@@ -1,0 +1,130 @@
+{% extends "pages/base.html" %} {%load static%}
+ {% block title %} Liên hệ {%endblock%}
+ {% block scripts %}
+
+
+ {%endblock%}
+ {%block content%}
+<section class="slider-area slider-area2 h-100px"></section>
+
+<div class="container container-h-100">
+    <div id="contact">
+
+        <nav aria-label="breadcrumb" id="breadcrumbs">
+            <ol class="breadcrumb">
+              <li class="breadcrumb-item"><a href="{% url 'home:index' %}"> <i class="ti-home"></i> Trang chủ</a></li>
+              <li class="breadcrumb-item"><a href="{% url 'home:about' %}">Giới thiệu</a></li>
+              <li class="breadcrumb-item active" aria-current="page">Liên hệ</li>
+            </ol>
+          </nav>
+          <div class="contact-info clear">
+            <div class="ci-item">
+                <div class="ci-head">
+                    THÔNG TIN LIÊN LẠC
+                </div>
+                <div class="ci-item-child row">
+                    <div class="child-content clear">
+                        <div class="icon">
+                            <img src="{% static 'img/icon/location.png' %}">
+                        </div>
+                        <div class="des">
+                            <h4><strong>Công ty THNH English OMG123</strong></h4>
+                            <p><strong>Địa chỉ:</strong> 12 Lê Trọng Tấn,Phường Tây Thạnh, Quận Tân Phú, Tp. Hồ Chí Minh</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="ci-item-child clear row">
+                    <div class="child-content child-content_half clear col-6">
+                        <div class="icon">
+                            <img src="{% static 'img/icon/mobile-phone.png' %}">
+                        </div>
+                        <div class="des">
+                            <p><strong>Tổng đài hỗ trợ:</strong></p>
+                            <p>1900 6933</p>
+                            <p style="font-size: 12px;margin-top: 8px;"><i>8h-12h; 13h-23h tất cả các ngày trong tuần.</i></p>
+                        </div>
+                    </div>
+                    <div class="child-content child-content_half clear col-6">
+                        <div class="icon">
+                            <img src="{% static 'img/icon/phone.png' %}">
+                        </div>
+                        <div class="des">
+                            <p><strong>Điện thoại văn phòng:</strong></p>
+                            <p>(024) 3519-0591</p>
+                            <p style="font-size: 12px;margin-top: 8px;"><i>8h30-18h00 từ thứ hai đến thứ sáu và các ngày thứ bẩy của tuần lẻ.</i></p>
+                        </div>
+                    </div>
+                </div>
+                <div class="ci-item-child row">
+                    <div class="child-content clear">
+                        <div class="icon">
+                            <img src="{% static 'img/icon/letter.png' %}">
+                        </div>
+                        <div class="des">
+                            <p><strong>Email</strong></p>
+                            <p>Hỗ trợ sử dụng: <a href="mailto:hotro@omg123.vn">hotro@omg123.vn</a></p>
+                            <p>Tìm hiểu thông tin: <a href="mailto:thongtin@omg123.vn">thongtin@omg123.vn</a></p>
+                            <p>Hợp tác với Omg123.vn: <a href="mailto:ceo@omg123.vn">ceo@omg123.vn</a></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="ci-item ci-item_right">
+                <div class="ci-head">
+                    VỊ TRÍ TRÊN BẢN ĐỒ
+                </div>
+                <div class="ci-item-child ci-item-child_modified">
+                    <div class="map">
+                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3919.089545169726!2d106.6299883141167!3d10.804453561631801!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31752be3858a4b7d%3A0xdd9ea86e378a9cef!2zMTIgTMOqIFRy4buNbmcgVOG6pW4sIFTDonkgVGjhuqFuaCwgVMOibiBQaMO6LCBUaMOgbmggcGjhu5EgSOG7kyBDaMOtIE1pbmgsIFZpZXRuYW0!5e0!3m2!1sen!2s!4v1641583777180!5m2!1sen!2s" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+                    </div>
+                </div>
+                <div class="ci-item-child row">
+                    <div class="child-content clear">
+                        <div class="icon">
+                            <img src="{% static 'img/icon/planet.png' %}">
+                        </div>
+                        <div class="des">
+                            <p><strong>Website</strong></p>
+                            <p><a href="/">www.omg123.vn</a></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+          </div>
+          <div class="contact-form clear">
+            <div class="form-title">
+                <h3><a href="#"><span>PHẢN HỒI, GÓP Ý</span></a></h3>
+            </div>
+            <div class="form-container clear">
+                <form method="post" action="#" name="frmcontact" id="frmcontact" novalidate="novalidate">
+                    <div class="row">
+
+                        <div class="form-element col-6">
+                            <input type="text" value="" name="fullname" placeholder="Họ tên:">
+                        </div>
+                        <div class="form-element col-6">
+                            <input type="text" name="email" size="29" value="" placeholder="Email:">
+        
+                        </div>
+                    </div>
+                    <div class="form-element col-6">
+                        <input type="text" name="phone" size="10" value="" placeholder="Số điện thoại:">
+    
+                    </div>
+                    <div class="form-element col-6">
+                        <input type="text" name="address" size="100" value="" placeholder="Địa chỉ:">
+    
+                    </div>
+                    <div class="form-element">
+                        <textarea rows="12" name="content" placeholder="Nhập nội dung:"></textarea>
+                    </div>
+                    <div class="form-element">
+                        <button type="submit" class="btn_login btn00 btn-primary">Gửi</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{%endblock%}

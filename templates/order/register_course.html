@@ -1,0 +1,120 @@
+{% extends "pages/base.html" %} 
+{% block title %} Đăng ký khóa học {% endblock %}
+{% load humanize %}
+{% load course_tag %}
+{%load static %} 
+{%block content%}
+<!--? slider Area Start-->
+<section class="slider-area slider-area2">
+  <div class="slider-active">
+    <!-- Single Slider -->
+    <div class="single-slider slider-height2">
+      <div class="container">
+        <div class="row">
+          <div class="col-xl-8 col-lg-11 col-md-12">
+            <div class="hero__caption hero__caption2">
+              <h1 data-animation="bounceIn" data-delay="0.2s">Đăng ký khóa học</h1>
+              <!-- breadcrumb Start-->
+              <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                  <li class="breadcrumb-item">
+                    <a href="{%url 'home:index'%}">Home</a>
+                  </li>
+                  <li class="breadcrumb-item">
+                    <a href="{{request.get_full_path}}">Đăng ký: {{course.title}}</a>
+                  </li>
+                </ol>
+              </nav>
+              <!-- breadcrumb End -->
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<div class="container container-h-100 pb-padding mt-30">
+  <div class="wrapper-register-course">
+      <div class="header-reg-course">
+        <h2>Đăng ký mua khóa học: {{course.title}}</h2>
+        <h3>Gói thành viên bắt đầu từ ₫{{course.price_month|intcomma}} / month</h3>
+      </div>
+      <!--Body-->
+      <div class="body_reg_course">
+          <div class="sub_body_reg_course">
+              <div class="item-choose-price-reg mr-12">
+                 
+                    <div class="content1_reg_course">
+                       
+                        <div class="type_buy_course mr__1a">Gói tháng</div>
+                        <div class="day_sum__">30 ngày</div>
+                        {% discounted_price_course course.price_month course.discounted_price as discount_month%} 
+                        <a href="{% url 'order:add-to-cart' course_id=course.id id_vip=1 %}" class="link_buy_course">
+                          <span>₫{{discount_month|intcomma}} / month</span>
+                        </a>
+                      {%if course.discounted_price != 0%}
+
+                        <p>Đang sale: {{course.discounted_price}} %</p>
+                        <span class="same_price_del">Giá gốc: <del>₫{{course.price_month|intcomma}}</del></span>
+                      {%endif%}
+                    </div>
+                 
+              </div>
+              <div class="item-choose-price-reg mr-12">
+                  <div class="content1_reg_course">
+                      
+                      <div class="type_buy_course mr__1a">Gói quý</div>
+                      <div class="day_sum__">90 ngày</div>
+                      {% discounted_price_course course.price_quarter course.discounted_price as discount_quarter%} 
+                        <a href="{% url 'order:add-to-cart' course_id=course.id id_vip=2 %}" class="link_buy_course">
+                          <span>₫{{discount_quarter|intcomma}} / quarter</span>
+                        </a>
+                      {%if course.discounted_price != 0%}
+
+                        <p>Đang sale: {{course.discounted_price}} %</p>
+                        <span class="same_price_del">Giá gốc: <del>₫{{course.price_quarter|intcomma}}</del></span>
+                      {%endif%}
+                   </div>
+              </div>
+              <div class="item-choose-price-reg mr-12">
+               
+                  <div class="content1_reg_course">
+                     
+                      <div class="type_buy_course mr__1a">Gói năm</div>
+                      <div class="day_sum__">365 ngày</div>
+                      {% discounted_price_course course.price_year course.discounted_price as discount_year%} 
+                        <a href="{% url 'order:add-to-cart' course_id=course.id id_vip=3 %}" class="link_buy_course">
+                          <span>₫{{discount_year|intcomma}} / year</span>
+                        </a>
+                      {%if course.discounted_price != 0%}
+
+                        <p>Đang sale: {{course.discounted_price}} %</p>
+                        <span class="same_price_del">Giá gốc: <del>₫{{course.price_year|intcomma}}</del></span>
+                      {%endif%}
+                   </div>
+                  
+              </div>
+              <div class="item-choose-price-reg mr-12">
+               <div class="active_reg_course">
+                  <div class="content1_reg_course">
+                      <div class="kk_title">Khuyến khích</div>
+                      <div class="type_buy_course">Gói trọn đời</div>
+                      <div class="day_sum__">Vĩnh viễn</div>
+                      {% discounted_price_course course.price_lifetime course.discounted_price as discount_lifetime%} 
+                        <a href="{% url 'order:add-to-cart' course_id=course.id id_vip=4 %}" class="link_buy_course link_buy_active__">
+                          <span>₫{{discount_lifetime|intcomma}} / lifetime</span>
+                        </a>
+                      {%if course.discounted_price != 0%}
+
+                        <p>Đang sale: {{course.discounted_price}} %</p>
+                        <span class="same_price_del">Giá gốc: <del>₫{{course.price_lifetime|intcomma}}</del></span>
+                      {%endif%}
+                   </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>
+</div>
+
+{%endblock%}

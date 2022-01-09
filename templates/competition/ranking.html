@@ -1,0 +1,386 @@
+{% extends "pages/base2.html" %} 
+{% block title %} Thi đấu Tiếng anh trực tuyến {% endblock %}
+
+{%load static%}
+{% load course_tag %}
+{%block scripts %}
+
+<script>
+     
+      function filter_type(_self){
+        var type = $(_self).attr('type');
+        $(_self).siblings('.btn').removeClass('btn-active');
+        $(_self).addClass('btn-active');
+
+        $('.tbody-content').transition({
+        perspective: '1000px',
+        rotateY: '+=180deg'
+        },1000,function(){
+            $('.tbody-list').removeClass('show');
+            $('.tbody-list[type="'+type+'"]').addClass('show');
+            $('.tbody-content').delay(300).transition({
+            perspective: '1000px',
+            rotateY: '+=180deg'
+            },1000,function(){});
+        });
+
+    }
+    function show_hint_room(e,content){
+        $("#ctr-lrblm-hint").html('<span>'+content+'</span>');
+        $("#ctr-lrblm-hint").css({left: e.pageX-55, top: e.pageY-34}).removeClass('hide');
+    }
+    function hide_hint_room(e){
+        $("#ctr-lrblm-hint").addClass('hide');
+    }
+
+    function add_member(root,data,dataRankIndex,type,week1,rankIndex){
+        $(root + ' .ctr-r-total').empty();
+        console.log(data)
+        for(let i = 0; i < data.length; i++)
+        {
+            var ele_star = ``;
+            for(let j =0; j < data[i].star_title; j++)
+            {
+                ele_star += ` <img src="/static/img/icon/ctr-star.png">`;
+            }
+            $(root + ' .ctr-r-total').append(
+            `
+            <a href="#" class="tr r-row" target="_blank" onmousemove="return show_hint_room(event,'Xem lịch sử thi đấu');" onmouseout="return hide_hint_room(event);">
+                  <div class="td td-first ctr-r-num"></div>
+                 <div class="td ctr-r-nickname text-left">
+                     <div class="inline-block ctr-r-avata">
+                         <img class="ctr-r-avata-img" src="${data[i].img}">
+                         <img class="ab ctr-r-vip-img" src="/static/img/icon/ctr-vip-icon.png" alt="">															</div>
+                     <span class="inline-block ctr-r-username">${data[i].username}</span>
+                 </div>
+                 <div class="td ctr-r-level text-left">
+                     <span class="ctr-r-name" style="color: #ff91a8">${data[i].title}</span>
+                     <span class="ctr-r-star">
+                         ${ele_star}
+                     </span>
+                 </div>
+                 <div class="td ctr-r-win">${data[i].total_win}</div>
+                 <div class="td ctr-r-play">${data[i].total_battle_rank}</div>
+                 <div class="td ctr-r-total-score">${data[i].point}</div>
+                  
+            </a>
+            `);
+        }
+
+        var ele_star_user = ``;
+            for(let j =0; j < dataRankIndex.star_title; j++)
+            {
+                ele_star_user += ` <img src="/static/img/icon/ctr-star.png">`;
+            }
+        $(root+' .ctr-your-rank').empty();
+        if (rankIndex === -1)
+        {
+            $(root+' .ctr-your-rank').append(`
+            <div class="tr r-row">
+                  <div class="td">Vô hạng</div>
+                 <div class="td ctr-r-nickname text-left">
+                     <div class="inline-block ctr-r-avata">
+                       </div>
+                     <span class="inline-block ctr-r-username"></span>
+                 </div>
+                 <div class="td">
+                     <span class="ctr-r-name"></span>
+                     <span class="ctr-r-star">
+                       
+                     </span>
+                 </div>
+                 <div class="td ctr-r-win"></div>
+                 <div class="td ctr-r-play"></div>
+                 <div class="td ctr-r-total-score"></div>
+                  
+            </div>
+            `)
+        }
+        else{
+
+       
+        $(root+' .ctr-your-rank').append(`
+        <div class="tr r-row">
+                  <div class="td">${rankIndex + 1}</div>
+                 <div class="td ctr-r-nickname text-left">
+                     <div class="inline-block ctr-r-avata">
+                         <img class="ctr-r-avata-img" src="${dataRankIndex.img}">
+                         <img class="ab ctr-r-vip-img" src="/static/img/icon/ctr-vip-icon.png" alt="">															</div>
+                     <span class="inline-block ctr-r-username">${dataRankIndex.username}</span>
+                 </div>
+                 <div class="td ctr-r-level text-left">
+                     <span class="ctr-r-name" style="color: #ff91a8">${dataRankIndex.title}</span>
+                     <span class="ctr-r-star">
+                         ${ele_star_user}
+                     </span>
+                 </div>
+                 <div class="td ctr-r-win">${dataRankIndex.total_win}</div>
+                 <div class="td ctr-r-play">${dataRankIndex.total_battle_rank}</div>
+                 <div class="td ctr-r-total-score">${dataRankIndex.point}</div>
+                  
+            </div>
+        
+        `)
+        }
+        if (type === "ALL")
+        {
+            $('.tbody-content').transition({
+                    perspective: '1000px',
+                    rotateY: '+=180deg'
+            },1000,function(){});
+
+            GetDataRankCompete("1",week1,rankIndex);
+
+        }
+        else if (type === "1")
+        {
+            GetDataRankCompete("9",week1,rankIndex);
+        }
+    }
+    function GetDataRankCompete(type_get,week1,rankIndex){
+        jQuery.ajax({
+            type: "GET",
+            url: "{% url 'competition:Get_Rank_By_Week' %}",
+            dataType: 'json',
+            data: {
+                "type":type_get,
+                "week":week1,
+            },
+            beforeSend: function(){
+                
+            },
+            success: function(res) {
+            
+                if (type_get === "1")
+                {
+                    if(res.rankingType1AtTime)
+                    {
+                        add_member('#ctr-rank-1',res.rankingType1AtTime,res.rankIndexUserType1,"1",week1,res.rankIndex);
+                        
+                    }
+                }else if(type_get === "9"){
+                    if(res.rankingType9AtTime)
+                    {
+                        add_member('#ctr-rank-9',res.rankingType9AtTime,res.rankIndexUserType9,"9",week1,res.rankIndex);
+                    }
+                }
+            },
+            error: function(err) {
+                console.log(err);
+            },
+            complete: function (argument) {
+
+            }
+        })
+    }
+
+    $(document).ready(function(){
+        var week1 = parseInt($('#week').val());
+        $('#ctr-r-time-select').html("TUẦN 0"+week1);
+        jQuery.ajax({
+            type: "GET",
+            url: "{% url 'competition:Get_Rank_By_Week' %}",
+            dataType: 'json',
+            data: {
+                "type":"ALL",
+                "week":week1,
+            },
+            sync: true,
+            beforeSend: function(){
+                $('.tbody-content').transition({
+                    perspective: '1000px',
+                    rotateY: '+=180deg'
+                },1000,function(){});
+            },
+            success: function(res) {
+                console.log(res.rankIndexUserAll)
+                if(res.rankingAllAtTime)
+                {
+                    add_member('#ctr-rank-all',res.rankingAllAtTime,res.rankIndexUserAll,"ALL",week1,res.rankIndex);
+                }
+            },
+            error: function(err) {
+               
+            },
+            complete: function (argument) {
+
+            }
+        });
+    });
+
+    function search_by_week () {
+        console.log("chay vao day")
+        var week =parseInt($('#week').val());
+        // var class_id = $('#class').val();
+        $('#ctr-r-time-select').html("TUẦN 0"+week);
+      
+        jQuery.ajax({
+            type: "GET",
+            url: "{% url 'competition:Get_Rank_By_Week' %}",
+            dataType: 'json',
+            data: {
+                "type":"ALL",
+                "week":week,
+            },
+            sync: true,
+            beforeSend: function(){
+                $('.tbody-content').transition({
+                    perspective: '1000px',
+                    rotateY: '+=180deg'
+                },1000,function(){});
+            },
+            success: function(res) {
+             
+                if(res.rankingAllAtTime)
+                {
+                    add_member('#ctr-rank-all',res.rankingAllAtTime,res.rankIndexUserAll,"ALL",week,res.rankIndex);
+                }
+            },
+            error: function(err) {
+               
+            },
+            complete: function (argument) {
+
+            }
+        });
+    }
+
+</script>
+    
+{%endblock%}
+
+{%block content%} 
+<div class="container page-content">
+    <div class="ctr-page" id="ranking-page">
+        <div class="ctr-r-box">
+            <div class="ctr-r-main">
+                <div class="ctr-r-left">
+                    <div class="row">
+                        <div class="col-lg-8">
+                            <div class="ctr-r-title">BẢNG XẾP HẠNG THI ĐẤU <span id="ctr-r-time-select">TUẦN 0{{num_week_month_today}}</span></div>
+                            <p class="ctr-r-sub-title">( Danh sách 100 người đạt điểm cao nhất )</p>
+                        </div>
+                        <div class="col-lg-4">
+                            <!-- <div class="btn-group btn-group-justified ctr-r-top-btn">
+                                <div class="btn-group">
+                                    <button type="button" class="btn btn-disable btn-warning ctr-rt-btn" id="ctr-rt-week-btn" onclick="getThisWeek(01)">Theo tuần</button>
+                                </div>
+                                <div class="btn-group">
+                                    <button type="button" class="btn btn-disable ctr-rt-btn" id="ctr-rt-month-btn" onclick="getThisMonth()">Theo tháng</button>
+                                </div>
+                            </div> -->
+                        </div>
+                    </div>
+                    <div class="row ctr-rl-top">
+                        <div class="col-lg-7">
+                            <div class="btn-group ctr-rl-group-btn">
+                                <div class="btn btn-active" onclick="return filter_type(this);" type="all">Tất cả</div>
+                                <div class="btn" onclick="return filter_type(this);" type="1">1 vs 1</div>
+                                <div class="btn" onclick="return filter_type(this);" type="9">1 vs 9</div>
+                            </div>
+                        </div>
+                        <div class="col-lg-5">
+                            <form class="form-inline text-right ctr-r-filter">
+                                <div class="form-group ctr-r-list-option show" id="ctr-ro-week">
+                                    <div class="d-flex-end">
+
+                                        <small for="email" class="text-muted">Xem BXH của:</small>
+                                        <select name="week" id="week" class="form-control" onchange="search_by_week();">
+                                            {%for i in week_of_month%}
+                                            {% add_number_1dv i as AddOne%}
+                                                {% if forloop.last %}
+
+                                                <option value="0{{AddOne}}" selected="selected">Tuần: 0{{AddOne}} (Tháng {{month_today}})</option>
+                                                {%else%}
+                                                <option value="0{{AddOne}}">Tuần: 0{{AddOne}} (Tháng {{month_today}})</option>
+                                                {% endif %}
+                                            {%endfor%}
+                                         </select>
+                                    </div>
+                                </div>
+                                <div class="form-group ctr-r-list-option" id="ctr-ro-month">
+                                    <div class="d-flex-end">
+                                        <small for="email" class="text-muted">Xem BXH của:</small>
+                                        <select name="month" id="month" class="form-control" disabled="" onchange="search_by_month()">
+                                            <option selected="" value="01">Tháng 1</option>	
+                                            
+                                        </select>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                    <div class="ctr-r-content">
+                        <div class="ctr-r-list">
+                            <div class="table table-hover table_ranking_compete text-center table-me" id="table_ranking_compete">
+                                <div class="thead">
+                                  <div class="tr">
+                                    <div class="th" scope="col">STT</div>
+                                    <div class="th" scope="col">Nickname</div>
+                                    <div class="th" scope="col">Danh hiệu</div>
+                                    <div class="th" scope="col">Trận thắng</div>
+                                    <div class="th" scope="col">Tổng trận</div>
+                                    <div class="th" scope="col">Điểm danh hiệu</div>
+                                  </div>
+                                </div>
+                                <div class="tbody bg-white">
+                                  <div class="tbody-content">
+                                    <div class="face">
+                                        <div class="tbody-list show" type="all" id="ctr-rank-all">
+                                            <div class="r-body">
+                                                <div class="ctr-r-total overflow">
+                                                <!-- List rank  member all -->
+                                                    
+                                                </div>
+                                                <div class="text-center text-bold ctr-your-rank-banner">Thứ hạng của tôi</div>
+                                                <div class="ctr-r-body ctr-your-rank"></div>
+                                            </div>
+                                        </div>
+                                        <div class="tbody-list" type="1" id="ctr-rank-1">
+                                            <div class="r-body">
+                                                <div class="ctr-r-total overflow">
+                                                <!-- List rank  member 1v1 -->
+                                                    
+                                                </div>
+                                                <div class="text-center text-bold ctr-your-rank-banner">Thứ hạng của tôi</div>
+                                                <div class="ctr-r-body ctr-your-rank"></div>
+                                            </div>
+                                        </div>
+
+                                        <div class="tbody-list" type="9" id="ctr-rank-9">
+											
+                                            <div class="r-body">
+                                                <div class="ctr-r-total overflow">
+                                                <!-- List rank  member 1v9 -->
+                                                    
+                                                </div>
+                                                <div class="text-center text-bold ctr-your-rank-banner">Thứ hạng của tôi</div>
+                                                <div class="ctr-r-body ctr-your-rank"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="back face center">
+										<div class="loader">Loading...</div>
+									</div>
+                                  </div>
+                                  
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="ctr-r-right">
+                    <div class="text-center ctr-rr-info">
+                        <p class="ctr-rr-cup"><img src="/static/img/compete/ctr-rank-cup.png" alt=""></p>
+                        <p class="ctr-rr-title">BẢNG XẾP HẠNG THI ĐẤU</p>
+                        <p class="text-justify ctr-rr-intro">Bảng xếp hạng thi đấu dựa trên tổng số điểm danh hiệu mỗi đấu thủ đạt được trong tuần, trong tháng thông qua thi đấu.</p>
+                        <p class="ctr-rr-list-room-link"><a class="btn btn-warning" href="{% url 'competition:list_room_competition' %}">Thi đấu ngay!</a></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="text-center ctr-hint-tooltip hide" id="ctr-lrblm-hint" style="left: 822px; top: 524px;"><span>Xem lịch sử thi đấu</span></div>
+</div>
+
+{%endblock%}

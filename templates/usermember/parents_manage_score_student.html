@@ -1,0 +1,217 @@
+{% extends "pages/base.html" %} {%load static%} {% block title %} Kết quả học tập 
+{%endblock%} {% block scripts %} {% endblock %} 
+{% load course_tag %}
+{%block content%}
+<section class="slider-area slider-area2 h-100px"></section>
+<section class="section-parent-manage">
+  <div class="container container-h-100 pb-padding mt-30">
+   
+      <div class="header_manage_par">
+          <div class="row">
+            <div class="col-md-4 col-lg-4 col-sm-6 are_item_header">
+                <span>Họ tên:</span>
+                <span>{{std_course.user.first_name}} {{std_course.user.last_name}}</span>
+            </div>
+            <div class="col-md-4 col-lg-4 col-sm-6 are_item_header">
+                <span>MSHV:</span>
+                <span>{{std_course.id_student}}</span>
+            </div>
+            <div class="col-md-4 col-lg-4 col-sm-6 are_item_header">
+                <span>Ngày sinh:</span>
+                <span>{{std_course.user.birth_date|date:'d/m/Y'}}</span>
+            </div>
+        </div>
+      </div>
+      <div class="wrapper_content_us">
+          <h2>Kết quả học tập</h2>
+          {%if list_course_std%}
+            <div class="accordion acordion_kqdiem" id="accordionCourse">
+                {% for item in list_course_std%}
+                
+                <div class="accordion-item">
+                <h2 class="accordion-header" id="heading{{item.course.id}}">
+                    <button class="accordion-button fontsize_kqdiem_lv1" type="button" data-bs-toggle="collapse" data-bs-target="#collapse{{item.course.id}}" aria-expanded="true" aria-controls="collapse{{item.course.id}}">
+                        
+                        <div class="kqdiem_header_part1">
+                            Khóa học: <span> {{item.course.title}}</span>
+                        </div>
+                        <div class="kqdiem_header_part2">
+                            {% sum_score_course idUser item.course.id as sumScoreCourse%}
+                            {% total_score_course idUser item.course.id as totalScoreCourse%}
+                            {% persent_progress_chap sumScoreCourse totalScoreCourse as persentProgresCourse%}
+                            <div class="persent_progress_chapter__ d-flex-center">
+                    
+                                    <span>{{persentProgresCourse}} %</span>
+                            </div>
+                            <div class="area__score_ d-flex-center">
+                            <span class="yourscore__">{{sumScoreCourse}}</span>/<span class="total__score_">{{totalScoreCourse}}</span>
+                            </div>
+                        </div>
+                    </button>
+                </h2>
+                <div id="collapse{{item.course.id}}" class="accordion-collapse collapse" aria-labelledby="heading{{item.course.id}}" data-bs-parent="#accordionCourse">
+                    <div class="accordion-body">
+                        {% chapter_of_course item.course.id as chapter_of_course%}
+                        {% if chapter_of_course is None%}
+                            
+                        {%else%}
+                            <div class="conatiner">
+                                
+                                <div class="accordion" id="accordionChapter{{item.course.id}}">
+                                    
+                                    {% for chapter in chapter_of_course%}
+                                    <div class="accordion-item">
+                                        <h2 class="accordion-header" id="heading{{item.course.id}}_{{chapter.id}}">
+                                            <button class="accordion-button fontsize_kqdiem_lv2" type="button" data-bs-toggle="collapse" data-bs-target="#collapse{{item.course.id}}_{{chapter.id}}" aria-expanded="true" aria-controls="collapse{{item.course.id}}_{{chapter.id}}">
+                                                {% total_score_chapter idUser item.course.id chapter.id as totalScoreChapter%}
+                                                {% sum_score_chapter idUser item.course.id chapter.id as sumScoreChapter%}
+                                                {% persent_progress_chap sumScoreChapter totalScoreChapter as persent_yourChapter%}
+                                                <div class="kqdiem_header_part1">
+                                                    Chương: <span> {{chapter.title}} ({{chapter.title_vi}})</span>
+                                                </div>
+                                                <div class="kqdiem_header_part2 font-tb">
+                                                    <div class="persent_progress_chapter__ d-flex-center">
+                                            
+                                                        <span>{{persent_yourChapter}} %</span>
+                                                    </div>
+                                                    <div class="area__score_ d-flex-center">
+                                                    <span class="yourscore__">{{sumScoreChapter}}</span>/<span class="total__score_">{{totalScoreChapter}}</span>
+                                                    </div>
+                                                </div>
+                                            </button>
+                                        </h2>
+                                        <div id="collapse{{item.course.id}}_{{chapter.id}}" class="accordion-collapse collapse" aria-labelledby="heading{{item.course.id}}_{{chapter.id}}" data-bs-parent="#accordionChapter{{item.course.id}}">
+                                            <div class="accordion-body">
+                                                
+                                                {% lesson_of_chapter chapter.id as lesson_of_chapter%}
+                                                {% if lesson_of_chapter is None%}
+                                                    
+                                                {%else%}
+                                                <div class="conatiner">
+                                
+                                                    <div class="accordion" id="accordionLesson{{item.course.id}}_{{chapter.id}}">
+                                                        
+                                                        {% for lesson in lesson_of_chapter%}
+                                                        <div class="accordion-item">
+                                                            <h2 class="accordion-header" id="heading{{item.course.id}}_{{chapter.id}}_{{lesson.id}}">
+                                                                <button class="accordion-button fontsize_kqdiem_lv2" type="button" data-bs-toggle="collapse" data-bs-target="#collapse{{item.course.id}}_{{chapter.id}}_{{lesson.id}}" aria-expanded="true" aria-controls="collapse{{item.course.id}}_{{chapter.id}}_{{lesson.id}}">
+                                                                    
+                                                                    <div class="kqdiem_header_part1">
+                                                                        Bài học: <span> {{lesson.get_titlesub_display}} ({{lesson.get_titlesub_vi_display}})</span>
+                                                                    </div>
+                                                                    <div class="kqdiem_header_part2 font-tb2">
+                                                                        {% total_score_lesson lesson.id as totalScoreLesson%}
+                                                                        {% sum_score_lesson idUser item.course.id lesson.id as sumScoreLesson%}
+                                                                        {% persent_progress_chap sumScoreLesson totalScoreLesson as persent_yourLesson%}
+                                                                        
+                                                                        <div class="persent_progress_chapter__ d-flex-center">
+                                                                
+                                                                                <span>{{persent_yourLesson}} %</span>
+                                                                        </div>
+                                                                        <div class="area__score_ d-flex-center">
+                                                                        <span class="yourscore__">{{sumScoreLesson}}</span>/<span class="total__score_">{{totalScoreLesson}}</span>
+                                                                        </div>
+                                                                    </div>
+                                                                </button>
+                                                            </h2>
+                                                            <div id="collapse{{item.course.id}}_{{chapter.id}}_{{lesson.id}}" class="accordion-collapse collapse" aria-labelledby="heading{{item.course.id}}_{{chapter.id}}_{{lesson.id}}" data-bs-parent="#accordionLesson{{item.course.id}}_{{chapter.id}}">
+                                                                <div class="accordion-body">
+                                                                        Bài tập:
+                                                                        {% get_exercise_choice lesson.id as choice__%}
+                                                                        {% get_exercise_missing_word lesson.id as missing__%}
+                                                                        {% get_exercise_arrange lesson.id as arrange__%}
+
+                                                                        <ul class="list-exercise-std">
+                                                                            {% if choice__%}
+                                                                            <li>
+                                                                                <div class="kqdiem_header_part1">
+                                                                                    <i class="ti-control-forward"></i> {{choice__.type.title}}
+                                                                                </div>
+                                                                                <div class="kqdiem_header_part2 font-small">
+                                                                                    {% sumTotalScoretypeExercise choice__.type.id lesson.id as totalScoreExerciseChoice%}
+                                                                                    {% sum_score_exercise idUser item.course.id lesson.id choice__.type.id as sumScoreExerciseChoice%}
+                                                                                    {% persent_progress_chap sumScoreExerciseChoice totalScoreExerciseChoice as persent_yourExerciseChoice%}
+                                                                                    <div class="persent_progress_chapter__ d-flex-center">
+                                                                            
+                                                                                            <span>{{persent_yourExerciseChoice}} %</span>
+                                                                                    </div>
+                                                                                    <div class="area__score_ d-flex-center">
+                                                                                        <span class="yourscore__">{{sumScoreExerciseChoice}}</span>/<span class="total__score_">{{totalScoreExerciseChoice}}</span>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </li>
+                                                                            {%endif%}
+                                                                            
+                                                                            {% if missing__%}
+                                                                            <li>
+                                                                            
+                                                                            <div class="kqdiem_header_part1">
+                                                                                <i class="ti-control-forward"></i> {{ missing__.type.title}}
+                                                                                </div>
+                                                                                <div class="kqdiem_header_part2 font-small">
+                                                                                    
+                                                                                    {% sumTotalScoretypeExercise missing__.type.id lesson.id as totalScoreExerciseMissing%}
+                                                                                    {% sum_score_exercise idUser item.course.id lesson.id missing__.type.id as sumScoreExerciseMissing%}
+                                                                                    {% persent_progress_chap sumScoreExerciseMissing totalScoreExerciseMissing as persent_yourExerciseMissing%}
+                                                                                    <div class="persent_progress_chapter__ d-flex-center">
+                                                                            
+                                                                                            <span>{{persent_yourExerciseMissing}} %</span>
+                                                                                    </div>
+                                                                                    <div class="area__score_ d-flex-center">
+                                                                                    <span class="yourscore__">{{sumScoreExerciseMissing}}</span>/<span class="total__score_">{{totalScoreExerciseMissing}}</span>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </li>
+                                                                            {%endif%}
+
+                                                                            {% if arrange__%}
+                                                                            <li>
+                                                                                
+                                                                                <div class="kqdiem_header_part1">
+                                                                                    <i class="ti-control-forward"></i> {{arrange__.type.title}}
+                                                                                </div>
+                                                                                <div class="kqdiem_header_part2 font-small">
+                                                                                    {% sumTotalScoretypeExercise arrange__.type.id lesson.id  as totalScoreExerciseArrange%}
+                                                                                    {% sum_score_exercise idUser item.course.id lesson.id arrange__.type.id as sumScoreExerciseArrange%}
+                                                                                    {% persent_progress_chap sumScoreExerciseArrange totalScoreExerciseArrange as persent_yourExerciseArrange%}
+                                                                                    <div class="persent_progress_chapter__ d-flex-center">
+                                                                            
+                                                                                            <span>{{persent_yourExerciseArrange}} %</span>
+                                                                                    </div>
+                                                                                    <div class="area__score_ d-flex-center">
+                                                                                        <span class="yourscore__">{{sumScoreExerciseArrange}}</span>/<span class="total__score_">{{totalScoreExerciseArrange}}</span>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </li>
+                                                                            {%endif%}
+                                                                        </ul>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        {%endfor%}
+                                                    </div>
+                                                </div>
+                                                {%endif%}
+                                            </div>
+                                        </div>
+                                    </div>
+                                    {%endfor%}
+                                </div>
+                            </div>
+                        {%endif%}
+                        
+                    </div>
+                </div>
+                </div>
+
+            
+                {%endfor%}
+            </div>
+        {%else%}
+        <h3>Học viên chưa mua khóa học nào. </h3>
+        {%endif%}
+      </div>
+      
+  </div>
+</section>
+{%endblock%}

@@ -1,0 +1,1150 @@
+{% extends "pages/base2.html" %} 
+{%load static%} 
+{% block title %} Thi đấu Tiếng anh trực tuyến {% endblock %}
+
+{%block content%}
+<div class="container-custom page-content">
+ 
+    <style type="text/css" media="screen">
+        body.body-compete{background-image: url("/static/img/compete/ctr-play-bg.png");}
+        .header{display: none !important;}
+    </style>
+    <div class="ctr-page play-page" id="play-page-9">
+        <div class="ctr-p-layout table-show" id="ctr-p-play-layout">
+            <div class="ctr-play-main">
+                 <div class="ctr-pm-layout" id="ctr-pm-play-layout">
+                
+                    <div class="ctr-p-body">
+                        <div class="text-center ctr-p-time-left">
+                            <div class="text-center text-bold inline-block" id="ctr-p-question-status">
+                                CÂU HỎI: <span id="ctr-pqs-number">9</span>/<span id="ctr-pqs-total">10</span>
+                            </div>
+                          
+                            <div class="progress">
+                                <div class="pull-right progress-bar" id="progress-bar-ctr" style="width:100%;"></div>
+                            </div>
+                            <div class="text-center text-bold inline-block" id="ctr-p-your-rank">
+                                Đúng: <span class="" id="ctr-pryr-number">0</span>/<span id="ctr-pryr-total">10</span>
+                            </div>
+                        </div>
+                        <div id="ctr-p-question-content"> 
+                             <!-- Nội dung câu hỏi -->
+                           
+                            <div id="ct" class="ctmszoom">
+                              
+                                <div id="ctmsc">
+                                    <div class="" id="cthsc" >
+                                        <!-- Change new question -->
+                                        <div class="ctwt" id="ctr-area-render-dom-question" data-question-choose="">
+
+                                        </div>
+
+                                        <!-- Change new question -->
+                                    </div>
+
+                                    <div class="" id="ctf">
+                                        <div class="" id="ctf_note">
+                                            <div id="ctsmbt" class="ctsmbtd" style="position: relative;" onclick="checkAction()">
+                                                <span>Submit</span>
+                                                <img class="ab" id="ctsmbt_loading" style="display: none; width: 35px; top: 3px; right: 4px;" src="/assets/img/loading.gif" alt="">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                           
+                        </div>
+                        <!-- <img src="/assets/frontend/pc/img/ctr-play-icon-smile-1.png" class="ab hide cr__mp_icon cr__mp_icon_correct img-responsive" id="" alt="Image">
+                        <img src="/assets/frontend/pc/img/ctr-play-icon-smile-1.png" class="ab hide cr__mp_icon cr__mp_icon_correct img-responsive" id="" alt="Image">
+                        <img src="/assets/frontend/pc/img/ctr-play-icon-true.png" class="ab hide cr__mp_slogan cr__mp_slogan_correct img-responsive" id="" alt="Image">
+    
+                        <img src="/assets/frontend/pc/img/ctr-play-icon-lose-1.png" class="ab hide cr__mp_icon cr__mp_icon_incorrect img-responsive" id="" alt="Image">
+                        <img src="/assets/frontend/pc/img/ctr-play-icon-lose-2.png" class="ab hide cr__mp_icon cr__mp_icon_incorrect img-responsive" id="" alt="Image">
+                        <img src="/assets/frontend/pc/img/ctr-play-icon-false.png" class="ab hide cr__mp_slogan cr__mp_slogan_incorrect img-responsive" id="" alt="Image"> -->
+                    </div>
+                </div>
+
+                <div class="ctr-pm-layout show" id="ctr-pm-countdown-layout">
+                    
+                    <div class="text-center ctr-pmcd-content">
+                        <div class="table-cell">
+                            <p><b>Trận đấu sẽ bắt đầu sau</b></p>
+                            <div class="ctr-pmcd-circle">
+                                <div class="ctr-pmcd-num"></div>
+                                <div class="ctr-pmcd-timeline"></div>
+                            </div>
+                            <div class="text-center p-3">
+                                <p class="text-center text-primary inline-block">
+                                    <b>Trả lời đúng và sớm nhất</b> sẽ được cộng: <b>20 điểm,</b> đúng và sớm thứ hai được <b>15 điểm,</b> đúng và sớm thứ ba được <b>10 điểm,</b>đúng và sớm thứ 4 trở đi được<b> 5 điểm</b> !</b>
+                                </p>
+                              
+                            </div>
+                            <div class="text-center" style="margin-top: 15px; color: #555;">							
+                                <div class="col-lg-2 col-centered inline-block">
+                                    <p class="" id=""><img width=50 src="/static/img/compete/ctr_p_status_thinking.gif"/></p>
+                                    <p class="" id="">Đang suy nghĩ</p>
+                                </div>
+                                <div class="col-lg-2 col-centered inline-block">
+                                    <p class="" id=""><img width=50 src="/static/img/compete/ctr_p_status_smile.gif"/></p>
+                                    <p class="" id="">Trả lời đúng</p>
+                                </div> 
+                                <div class="col-lg-2 col-centered inline-block">
+                                    <p class="" id=""><img width=50 src="/static/img/compete/ctr_p_status_crying.gif"/></p>
+                                    <p class="" id="">Trả lời sai</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--result play-->
+                <div class="ctr-p-layout" id="ctr-p-result-layout">
+                    <div class="ab" id="ctr-p-rl-bg">
+                        <img src="/static/img/compete/ctr-p-rl-bg-round.png" class="ab ctr-p-rl-bg-img" id="ctr-p-rl-bg-round" alt="">
+                        <img src="/static/img/compete/ctr-p-rl-bg-star.png" class="ab ctr-p-rl-bg-img" id="ctr-p-rl-bg-star" alt="">
+                    </div>
+                    <div id="ctr-p-rl-content">
+                        <div class="text-center ctr-p-list-member">
+                            
+                           
+                            
+                        </div>
+                        <p class="text-center ctr-p-result-title"><img src="/static/img/compete/ctr-p-result-title.png" alt=""></p>
+                        <p class="text-center ctr-p-result-congra"><b>Chúc mừng <span class="text-danger" id="ctr-prc-username">laxanh2</span> đã giành phần thắng trong trận đấu này</b></p>
+                        <div class="text-center ctr-p-result-members-outside-top-3">
+                            <!-- danh sách member sau top 3 -->
+                             
+                        </div>
+                        <div class="text-center" style="height: 100px; padding-top: 10px;">
+                            <div class="text-left ctr-p-bottom-button" id="ctr-pbb-replay" style="bottom: 0px;">
+                                <a href="/wait-4m1lqlmdkxxawuz6" onclick="replay();" class="click ctr-pbb-name"><i class="fa fa-repeat" aria-hidden="true"></i> <span style=" vertical-align: middle; ">Chơi lại phòng này</span></a>
+                            </div>
+                            <div class="text-left ctr-p-bottom-button" id="ctr-pbb-back" style="bottom: 0px;">
+                                <a href="/list-room" class="click ctr-pbb-name"><i class="fa fa-caret-left" style="font-size: 2em;" aria-hidden="true"></i> <span style=" vertical-align: middle; ">Chơi phòng khác</span></a>
+                            </div>
+                          
+                        </div>
+                        <div class="text-center ctr-p-time-back" style="color: #0f0f0f;">Sau <span id="ctr-p-time-back">16</span>s sẽ tự quay lại phòng chờ</div>
+                    </div>
+                </div>
+                <!---End result-->
+
+            </div>
+            
+		
+            <div class="table-cell ctr-p-right">
+                <div class="ctr-pr-rank">
+                    <div class="text-center ctr-pr-top-block">
+                        <div id="ctr-pr-list-name">BẢNG XẾP HẠNG</div>
+                    </div>
+                    <ul class="list-group list" id="ctr-pr-list" style="transform: perspective(3000px);">	
+
+                            <li class="mix list-group-item ctr-pr-item" id="{{room.user_host.id}}" data-score="0" data-username="{{room.user_host.username}}" data-time="2021-12-25 06:28:17" style="display: inline-block;" data-bound="">
+                                <span class="pull-left ctr-phs-status ctr-phs-thinking" id="ctr-phs-thinking{{room.user_host.id}}" style="display: inline-block;"><img src="/static/img/compete/ctr_p_status_thinking.gif"></span>
+                                <span class="pull-left ctr-phs-status ctr-phs-smile" id="ctr-phs-smile{{room.user_host.id}}" style="display: none;"><img src="/static/img/compete/ctr_p_status_smile.gif"></span>
+                                <span class="pull-left ctr-phs-status ctr-phs-crying" id="ctr-phs-crying{{room.user_host.id}}" style="display: none;"><img src="/static/img/compete/ctr_p_status_crying.gif"></span>
+                                <span class="badge pull-left ctr-pri-number hide">&nbsp;</span>
+                                <div class="ab ctr-pri-avata">
+                                    <div class="ctr-pri-avata-circle">
+                                        <img src="//upload.tienganh123.com/normal/normal_3228355_avatar.jpg" alt="">
+                                    </div>
+                                </div>
+                                <span class="ctr-pri-name">{{room.user_host.username}}</span>
+                                <span class="badge ctr-pri-score pull-right">0</span>
+                                <span class="ab ctr-pri-plus"></span>
+                            </li> 
+                            {% for item in list_user_john%}
+
+                            <li class="mix list-group-item ctr-pr-item" id="{{item.id}}" data-score="0" data-username="{{item.username}}" data-time="2021-12-25 06:28:24" style="display: inline-block;" data-bound="">
+                                <span class="pull-left ctr-phs-status ctr-phs-thinking" id="ctr-phs-thinking{{item.id}}" style="display: inline-block;"><img src="/static/img/compete//ctr_p_status_thinking.gif"></span>
+                                <span class="pull-left ctr-phs-status ctr-phs-smile" id="ctr-phs-smile{{item.id}}" style="display: none;"><img src="/static/img/compete//ctr_p_status_smile.gif"></span>
+                                <span class="pull-left ctr-phs-status ctr-phs-crying" id="ctr-phs-crying{{item.id}}" style="display: none;"><img src="/static/img/compete//ctr_p_status_crying.gif"></span>
+                                <span class="badge pull-left ctr-pri-number hide">&nbsp;</span>
+                                <div class="ab ctr-pri-avata">
+                                    <div class="ctr-pri-avata-circle">
+                                        <img src="//data.tienganh123.com/images/member/noavatar.gif" alt="">
+                                    </div>
+                                </div>
+                            <span class="ctr-pri-name">{{item.username}}</span>
+                                <span class="badge ctr-pri-score pull-right">0</span>
+                                <span class="ab ctr-pri-plus count-down"></span>
+                            </li> 
+                            {%endfor%}
+                        </ul>
+                </div>
+                <div class="btn-group btn-group-justified" style="margin-top: 10px;">
+                    <a href="/competition/" class="btn click ctr-bi-out">
+                        <i class="fa fa-angle-left fa-2x" aria-hidden="true"></i>
+                        <span>Rời phòng</span>
+                    </a>
+                    
+                </div>
+            </div>
+        </div>
+
+    </div>
+   
+</div>
+{{ request.user.id|json_script:"user_id" }}
+{{ room.type_compete.max_quantity_add_user|json_script:"type-competition" }}
+{{ room_name|json_script:"room-name" }}
+{{ room.user_host.id|json_script:"id-host" }}
+{{ request.user.username|json_script:"user_username" }}
+
+{%endblock%}
+
+{%block scripts %}
+
+<script src="{% static 'js/play-compete.js' %}"></script>
+
+<script>
+    
+const urlExcelData = '/static/bo-cau-hoi-violympic/Book1.xlsx';
+const roomName = JSON.parse(document.getElementById('room-name').textContent);
+const idUserHost = JSON.parse(document.getElementById('id-host').textContent);
+const user_id = JSON.parse(document.getElementById('user_id').textContent);
+const listUserItem = Array.from(document.querySelectorAll('.ctr-pr-item'));
+ 
+const playRoomSocket = new WebSocket(
+    'ws://' +
+    window.location.host +
+    '/ws/play/' +
+    roomName +
+    '/'
+);
+
+var remove1WrongWordArray = []
+var connectAudioCorrectArray = []
+var listenWriteWordMissingArray = []
+var putVerbInBracketsArray = []
+var pronunciationsOtherArray = []
+var chooseAnswerBestArray = []
+
+var arrayChooseObjectArray = []
+let timeStartPlay;
+
+function shuffleArray(array) {
+    for (var i = array.length - 1; i > 0; i--) {
+        var j = Math.floor(Math.random() * (i + 1));
+        var temp = array[i];
+        array[i] = array[j];
+        array[j] = temp;
+    }
+}
+
+function setAllStatusIconThink(){
+    Array.from(document.querySelectorAll('.ctr-phs-thinking')).forEach(item => {
+        item.style.display = "inline-block";
+    });
+    Array.from(document.querySelectorAll('.ctr-phs-smile')).forEach(item => {
+        item.style.display = "none";
+    })
+    Array.from(document.querySelectorAll('.ctr-phs-crying')).forEach(item => {
+        item.style.display = "none";
+    })
+
+}
+
+window.confirm_exit = true
+
+setStatusIcon= (status,id_post_asw) => {
+
+    if (status === 'false') //incorrect
+    {
+        document.getElementById('ctr-phs-thinking'+id_post_asw).style.display = "none";
+        document.getElementById('ctr-phs-smile'+id_post_asw).style.display = "none";
+        document.getElementById('ctr-phs-crying'+id_post_asw).style.display = "inline-block";
+     
+    }
+    else if (status === 'true')//correct
+    {
+        document.getElementById('ctr-phs-thinking'+id_post_asw).style.display = "none";
+        document.getElementById('ctr-phs-smile'+id_post_asw).style.display = "inline-block";
+        document.getElementById('ctr-phs-crying'+id_post_asw).style.display = "none";
+    
+
+    }
+    else{ //think
+        document.getElementById('ctr-phs-thinking'+id_post_asw).style.display = "inline-block";
+        document.getElementById('ctr-phs-smile'+id_post_asw).style.display = "none";
+        document.getElementById('ctr-phs-crying'+id_post_asw).style.display = "none";
+    }
+
+}
+
+$(document).ready(function(){
+    
+     $('#ctr-pm-countdown-layout').addClass('show');
+    $('#ctr-pm-play-layout').removeClass('show');
+
+    if (user_id === idUserHost)
+    {
+        
+        $('#ctr-pm-countdown-layout').prepend(`
+        <div class="text-center header-countdown-layout">
+            <div class="btn click btn-start-play" id="btn-start-play" onclick="start_play();">
+              <span>Bắt đầu</span>
+            </div>
+         </div>
+        `);
+    }
+    
+
+/* set up XMLHttpRequest */
+fetch(`${urlExcelData}`).then(function (res) {
+    /* get the data */
+    if (!res.ok) throw new Error("fetch failed");
+    return res.arrayBuffer();
+})
+    .then(function (ab) {
+        /* parse the data when it is received */
+        var data = new Uint8Array(ab);
+        var workbook = XLSX.read(data, {
+            type: "array"
+        });
+
+        /* *****************************************************************
+        * DO SOMETHING WITH workbook: Converting Excel value to Json       *
+        ********************************************************************/
+       
+       
+        var fourth_sheet_name = workbook.SheetNames[0]; //nghe-va-dien-tu-con-thieu
+        var sixth_sheet_name = workbook.SheetNames[1]; // phat-am-khac
+        var seventh_sheet_name = workbook.SheetNames[2]; // chon dap an dung nhat
+        /* Get worksheet */
+        
+        var worksheet4 = workbook.Sheets[fourth_sheet_name];
+        var worksheet6 = workbook.Sheets[sixth_sheet_name];
+        var worksheet7 = workbook.Sheets[seventh_sheet_name];
+
+        var _JsonData4 = XLSX.utils.sheet_to_json(worksheet4, { raw: true });
+        var _JsonData6 = XLSX.utils.sheet_to_json(worksheet6, { raw: true });
+        var _JsonData7 = XLSX.utils.sheet_to_json(worksheet7, { raw: true });
+        /************************ End of conversion ************************/
+
+        console.log(_JsonData4)
+        console.log(_JsonData6)
+        console.log(_JsonData7)
+        
+       
+        listenWriteWordMissingArray = []
+        _JsonData4.forEach((element,value) => {
+            item = {
+                question_first: element.question_first,
+                question_last: element.question_last,
+                answer: element.answer,
+            }
+            listenWriteWordMissingArray.push(item)
+            arrayChooseObjectArray.push('listenWriteWordMissingArray-'+value);
+        });
+
+        _JsonData7.forEach((element,value) => {
+            item = {
+                question: element.question,
+                answer1: element.answer1,
+                answer2: element.answer2,
+                answer3: element.answer3,
+                answer4: element.answer4,
+                answer: element.answer,
+                
+            }
+            chooseAnswerBestArray.push(item)
+            arrayChooseObjectArray.push('chooseAnswerBestArray-'+value);
+        });
+
+        pronunciationsOtherArray = []
+        _JsonData6.forEach((element,value) => {
+            item = {
+                question1: element.question1,
+                question2: element.question2,
+                question3: element.question3,
+                question4: element.question4,
+                answer: element.answer,
+            }
+            pronunciationsOtherArray.push(item)
+            arrayChooseObjectArray.push('pronunciationsOtherArray-'+value);
+        });
+
+
+    
+        
+
+        
+    });
+     
+})
+
+
+formatDateTimeToString = () => {
+    var date = new Date().toLocaleString('en-US',{hour12:false}).split(" ");
+    // Now we can access our time at date[1], and monthdayyear @ date[0]
+    var time = date[1];
+    var mdy = date[0];
+
+    // We then parse  the mdy into parts
+    mdy = mdy.split('/');
+    var month = parseInt(mdy[0]);
+    var day = parseInt(mdy[1]);
+    var year = parseInt(mdy[2]);
+
+    // Putting it all together
+    var formattedDate = year + '-' + month + '-' + day + ' ' + time;
+    return formattedDate
+}
+
+function timeCountTimer(){
+    $('ctr-pmcd-num').empty();
+    $('.ctr-pmcd-num').html('2');
+    var counterTimeCompete = setInterval(setTime1, 1000);
+
+    function setTime1() {
+        var textNumberCountDown = parseInt($('.ctr-pmcd-num').text());
+        textNumberCountDown--;
+	    $('.ctr-pmcd-num').html((textNumberCountDown<10)?"0"+textNumberCountDown:textNumberCountDown);
+       
+        if(textNumberCountDown === 0){
+           
+           if (user_id === idUserHost)
+           {    
+               timeStartPlay = formatDateTimeToString(); 
+               playRoomSocket.send(JSON.stringify({
+                   'type_send':'get_new_question',
+                   'message': 'get new question',
+               }));
+           }
+
+            $('ctr-pmcd-num').empty();
+            $('#ctr-pm-countdown-layout').removeClass('show');
+            $('#ctr-pm-play-layout').addClass('show'); 
+
+            clearInterval(counterTimeCompete);
+            return;
+           
+        }
+        else{
+            if(!$('.ctr-pmcd-timeline').attr('running')){
+                $('.ctr-pmcd-timeline').attr('running',true);
+                $('.ctr-pmcd-timeline').stop(true).css({bottom: (textNumberCountDown*2-100)+'%'}).animate({bottom: '-100%'}, textNumberCountDown*1000, "linear");
+            }
+        }
+        
+    }
+}
+
+function start_play(){
+
+    playRoomSocket.send(JSON.stringify({
+        'type_send':'start_play_countdown',
+        'message': 'start play count down',
+    }));
+    
+};
+
+function countDownProgress(){
+    let reverse_counter = 100;
+    document.getElementById("progress-bar-ctr").style.width = reverse_counter+"%";
+
+    var downloadTimer = setInterval(setTime2, 1000);
+
+    function setTime2() {
+        reverse_counter -= 20;
+        document.getElementById("progress-bar-ctr").style.width = reverse_counter+"%";
+        
+        if(reverse_counter <= 0)
+        {
+            document.getElementById("progress-bar-ctr").style.width = "0%";
+            if (user_id === idUserHost)
+            {    
+                playRoomSocket.send(JSON.stringify({
+                    'type_send':'get_new_question',
+                    'message': 'get new question',
+                }));
+            }
+            clearInterval(downloadTimer);
+        }
+        
+    }
+}
+
+
+var speakerText = (text) => {
+    var msg = new SpeechSynthesisUtterance();
+    var voices = window.speechSynthesis.getVoices();
+    msg.voice = voices[10];
+    msg.voiceURI = "native";
+    msg.volume = 1;
+    msg.rate = 1;
+    msg.pitch = 0.8;
+    msg.text = text;
+    msg.lang = 'en-US';
+    speechSynthesis.speak(msg);
+}
+
+let currentQuestionCompete = {}
+let indexQuestionCurrentCompete = 0;
+let countQuestionWithNew = 0;
+let MAX_QUESTION = 10;
+let countCorrectNumber = 0;
+function tachTuKhoiDauNhay(text){
+    return text.split("'");  
+}
+let textBoxMiss;
+let htmlRootDomQuestion = document.getElementById('ctr-area-render-dom-question');
+let chooseQuestionHtml = htmlRootDomQuestion.getAttribute('data-question-choose');
+let isAnswerQuestion = false;
+
+let dateNewQuestion;
+
+function checkAction(){
+    var arrSplitString1 = chooseQuestionHtml.split('-');
+    const getNameArray1 = arrSplitString1[0];
+    const getIndexArray1 = arrSplitString1[1];
+
+    if (isAnswerQuestion)
+    {
+        alert("Bạn đã hết lượt trả lời cho câu hỏi này!!");
+    }
+    else{
+
+        switch(getNameArray1)
+        {
+        
+            case 'listenWriteWordMissingArray':
+                
+                const valueInputMiss = $('#ctr-text-miss').val();
+             
+                if (valueInputMiss === '')
+                {
+                    alert('Không được để trống input');
+                }
+                else{
+                    if(currentQuestionCompete.answer === valueInputMiss){
+                        
+                        countCorrectNumber++;
+                        $('#ctr-pryr-number').html(countCorrectNumber);
+                        
+                        playRoomSocket.send(JSON.stringify({
+                            'type_send':'post_answer_incrr_crr',
+                            'correct':true,
+                            "user_id":"{{request.user.id}}",
+                            "username":"{{request.user.username}}",
+                            "date_success":new Date().toLocaleString('en-US',{hour12:false}),
+                            'message': '',
+                        })); 
+                    }
+                    else{
+                        playRoomSocket.send(JSON.stringify({
+                            'type_send':'post_answer_incrr_crr',
+                            'correct':false,
+                            "user_id":"{{request.user.id}}",
+                            "username":"{{request.user.username}}",
+                            "date_success":new Date().toLocaleString('en-US',{hour12:false}),
+                            'message': '',
+                        })); 
+                    }
+                    isAnswerQuestion = true;
+                }
+            
+                break;
+            case 'pronunciationsOtherArray':
+                var sizeCheckedPronunciation = $('#mc_pr_input .mc_pr_choice input[name="ques"]:checked').size() > 0;
+                var getRadioCheckedPronun = $('#mc_pr_input .mc_pr_choice input[name="ques"]:checked');
+
+                if (sizeCheckedPronunciation) // co 1 radio duoc checked
+                {
+                    
+                    if (parseInt(getRadioCheckedPronun.attr("value")) === currentQuestionCompete.answer){
+
+                        countCorrectNumber++;
+                        $('#ctr-pryr-number').html(countCorrectNumber);
+                        playRoomSocket.send(JSON.stringify({
+                            'type_send':'post_answer_incrr_crr',
+                            'correct':true,
+                            "user_id":"{{request.user.id}}",
+                            "username":"{{request.user.username}}",
+                            "date_success":new Date().toLocaleString('en-US',{hour12:false}),
+                            'message': '',
+                        })); 
+                        
+                    }
+                    else{
+                         playRoomSocket.send(JSON.stringify({
+                            'type_send':'post_answer_incrr_crr',
+                            'correct':false,
+                            "user_id":"{{request.user.id}}",
+                            "username":"{{request.user.username}}",
+                            "date_success":new Date().toLocaleString('en-US',{hour12:false}),
+                            'message': '',
+                        })); 
+                    }
+                    isAnswerQuestion = true;
+                }
+                else{
+                    alert('Hãy chọn câu trả lời')
+                }
+
+            
+                break;
+            
+            case 'chooseAnswerBestArray':
+                var sizeCheckedAnswerBest = $('#ctr-area-render-dom-question .parents_best_answer input[name="ques_best"]:checked').size() > 0;
+                var getRadioCheckedAnswerBest = $('#ctr-area-render-dom-question .parents_best_answer input[name="ques_best"]:checked');
+
+                if (sizeCheckedAnswerBest) // co 1 radio duoc checked
+                {
+                    
+                    if (parseInt(getRadioCheckedAnswerBest.attr("value")) === currentQuestionCompete.answer){
+
+                        countCorrectNumber++;
+                        $('#ctr-pryr-number').html(countCorrectNumber);
+                        playRoomSocket.send(JSON.stringify({
+                            'type_send':'post_answer_incrr_crr',
+                            'correct':true,
+                            "user_id":"{{request.user.id}}",
+                            "username":"{{request.user.username}}",
+                            "date_success":new Date().toLocaleString('en-US',{hour12:false}),
+                            'message': '',
+                        })); 
+                        
+                    }
+                    else{
+                         playRoomSocket.send(JSON.stringify({
+                            'type_send':'post_answer_incrr_crr',
+                            'correct':false,
+                            "user_id":"{{request.user.id}}",
+                            "username":"{{request.user.username}}",
+                            "date_success":new Date().toLocaleString('en-US',{hour12:false}),
+                            'message': '',
+                        })); 
+                    }
+                    isAnswerQuestion = true;
+                }
+                else{
+                    alert('Hãy chọn câu trả lời')
+                }
+                break;
+            default:
+                break;
+        }
+    }
+}
+
+function getPostAnswerFromMember(data){
+    console.log(data)
+    const type_correct = data.correct;
+    const idUserPostAnswer = data.user_id;
+    const usernameUserPostAnswer = data.username;
+    const dateSuccessPost = Date.parse(data.date_success);
+    let countCorrectToSetRank = 0;
+    setStatusIcon(''+type_correct,idUserPostAnswer);
+    var scoreUserRequestGet = parseInt(document.getElementById(''+idUserPostAnswer).getAttribute('data-score'));
+
+    document.getElementById(''+idUserPostAnswer).setAttribute('data-time',data.date_success);
+
+    listUserItem.forEach(item =>{
+        var isHassClassCorrect =  item.classList.contains('ctr-pr-item_correct');
+        var getDateBigDateNew = Date.parse(item.getAttribute('data-time'));
+
+        if (isHassClassCorrect)
+        {
+            countCorrectToSetRank++;
+        }  
+    })
+    if(type_correct)
+    {
+        if(countCorrectToSetRank === 0)
+        {   
+            document.getElementById(''+idUserPostAnswer).setAttribute('data-score',scoreUserRequestGet + 30)
+            $('#'+idUserPostAnswer+' .ctr-pri-score').html(scoreUserRequestGet + 30)
+        }
+        else if(countCorrectToSetRank === 1)
+        {
+            document.getElementById(''+idUserPostAnswer).setAttribute('data-score',scoreUserRequestGet + 25)
+            $('#'+idUserPostAnswer+' .ctr-pri-score').html(scoreUserRequestGet + 25)
+        }
+
+        else if(countCorrectToSetRank === 2)
+        {
+            document.getElementById(''+idUserPostAnswer).setAttribute('data-score',scoreUserRequestGet + 20)
+            $('#'+idUserPostAnswer+' .ctr-pri-score').html(scoreUserRequestGet + 20)
+        }
+
+        document.getElementById(''+idUserPostAnswer).classList.add('ctr-pr-item_correct');
+    }
+    else{
+        document.getElementById(''+idUserPostAnswer).classList.add('ctr-pr-item_incorrect');
+    }
+       
+}
+  
+function removeClassCorrectIncorrect(){
+    listUserItem.forEach(item =>{
+       item.classList.remove('ctr-pr-item_incorrect');
+       item.classList.remove('ctr-pr-item_correct');       
+    })
+}
+
+playRoomSocket.onmessage = function (e) {
+    const data = JSON.parse(e.data);
+    console.log(data)
+
+    console.log(data[0].type_send)
+
+    switch(data[0].type_send)
+    {
+
+        case 'get_new_question':        
+            getNewQuestion();               
+            break;
+
+        case 'start_play_countdown':
+            initPlayCompete();
+            timeCountTimer();
+            break;
+        case 'post_answer_incrr_crr':
+           
+            getPostAnswerFromMember(data[0]);        
+            break;
+
+        default:
+            console.log('ngoai le get send websocket')
+            break;
+    }
+};
+
+
+const initPlayCompete = () => {
+    MAX_QUESTION = arrayChooseObjectArray.length;
+    $('#ctr-pqs-total').html(MAX_QUESTION);
+    $('#ctr-pryr-total').html(MAX_QUESTION);
+    $('#ctr-pryr-number').html(0);
+
+}
+
+let indexArrayBig = -1;
+
+resultPlayCompete = () =>{
+    let arrayScoreResult = []
+    listUserItem.forEach(item =>{  
+        arrayScoreResult.push(item)
+    })
+    arrayScoreResult.sort(function(a, b){
+        return parseInt(b.getAttribute('data-score')) - parseInt(a.getAttribute('data-score'));
+    });
+    if (arrayScoreResult.length < 2){
+        alert("Thi 1 nguoi sao duoc vay. Moi nguoi khac di");
+        return;
+    }
+    $('#ctr-prc-username').empty();
+    $('#ctr-prc-username').html(arrayScoreResult[0].getAttribute('data-username'));
+
+    $('.ctr-p-list-member').empty();
+
+    let lengthLag2 = 2;
+    if (arrayScoreResult.length > 2){
+        lengthLag2 = 3;
+        
+    }
+    
+        let avatarResult1 = arrayScoreResult[0].querySelector('.ctr-pri-avata-circle img').getAttribute('src');
+        let usernameResult1 = arrayScoreResult[0].getAttribute('data-username');
+        let scoreResult1 = parseInt(arrayScoreResult[0].getAttribute('data-score'));
+
+
+        let avatarResult2 = arrayScoreResult[1].querySelector('.ctr-pri-avata-circle img').getAttribute('src');
+        let usernameResult2 = arrayScoreResult[1].getAttribute('data-username');
+        let scoreResult2 = parseInt(arrayScoreResult[1].getAttribute('data-score'));
+
+            $('.ctr-p-list-member').append(`
+            <div class="ctr-p-member ctr-p-member-second inline-block" index="1">
+                <div class="ctr-w-member newbie" style="background-image: url('/static/img/compete/newbie.png')">
+                     <div class="ctr-wm-avata">
+                        <img class="ctr-wm-avata-img" src="${avatarResult2}">
+                        <img class="ab ctr-wm-vip-img " src="/static/img/icon/ctr-vip-icon.png" alt="">
+                    </div>
+                    <div class="ctr-wm-ready">
+                        <span class="text-center pull-right ctr-wm-num">3</span>
+                    </div>
+                    <div class="text-center ctr-wm-username">${usernameResult2}</div>
+                    <div class="text-center ctr-wm-level">
+                        <span class="ctr-wml-name" style="color: #e69b57;">Newbie</span>
+                        <span class="ctr-wml-star">
+                            <img src="/static/img/icon/ctr-star.png">
+                             <img src="/static/img/icon/ctr-star.png">
+                            <img src="/static/img/icon/ctr-star.png">
+                         </span>
+                    </div>
+                    <div class="text-center ctr-wm-win-number">
+                        <span>+</span>
+                        <span>${(scoreResult2 === 0) ? 0:4}</span>
+                        <span class="text-center">Điểm<br>DH</span>
+                    </div>
+                    <div class="text-center ctr-wm-win-name"></div>
+                </div>
+            </div>
+            `);
+        
+       
+            $('.ctr-p-list-member').append(`
+            <div class="ctr-p-member ctr-p-member-first inline-block" index="0">
+                                <img class="ctr-pm-laurel" src="/static/img/compete/ctr-laurel-icon.png" alt="">
+                            
+                                <div class="ctr-w-member junior" style="background-image: url('/static/img/compete/junior.png')">
+                                    <div class="ctr-wm-avata">
+                                        <img class="ctr-wm-avata-img" src="${avatarResult1}">
+                                        <img class="ab ctr-wm-vip-img " src="/static/img/icon/ctr-vip-icon.png" alt="">
+                                    </div>
+                                    <div class="ctr-wm-ready">
+                                        <span class="text-center pull-right ctr-wm-num">4</span>
+                                    </div>
+                                    <div class="text-center ctr-wm-username">${usernameResult1}</div>
+                                    <div class="text-center ctr-wm-level">
+                                        <span class="ctr-wml-name" style="color: #fac08f;">Junior</span>
+                                        <span class="ctr-wml-star">
+                                            <img src="/static/img/icon/ctr-star.png">
+                                        </span>
+                                    </div>
+                                    <div class="text-center ctr-wm-win-number">
+                                        <span>+</span>
+                                        <span>${(scoreResult1 === 0) ? 0:7}</span>
+                                        <span class="text-center">Điểm<br>DH</span>
+                                    </div>
+                                    <div class="text-center ctr-wm-win-name"></div>
+                                </div>
+                            </div>
+            `);
+
+        if(lengthLag2 === 3)
+        {
+
+            let avatarResult3 = arrayScoreResult[2].querySelector('.ctr-pri-avata-circle img').getAttribute('src');
+            let usernameResult3 = arrayScoreResult[2].getAttribute('data-username');
+            let scoreResult3 = parseInt(arrayScoreResult[2].getAttribute('data-score'));
+
+            $('.ctr-p-list-member').append(`
+            <div class="ctr-p-member ctr-p-member-third inline-block" index="2">
+                                <div class="ctr-w-member newbie" style="background-image: url('/static/img/compete/newbie.png')">
+                                    <div class="ctr-wm-avata">
+                                        <img class="ctr-wm-avata-img" src="${avatarResult3}">
+                                        <img class="ab ctr-wm-vip-img " src="/static/img/icon/ctr-vip-icon.png" alt="">
+                                    </div>
+                                    <div class="ctr-wm-ready">
+                                        <span class="text-center pull-right ctr-wm-num">2</span>
+                                    </div>
+                                    <div class="text-center ctr-wm-username">${usernameResult3}</div>
+                                    <div class="text-center ctr-wm-level">
+                                        <span class="ctr-wml-name" style="color: #e69b57;">Newbie</span>
+                                        <span class="ctr-wml-star">
+                                            <img src="/static/img/icon/ctr-star.png">
+                                            <img src="/static/img/icon/ctr-star.png">
+                                        </span>
+                                    </div>
+                                    <div class="text-center ctr-wm-win-number">
+                                        <span>+</span>
+                                        <span>${(scoreResult3 === 0) ? 0:2}</span>
+                                        <span class="text-center">Điểm<br>DH</span>
+                                    </div>
+                                    <div class="text-center ctr-wm-win-name"></div>
+                                </div>
+                            </div>
+            `);
+            
+            $('.ctr-p-result-members-outside-top-3').empty();
+            for(let i = 3; i< arrayScoreResult.length; i++)
+            {
+                let avatarResultOutside3 = arrayScoreResult[i].querySelector('.ctr-pri-avata-circle img').getAttribute('src');
+                let usernameResultOutside3 = arrayScoreResult[i].getAttribute('data-username');
+
+               
+                $('.ctr-p-result-members-outside-top-3').append(`
+                <div class="ctr-pmot3-member inline-block">
+                     <div class="ctr-w-member">
+                         <div class="ctr-wm-avata">
+                               <img class="ctr-wm-avata-img" src="${avatarResultOutside3}">
+                            <img class="ab ctr-wm-vip-img " src="/static/img/icon/ctr-vip-icon.png" alt="">
+                        </div>
+                         <div class="text-center ctr-wm-win-number">
+                            <span>+</span>
+                            <span>0</span>
+                        </div>
+                         <div class="text-center ctr-wm-username">${usernameResultOutside3}</div>
+                        <div class="text-center ctr-wm-win-name"></div>
+                     </div>
+                    
+                </div>
+                `);
+            }
+        }
+    
+      
+    $('#ctr-p-result-layout').addClass('show');
+    $('#ctr-pm-play-layout').removeClass('show');
+
+    //
+    
+
+    var myObjPostResult = []
+    for(let i = 0; i < arrayScoreResult.length;i++)
+    {
+        let userNameWin = arrayScoreResult[i].getAttribute('data-username')
+        let scoreResultFinish = parseInt(arrayScoreResult[i].getAttribute('data-score'));
+        let scorePostData = 0;
+        if (scoreResultFinish === 0)
+        {
+            scorePostData = 0;
+        }
+        else if (i < 3){
+            scorePostData = (i === 0) ? 7:(i === 1) ? 4:2;
+        }
+        myObjPostResult.push({
+            'username':userNameWin,
+            'scoreDHWin':scorePostData,
+            'rankResult':(i + 1),
+            'timeStart':timeStartPlay,
+        })
+    }
+    if (user_id === idUserHost)
+    {
+        PostResultArray(myObjPostResult);
+    }
+}
+function PostResultArray(arrayObj) {
+    var postData = JSON.stringify( arrayObj );
+    console.log(postData);
+    var urlPostResult = "{% url 'competition:post_result_play' room_name=3 %}"
+    console.log(urlPostResult.replace("3", roomName))
+    $.post(
+        urlPostResult.replace("3", roomName), {
+        json_data: postData,
+        "type": 'clone',
+    },
+    function(json) {
+        console.log(json)
+        //CALLBACK
+    },
+    "json"
+    );
+
+}
+
+
+getNewQuestion = () => {
+    console.log(arrayChooseObjectArray)
+    removeClassCorrectIncorrect();
+    setAllStatusIconThink();
+    if (countQuestionWithNew >= arrayChooseObjectArray.length)
+    {
+
+        resultPlayCompete();
+    }
+    else{
+        countDownProgress();    
+        dateNewQuestion = new Date().toLocaleString('en-US',{hour12:false});
+        currentQuestionCompete = {}
+        indexArrayBig++;
+        isAnswerQuestion = false;
+    
+        if (chooseQuestionHtml === '')
+        {
+            if (arrayChooseObjectArray.length == 0)
+            {
+                return;
+            }    
+        }
+    
+        
+        htmlRootDomQuestion.setAttribute('data-question-choose',arrayChooseObjectArray[indexArrayBig]);
+        chooseQuestionHtml = htmlRootDomQuestion.getAttribute('data-question-choose');
+        var arrSplitString = chooseQuestionHtml.split('-');
+        console.log(arrSplitString)
+        const getNameArray = arrSplitString[0];
+        const getIndexArray = arrSplitString[1];
+        console.log(getNameArray)
+        countQuestionWithNew++;
+        $('#ctr-pqs-number').html(countQuestionWithNew);
+    
+        switch(getNameArray)
+        {
+    
+            case 'listenWriteWordMissingArray':
+                
+                currentQuestionCompete = listenWriteWordMissingArray[getIndexArray];
+                $('#ctr-area-render-dom-question').empty();
+                $('#ctr-area-render-dom-question').append(`
+                    <link href="{% static 'css/fi_li.css'%}" rel="stylesheet" type="text/css">
+                    <div id="fi_li" class="ctst">
+                        <div class="ctt" id="flp">
+                            <div>Listen and fill in the blank with missing words.</div>
+                            <div>(Nghe và điền từ còn thiếu vào chỗ trống.)</div>
+                        </div>	
+                        <div id="flfa">
+                            <div id="fla" class="jp-audio">
+                                
+                                    <ul class="jp-controls">
+                                        <li><span class="jp-play" id="jp-play-miss" tabindex="1" style="display: block;">play</span></li>
+                                        <li><span class="jp-pause" id="jp-pause-miss" tabindex="1" style="display: none;">pause</span></li>
+                                        </ul>
+                                    <div class="jp-progress-slide">
+                                        <div class="ui-slide-arrange" id="ui-slide-miss" style="width: 0%;"></div>
+                                    </div>
+                                
+                            </div>
+                        
+                        </div>	
+                        <div id="flfw" word="${currentQuestionCompete.question_first} ${currentQuestionCompete.answer} ${currentQuestionCompete.question_last}">${currentQuestionCompete.question_first} 
+                                <div class="flfin">
+                                    <input type="text" id="ctr-text-miss" class="flin" autocapitalize="off" autocorrect="off" value="">
+                                </div> ${currentQuestionCompete.question_last}
+                        </div>
+                    
+                    </div>
+                `);
+               
+                document.getElementById('ctr-text-miss').addEventListener("keydown", e => {
+                if (e.keyCode === 13) {
+                    checkAction();
+                }
+                });
+                    
+                break;
+            
+            case 'pronunciationsOtherArray':
+                
+                currentQuestionCompete = pronunciationsOtherArray[getIndexArray];
+                console.log(currentQuestionCompete)
+                const firstWord1 = tachTuKhoiDauNhay(currentQuestionCompete.question1)[0];
+                const middleWord1 = tachTuKhoiDauNhay(currentQuestionCompete.question1)[1];
+                const lastWord1 = tachTuKhoiDauNhay(currentQuestionCompete.question1)[2];
+    
+                const firstWord2 = tachTuKhoiDauNhay(currentQuestionCompete.question2)[0];
+                const middleWord2 = tachTuKhoiDauNhay(currentQuestionCompete.question2)[1];
+                const lastWord2 = tachTuKhoiDauNhay(currentQuestionCompete.question2)[2];
+    
+                const firstWord3 = tachTuKhoiDauNhay(currentQuestionCompete.question3)[0];
+                const middleWord3 = tachTuKhoiDauNhay(currentQuestionCompete.question3)[1];
+                const lastWord3 = tachTuKhoiDauNhay(currentQuestionCompete.question3)[2];
+               
+                const firstWord4 = tachTuKhoiDauNhay(currentQuestionCompete.question4)[0];
+                const middleWord4 = tachTuKhoiDauNhay(currentQuestionCompete.question4)[1];
+                const lastWord4 = tachTuKhoiDauNhay(currentQuestionCompete.question4)[2];
+    
+                $('#ctr-area-render-dom-question').empty();
+                $('#ctr-area-render-dom-question').append(`
+                    <link href="{% static 'css/mc_pr.css' %}" rel="stylesheet" type="text/css">
+    
+                    <div id="mc_pr_area">
+                        <div id="mc_pr_ins">
+                            <div id="mc_pr_inse">Choose the word with <span style="text-decoration: underline;">underlined</span> part pronounced differently. You can click the music note to hear the sound.</div>
+                            <div id="mc_pr_insv">(Chọn một từ có phần gạch chân được phát âm khác với các từ còn lại. Em có thể click vào nốt nhạc để nghe âm thanh.)</div>
+                        </div> 
+                        <div id="mc_pr_input">
+                            <div class="mc_pr_ques">
+                                <span class="mc_pr_choice">
+                                    <input type="radio" id="mc_pr_choice__1" name="ques" value="1">
+                            
+                                    <label for="mc_pr_choice__1" class="mc_pr_text">${firstWord1}<span style="border-bottom: 2px solid;">${middleWord1}</span>${lastWord1}
+                                    </label>
+                                </span>
+                                <span class="mc_pr_au" onclick="click_audio_mc_pr(1);"></span>
+                            </div>
+                            <div class="mc_pr_ques">
+                                <span class="mc_pr_choice">
+                                    <input type="radio" id="mc_pr_choice__2" name="ques" value="2">
+                            
+                                    <label for="mc_pr_choice__2" class="mc_pr_text">${firstWord2}<span style="border-bottom: 2px solid;">${middleWord2}</span>${lastWord2}
+                                    </label>
+                                </span>
+                                <span class="mc_pr_au" onclick="click_audio_mc_pr(2);"></span>
+                            </div>
+                            <div class="mc_pr_ques">
+                                <span class="mc_pr_choice">
+                                    <input type="radio" id="mc_pr_choice__3" name="ques" value="3">
+                            
+                                    <label for="mc_pr_choice__3" class="mc_pr_text">${firstWord3}<span style="border-bottom: 2px solid;">${middleWord3}</span>${lastWord3}
+                                    </label>
+                                </span>
+                                <span class="mc_pr_au" onclick="click_audio_mc_pr(3);"></span>
+                            </div>
+                            <div class="mc_pr_ques">
+                                <span class="mc_pr_choice">
+                                    <input type="radio" id="mc_pr_choice__4" name="ques" value="4">
+                            
+                                    <label for="mc_pr_choice__4" class="mc_pr_text">${firstWord4}<span style="border-bottom: 2px solid;">${middleWord4}</span>${lastWord4}
+                                    </label>
+                                </span>
+                                <span class="mc_pr_au" onclick="click_audio_mc_pr(4);"></span>
+                            </div>
+                            
+                        </div> 
+                        <div class="ge_arna"><div class="ge_ina"></div><div class="ge_tna">Em chưa trả lời câu hỏi này.</div></div>
+                        <script type="text/javascript" src="/static/js/mc_pr.js"><\/script>
+                    </div>
+                `);
+    
+                break;
+
+            case 'chooseAnswerBestArray':
+                currentQuestionCompete = chooseAnswerBestArray[getIndexArray];
+                $('#ctr-area-render-dom-question').empty();
+                $('#ctr-area-render-dom-question').append(`
+                    <link href="{% static 'css/mc_vo.css' %}" rel="stylesheet" type="text/css">
+                    <div id="mc_vo_area">
+                        <div id="mc_vo_ins">
+                            <div id="mc_vo_inse">Choose the correct option.</div>
+                            <div id="mc_vo_insv">(Chọn đáp án đúng.)</div>
+                        </div> 
+                        <div id="mc_vo_arans">
+                                <div id="mc_vo_ans">${currentQuestionCompete.question}</div>
+                            </div>
+                                <div class="text-center" id="mc_vo_input">
+                                    <div class="inline-block parents_best_answer">
+                                       
+                                        
+                                    </div>
+                                </div>  
+                        <div class="ge_arna">
+                            <div class="ge_ina"></div>
+                            <div class="ge_tna">Em chưa trả lời câu hỏi này.</div>
+                        </div>
+                        <div class="gefle"><span id="gefl0">Gợi ý: </span><span id="gefl1">Tham khảo thêm tại </span><span id="gefl2"></span></div>  
+                    </div>
+                `);
+
+                $('#ctr-area-render-dom-question .parents_best_answer').empty();
+                for (let i= 1; i <= 4; i++){
+                   
+                    $('#ctr-area-render-dom-question .parents_best_answer').append(`
+                    <div class="mc_vo_ques">
+                        <div class="mc_vo_choice">
+                            <input type="radio" id="best_answer_${i}" name="ques_best" value="${i}">
+                            <label for="best_answer_${i}" class="mc_vo_text">${currentQuestionCompete["answer"+i]}</label>
+                        </div>
+                    </div>
+                    `)
+                }
+              
+                break;
+            default:
+                break;
+        }
+
+        
+    }
+    
+}
+
+    playRoomSocket.onopen = function(e) {
+        
+    }
+
+    playRoomSocket.onclose = function(e) {
+        var r = confirm("Bạn vừa bị mất kết nối với máy chủ! Bấm OK hoặc nhấn Enter để kết nối lại");
+        if (r == true) {
+            location.reload();
+        } else {
+            location.reload();
+        }   
+    };
+
+
+</script>
+{%endblock%}

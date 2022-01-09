@@ -1,0 +1,144 @@
+{% extends "pages/base2.html" %} 
+{% block title %} Thi đấu Tiếng anh trực tuyến {% endblock %}
+
+{%load static%}
+
+{% block scripts %}
+<script src="https://cdn.socket.io/socket.io-1.0.0.js"></script>
+<script src="{% static 'js/init-room.js'%}"></script>
+
+{%endblock%}
+
+{%block content%}
+
+<div class="container page-content">
+    <div class="ctr-page" id="init-room-page">
+        <div class="ctr-ir-box">
+            <div class="ctr-ir-title">
+                <blockquote class="blockquote">TẠO PHÒNG THI ĐẤU</blockquote>				
+                <small class="text-muted">Chọn hình thức thích hợp rồi nhấn nút tạo phòng</small>
+            </div>
+
+            <div class="ctr-irb-main">
+                <div class="ctr-irb-left">
+                    <div class="ctr-irb-form">
+                        <form action="{% url 'competition:post_init_room' %}" role="form" method="POST" id="ctr-irb-create-form">
+                            {% csrf_token %}
+                            <div class="ctr-irb-form-body">
+                                <div class="form-group">
+                                    <blockquote class="ctr-irb-intro-form">CHỌN HÌNH THỨC THI ĐẤU</blockquote>
+                                    <div class="row">
+                                        {% for item in list_type %}
+                                            {% if forloop.first %}
+                                            <label class="custom-control custom-radio col-lg-6 ctr-irb-type click active" style="z-index: 1; position: relative;" onclick="selectType(this)">
+                                                <input class="custom-control-input" type="radio" name="type" id="" value="{{item.id}}" checked="checked">
+                                                   
+                                            {%else%}
+                                            
+                                            <label class="custom-control custom-radio col-lg-6 ctr-irb-type click" style="z-index: 1; position: relative;" onclick="selectType(this)">
+                                                <input class="custom-control-input" type="radio" name="type" id="" value="{{item.id}}">
+                                                
+                                            {% endif %}
+                                            <span class="custom-control-indicator bold">{{item.title}}</span><br>
+                                                <small class="custom-control-description">{{item.description}}</small>
+                                            </label>
+                                        {%endfor%}
+                                        
+                                    </div>
+                                </div>
+                              
+                                <!--Choice classroom -->
+                                <div class="form-group">
+                                    <blockquote class="ctr-irb-intro-form">CHỌN LỚP</blockquote>
+                                    <div class="row">
+                                        
+                                        {% for choice in form_class.class_compete.field.choices%}
+                                           
+                                            <label class="custom-control custom-radio col-lg-3 ctr-irb-class click" >
+                                                <input class="custom-control-input" type="radio" name="class_ques"  id="" value="{{choice.0}}" 
+                                               
+                                                {% if forloop.first %}
+                                                checked="checked"
+                                                {%endif%} 
+                                                >
+                                                <span class="custom-control-indicator">{{choice.1}}</span>
+                                            </label>
+                                        
+                                        {%endfor%}
+                                        								
+                                    </div>							
+                                </div>
+
+                                <!---Choice skill -->
+                                <div class="form-group">
+                                    <blockquote class="ctr-irb-intro-form">CHỌN KỸ NĂNG THI ĐẤU</blockquote>
+                                    <div class="row">
+                                        {% for choice in form_skill.skills.field.choices%}
+                                        <label class="custom-control custom-radio col-lg-6 ctr-irb-skill" onclick="selectSkill(this);">
+                                            <input class="custom-control-input" type="radio" name="skills"  id="" value="{{choice.0}}"
+                                            {% if forloop.first %}
+                                            checked="checked"
+                                            {%endif%} 
+                                            >
+                                            <span class="custom-control-indicator">{{choice.0}}</span><br>
+                                            <small class="custom-control-description" style="font-size: 13px;">{{choice.1}}</small>
+                                        </label>
+                                        {%endfor%}
+                                        
+                                    
+                                    </div>
+                                </div>
+
+                                <!--- choice room is private ? -->
+                                <div class="form-group">
+                                    <label class="custom-control custom-checkbox ctr-irb-private">
+                                        <input type="checkbox" name="private" id="" value="1" class="custom-control-input">
+                                        <span class="custom-control-indicator">Phòng thi đấu riêng <i class="fa fa-lock" aria-hidden="true"></i></span>
+                                    </label>
+                                </div>
+                            </div>
+
+                            <!--- wrapper btn  -->
+                            <div class="text-center ctr-wrap-form-btn" >
+            
+                                <div class="btn-group" style="z-index: 1;">
+                                    <button type="submit" class="btn click click1 btn-submit"><span>Tạo phòng</span></button>
+                                    <a href="{% url 'competition:list_room_competition' %}" type="button" class="click click1 btn btn-danger"><span>Hủy</span></a>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
+                <div class="ctr-irb-message">
+                    <div class="ctr-message">
+                        <div class="ctr-m-list" style="height: 530px;">
+                            <div class="ctr-mll-content">
+                                <p class="text-justify ctr-m-row">
+                                    <span class="ctr-m-content">
+                                        <span class="ctr-m-master ctr-m-self">Chú ý:</span>
+                                    </span>
+                                </p>
+                                <p class="text-justify ctr-m-row ctr-m-server ctr-m-member-ready">
+                                    <span class="ctr-m-content">Chỉ thành viên VIP mới có thể trả lời tất cả các câu hỏi trong bài thi tạo phòng mới.</span>
+                                </p>	
+                                <p class="text-justify ctr-m-row ctr-m-server ctr-m-member-ready">
+                                    <span class="ctr-m-content">Bạn có thể tạo phòng đấu riêng với bạn bè của mình bằng cách tích chọn <span class="text-danger">"Phòng thi đấu riêng"</span></span>
+                                </p>													
+                                <p class="text-justify ctr-m-row ctr-m-server ctr-m-member-ready sr-only">
+                                    <span class="ctr-m-content">Chỉ thành viên VIP mới có quyền tạo phòng mới</span>
+                                </p>							
+                            </div>
+                        </div>
+                        
+                    </div>
+                   
+			    </div>
+            </div>
+        </div>
+
+    </div>
+
+</div>
+
+{%endblock%}

@@ -1,0 +1,10 @@
+{%if is_enough == True%}
+<div style="text-align:center;">
+    <h2>Phòng đã đủ người rồi. Hãy chọn phòng khác</h2>
+    <br>
+    <a href="{% url 'competition:list_room_competition' %}" class="" style="text-decoration: none;padding: 10px 15px;background: orange;color: #fff;">
+    <span>Tìm phòng đấu</span>
+    </a>
+</div>
+{%endif%}
+

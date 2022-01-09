@@ -1,0 +1,690 @@
+{% extends "pages/base.html" %} {% block title %} {{less.get_titlesub_display}} {% endblock %}
+
+{%load static%}
+{% block scripts %}
+  {%if golden_fish is True %}
+  <script src="{% static 'js/golden-fish.js'%}" ></script>
+  {%endif%}
+  {%if game_card is True %}
+   <script src="{% static 'js/word_memory_card.js'%}" ></script>
+  {%endif%}
+  {% if choice_ans is True %}
+    <script src="{% static 'js/choice-answer-true.js'%}" ></script>
+  {%endif%}
+  {% if missing_ans is True %}
+    <script src="{% static 'js/write-word-missing.js'%}" ></script>
+  {%endif%}
+  {% if arrange_ans is True %}
+  <script src="{% static 'js/arrange-sentence.js'%}" ></script>
+  {%endif%}
+
+{% endblock %}
+
+
+{%block content%} 
+
+
+<!--? slider Area Start-->
+<section class="slider-area slider-area2">
+  <div class="slider-active">
+    <!-- Single Slider -->
+    <div class="single-slider slider-height2">
+      <div class="container">
+        <div class="row">
+          <div class="col-xl-8 col-lg-11 col-md-12">
+            <div class="hero__caption hero__caption2">
+              <h1 data-animation="bounceIn" data-delay="0.2s">
+               {{less.get_titlesub_display}}
+              </h1>
+              <!-- breadcrumb Start-->
+              <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                  <li class="breadcrumb-item">
+                    <a href="{%url 'home:index'%}">Home</a>
+                  </li>
+                  <li class="breadcrumb-item">
+                    <a href="{{request.get_full_path}}">{{less.get_titlesub_display}}</a>
+                  </li>
+                </ol>
+              </nav>
+              <!-- breadcrumb End -->
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<div class="container container-h-100 container-visibility">
+  <h3 class="text-video">Video</h3>
+    <div class="w-100 d-flex-center">
+        <div class="vd-wrap">
+            <video width="850" height="450" controls>
+                <source  id="vlinkmp4" src="{{less.video}}" type="video/mp4">
+            
+            </video>
+        </div>
+    </div>
+  <div class="accordionExample">
+    {%if golden_fish is True %} 
+    <!--Start golden fish-->
+    <div class="container_accord">
+      <div class="label_accord bg-violet">
+        <div class="kphml_name bg-header-name">
+          <div class="kphmln_ten">
+            <h4 class="text-header-item">
+              Golden fish
+            </h4>
+          </div>
+          <div class="khta_arscore">
+              <div class="khtabs_text" id="is_doing_false_fish">CHƯA LÀM</div>
+              <div class="khtabs_score" id="is_doing_true_fish">
+                <div class="khtabss_text">ĐIỂM: </div>
+                <div class="khtabss_score">
+                    <span class="khtabss_yscore" id="cscore_header_fish">0</span>/<span class="khtabss_totalscore" id="totalscore_header_fish">90</span>
+                </div>
+              </div>
+
+          </div>
+        </div>
+      </div>
+      <div class="content__">
+        <div class="mt-4">
+          <div class="ge khta_arins"  id="khta_arins_fish">
+              <img class="img_bg_main" src="/static/img/course/bg_game_fish.png">
+              <img class="img_sub_header" src="/static/img/course/title_fish_i.png">
+              <div class="ge2 khta_game2_artext" id="khta_game2_artext">
+                  <div class="ge gfb0ivi_tit text-center">Hướng dẫn</div>
+                  <div id="khta_game2_tvi" style="display: block;">Con hãy chọn các chữ cái thích hợp hoặc điền vào chỗ trống (gồm 2 chữ cái) nhé.</div>
+                  <div id="khta_game2_ten" style="display: none;">Choose the correct letters or fill in the blanks (two letter).</div>
+              </div>
+              <div class="ge2 khta_game2_btran" id="khta_game2_btran"></div>
+              <div class="ge2 khta_game2_bstart" id="khta_game2_bstart"></div>
+          </div>
+          <div class="arplay animate-bottom" id="arplay_fish" style="display:none;">
+            
+            <div class="ge2 w-100 bg_area_fish_520">
+              <img class="ge2 gfb1_bg_fish_i img_bg_main" id="gfb1_bg_fish_i" src="/static/img/course/gfb1_bg_paly_fish_i.png">
+              <div class="ge2" id="gf1_clock"></div>
+              <div class="ge2 gfb1_small_fish gfb1_small_fish_1" id="gfb1_small_fish_1" style="background-position: 0px 0px; left: 114.747px; top: 216.785px;"></div>
+              <div class="ge2 gfb1_small_fish gfb1_small_fish_2" id="gfb1_small_fish_2" style="background-position: 0px 0px; left: 109.735px; top: 65.2458px;"></div>
+              <div class="ge2 gfb1_small_fish gfb1_small_fish_3" id="gfb1_small_fish_3" style="background-position: 0px 0px; left: 123.191px; top: 283.862px;"></div>
+              <div class="ge2" id="gfb1_result"><!--icon reult-->
+                <div class="gfb1_result_icon"></div>
+                <div class="gfb1_result_icon"></div>
+                <div class="gfb1_result_icon"></div>
+                <div class="gfb1_result_icon"></div>
+                <div class="gfb1_result_icon"></div>
+                <div class="gfb1_result_icon"></div>
+                <div class="gfb1_result_icon"></div>
+              </div>
+              <!--area bubble-->
+              <img class="ge2" id="gfb1_fishs_i" src="/static/img/course/gfb1_fishs_i.png" width="187" height="107">
+
+              <img src="/static/img/course/gfb1_small_bubble.png" class="ge2 bubble_icon" style="left: 218px; top: 644.522px;">
+              <img src="/static/img/course/gfb1_small_bubble.png" class="ge2 bubble_icon" style="left: 85px; top: 618.57px;">
+              <img src="/static/img/course/gfb1_small_bubble.png" class="ge2 bubble_icon" style="left: 29px; top: 605.828px;">
+              <img src="/static/img/course/gfb1_small_bubble.png" class="ge2 bubble_icon" style="left: 494px; top: 589.2px;">
+              <img src="/static/img/course/gfb1_small_bubble.png" class="ge2 bubble_icon" style="left: 447px; top: 490.365px;">
+              <img src="/static/img/course/gfb1_small_bubble.png" class="ge2 bubble_icon" style="left: 451px; top: 460.684px;">
+              <img src="/static/img/course/gfb1_small_bubble.png" class="ge2 bubble_icon" style="left: 254px; top: 454.779px;">
+              <img src="/static/img/course/gfb1_small_bubble.png" class="ge2 bubble_icon" style="left: 289px; top: 436.286px;">
+              <img src="/static/img/course/gfb1_small_bubble.png" class="ge2 bubble_icon" style="left: 549px; top: 336.053px;">
+              <img src="/static/img/course/gfb1_small_bubble.png" class="ge2 bubble_icon" style="left: 577px; top: 312.588px;">
+              <img src="/static/img/course/gfb1_small_bubble.png" class="ge2 bubble_icon" style="left: 285px; top: 301.71px;">
+              <img src="/static/img/course/gfb1_small_bubble.png" class="ge2 bubble_icon" style="left: 202px; top: 278.089px;">
+              <img src="/static/img/course/gfb1_small_bubble.png" class="ge2 bubble_icon" style="left: 15px; top: 182.518px;">
+              <img src="/static/img/course/gfb1_small_bubble.png" class="ge2 bubble_icon" style="left: 283px; top: 174.748px;">
+              <img src="/static/img/course/gfb1_small_bubble.png" class="ge2 bubble_icon" style="left: 241px; top: 146.465px;">
+              <img src="/static/img/course/gfb1_small_bubble.png" class="ge2 bubble_icon" style="left: 229px; top: 127.04px;">
+              <img src="/static/img/course/gfb1_small_bubble.png" class="ge2 bubble_icon" style="left: 526px; top: 25.7194px;">
+              <img src="/static/img/course/gfb1_small_bubble.png" class="ge2 bubble_icon" style="left: 313px; top: -1.3202px;">
+              <img src="/static/img/course/gfb1_small_bubble.png" class="ge2 bubble_icon" style="left: 431px; top: -1.3202px;">
+              
+              <img src="/static/img/course/gfb1_small_bubble.png" class="ge2 bubble_icon" style="left: 168px; top: -33.9542px;">
+
+              <div class="ge2" id="gfb1_fish" style="background-position: 0px -149px; left: 155.685px; top: 372.0192px;">
+
+              </div>
+              <div class="ge2 gfb1_answer_bubble gfb1_answer_bubble_2 gfb1_answer_bubble_select" id="gfb1_answer_bubble_02" value="cb" style=" left: 132.0977px; font-size: 50px; top: 190.205px;">
+                <div class="gfb1_answer_table">
+                  <div class="gfb1_answer_cell">
+                    <div class="gfb1_answer_ct">cb</div>
+                  </div>
+                </div>
+              </div>
+              <div class="ge2 gfb1_answer_bubble gfb1_answer_bubble_1 gfb1_answer_bubble_select" id="gfb1_answer_bubble_01" value="kt" style=" left: 350.399px; font-size: 50px; top: 125.592px;"><div class="gfb1_answer_table">
+                <div class="gfb1_answer_cell">
+                  <div class="gfb1_answer_ct">kt</div>
+                </div>
+              </div>
+            </div>
+            <div class="ge2 gfb1_answer_bubble gfb1_answer_bubble_0 gfb1_answer_bubble_select" id="gfb1_answer_bubble_00" value="ch" style=" left: 543.373px; font-size: 50px; top: 201.468px;">
+              <div class="gfb1_answer_table">
+                <div class="gfb1_answer_cell">
+                  <div class="gfb1_answer_ct">ch</div>
+                </div>
+              </div>
+            </div>
+              <div class="ge2" id="gfb1_question" style="top: 400px;">
+                  <div id="gfb1_question_table">
+                      <div id="gfb1_question_cell">
+                          <div id="gfb1_question_ct" style="font-size: 40px;">
+                            <div class="gfb1_arkey">
+                              <input type="text" class="text_input_fish" id="text_input_fish"  maxlength="2"  autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" >
+                            </div>
+                            <span id="text-miss-fish">ick</span>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+              <div class="ge2" id="gfb1_submit_b"></div>
+            </div>
+
+            
+          </div>
+          <div class="error_data_game_fish text-center" id="error_data_game_fish">
+            <h2>Trò chơi chưa có dữ liệu. Xin hãy quay lại sau nhé!!</h2>
+          </div>
+          <div class="ge khta_arscore__" id="khta_arscore__fish">
+            <div class="d-flex-center wrapper_score_fish">
+
+              <div class="ge text-h-sc">
+                Điểm:
+              </div>
+              <div class="ge yscore" id="yscore_fish">0</div>
+              /
+              <div class="ge tscore" id="tscore_fish">0</div>
+            </div>
+          </div>
+          <div class="ge khta_arresult_game animate-bottom" id="khta_arresult_game_fish">
+            <div class="ge khta_tcongra_game" id="khta_tcongra_fish">Con đã hoàn thành bài tập với điểm số:</div>
+            <div class="ge khta_arscore_game" id="khta_arscore_fish">
+                <div class="ge khtas_yscore_game" id="khtas_yscore_fish" style="transform: scale(1, 1);">0</div>
+                <div class="ge khtas_line_game" id="khtas_line_fish"></div>
+                <div class="ge khtas_tscore_game" id="khtas_tscore_fish">90</div>
+            </div>
+            <div class="ge khtas_tresult_game" id="khtas_tresult_fish" style="display: block;">
+                <div class="ge khtatr_type1_game" id="khtatr_type1_fish" style="display: block;">Tỷ lệ hoàn thành là <span id="khta_persent_fish">100%</span>.<span id="khta_tnote_fish"> Kết quả <span id="khta_notable_fish">tuyệt vời!</span></span></div>
+           
+            </div>
+            <div class="ge khta_breplay_game" id="khta_breplay_fish" style="display: block;">
+                <div class="ge khtabr_text_game" id="khtabr_text_fish">Replay</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!--End golden fish-->
+    {%endif%}
+    <!-- ===  -->
+
+    {%if game_card is True %}
+    <!-- Start word memory cards-->
+    <div class="container_accord">
+      <div class="label_accord bg-violet">
+        <div class="kphml_name bg-header-name">
+          <div class="kphmln_ten">
+            <h4 class="text-header-item">
+                Word Memory Cards
+            </h4>
+          </div>
+          <div class="khta_arscore">
+              <div class="khtabs_text" id="is_doing_false_card">CHƯA LÀM</div>
+              <div class="khtabs_score" id="is_doing_true_card">
+                <div class="khtabss_text">ĐIỂM: </div>
+                <div class="khtabss_score">
+                    <span class="khtabss_yscore" id="cscore_header_card">0</span>/<span class="khtabss_totalscore" id="totalscore_header_card">90</span>
+                </div>
+              </div>
+
+          </div>
+        </div>
+      </div>
+      <div class="content__">
+        <div class="mt-4">
+          <div class="ge khta_arins"  id="khta_arins_card">
+              <img class="img_bg_main" src="/static/img/course/bgins.png">
+              <div class="ge2 khta_game1_artext" id="khta_game1_artext">
+                  <div id="khta_game1_tvi" style="display: block;">Con hãy lật mở các ô. Khi mở được các ô giống nhau, con sẽ nhận được điểm.</div>
+                  <div id="khta_game1_ten" style="display: none;">Click to open the cards. You'll get the points if two same cards are opened in one turn.</div>
+              </div>
+              <div class="ge2 khta_game1_btran" id="khta_game1_btran"></div>
+              <div class="ge2 khta_game1_bstart" id="khta_game1_bstart"></div>
+          </div>
+          <div class="arplay animate-bottom" id="arplay_card">
+            <div class="ge" id="khta_arheader">
+              <div id="khta_arstar"></div>
+              <div id="khta_arturn">
+                <span id="khtatu_text">Number of turns: </span>
+                <span id="number_turn_card">0</span>
+              </div>
+              <div class="kpt_artime" id="khta_artime">
+                <span id="khtati_text">Time: </span>
+                <span id="khtati_number"
+                  ><span id="kpt_minute" class="kpt_minute">00</span>:<span id="kpt_sec" class="kpt_sec">00</span
+                  ></span
+                >
+              </div>
+            </div>
+            <div class="areapiece" id="areapiece_card"></div>
+            <div class="error_data_game_ text-center" id="error_data_game">
+                <h2>Trò chơi chưa có dữ liệu. Xin hãy quay lại sau nhé!!</h2>
+            </div>
+            <div class="ge khta_arscore__" id="khta_arscore__card">
+              <div class="d-flex-center">
+
+                <div class="ge text-h-sc">
+                  Điểm:
+                </div>
+                <div class="ge yscore" id="yscore_card"></div>
+                /
+                <div class="ge tscore" id="tscore_card"></div>
+              </div>
+            </div>
+          </div>
+          <div class="ge khta_arresult_game animate-bottom" id="khta_arresult_game">
+            <div class="ge khta_tcongra_game" id="khta_tcongra_card">Con đã hoàn thành bài tập với điểm số:</div>
+            <div class="ge khta_arscore_game" id="khta_arscore_card">
+                <div class="ge khtas_yscore_game" id="khtas_yscore_card" style="transform: scale(1, 1);">90</div>
+                <div class="ge khtas_line_game" id="khtas_line_card"></div>
+                <div class="ge khtas_tscore_game" id="khtas_tscore_card">90</div>
+            </div>
+            <div class="ge khtas_tresult_game" id="khtas_tresult_card" style="display: block;">
+                <div class="ge khtatr_type1_game" id="khtatr_type1_card" style="display: block;">Tỷ lệ hoàn thành là <span id="khta_persent_card">100%</span>.<span id="khta_tnote"> Kết quả <span id="khta_notable_card">tuyệt vời!</span></span></div>
+                <div class="ge khtatr_type2_game" id="khtatr_type2_card" style="display: block;">Chúc mừng con đã hoàn thành bài trong thời gian <span id="khtat_time_card">01:06</span></div>
+            </div>
+            <div class="ge khta_breplay_game" id="khta_breplay_card" style="display: block;">
+                <div class="ge khtabr_text_game" id="khtabr_text_card">Replay</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!--End word memory cards-->
+    {%endif%}
+    {% if choice_ans is True %}
+    <!--Start choice answer true-->
+    <div class="container_accord">
+        <div class="label_accord">
+          <div class="kphml_name bg-header-name">
+            <div class="kphmln_ten">
+              <h4 class="text-header-item">
+                  Đọc và chọn đáp án đúng.
+              </h4>
+            </div>
+            <div class="khta_arscore">
+                <div class="posi-rela khtabs_text" id="is_doing_false_choice">CHƯA LÀM</div>
+                <div class="posi-rela khtabs_score" id="is_doing_true_choice">
+                  <div class="posi-rela khtabss_text">ĐIỂM: </div>
+                  <div class="posi-rela khtabss_score">
+                      <span class="posi-rela khtabss_yscore" id="cscore_header_choice"></span>/<span class="posi-rela khtabss_totalscore" id="totalscore_header_choice"></span>
+                  </div>
+                </div>
+
+            </div>
+          </div>
+        </div>
+        <div class="content__">
+         
+          <div class="container_exe_bg bgtemp2">
+            <div class="wrapper-exce-sub">
+              <div class="body-sub">
+                <div class="khta_area" id="area_choice">
+                    <div class="klti_area">
+                      <div class="header_text_en">
+                        Choose the correct option to complete the sentence.
+                      </div>
+                      <div class="header_text_vi">
+                        (Chọn đáp án đúng để hoàn thành câu.)
+                      </div>
+                    </div>
+                    <div class="kltc_area">
+                        <div class="wrap-context-quest">
+                            <div id="question-sentence-choice" class="question-sentence-choice">
+                                <div id="sentence-choice-text" class="sentence-choice-text"></div>
+                            </div>
+                            <div id="" class="answer-container-choice">
+                                <div class="choice-container_arword">
+                                    <p class="choice_tword" data-number="1"></p>
+                                </div>
+                                <div class="choice-container_arword">
+                                    <p class="choice_tword" data-number="2"></p>
+                                </div>
+                                <div class="choice-container_arword">
+                                    <p class="choice_tword" data-number="3"></p>
+                                </div>
+                                <div class="choice-container_arword ">
+                                    <p class="choice_tword" data-number="4"></p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="khta_iconcor" id="khta_iconcor_choice"></div>
+                        <div class="khta_iconincor" id="khta_iconincor_choice"></div>
+                        <div class="answer-error text-center hide" id="wrap_answer_choice">
+                            <p>Đáp án của em chưa chính xác.</p> 
+                        </div>
+                    </div>
+                </div>
+              </div>
+              <!-- Modal -->
+              <div class="modal_" id="modal_choice">
+                   <div class="khta_black"></div>
+                   <div class="bg_modal">
+                       <div class="title_modal_">Bạn có chắc sẽ bỏ qua câu hỏi này</div>
+                       <div class="bottom_modal">
+
+                           <div class="box_cancel btn__modal" id="box_cancel_choice">HỦY</div>
+                           <div class="box_ok btn__modal" id="box_ok_choice">OK</div>
+                       </div>
+                       <div class="box_exit" id="box_exit_choice"><i class="fa fa-times"></i></div>
+                   </div>
+               </div>
+            <!--end modal-->
+            <div class="arresult" id="result_choice">
+                <div class="tcongra">Chúc mừng em đã hoàn thành bài tập với điểm số:</div>
+                <div class="rainbow">
+                    <div class="fi_arscore">
+                        <div class="fi_yscore" id="result_yscore_choice" style="transform: scale(1, 1);">
+                            0
+                        </div>
+                        <div class="fi_line"></div>
+                        <div class="fi_tscore" id="result_tscore_choice">100</div>
+                    </div>
+                </div>
+                <div class="tresult" id="text_result_choice">Tỷ lệ hoàn thành là <span class="persent" id="persent_choice">0%</span></div>
+            </div>
+              <div class="controls-exe-eng" >
+                <div class="klmcb_submit" id="submit-choice">
+                    <div class="klmcbsub_text">Submit</div>
+                </div>
+                <div class="klmcb_next" id="next-choice">
+                    <div class="klmcbnext_text">Next</div>
+                </div>
+                <div class="klmcb_finish" id="finish-choice">
+                    <div class="klmcbfinish_text">Finish</div>
+                </div>
+                <div class="klmcb_replay" id="replay-choice">
+                    <div class="klmcbreplay_text">Replay</div>
+                </div>
+
+                <div class="current_sentence" id="current_sentence_choice">
+                    <span>CÂU HỎI </span>
+                    <span class="number_question" id="number_question_choice">1</span>/
+                    <span class="total_question" id="total_question_choice">10</span>
+                </div>
+                <div class="arscore" id="choice_score">
+                    <div class="klmcbs_text">ĐIỂM</div>
+                    <div class="klmcbs_yscore" id="score_choice">0</div>
+                    <div class="klmcbs_tscore" id="max_score_choice">100</div>
+                </div>
+              </div>
+              
+            </div>
+          </div>
+        </div>
+     </div>
+    <!--End Choice-->
+    {%endif%}
+
+    {% if missing_ans is True %}
+       <!--Start missing-->
+      <div class="container_accord">
+          <div class="label_accord">
+              <div class="kphml_name bg-header-name">
+                <div class="kphmln_ten"><h4 class="text-header-item">Nghe và điền từ vào chỗ trống</h4></div>
+              </div>
+              <div class="khta_arscore">
+                  <div class="posi-rela khtabs_text" id="is_doing_false_miss">CHƯA LÀM</div>
+                  <div class="posi-rela khtabs_score" id="is_doing_true_miss">
+                      <div class="posi-rela khtabss_text">ĐIỂM: </div>
+                      <div class="posi-rela khtabss_score">
+                          <span class="posi-rela khtabss_yscore" id="cscore_header_miss"></span>/<span class="posi-rela khtabss_totalscore" id="totalscore_header_miss"></span>
+                      </div>
+                  </div>
+              </div>
+          </div>
+
+          <div class="content__" >
+                  <div class="container_exe_bg" id="bg-write-missing"> 
+                      <div class="wrapper-exce-sub">
+                          <div class="body-sub">
+                              <div class="khta_area" id="area_miss">
+                                  <div class="klti_area">
+                                      <div class="header_text_en">Listen, then fill in the blanks with the words you hear.</div>
+                                      <div class="header_text_vi">(Em hãy nghe và điền từ hoặc các từ còn thiếu vào chỗ trống.)</div>
+                                      
+                                  </div>
+                                  
+                                  <div class="kltc_area">
+                                      <div class="bg-audio-sentence d-flex-center" >
+                                        <div class="jp-audio">
+                                          <ul class="jp-controls">
+                                            <li><span class="jp-play" id="jp-play-miss" tabindex="1" >play</span></li>
+                                            <li><span class="jp-pause" id="jp-pause-miss" tabindex="1" >pause</span></li>
+                                          </ul>
+                                          <div class="jp-progress-slide">
+                                            <div class="ui-slide-arrange" id="ui-slide-miss"></div>
+                                          </div>
+                                        </div>
+                                      </div>
+                                      <div class="wrap-context-quest d-flex-center">
+                                          <span class="text_first" id="text_first_miss"></span>
+                                          <div class="arinput">
+                                              <input type="text" class="text_input_word"  maxlength="30"  autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" >
+                                          </div>
+                                          <span class="text_last" id="text_last_miss">, Anna.</span>
+                                  
+                                      </div>
+                                      <div class="khta_iconcor" id="khta_iconcor_miss"></div>
+                                      <div class="khta_iconincor" id="khta_iconincor_miss"></div>
+
+                                      <div class="answer-error text-center hide" id="wrap_answer_miss">
+                                          <p class="">Rất tiếc câu trả lời của em chưa đúng.<br>
+                                              Xem đáp án bên dưới.</p>
+                                          <div class="answer-text" id="body_error_answer_miss">
+                                              <span class="text_first_ans" id="text_first_ans_miss"></span>
+                                              <span class="answer-text-missing" id="answer-text-miss"></span>
+                                              <span class="text_last_ans" id="text_last_ans_miss"></span>
+                                          </div>
+                                      </div>
+                                  </div>
+                              </div>
+                              
+                          </div>
+                          <!-- Modal -->
+                              <div class="modal_" id="modal_miss">
+                                  <div class="khta_black"></div>
+                                  <div class="bg_modal">
+                                      <div class="title_modal_">Bạn có chắc sẽ bỏ qua câu hỏi này</div>
+                                      <div class="bottom_modal">
+
+                                          <div class="box_cancel btn__modal" id="box_cancel_miss">HỦY</div>
+                                          <div class="box_ok btn__modal" id="box_ok_miss">OK</div>
+                                      </div>
+                                      <div class="box_exit" id="box_exit_miss"><i class="fa fa-times"></i></div>
+                                  </div>
+                              </div>
+                            <!--end modal-->
+
+                              
+                                <div class="arresult" id="result_miss">
+                                  <div class="tcongra">Chúc mừng em đã hoàn thành bài tập với điểm số:</div>
+                                  <div class="rainbow">
+                                      <div class="fi_arscore">
+                                          <div class="fi_yscore" id="result_yscore_miss" style="transform: scale(1, 1);">
+                                              0
+                                          </div>
+                                          <div class="fi_line"></div>
+                                          <div class="fi_tscore" id="result_tscore_miss">100</div>
+                                      </div>
+                                  </div>
+                                  <div class="tresult" id="text_result_miss">Tỷ lệ hoàn thành là <span class="persent" id="persent_miss">0%</span></div>
+                              </div>
+                              <div class="controls-exe-eng" id="controls-exe-eng-miss">
+                                  <div class="hint-number" id="hint-word-miss"></div>
+                                  <div class="hint_note" id="hint_note_miss">Em có 2 lượt trợ giúp.</div>
+                                  <div class="klmcb_submit" id="submit-missing">
+                                      <div class="klmcbsub_text">Submit</div>
+                                  </div>
+                                  <div class="klmcb_next" id="next-missing">
+                                  <div class="klmcbnext_text">Next</div>
+                                  </div>
+                                  <div class="klmcb_finish" id="finish-missing">
+                                    <div class="klmcbfinish_text">Finish</div>
+                                  </div>
+                                  <div class="klmcb_replay" id="replay-missing">
+                                  <div class="klmcbreplay_text">Replay</div>
+                                  </div>
+
+                                  <div class="current_sentence" id="current_sentence_miss">
+                                  <span>CÂU HỎI </span>
+                                  <span class="number_question" id="number_question_missing">1</span>/
+                                  <span class="total_question" id="total_question_missing">10</span>
+                                  </div>
+                                  <div class="arscore" id="kta_miss_score">
+                                    <div class="klmcbs_text">ĐIỂM</div>
+                                    <div class="klmcbs_yscore" id="score_missing">0</div>
+                                    <div class="klmcbs_tscore" id="max_score_missing">100</div>
+                                  </div>
+                              </div>
+                      </div>
+                  </div>
+          </div>
+      </div>
+      <!--End missing-->
+    {%endif%}
+    {% if arrange_ans is True %}
+      <!--Start arrange-->
+      <div class="container_accord">
+        <div class="label_accord">
+          <div class="kphml_name bg-header-name">
+            <div class="kphmln_ten">
+              <h4 class="text-header-item">
+                  Nghe và sắp xếp lại thành câu đúng.
+              </h4>
+            </div>
+            <div class="khta_arscore">
+                <div class="posi-rela khtabs_text" id="is_doing_false_arr">CHƯA LÀM</div>
+                <div class="posi-rela khtabs_score" id="is_doing_true_arr">
+                  <div class="posi-rela khtabss_text">ĐIỂM: </div>
+                  <div class="posi-rela khtabss_score">
+                      <span class="posi-rela khtabss_yscore" id="cscore_header_arr"></span>/<span class="posi-rela khtabss_totalscore" id="totalscore_header_arr"></span>
+                  </div>
+                </div>
+
+            </div>
+          </div>
+        </div>
+        <div class="content__">
+          <div class="container_exe_bg bgtemp2">
+            <div class="wrapper-exce-sub">
+              
+              <div class="body-sub">
+                <div class="khta_area" id="area_arrange">
+                    <div class="klti_area">
+                      <div class="header_text_en">
+                        Click to put the given words into the correct order of a
+                        sentence.
+                      </div>
+                      <div class="header_text_vi">
+                        (Em hãy kích chuột vào các từ đã cho để sắp xếp thành câu đúng.)
+                      </div>
+                    </div>
+                    <div class="kltc_area">
+                      <div class="bg-audio-sentence d-flex-center" >
+                        <div class="jp-audio">
+                          <ul class="jp-controls">
+                             <li><span class="jp-play" id="jp-play-arr" tabindex="1" >play</span></li>
+                             <li><span class="jp-pause" id="jp-pause-arr" tabindex="1" >pause</span></li>
+                           </ul>
+                           <div class="jp-progress-slide">
+                             <div class="ui-slide-arrange" id="ui-slide-arr"></div>
+                          </div>
+                         </div>
+                       </div>
+                      <div class="wrap-context-quest d-flex-center">
+                        <div class="arques">
+                          <div id="ardrag"></div>
+                          <div id="ardrop"></div>
+                          <div class="arnote" id="arnote">
+                            Rất tiếc câu trả lời của em chưa đúng. Xem đáp án bên
+                            dưới.
+                          </div>
+                          <div id="bg_ar_ans">
+                            <div class="ar_ans" id="ar_ans"></div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="khta_iconcor" id="khta_iconcor_arrange"></div>
+                      <div class="khta_iconincor" id="khta_iconincor_arrange"></div>
+                      
+                    </div>
+                </div>
+                
+              </div>
+              <!-- Modal -->
+              <div class="modal_" id="modal_arr">
+                  <div class="khta_black"></div>
+                  <div class="bg_modal">
+                      <div class="title_modal_">Bạn có chắc sẽ bỏ qua câu hỏi này</div>
+                      <div class="bottom_modal">
+
+                          <div class="box_cancel btn__modal" id="box_cancel_arr">HỦY</div>
+                          <div class="box_ok btn__modal" id="box_ok_arr">OK</div>
+                      </div>
+                      <div class="box_exit" id="box_exit_arr"><i class="fa fa-times"></i></div>
+                  </div>
+              </div>
+
+              <div class="controls-exe-eng" >
+                  <div class="klmcb_submit" id="submit-arrange">
+                    <div class="klmcbsub_text">Submit</div>
+                  </div>
+                  <div class="klmcb_next" id="next-arrange">
+                    <div class="klmcbnext_text">Next</div>
+                  </div>
+                  <div class="klmcb_finish" id="finish-arrange">
+                    <div class="klmcbfinish_text">Finish</div>
+                  </div>
+                  <div class="klmcb_replay" id="replay-arrange">
+                    <div class="klmcbreplay_text">Replay</div>
+                  </div>
+
+                  <div class="current_sentence" id="current_sentence_arr">
+                    <span>CÂU HỎI </span>
+                    <span class="number_question" id="number_question_arr">1</span>/
+                    <span class="total_question" id="total_question_arr">10</span>
+                  </div>
+                  <div class="arscore" id="arscore">
+                    <div class="klmcbs_text">ĐIỂM</div>
+                    <div class="klmcbs_yscore" id="score_arr">0</div>
+                    <div class="klmcbs_tscore" id="max_score_arr">100</div>
+                  </div>
+              </div>
+              <div class="arresult" id="result_arrange">
+                  <div class="tcongra">Chúc mừng em đã hoàn thành bài tập với điểm số:</div>
+                  <div class="rainbow">
+                      <div class="fi_arscore">
+                          <div class="fi_yscore" id="result_yscore_arr" style="transform: scale(1, 1);">
+                              0
+                          </div>
+                          <div class="fi_line"></div>
+                          <div class="fi_tscore" id="result_tscore_arr">100</div>
+                      </div>
+                  </div>
+                  <div class="tresult" id="text_result_arr">Tỷ lệ hoàn thành là <span class="persent" id="persent_arr">0%</span></div>
+              </div>
+          
+              
+              </div>
+            </div>
+          </div>
+        </div>
+     </div>
+      <!--End arrange-->
+    {%endif%}
+    
+  </div>
+</div>
+{%endblock%}

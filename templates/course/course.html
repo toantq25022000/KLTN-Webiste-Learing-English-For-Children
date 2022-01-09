@@ -1,0 +1,237 @@
+{% extends "pages/base.html" %} 
+{% block title %} {{cs.title}} {% endblock %}
+{% load humanize %}
+{% load course_tag %}
+{%block content%} 
+{%load static%}
+<!--? slider Area Start-->
+  <section class="slider-area slider-area2">
+            <div class="slider-active">
+                <!-- Single Slider -->
+                <div class="single-slider slider-height2">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-xl-8 col-lg-11 col-md-12">
+                                <div class="hero__caption hero__caption2">
+                                    <h1 data-animation="bounceIn" data-delay="0.2s">{{cs.title}}</h1>
+                                    <!-- breadcrumb Start-->
+                                    <nav aria-label="breadcrumb">
+                                        <ol class="breadcrumb">
+                                            <li class="breadcrumb-item"><a href="{%url 'home:index'%}">Home</a></li>
+                                            <li class="breadcrumb-item"><a href="{{request.get_full_path}}">{{cs.title}}</a></li> 
+                                        </ol>
+                                    </nav>
+                                    <!-- breadcrumb End -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>          
+                </div>
+            </div>
+  </section>
+  <div class="container container-h-100 pb-padding area_enghome mt-30">
+    <div class="khta_banner">
+      <img src="{{cs.course_banner.url}}" alt="" />
+      <h1 class="course_title">{{cs.title}}</h1>
+    </div>
+    <div class="eng_infor">
+      <p>
+        {{cs.description}}<br>
+        
+      </p>
+    </div>
+    <div class="eng_bgscore">
+      {%if std_course%}
+        <div class="eng_verline"></div>
+        <div class="eng_arright">
+          <div class="eng_arscore">
+            <div class="eng_text">Tổng điểm:</div>
+            <div class="eng_bgs">
+            
+            {% sum_score_course user.id cs.id as sumScoreCourse%}
+            {% total_score_course user.id cs.id as toalScoreCourse%}
+            {% persent_progress_chap sumScoreCourse toalScoreCourse as persentProgresCourse%}
+              <div class="ehhirs_yourscore">{{sumScoreCourse}}</div>
+              <div class="ehhirs_line"></div>
+              <div class="ehhirs_sumscore">{{toalScoreCourse}}</div>
+            </div>
+          </div>
+          <div class="ehhir_tpersent">
+            Tiến trình hoàn thành:
+            <span class="ehhir_persent">{{persentProgresCourse}}%</span>
+          </div>
+          <div class="ehhir_aripersent">
+            <div class="ehhir_ipersent" style="width: {{persentProgresCourse}}%"></div>
+          </div>
+        </div> 
+      
+      {%else%}
+      <div class="buy-course-detail">
+            <div class="block-price">
+              <p>
+              Giảm giá:
+              <span>
+                {%if cs.discounted_price == 0%}
+                    Khóa học chưa có giảm giá
+                {%else%}
+                  <span class="discount-price2">Giảm <span style="font-weight:600;color:#000;font-size:16px;">{{cs.discounted_price}}%</span> khi mua khóa học</span>
+                {%endif%}
+              </span>
+              </p>
+            </div>
+          
+            <div class="block-btn text-center">
+              <a href="{% url 'order:register_course' cs.id %}" class="btn-cart-course btn-add_cart">
+                  <i class="fa fa-cart-plus" aria-hidden="true"></i>
+                  Mua khóa học ngay</a>
+              </a>
+              
+              <p>Hoàn tiền trong 7 ngày nếu không hài lòng</p>
+            </div>
+            <div class="block-btn">
+               <ul class="des_buy_course_detail">
+                  <li><i class="ti-book"></i>Số chương: <span>{{count_chap}} chương</span></li>
+                  <li><i class="ti-slice"></i>Bài tập: <span>Đa dạng</span></li>
+                  <li><i class="ti-game"></i>Trò chơi: <span>Phong phú</span></li>
+               </ul>
+            </div>
+         
+      </div>
+     {%endif%}
+      
+    </div>
+    <!--List lesson-->
+    
+    <!--Start list-->
+    <div class="accordionExample">  
+      {% for item in chap%}
+      <div class="container_accord">
+      {% lesson_of_chapter item.id as lesson_of_chapter%}
+          {% total_score_chapter user.id cs.id item.id as totalScore%}
+          {% sum_score_chapter user.id cs.id item.id as sumScore%}
+          <div class="label_accord">
+            <div class="counter_chapter__">
+              <span class="text_counter_course">{{forloop.counter}}</span>
+            </div>
+              
+            <div class="kphml_name">
+                <div class="kphmln_ten">{{item.title}}</div>
+                <div class="kphmln_tvi">{{item.title_vi}}</div>
+            </div>
+            <div class="persent_progress_chapter__ d-flex-center">
+            
+            {% persent_progress_chap sumScore totalScore as persent_your%}
+                <span>{{persent_your}} %</span>
+            </div>
+            <div class="area__score_ d-flex-center">
+              
+               <span class="yourscore__">{{sumScore}}</span>/<span class="total__score_">{{totalScore}}</span>
+            </div>
+          </div>
+          <!--Content accord -->
+          <div class="content__ content_h_auto">
+          {%for item2 in lesson_of_chapter%}
+            {%if learn_course is None %} <!--Neu chua mua khoa hoc-->
+                    {%if item2.icon == 1%}
+                        <div class="kphmlc_part kphmlc_part_one">
+                    {%elif item2.icon == 2%}
+                        <div class="kphmlc_part kphmlc_part_two">
+                    {%elif item2.icon == 3%}
+                        <div class="kphmlc_part kphmlc_part_three">
+                    {%elif item2.icon == 4%}
+                        <div class="kphmlc_part kphmlc_part_four">
+                    {%endif%} 
+            {%else%}
+                {% day_left learn_course.finish_date as dayLeft %}
+                                                    
+                {%if dayLeft < 0%} <!-- Het thoi gian vip ma chua mua them vip-->
+                    {%if item2.icon == 1%}
+                        <div class="kphmlc_part kphmlc_part_one">
+                    {%elif item2.icon == 2%}
+                        <div class="kphmlc_part kphmlc_part_two">
+                    {%elif item2.icon == 3%}
+                        <div class="kphmlc_part kphmlc_part_three">
+                    {%elif item2.icon == 4%}
+                        <div class="kphmlc_part kphmlc_part_four">
+                    {%endif%}                                         
+                {%else%} <!-- Con thoi gian hoc VIP-->
+                    {%if item2.icon == 1%}
+                        <a href="{% url 'course:detaillesson' cs.id item2.id%}" class="kphmlc_part kphmlc_part_one">
+                    {%elif item2.icon == 2%}
+                        <a href="{% url 'course:detaillesson' cs.id item2.id%}" class="kphmlc_part kphmlc_part_two">
+                    {%elif item2.icon == 3%}
+                        <a href="" class="kphmlc_part kphmlc_part_three">
+                    {%elif item2.icon == 4%}
+                        <a href="" class="kphmlc_part kphmlc_part_four">
+                    {%endif%}
+                {%endif%}
+            {%endif%}
+         
+                    <div class="kphmlcp_arname">
+                      <div class="kphmlcpn_icon">
+                        <img src="/media/{{item2.get_icon_display}}" />
+                      </div>
+                      <div class="kphmlcpn_ten">{{item2.get_titlesub_display}}</div>
+                      <div class="kphmlcpn_tvi">{{item2.get_titlesub_vi_display}}</div>
+                    </div>
+                    <div class="kphmlcp_arlink">
+                      <div class="kphmlcpl_text">{{item2.description}}</div>
+                      <div class="kphmlcpl_tvi">{{item2.description_vi}}</div>
+                    </div>
+              {%if learn_course is None %} <!--Neu chua mua khoa hoc-->
+                   </div>
+              {%else%}
+                {% day_left learn_course.finish_date as dayLeft %}            
+                {%if dayLeft < 0%} <!-- Het thoi gian vip ma chua mua them vip-->
+                   </div>
+                {%else%} <!-- Con thoi gian hoc VIP-->
+                   </a>
+                {%endif%}
+              {%endif%}
+                </a>
+            {%endfor%}
+          </div>
+          
+      </div>
+      {% endfor %}   
+      <!--Violym pic end course-->
+      {%if vio_one%}
+      
+      <div class="container_accord">
+          <div class="label_accord">
+            <div class="kphmln_icon_pre"></div>
+            <div class="kphml_name">
+              <div class="kphmln_ten">{{vio_one.title}}</div>
+              <div class="kphmln_tvi">Ôn tập</div>
+            </div>
+          </div>
+          <div class="content__ content_h_auto prl-padding">
+              <div class="detail_course_ins_vio">Phần này sẽ giúp các em ôn tập lại tất cả kiến thức của khóa học lớp {{vio_one.course.id}}.</div>
+              {%if learn_course is None %} <!--Neu chua mua khoa hoc-->
+                   <span class="prev_vio_button" >
+                      vào làm bài
+                    </span>
+              {%else%}
+                {% day_left learn_course.finish_date as dayLeft %}            
+                {%if dayLeft < 0%} <!-- Het thoi gian vip ma chua mua them vip-->
+                    <span class="prev_vio_button" >
+                      vào làm bài
+                    </span>
+                {%else%} <!-- Con thoi gian hoc VIP-->
+                    <a class="prev_vio_button" href="{% url 'course:violympic_end_course' vio_one.course.id vio_one.id %}">
+                      vào làm bài
+                    </a>
+                {%endif%}
+              {%endif%}
+             
+          </div>
+      </div>
+     
+      {%endif%}  
+    </div>
+    <!--End list-->
+
+  </div>
+
+
+{%endblock%}

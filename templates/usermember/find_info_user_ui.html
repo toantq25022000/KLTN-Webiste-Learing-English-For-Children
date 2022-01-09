@@ -1,0 +1,219 @@
+{% extends "pages/base.html" %} {%load static%} {% block title %} Tìm kiếm học
+sinh {%endblock%} {% block scripts %}
+<script>
+  $(document).ready(function () {
+    $("#box_ketquatracuu").hide();
+    var frm = $("#findInfoForm");
+
+    frm.submit(function (e) {
+      e.preventDefault();
+      var field_MaHocVien = $("#MaHocVien").val();
+      var field_HoTen = $("#HoTen").val();
+      // var field_NgaySinh = $('#NgaySinh').val();
+      dem = 0;
+      if (field_MaHocVien === "" && field_HoTen === "") {
+        dem++;
+      }
+      if (dem != 0) {
+        return;
+      } else {
+        $.ajax({
+          type: frm.attr("method"),
+          url: frm.attr("action"),
+          data: frm.serialize(),
+          success: function (response) {
+            $("#box_ketquatracuu").show();
+
+            console.log(response);
+            if (response.data === undefined) {
+              // hide element table and empty
+              $("#show-table-tc").empty();
+              $("#show-table-tc").hide();
+              // show text not found
+              $("#tc-notfound").show();
+            } else {
+              $("#tc-notfound").hide();
+              const data = response.data;
+
+              $("#show-table-tc").empty();
+              $("#show-table-tc").show();
+
+              ele_body = ``;
+              url_href =
+                "{% url 'usermember:view_detailscore_find_student' userId=3 %}";
+
+              
+
+              for (i = 0; i < data.length; i++) {
+                ele_body += `
+                                <tr>  
+                                    <td valign="middle" style="width: 50px">${
+                                      i + 1
+                                    }</td>
+                                    <td valign="middle" style="width: 50px">${
+                                      data[i].id_std
+                                    }</td>
+                                    <td valign="middle">${
+                                      data[i].fullname == null
+                                        ? ""
+                                        : data[i].fullname
+                                    }</td>
+                                    <td valign="middle">${
+                                      data[i].birthday == null
+                                        ? ""
+                                        : data[i].birthday
+                                    }</td>
+            
+                                    <td valign="middle">
+                                    <a
+                                        target="_blank"
+                                        href="${url_href.replace("3", data[i].id)}"
+                                        lang="tc-xemdiem"
+                                        style="color: #007bff;"
+                                        >Xem điểm
+                                    </a>
+                                    <br />
+                                    </td>
+                                </tr>
+                            `;
+              }
+              $("#show-table-tc").append(`
+                                <table
+                                id="ketquaTraCuu"
+                                class="table-custom table table-bordered text-center"
+                                style="background: #fff"
+                                >
+                                    <thead>
+                                    <tr>
+                                        <th>STT</th>
+                                        <th>MSSV</th>
+                                        <th>Họ tên</th>
+                                        <th>Ngày sinh</th>
+                                        <th>Xem điểm</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                        ${ele_body}
+                                    </tbody>
+                                </table>
+                            `);
+            }
+          },
+          error: function (error) {},
+        });
+      }
+    });
+  });
+</script>
+{% endblock %} 
+{%block content%}
+<section class="slider-area slider-area2 h-100px"></section>
+<section class="breadcrumb-title">
+  <div class="container">
+    <strong><span></span>Tra cứu thông tin</strong>
+  </div>
+</section>
+<section class="section-tracuu">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="box-df">
+          <form
+            id="findInfoForm"
+            action="{% url 'usermember:post_data_find_info_std' %}"
+            method="POST"
+          >
+            {%csrf_token %}
+            <div class="search-adv">
+              <div class="row">
+                <div class="col-sm-4">
+                  <div class="form-group align-items-center">
+                    <label for="" class="title col-form-label">
+                      Mã số học viên
+                    </label>
+                    <div class="form-group-wrap">
+                      <input
+                        class="form-control"
+                        id="MaHocVien"
+                        name="MaHocVien"
+                        placeholder="Nhập mã học viên."
+                        type="text"
+                        value=""
+                      />
+                    </div>
+                  </div>
+                </div>
+                <div class="col-sm-4">
+                  <div class="form-group align-items-center">
+                    <label for="" class="title col-form-label"> Họ tên </label>
+                    <div class="form-group-wrap">
+                      <input
+                        class="form-control"
+                        id="HoTen"
+                        name="HoTen"
+                        placeholder="Nhập họ và tên."
+                        type="text"
+                        value=""
+                      />
+                    </div>
+                  </div>
+                </div>
+                <div class="col-sm-4" style="display:none;">
+                  <div class="form-group align-items-center">
+                    <label for="" class="title col-form-label">
+                      Ngày sinh
+                    </label>
+                    <div class="form-group-wrap">
+                      <input
+                        class="form-control"
+                        id="NgaySinh"
+                        name="NgaySinh"
+                        placeholder="VD: 01/01/2012"
+                        type="text"
+                        value=""
+                      />
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="text-center align-items-center mt-5">
+                <div class="form-group-wrap">
+                  <button type="submit" class="btn-custom" id="btn_submit_tc">
+                    <i
+                      class="ti-search"
+                      style="vertical-align: middle; margin-right: 3px"
+                    ></i
+                    >Tra cứu
+                  </button>
+                </div>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+    <div class="box_ketquatracuu" id="box_ketquatracuu">
+      <div class="box-df">
+        <div class="portlet">
+          <div class="portlet-title">
+            <div class="caption">
+              <span class="caption-subject bold" lang="tc-ketquatracuu"
+                >Kết quả tra cứu</span
+              >
+            </div>
+          </div>
+          <div class="tracuu table-responsive">
+            <div>
+              <p style="padding: 30px 0px" class="bold" id="tc-notfound">
+                Không tìm thấy dữ liệu tra cứu
+              </p>
+              <div id="show-table-tc"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+{%endblock%}

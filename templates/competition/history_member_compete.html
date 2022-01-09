@@ -1,0 +1,104 @@
+{% extends "pages/base2.html" %} 
+{% block title %} Thi đấu Tiếng anh trực tuyến {% endblock %}
+
+{%load static%}
+{%block scripts %}
+
+{%endblock%}
+
+{%block content%} 
+<div class="container page-content">
+    <div class="ctr-page" id="history-member-page">
+        <div class="ctr-hm-box">
+            <div class="ctr-hm-title">Lịch sử thi đấu của {{request.user.username}}</div>
+            <div class="row">
+                <p class="col-xs-6 ctr-hm-sub-title">( 20 trận gần đây nhất trong tuần )</p>
+            </div>
+            <div class="ctr-hm-main">
+                <div class="ctr-hm-left">
+                    <div class="ctr-hm-content">
+                        <div class="ctr-hm-main">
+                            <div class="ctr-hm-list">
+                                <div class="table table-hover table_history_member_compete text-center table-me" id="table_history_member_compete">
+                                    <div class="thead">
+                                      <div class="tr">
+                                        <div class="th" scope="col">#</div>
+                                        <div class="th" scope="col">Ngày giờ thi đấu</div>
+                                        <div class="th" scope="col">Phòng đấu</div>
+                                        <div class="th" scope="col">Kết quả</div>
+                                        <div class="th" scope="col">Điểm danh hiệu</div>
+                                      </div>
+                                    </div>
+                                    <div class="tbody bg-white">
+                                      <div class="tbody-content">
+                                        <div class="face">
+                                          <div class="r-body overflow">
+                                            {%for item in list_history%}
+                                              <div class="tr r-row">
+                                                <div class="td td-first"></div>
+                                                <div class="td">{{item.timestart | date:"d-m-Y"}} ({{item.timestart | date:"H:i"}})</div>
+                                                <div class="td">
+                                                    {%if item.type_compete.max_quantity_add_user == 1 %}
+                                                    Đối kháng
+                                                    {%else%}
+                                                    Đấu tập thể
+                                                    {%endif%}
+                                                </div>
+                                                <div class="td">{{item.result_rank}}</div>
+                                                <div class="td">{{item.points_title}}</div>
+                                                
+                                              </div>
+                                            {%endfor%}
+                                           
+                                          </div>
+                                        </div>
+                                      </div>
+                                      
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="ctr-hm-total">
+                                <span style="padding-right: 10px;">Điểm thi đấu: <b class="" style="color: #f08319;">{{total_points_title}} điểm</b></span> 
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="ctr-hm-member-info">
+                    <div class="ctr-hm-member-info-content">
+                        <div class="text-center">
+                            <div class="ctr-w-member newbie" style="background-image: url('/static/img/compete/newbie.png')">
+                                <div class="ctr-wm-avata">
+                                    <img class="ctr-wm-avata-img" src="{{request.user.std_img.url}}">
+                                </div>
+                                <div class="ctr-wm-ready">
+                                    <span class="text-center ctr-hmi-vip-icon"></span>
+                                    <span class="text-center pull-right ctr-wm-num">1</span>
+                                </div>
+                                <div class="text-center ctr-wm-username"><b>{{request.user.username}}</b></div>
+                                <div class="text-center ctr-wm-level">
+                                    <span class="ctr-wml-name" style="color: #e69b57">{{title_user}}</span>
+                                    <span class="ctr-wml-star">
+                                        <img src="/static/img/icon/ctr-star.png">
+                                    </span>
+                                </div>
+                                <div class="text-center ctr-wm-win-number"><b>{{total_win}}</b></div>
+                                <div class="text-center ctr-wm-win-name">TRẬN THẮNG</div>
+                            </div>
+                        </div>
+                        <div class="ctr-hmi-detail">
+                            <p class="text-center ctr-hmi-fullname"><b>{{request.user.username}}</b></p>
+                            <div class="text-center ctr-hmi-win" style="color: #555555;">Thắng</div>
+                            <div class="text-center ctr-hmi-win">Thắng: <span class="">{{win1v1}}</span>/{{total_1v1}} đối kháng (1 vs 1)</div>
+                            <p class="text-center ctr-hmi-win">Thắng: <span class="">{{win1v9}}</span>/{{total_1v9}} tập thể (1 vs 9)</p>					
+                            <p class="text-center ctr-hmi-your-rank">Xếp hạng trong tuần : <b class="">{{kqRank}}</b></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+{%endblock%}   

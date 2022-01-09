@@ -1,0 +1,88 @@
+{% extends "pages/base.html" %} 
+{% block title %} Đặt hàng thành công {% endblock %}
+{% load humanize %}
+{%load static%}
+
+{%block content%} 
+<!--? slider Area Start-->
+<section class="slider-area slider-area2 h-100px"></section>
+<section class="breadcrumb-title" style="height:70px;">
+    <div class="container">
+      <strong style="font-size: 28px;">
+        <span style="position: relative;top:4px;"></span>Đặt hàng thành công</strong>
+    </div>
+  </section>
+
+  <div class="container container-h-100 container-visibility">
+    <div class="wrap-content-success">
+        <div class="header-success-payment">
+            <img src="/static/img/icon_success.png" alt="Image success">
+            <h3>Đặt hàng thành công</h3>
+            <span>Mã giao dịch: {{Ma_GD}}</span>
+        </div>
+        <div class="body-success-pay">
+            <table class="table tb_list_order">
+                <thead>
+                    <tr>
+                        <th>Tên khóa học</th>
+                        <th>Thời hạn</th>
+                        <th>Thành tiền</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for item1 in order_item%}
+                    
+                    <tr>
+                        <td>{{item1.item.title}}</td>
+                        <td>
+                            {%if item1.vip_days == 30 %}
+                            1 tháng
+                            {%elif item1.vip_days == 90 %}
+                            1 quý
+                            {%elif item1.vip_days == 365 %}
+                            1 năm
+                            {%else %}
+                            Trọn đời
+                            {%endif%}
+                        </td>
+                        <td>{{item1.total_price|intcomma}} đ</td>
+                    </tr>
+                    {%endfor%}
+                    
+                </tbody>
+            </table>
+            <div class="line__dashed"></div>
+            <table class="tb__quatity">
+                <tbody>
+                    <tr>
+                        <td>Giá trị đơn hàng:</td>
+                        <td>{{order_total|intcomma}} đ</td>
+                    </tr>
+                    <tr>
+                        <td>Phí:</td>
+                        <td>0 đ</td>
+                    </tr>
+                    <tr>
+                        <td>Tổng cộng:</td>
+                        <td class="color_r">{{order_total|intcomma}} đ</td>
+                    </tr>
+                    <tr>
+                        <td>Phương thức thanh toán:</td>
+                        <td>{{method_pay}}</td>
+                    </tr>
+                </tbody>
+            </table>
+            <div class="note_after_pay">
+                <h2>Chúng tôi sẽ liên hệ với bạn ngay sau khi nhận được đơn hàng này<br>
+                    Mọi thắc mắc vui lòng liên hệ hotline: 0978 616 633
+                </h2>
+            </div>
+            <div class="bottom-btn-pay-success">
+                <a href="{% url 'home:index' %}" class="btn-0 btn-back-home"><i class="ti-home"></i>Quay về trang chủ</a>
+                <a href="{% url 'home:index' %}" class="btn-0 btn-countinue-buy">Tiếp tục mua khóa học</a>
+            </div>
+        </div>
+    </div>
+  </div>
+
+{%endblock%}

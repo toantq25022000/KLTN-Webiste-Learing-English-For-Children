@@ -1,0 +1,30 @@
+.maprdrag{background-image: url('/static/img/compete/mvdrag.png');}
+.maprdrop{background-image: url('/static/img/compete/mvdrop.png');}
+.prai{background-image: url('/static/img/compete/prai.png');}
+#ctla{display: none;}
+/*---------------------------------------------------*/
+.ma_prab{position: absolute!important; top: 0px; left: 0px;}
+.ctthd{display: none;}
+.ctst{position: relative; width: 718px; height: 370px; top: 0px; left: 0px; font-family: Arial;font-size: 16px;line-height: 25px; margin: auto;}
+#maprp{margin: 10px 0px 20px 0px; text-align: center;}
+#maprp > div:nth-child(1){font-size: 17px; font-weight: bold;}
+#maprp > div:nth-child(2){font-size: 14px; font-style: italic;}
+#maprfq{}
+#maprfdrop{left: 0px;}
+.maprdrop{width: 333px; height: 86px;}
+#maprfdrag{left: 345px;}
+.maprdrag{width: 372px; height: 86px; cursor: pointer;opacity: 1!important;}
+#maprfq{left: 0px; position: relative;height: 400px; color: #fff;}
+#maprdrop1,#maprdrag1{top: 96px;}
+#maprdrop2,#maprdrag2{top: 192px}
+.maprdropfimg{left: 25px;top: 10px;width: 270px;vertical-align: middle;text-align: center;overflow: hidden;height: 65px; display: table;}
+.maprdragtxt{left: 50px;top: 10px;width: 290px;vertical-align: middle;text-align: center;overflow: hidden;height: 65px; display: table;}
+.maprdragtxt > div, .maprdropfimg > div{display: table-cell;vertical-align: middle;font-size: 25px;}
+.prai{width: 61px; height: 60px; cursor: pointer; background-repeat: no-repeat;margin: auto;}
+.prai:hover{background-position: -61px 0px;}
+.prai:active{margin-top: 2px;}
+
+
+#ctlls0{color: #EB1C24;}
+#ctlls1{color: #000000; font-weight: bold;}
+#ctlls2 a{/*color: #3494BE;*/text-decoration: none;}

@@ -1,0 +1,69 @@
+{% extends "pages/base.html" %} {% block title %} Ket qua tim kiem{% endblock %}
+{% load nav_tag %} {%load static%} {%block content%}
+<!--? slider Area Start-->
+<section class="slider-area slider-area2">
+  <div class="slider-active">
+    <!-- Single Slider -->
+    <div class="single-slider slider-height2">
+      <div class="container">
+        <div class="row">
+          <div class="col-xl-8 col-lg-11 col-md-12">
+            <div class="hero__caption hero__caption2">
+              <h1 data-animation="bounceIn" data-delay="0.2s">Search</h1>
+              <!-- breadcrumb Start-->
+              <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                  <li class="breadcrumb-item">
+                    <a href="{%url 'home:index'%}">Home</a>
+                  </li>
+                  <li class="breadcrumb-item">
+                    <a href="{{request.get_full_path}}">Search</a>
+                  </li>
+                </ol>
+              </nav>
+              <!-- breadcrumb End -->
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<div class="container container-h-100 bg-container-w">
+  <div class="row header-search">
+    <div class="col-6">
+      <h2 class="search-result-header">Kết quả tìm kiếm với: {{result}}</h2>
+    </div>
+    <div class="col-6">
+      <h2 class="search-result-header search-result-header-last">Tìm thấy <span>{{count_search}}</span> topic</h2>
+    </div>
+  </div>
+
+  <div class="search-result-wrapper">
+    {%if count_search == 0 %}
+        <strong>Không có top nào với từ khóa: {{result}}</strong>
+        <p>Đề xuất:</p>
+        <ul>
+            <li>Xin bạn chắc chắn rằng tất cả các từ đều đúng chính tả.</li>
+            <li>Hãy thử những từ khóa khác.</li>
+            <li>Hãy thử những từ khóa chung hơn.</li>
+        </ul>
+    {%else%}
+    {%for item in data_search%} {% get_id_course item.id as getCourse %}
+    <div class="row item-result-search">
+      <div class="col-9">
+        <div class="unit-result-s">
+          Unit: <a href="{% url 'course:detailcourse' getCourse.id %}">{{item.title}} ({{item.title_vi}})</a> 
+        </div>
+        <div class="course-result-s">Course: <span>{{getCourse.title}}</span></div>
+      </div>
+      <div class="col-3 d-flex-center">
+        <a class="link-view-course" href="{% url 'course:detailcourse' getCourse.id %}"><i class="fa fa-eye"></i>View</a>
+      </div>
+    </div>
+
+    {%endfor%}
+    {%endif%}
+  </div>
+</div>
+{%endblock%}
