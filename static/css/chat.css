@@ -2,7 +2,7 @@
 .emoticon {border:0; outline:none; width: 20px; height: 20px; display:inline-block; cursor: pointer;}
 .emoticons .mCSB_inside > .mCSB_container{margin-right: 15px;}
 .emoticon.batman{
- background-image: url("/static/img/emoji/batman.png");
+ background-image: url("/static/img/emoji/walkcycle.png");
     -webkit-animation: play_batman 1s steps(11) infinite;
        -moz-animation: play_batman 1s steps(11) infinite;
         -ms-animation: play_batman 1s steps(11) infinite;
