@@ -107,13 +107,10 @@ class registerUser(View):
             reP = 'Nhập lại mật khẩu không trùng khớp'
         context = {'uN':uN,'pW':pW,'lenreP':lenreP,'reP':reP}
         if len(username) >= 5 and len(password) >= 6 and len(repassword) >= 6 and repassword == password:
-            user = MyUser.objects.create_user(username,email,password)
+            user = MyUser(username=username,email=email,password=password)
             user.save()
             suse = 'Đăng ký tài khoản thành công'
             
-            
-            # std = Student(user_id=user.id,std_img='img/noavatar.gif',time_vip=0)
-            # std.save()
             return render(request,'home/register.html',{'suse':suse})           
         else:
             return render(request,'home/register.html',context)
