@@ -12,7 +12,7 @@ class MyUser(AbstractUser):
     birth_date = models.DateField(null=True)
     phone_number = models.CharField(default='',max_length=15,null=True)
     address = models.CharField(default='',max_length=255,null=True)
-    std_img = models.ImageField(default='noavatar.gif',upload_to='user/image-student/')
+    std_img = models.ImageField(default='user/image-student/hinh-anh-gai-xinh-de-thuong-nhat-1.jpg',upload_to='user/image-student/')
   
 class Student(models.Model):
     user = models.ForeignKey(MyUser,on_delete=models.CASCADE)
