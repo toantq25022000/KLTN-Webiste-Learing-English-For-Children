@@ -108,7 +108,6 @@ class registerUser(View):
         context = {'uN':uN,'pW':pW,'lenreP':lenreP,'reP':reP}
         if len(username) >= 5 and len(password) >= 6 and len(repassword) >= 6 and repassword == password:
             user = MyUser(username=username,email=email,password=password)
-            user.save()
             suse = 'Đăng ký tài khoản thành công'
             
             return render(request,'home/register.html',{'suse':suse})           
